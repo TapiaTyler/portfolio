@@ -1,0 +1,617 @@
+<!DOCTYPE html><html lang="en" style=""><head></head><body class="bg-grid-dots min-h-screen text-xs md:text-sm antialiased selection:bg-emerald-900 selection:text-emerald-200"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Tyler Tapia — Software Engineer (Engineer Theme)</title>
+<!-- Tailwind CSS CDN with Forms and Container Queries plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: JetBrains Mono and Space Grotesk for strict technical blueprint typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sys: {
+              bg: '#0A0E14',
+              surface: '#0D1117',
+              panel: '#111720',
+              border: '#1E293B',
+              borderDim: '#16202E',
+              borderBright: '#334155',
+              green: '#10B981',
+              greenDim: '#064E3B',
+              cyan: '#38BDF8',
+              amber: '#F59E0B',
+              textPrimary: '#E2E8F0',
+              textMuted: '#94A3B8',
+              textDim: '#475569'
+            }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-grid-and-aesthetics">
+    body {
+      background-color: #0A0E14;
+      color: #E2E8F0;
+      font-family: 'JetBrains Mono', monospace;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subdued terminal cross-hair dot grid */
+    .bg-grid-dots {
+      background-image: radial-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Technical Scanline effect */
+    .scanline-overlay {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    /* Custom scrollbar for technical aesthetics */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0E14;
+      border-left: 1px solid #1E293B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E293B;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+
+
+<!-- BEGIN: SystemTopHeader -->
+<header class="sticky top-0 z-50 bg-[#0A0E14]/95 backdrop-blur border-b border-sys-border" data-purpose="system-status-bar">
+<div class="max-w-7xl mx-auto px-4 md:px-6 h-12 flex items-center justify-between text-xs tracking-wider">
+<!-- Identity Logo -->
+<div class="flex items-center space-x-3"><span class="inline-block w-2 h-2 bg-sys-green animate-pulse flex-shrink-0"></span><a class="font-bold tracking-widest text-slate-100 hover:text-sys-green transition-colors uppercase whitespace-nowrap flex flex-col justify-center leading-none" href="#"><span class="tracking-wider text-xs">TYLER TETSUO TAPIA</span><span class="text-[10px] font-normal text-slate-400 tracking-normal font-mono mt-0.5">テイラー・鉄男・タピア</span></a></div>
+<!-- Center Indexed Navigation -->
+<nav class="hidden md:flex items-center space-x-1 lg:space-x-4 font-mono text-[11px] text-sys-textMuted"><a class="px-2 py-1 text-slate-100 bg-slate-900/80 border-b border-sys-green" href="#projects"><span class="text-sys-green">[WORK]</span></a>
+<a class="px-2 py-1 hover:text-sys-green hover:bg-slate-900/60 transition-colors" href="#capabilities"><span class="text-sys-textDim">[ABOUT]</span></a>
+<a class="px-2 py-1 hover:text-sys-green hover:bg-slate-900/60 transition-colors" href="#activity"><span class="text-sys-textDim">[LAB]</span></a>
+<a class="px-2 py-1 hover:text-sys-green hover:bg-slate-900/60 transition-colors" href="#contact"><span class="text-sys-textDim">[CONTACT]</span></a></nav>
+<!-- Mode Selector Badge -->
+<div class="flex items-center space-x-2"><div class="hidden sm:flex items-center border border-sys-border bg-slate-900/90 text-[11px] font-mono p-0.5 tracking-wider" data-purpose="language-selector"><button type="button" class="flex items-center space-x-1 px-1.5 py-0.5 bg-emerald-950/80 border border-emerald-800/80 text-sys-green font-bold transition-colors"><span class="w-1.5 h-1.5 bg-sys-green"></span><span class="">EN</span></button><span class="text-sys-border px-0.5">/</span><button type="button" class="flex items-center space-x-1 px-1.5 py-0.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent transition-colors"><span class="">JP</span></button></div><div class="hidden md:flex border border-sys-border bg-slate-900/90 px-2.5 py-1 text-[11px] items-center space-x-1 cursor-pointer hover:border-sys-green transition-colors"><div class="inline-flex items-center gap-1.5 leading-none"><span class="text-sys-green font-semibold tracking-wider">ENGINEER</span><span class="text-sys-textDim text-[9px]">⌵</span></div></div><button id="mobile-nav-toggle" type="button" class="md:hidden flex items-center justify-center p-1.5 border border-sys-border bg-slate-900/90 text-sys-textMuted hover:text-sys-green hover:border-sys-green transition-colors font-mono text-xs" onclick="const m = document.getElementById('mobile-drawer'); m.classList.toggle('hidden');"><span class="font-mono">[SYS_MENU]</span></button></div>
+</div>
+<div id="mobile-drawer" class="md:hidden border-t border-sys-border bg-slate-950/95 backdrop-blur px-4 py-4 space-y-4 font-mono text-xs"><nav class="flex flex-col space-y-2"><a class="px-2 py-1.5 text-slate-100 bg-slate-900/80 border-l-2 border-sys-green flex items-center justify-between" href="#projects"><span class="text-sys-green">[WORK]</span><span class="text-[10px] text-sys-textDim">PROJECT_INDEX</span></a><a class="px-2 py-1.5 text-sys-textMuted hover:text-sys-green hover:bg-slate-900/60 transition-colors flex items-center justify-between" href="#capabilities"><span class="">[ABOUT]</span><span class="text-[10px] text-sys-textDim">CAPABILITIES</span></a><a class="px-2 py-1.5 text-sys-textMuted hover:text-sys-green hover:bg-slate-900/60 transition-colors flex items-center justify-between" href="#activity"><span class="">[LAB]</span><span class="text-[10px] text-sys-textDim">RECENT_LOGS</span></a><a class="px-2 py-1.5 text-sys-textMuted hover:text-sys-green hover:bg-slate-900/60 transition-colors flex items-center justify-between" href="#contact"><span class="">[CONTACT]</span><span class="text-[10px] text-sys-textDim">COMMS</span></a></nav><div class="pt-3 border-t border-sys-borderDim flex items-center justify-between"><div class="flex items-center border border-sys-border bg-slate-900/90 text-[11px] p-0.5 tracking-wider"><button type="button" class="flex items-center space-x-1 px-2 py-0.5 bg-emerald-950/80 border border-emerald-800/80 text-sys-green font-bold"><span class="w-1.5 h-1.5 bg-sys-green"></span><span class="">EN</span></button><span class="text-sys-border px-1">/</span><button type="button" class="flex items-center space-x-1 px-2 py-0.5 text-slate-400 hover:text-slate-200"><span class="">JP</span></button></div><div class="border border-sys-border bg-slate-900/90 px-2.5 py-1 text-[11px] flex items-center space-x-1"><span class="text-sys-green font-semibold tracking-wider">ENGINEER</span><span class="text-sys-textDim text-[9px]">v2.0</span></div></div></div></header>
+<!-- END: SystemTopHeader -->
+<!-- BEGIN: MainContentWrapper -->
+<main class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 space-y-8" id="hero">
+<!-- BEGIN: HeroSystemDossier -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-0 border border-sys-border bg-sys-surface" data-purpose="hero-dossier-grid">
+<!-- Left Panel: Profile Dossier -->
+<div class="lg:col-span-6 p-4 md:p-6 border-b lg:border-b-0 lg:border-r border-sys-border flex flex-col justify-between">
+<div>
+<!-- Section Tag -->
+<div class="flex items-center justify-between pb-3 mb-4 border-b border-sys-border">
+<span class="text-sys-green font-bold text-xs tracking-wider flex items-center">
+<span class="text-slate-400 mr-1.5">&gt;</span> PROFILE
+            </span>
+<span class="text-[10px] text-sys-textDim font-mono">SPEC_ID: 7490-TAPIA</span>
+</div>
+<!-- Structured Specifications Table -->
+<div class="space-y-0 text-xs">
+<div class="flex py-2 border-b border-sys-borderDim">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">NAME</span>
+<span class="text-slate-100 font-medium tracking-wide">Tyler Tetsuo Tapia</span>
+</div>
+<div class="flex py-2 border-b border-sys-borderDim">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">ROLE</span>
+<span class="text-slate-200">Software Engineer</span>
+</div>
+<div class="flex py-2 border-b border-sys-borderDim">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">FOCUS</span>
+<span class="text-slate-300">Web / UI / Full Stack</span>
+</div>
+<div class="flex py-2 border-b border-sys-borderDim">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">LOCATION</span>
+<span class="text-slate-300">Hawaii, USA</span>
+</div>
+<div class="flex py-2 border-b border-sys-borderDim">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">TARGET</span>
+<span class="text-slate-300">Japan</span>
+</div>
+<div class="flex py-2 items-center">
+<span class="w-28 text-sys-textDim uppercase tracking-wide">STATUS</span>
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-none bg-sys-green animate-ping"></span>
+<span class="text-sys-green font-semibold bg-emerald-950/60 border border-emerald-800/80 px-2 py-0.5 text-[11px] tracking-wide">
+                  [Available for relocation]
+                </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Terminal statement note -->
+<div class="mt-6 pt-4 border-t border-sys-borderDim text-[11px] text-sys-textMuted leading-relaxed">
+<span class="text-slate-400 font-semibold">// MISSION PARAMETERS:</span> Designing &amp; deploying resilient, human-centered digital experiences at the intersection of complex interfaces, edge infrastructure, and Japanese cross-cultural platforms.
+        </div>
+</div>
+<!-- Right Panel: Current Systems & Telemetry Route Map -->
+<div class="lg:col-span-6 p-4 md:p-6 flex flex-col justify-between bg-sys-bg/60">
+<div>
+<!-- Section Tag -->
+<div class="flex items-center justify-between pb-3 mb-4 border-b border-sys-border">
+<span class="text-sys-green font-bold text-xs tracking-wider flex items-center">
+<span class="text-slate-400 mr-1.5">&gt;</span> CURRENT SYSTEMS
+            </span>
+<span class="text-[10px] text-sys-textDim font-mono">NODE_CLUSTER: PACIFIC-EAST</span>
+</div>
+<!-- Active Services Queue -->
+<div class="space-y-2 mb-6 font-mono text-xs">
+<div class="flex items-center justify-between bg-slate-900/60 border border-sys-borderDim px-3 py-2">
+<div class="flex items-center space-x-2">
+
+<span class="text-slate-100 font-semibold tracking-wide">Nihonest</span>
+</div>
+<span class="text-sys-green text-[11px] font-bold">[ACTIVE]</span>
+</div>
+<div class="flex items-center justify-between bg-slate-900/60 border border-sys-borderDim px-3 py-2">
+<div class="flex items-center space-x-2">
+
+<span class="text-slate-100 font-semibold tracking-wide">Upwatch</span>
+</div>
+<span class="text-sys-green text-[11px] font-bold">[ACTIVE]</span>
+</div>
+<div class="flex items-center justify-between bg-slate-900/60 border border-sys-borderDim px-3 py-2">
+<div class="flex items-center space-x-2">
+
+<span class="text-slate-100 font-semibold tracking-wide">Hospitality Platform</span>
+</div>
+<span class="text-sys-amber text-[11px] font-bold">[PLANNING]</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Wireframe Map (Hawaii -> Japan) -->
+<div class="border border-sys-border bg-slate-950/80 p-3 relative overflow-hidden" data-purpose="telemetry-route-map">
+<div class="flex justify-between items-center text-[10px] text-sys-textDim mb-2">
+<span class="">GRID_ROUTE::TRANS-PACIFIC</span>
+<span class="">21.3069° N, 157.8583° W ➔ 35.6762° N, 139.6503° E</span>
+</div>
+<!-- SVG Vector Radar Display -->
+<div class="relative h-28 w-full border border-sys-borderDim bg-[#080C12] flex items-center justify-center">
+<!-- Grid Lines -->
+<svg class="absolute inset-0 w-full h-full text-slate-800/40" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="20" id="radar-grid" patternUnits="userSpaceOnUse" width="20">
+<path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-dasharray="2 2" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#radar-grid)" height="100%" width="100%"></rect>
+<!-- Vector Map representation -->
+<path d="M 80 30 Q 120 40 140 25 Q 150 45 130 65 Q 110 50 80 30 Z" fill="none" stroke="#1E293B" stroke-width="1.5"></path>
+<!-- Japan Archipelago stylized path -->
+<path d="M 120 35 L 128 42 L 132 50 L 125 58 L 115 62" fill="none" stroke="#334155" stroke-linecap="round" stroke-width="1.5"></path>
+<!-- Hawaii archipelago stylized dots -->
+<circle cx="280" cy="70" fill="#38BDF8" r="2.5"></circle>
+<circle cx="288" cy="74" fill="#38BDF8" r="1.5"></circle>
+<circle cx="295" cy="78" fill="#38BDF8" r="1.5"></circle>
+<!-- Trajectory arc connecting Hawaii to Japan -->
+<path class="animate-pulse" d="M 280 70 Q 200 15 125 45" fill="none" stroke="#10B981" stroke-dasharray="4 3" stroke-width="1.5"></path>
+</svg>
+<!-- Coordinate HUD Markers -->
+<div class="absolute bottom-2 left-3 flex items-center space-x-1.5 text-[10px]">
+<span class="w-2 h-2 rounded-full bg-sys-green/80"></span>
+<span class="text-sys-green font-bold">JAPAN</span>
+<span class="text-sys-textDim">[DEST]</span>
+</div>
+<div class="absolute top-2 right-3 flex items-center space-x-1.5 text-[10px]">
+<span class="text-sys-textDim">[ORIGIN]</span>
+<span class="text-sys-cyan font-bold">HAWAII</span>
+<span class="w-2 h-2 rounded-full bg-sys-cyan/80"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSystemDossier -->
+<!-- BEGIN: ProjectIndexSection -->
+<section class="space-y-4" data-purpose="project-index" id="projects">
+<!-- Section Header -->
+<div class="flex items-center justify-between border-b border-sys-border pb-2">
+<div class="flex items-center space-x-2">
+<span class="text-sys-green font-bold text-xs tracking-wider">&gt;</span>
+<h2 class="text-sm font-bold tracking-widest text-slate-100 uppercase">PROJECT INDEX</h2>
+</div>
+<span class="text-[11px] text-sys-textDim font-mono">[TOTAL_REGISTRY: 03]</span>
+</div>
+<!-- Dossier Project 01: Nihonest -->
+<article class="border border-sys-border bg-sys-surface" data-purpose="project-dossier-card">
+<!-- Technical Card Header Bar -->
+<div class="bg-sys-panel border-b border-sys-border px-4 py-2.5 flex flex-wrap items-center justify-between text-xs font-mono"><div class="flex items-center space-x-3"><span class="text-sys-green font-bold tracking-wider uppercase text-emerald-400">NIHONEST</span><span class="text-sys-textDim hidden sm:inline">|</span><span class="text-sys-textMuted hidden sm:inline text-[11px]">Knowledge platform for life and work in Japan.</span></div><span class="text-sys-textDim text-[11px] hover:text-sys-green transition-colors cursor-pointer">[/work/nihonest]</span></div>
+<!-- Technical Card Body Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<!-- Screenshot Preview Frame -->
+<div class="lg:col-span-5 p-4 border-b lg:border-b-0 lg:border-r border-sys-border bg-slate-950/60 flex items-center justify-center">
+<div class="w-full border border-sys-border bg-[#0B0F17] p-2 relative group">
+<!-- Visual UI Mockup Box representing Nihonest -->
+<div class="border border-sys-borderDim bg-[#0D131C] p-3 text-left">
+<div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+<span class="text-[10px] font-bold text-slate-300">Nihonest UI // v2.6</span>
+<div class="flex space-x-1">
+<span class="w-1.5 h-1.5 bg-slate-700 inline-block"></span>
+<span class="w-1.5 h-1.5 bg-slate-700 inline-block"></span>
+<span class="w-1.5 h-1.5 bg-emerald-500 inline-block"></span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-14 bg-slate-900/90 border border-slate-800/80 p-2 flex flex-col justify-end">
+<span class="text-[9px] text-sys-cyan uppercase font-mono">Curated Guides</span>
+<span class="text-[11px] font-bold text-slate-200">Your guide to life in Japan</span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 text-[9px] text-center font-mono">
+<div class="bg-slate-900 border border-slate-800 py-1 text-slate-400">VISA / WORK</div>
+<div class="bg-slate-900 border border-slate-800 py-1 text-slate-400">HOUSING</div>
+<div class="bg-slate-900 border border-slate-800 py-1 text-slate-400">CULTURE</div>
+</div>
+</div>
+</div>
+<!-- Wireframe Corner accents -->
+<span class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-sys-green"></span>
+<span class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-sys-green"></span>
+</div>
+</div>
+<!-- Technical Metadata Dossier Table -->
+<div class="lg:col-span-7 p-4 md:p-6 flex flex-col justify-between">
+<div class="space-y-1.5 text-xs font-mono">
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">TYPE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Knowledge Platform</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STATUS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-green font-semibold">Active</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">YEAR</span>
+<span class="col-span-8 sm:col-span-9 text-slate-300">2026</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">ROLE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Architecture / UI / Development</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STACK</span>
+<span class="col-span-8 sm:col-span-9 text-sys-cyan font-mono">Next.js / TypeScript / MDX</span>
+</div>
+<div class="grid grid-cols-12 py-1">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">SYSTEMS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-textMuted">Content / Search / Localization / Progress Tracking</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-4 pt-3 border-t border-sys-borderDim flex items-center justify-end">
+<a class="inline-flex items-center space-x-2 border border-sys-border bg-slate-900 px-4 py-2 text-xs font-mono text-slate-200 hover:text-sys-green hover:border-sys-green transition-colors uppercase tracking-wider" href="#nihonest-inspect">
+<span class="">&gt; INSPECT SYSTEM</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<!-- Dossier Project 02: Upwatch -->
+<article class="border border-sys-border bg-sys-surface" data-purpose="project-dossier-card">
+<!-- Technical Card Header Bar -->
+<div class="bg-sys-panel border-b border-sys-border px-4 py-2.5 flex flex-wrap items-center justify-between text-xs font-mono"><div class="flex items-center space-x-3"><span class="text-sys-green font-bold tracking-wider uppercase text-emerald-400">UPWATCH</span><span class="text-sys-textDim hidden sm:inline">|</span><span class="text-sys-textMuted hidden sm:inline text-[11px]">Infrastructure monitoring with clarity and purpose.</span></div><span class="text-sys-textDim text-[11px] hover:text-sys-green transition-colors cursor-pointer">[/work/upwatch]</span></div>
+<!-- Technical Card Body Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<!-- Screenshot Preview Frame -->
+<div class="lg:col-span-5 p-4 border-b lg:border-b-0 lg:border-r border-sys-border bg-slate-950/60 flex items-center justify-center">
+<div class="w-full border border-sys-border bg-[#0B0F17] p-2 relative group">
+<!-- Visual UI Mockup Box representing Upwatch Dashboard -->
+<div class="border border-sys-borderDim bg-[#0D131C] p-3 text-left font-mono">
+<div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3">
+<span class="text-[10px] text-sys-green font-semibold">● 99.99% UPTIME</span>
+<span class="text-[10px] text-slate-400">LATENCY: 42ms</span>
+</div>
+<div class="h-16 bg-slate-950 border border-slate-800 p-2 flex items-end space-x-1">
+<!-- Simulated uptime bars -->
+<div class="w-1/6 bg-sys-green h-5/6"></div>
+<div class="w-1/6 bg-sys-green h-full"></div>
+<div class="w-1/6 bg-sys-green h-4/6"></div>
+<div class="w-1/6 bg-sys-green h-full"></div>
+<div class="w-1/6 bg-emerald-400 h-full"></div>
+<div class="w-1/6 bg-sys-green h-full"></div>
+</div>
+<div class="mt-2 flex justify-between text-[9px] text-sys-textDim">
+<span class="">API CLUSTERS: 12</span>
+<span class="">INCIDENTS: 0</span>
+</div>
+</div>
+<!-- Wireframe Corner accents -->
+<span class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-sys-green"></span>
+<span class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-sys-green"></span>
+</div>
+</div>
+<!-- Technical Metadata Dossier Table -->
+<div class="lg:col-span-7 p-4 md:p-6 flex flex-col justify-between">
+<div class="space-y-1.5 text-xs font-mono">
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">TYPE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Monitoring Service</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STATUS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-green font-semibold">Active</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">YEAR</span>
+<span class="col-span-8 sm:col-span-9 text-slate-300">2025</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">ROLE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Architecture / Backend</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STACK</span>
+<span class="col-span-8 sm:col-span-9 text-sys-cyan font-mono">Go / PostgreSQL / React</span>
+</div>
+<div class="grid grid-cols-12 py-1">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">SYSTEMS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-textMuted">Uptime / Alerting / Analytics</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-4 pt-3 border-t border-sys-borderDim flex items-center justify-end">
+<a class="inline-flex items-center space-x-2 border border-sys-border bg-slate-900 px-4 py-2 text-xs font-mono text-slate-200 hover:text-sys-green hover:border-sys-green transition-colors uppercase tracking-wider" href="#upwatch-inspect">
+<span class="">&gt; INSPECT SYSTEM</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+<!-- Dossier Project 03: Hospitality Platform -->
+<article class="border border-sys-border bg-sys-surface" data-purpose="project-dossier-card">
+<!-- Technical Card Header Bar -->
+<div class="bg-sys-panel border-b border-sys-border px-4 py-2.5 flex flex-wrap items-center justify-between text-xs font-mono"><div class="flex items-center space-x-3"><span class="text-sys-amber font-bold tracking-wider uppercase text-amber-400">HOSPITALITY PLATFORM</span><span class="text-sys-textDim hidden sm:inline">|</span><span class="text-sys-textMuted hidden sm:inline text-[11px]">Internal tools for modern hospitality operations.</span></div><span class="text-sys-textDim text-[11px] hover:text-sys-green transition-colors cursor-pointer">[/work/hospitality]</span></div>
+<!-- Technical Card Body Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
+<!-- Screenshot Preview Frame -->
+<div class="lg:col-span-5 p-4 border-b lg:border-b-0 lg:border-r border-sys-border bg-slate-950/60 flex items-center justify-center">
+<div class="w-full border border-sys-border bg-[#0B0F17] p-2 relative group">
+<!-- Visual UI Mockup Box representing Kora Hospitality -->
+<div class="border border-sys-borderDim bg-[#0D131C] p-3 text-left font-mono">
+<div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+<span class="text-[10px] text-slate-300 font-bold">HOTEL_OPS_CONSOLE</span>
+<span class="text-[9px] text-sys-amber font-semibold">DEV_MODE</span>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between text-[10px] bg-slate-900 p-1.5 border border-slate-800">
+<span class="text-slate-400">Kyoto Villa #04</span>
+<span class="text-emerald-400">CHECKED_IN</span>
+</div>
+<div class="flex justify-between text-[10px] bg-slate-900 p-1.5 border border-slate-800">
+<span class="text-slate-400">Hakone Ryokan #12</span>
+<span class="text-amber-400">MAINTENANCE</span>
+</div>
+</div>
+</div>
+<!-- Wireframe Corner accents -->
+<span class="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-sys-amber"></span>
+<span class="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-sys-amber"></span>
+</div>
+</div>
+<!-- Technical Metadata Dossier Table -->
+<div class="lg:col-span-7 p-4 md:p-6 flex flex-col justify-between">
+<div class="space-y-1.5 text-xs font-mono">
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">TYPE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Operational Platform</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STATUS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-amber font-semibold">In Development</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">YEAR</span>
+<span class="col-span-8 sm:col-span-9 text-slate-300">2025</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">ROLE</span>
+<span class="col-span-8 sm:col-span-9 text-slate-200">Full Stack</span>
+</div>
+<div class="grid grid-cols-12 py-1 border-b border-sys-borderDim">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">STACK</span>
+<span class="col-span-8 sm:col-span-9 text-sys-cyan font-mono">Next.js / PostgreSQL</span>
+</div>
+<div class="grid grid-cols-12 py-1">
+<span class="col-span-4 sm:col-span-3 text-sys-textDim uppercase">SYSTEMS</span>
+<span class="col-span-8 sm:col-span-9 text-sys-textMuted">Operations / Staff Tools / Reporting</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-4 pt-3 border-t border-sys-borderDim flex items-center justify-end">
+<a class="inline-flex items-center space-x-2 border border-sys-border bg-slate-900 px-4 py-2 text-xs font-mono text-slate-200 hover:text-sys-amber hover:border-sys-amber transition-colors uppercase tracking-wider" href="#hospitality-inspect">
+<span class="">&gt; INSPECT SYSTEM</span>
+</a>
+</div>
+</div>
+</div>
+</article>
+</section>
+<!-- END: ProjectIndexSection -->
+<!-- BEGIN: CapabilitiesMatrix -->
+<section class="space-y-4" data-purpose="capabilities-matrix" id="capabilities">
+<!-- Section Header -->
+<div class="flex items-center justify-between border-b border-sys-border pb-2">
+<div class="flex items-center space-x-2">
+<span class="text-sys-green font-bold text-xs tracking-wider">&gt;</span>
+<h2 class="text-sm font-bold tracking-widest text-slate-100 uppercase">CAPABILITIES</h2>
+</div>
+<span class="text-[11px] text-sys-textDim font-mono">CORE_STACK::EVAL_2026</span>
+</div>
+<!-- 4-Column Terminal Stack Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border border-sys-border bg-sys-surface font-mono">
+<!-- Col 1: Frontend -->
+<div class="p-4 border-b sm:border-b-0 sm:border-r border-sys-border">
+<div class="text-sys-green font-bold text-xs pb-2 mb-3 border-b border-sys-borderDim uppercase">
+            [FRONTEND]
+          </div>
+<ul class="space-y-2 text-xs text-slate-300">
+<li class="hover:text-sys-green transition-colors">TypeScript</li>
+<li class="hover:text-sys-green transition-colors">Next.js</li>
+<li class="hover:text-sys-green transition-colors">Angular</li>
+<li class="hover:text-sys-green transition-colors">React</li>
+<li class="hover:text-sys-green transition-colors">Responsive UI</li>
+<li class="hover:text-sys-green transition-colors">Accessibility</li>
+</ul>
+</div>
+<!-- Col 2: Backend -->
+<div class="p-4 border-b sm:border-b-0 lg:border-r border-sys-border">
+<div class="text-sys-green font-bold text-xs pb-2 mb-3 border-b border-sys-borderDim uppercase">
+            [BACKEND]
+          </div>
+<ul class="space-y-2 text-xs text-slate-300">
+<li class="hover:text-sys-green transition-colors">Go</li>
+<li class="hover:text-sys-green transition-colors">Java / Spring</li>
+<li class="hover:text-sys-green transition-colors">Python</li>
+<li class="hover:text-sys-green transition-colors">APIs</li>
+<li class="hover:text-sys-green transition-colors">Authentication</li>
+<li class="hover:text-sys-green transition-colors">Microservices</li>
+</ul>
+</div>
+<!-- Col 3: Platform -->
+<div class="p-4 border-b sm:border-b-0 sm:border-r border-sys-border">
+<div class="text-sys-green font-bold text-xs pb-2 mb-3 border-b border-sys-borderDim uppercase">
+            [PLATFORM]
+          </div>
+<ul class="space-y-2 text-xs text-slate-300">
+<li class="hover:text-sys-green transition-colors">PostgreSQL</li>
+<li class="hover:text-sys-green transition-colors">Railway</li>
+<li class="hover:text-sys-green transition-colors">AWS</li>
+<li class="hover:text-sys-green transition-colors">Docker</li>
+<li class="hover:text-sys-green transition-colors">CI/CD</li>
+<li class="hover:text-sys-green transition-colors">Linux</li>
+</ul>
+</div>
+<!-- Col 4: Tools -->
+<div class="p-4">
+<div class="text-sys-green font-bold text-xs pb-2 mb-3 border-b border-sys-borderDim uppercase">
+            [TOOLS]
+          </div>
+<ul class="space-y-2 text-xs text-slate-300">
+<li class="hover:text-sys-green transition-colors">Git</li>
+<li class="hover:text-sys-green transition-colors">GitHub</li>
+<li class="hover:text-sys-green transition-colors">VS Code</li>
+<li class="hover:text-sys-green transition-colors">Figma</li>
+<li class="hover:text-sys-green transition-colors">Notion</li>
+<li class="hover:text-sys-green transition-colors">Monitoring</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: CapabilitiesMatrix -->
+<!-- BEGIN: ActivityAndLocationSection -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6" data-purpose="changelog-and-location" id="activity">
+<!-- Left Panel: Recent Activity Log (8 cols) -->
+<div class="lg:col-span-8 border border-sys-border bg-sys-surface p-4 md:p-5">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-sys-border">
+<div class="flex items-center space-x-2">
+<span class="text-sys-green font-bold text-xs tracking-wider">&gt;</span>
+<h3 class="text-xs font-bold tracking-widest text-slate-100 uppercase">RECENT ACTIVITY</h3>
+</div>
+<span class="text-[10px] text-sys-textDim font-mono">STATUS: SYNCED</span>
+</div>
+<!-- Timestamped Changelog Rows -->
+<div class="space-y-2 font-mono text-xs">
+<div class="flex flex-col sm:flex-row sm:items-center py-1.5 border-b border-sys-borderDim hover:bg-slate-900/40 px-1">
+<span class="text-sys-cyan sm:w-28 flex-shrink-0 text-[11px]">2025-01-12</span>
+<span class="text-slate-200">Updated Nihonest content model</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center py-1.5 border-b border-sys-borderDim hover:bg-slate-900/40 px-1">
+<span class="text-sys-cyan sm:w-28 flex-shrink-0 text-[11px]">2025-01-05</span>
+<span class="text-slate-200">Improved search performance (Nihonest)</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center py-1.5 border-b border-sys-borderDim hover:bg-slate-900/40 px-1">
+<span class="text-sys-cyan sm:w-28 flex-shrink-0 text-[11px]">2024-12-28</span>
+<span class="text-slate-200">Prototype: Go worker pool visualization (Lab)</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center py-1.5 hover:bg-slate-900/40 px-1">
+<span class="text-sys-cyan sm:w-28 flex-shrink-0 text-[11px]">2024-12-20</span>
+<span class="text-slate-200">Deployed Upwatch v0.1.0</span>
+</div>
+</div>
+</div>
+<!-- Right Panel: Location HUD (4 cols) -->
+<div class="lg:col-span-4 border border-sys-border bg-sys-surface p-4 md:p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-sys-border">
+<div class="flex items-center space-x-2">
+<span class="text-sys-green font-bold text-xs tracking-wider">&gt;</span>
+<h3 class="text-xs font-bold tracking-widest text-slate-100 uppercase">LOCATION</h3>
+</div>
+<span class="text-[10px] text-sys-green font-mono">GPS::ONLINE</span>
+</div>
+<div class="space-y-1 font-mono text-xs">
+<div class="text-slate-200 font-semibold">Hawaii, USA</div>
+<div class="text-sys-green text-[11px] flex items-center space-x-1">
+<span class="">➔</span>
+<span class="">Japan (Planning relocation)</span>
+</div>
+</div>
+</div>
+<!-- Mini Radar HUD Graphic -->
+<div class="mt-4 pt-4 border-t border-sys-borderDim">
+<div class="bg-black/60 border border-sys-borderDim p-3 relative flex items-center justify-center">
+<div class="w-full h-16 flex items-center justify-around font-mono text-[10px]">
+<div class="text-center">
+<span class="text-sys-cyan block font-bold">HNL</span>
+<span class="text-sys-textDim text-[9px]">21°N</span>
+</div>
+<div class="flex-1 mx-2 relative flex items-center justify-center">
+<div class="w-full border-t border-dashed border-slate-700"></div>
+<span class="absolute bg-sys-green text-black font-bold text-[8px] px-1 py-0.2">ACTIVE</span>
+</div>
+<div class="text-center">
+<span class="text-sys-green block font-bold">TYO</span>
+<span class="text-sys-textDim text-[9px]">35°N</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ActivityAndLocationSection -->
+</main>
+<!-- END: MainContentWrapper -->
+<!-- BEGIN: FooterStatusHUD -->
+<footer class="mt-12 border-t border-sys-border bg-sys-surface" data-purpose="footer-hud" id="contact">
+<div class="max-w-7xl mx-auto px-4 md:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-sys-textMuted">
+<!-- System signature -->
+<div class="flex items-center space-x-2">
+<span class="text-sys-green">●</span>
+<span class="text-slate-300 font-bold">TYLER TAPIA</span>
+<span class="text-sys-border">/</span>
+<span class="">ENGINEER THEME 2.0</span>
+<span class="text-sys-border">/</span>
+<span class="text-sys-green font-medium">AVAILABLE FOR WORK</span>
+</div>
+<!-- Telemetry Status Right -->
+<div class="flex items-center space-x-4 text-[11px]">
+<span class="text-slate-400">BUILD VERSION 2026.04</span>
+<span class="text-sys-border">//</span>
+<span class="text-sys-green">ALL SYSTEMS OPERATIONAL</span>
+</div>
+</div>
+</footer>
+<!-- END: FooterStatusHUD -->
+
+
+
+
+</body></html>
