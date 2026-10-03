@@ -27,7 +27,7 @@ export default async function DraftProjectPage({
     <>
       <header className="page-intro">
         <p className="eyebrow">Development only / draft project review</p>
-        <h1>Portfolio pilot preview</h1>
+        <h1>Draft project preview</h1>
         <p>
           One canonical draft in the active composition. Final copy and media
           are pending review.

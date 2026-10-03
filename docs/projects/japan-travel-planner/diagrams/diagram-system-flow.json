@@ -1,0 +1,26 @@
+{
+  "id": "diagram-system-flow",
+  "title": "Japan Travel Planner request and storage flow",
+  "accessibleSummary": "The browser loads the React interface and sends authenticated requests to Spring; services enforce ownership before saving trips and templates in PostgreSQL. Flyway manages database changes during startup.",
+  "sourceRevision": "385c122",
+  "nodes": [
+    {"id": "browser", "label": "Browser / React interface"},
+    {"id": "api", "label": "Spring REST controllers and security"},
+    {"id": "services", "label": "Trip, item, template and account services"},
+    {"id": "repositories", "label": "Spring Data JPA repositories"},
+    {"id": "database", "label": "PostgreSQL"},
+    {"id": "flyway", "label": "Flyway migrations"},
+    {"id": "docker", "label": "Docker build"},
+    {"id": "static", "label": "React static files served by Spring"}
+  ],
+  "edges": [
+    {"from": "browser", "to": "api", "label": "cookie and CSRF-protected API requests"},
+    {"from": "api", "to": "services", "label": "validated operations"},
+    {"from": "services", "to": "repositories", "label": "account-scoped data access"},
+    {"from": "repositories", "to": "database", "label": "read/write"},
+    {"from": "flyway", "to": "database", "label": "versioned schema changes"},
+    {"from": "docker", "to": "static", "label": "builds and packages client"},
+    {"from": "static", "to": "browser", "label": "delivers interface"}
+  ],
+  "evidence": ["Dockerfile", "docs/ARCHITECTURE.md", "frontend/src/api/api.js:68-93", "backend/src/main/java/com/japantravelplanner/config/SecurityConfig.java:40-67", "backend/src/main/resources/db/migration/"]
+}

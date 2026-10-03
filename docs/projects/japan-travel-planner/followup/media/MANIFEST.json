@@ -1,0 +1,145 @@
+{
+  "sourceRevision": "385c122b2d4669089f02fe576130fc178549d05b",
+  "reviewedDate": "2026-10-03",
+  "includedMediaCount": 4,
+  "assets": [
+    {
+      "id": "media-landing-desktop",
+      "type": "image",
+      "state": "included-approved",
+      "sourcePath": "docs/images/landing-desktop.png",
+      "format": "png",
+      "width": 1259,
+      "height": 748,
+      "bytes": 123584,
+      "purpose": "overview",
+      "supportsBlockId": "intro-product",
+      "alt": "Japan Travel Planner landing page with a trip preview and entry points.",
+      "caption": "Public landing page in the repository image added 2026-09-05 (exact capture date unknown); preview trip is sample UI.",
+      "provenance": {
+        "addedCommit": "2b63b0e",
+        "captureDate": "unknown",
+        "route": "likely /; not recorded",
+        "viewport": "unknown",
+        "data": "fictional/demo, confirmed by Tyler",
+        "captureRevision": "not recorded; image added at 2b63b0e"
+      },
+      "review": "Public-use permission and fictional data confirmed by Tyler; visually reviewed for visible sensitive information on 2026-10-03",
+      "bundlePath": "media/landing-desktop.png",
+      "sha256": "bba85eba6e8bf6ba7d871fa6975b3f7d8bd91666377ed75016fbe3f92ab279b6"
+    },
+    {
+      "id": "media-itinerary-desktop",
+      "type": "image",
+      "state": "included-approved",
+      "sourcePath": "docs/images/itinerary-desktop.png",
+      "format": "png",
+      "width": 1265,
+      "height": 1179,
+      "bytes": 93397,
+      "purpose": "detail and preview",
+      "supportsBlockId": "technical-itinerary",
+      "alt": "Desktop trip itinerary with date groups, search, map links and a yen cost summary.",
+      "caption": "A populated itinerary view in the repository image added 2026-09-05 (exact capture date unknown); fictional/demo trip data confirmed by Tyler.",
+      "relationship": {
+        "with": "media-itinerary-mobile-dark",
+        "kind": "current responsive views; not before/after"
+      },
+      "provenance": {
+        "addedCommit": "2b63b0e",
+        "captureDate": "unknown",
+        "route": "authenticated trip detail, exact URL unknown",
+        "viewport": "unknown",
+        "data": "fictional/demo, confirmed by Tyler",
+        "captureRevision": "not recorded; image added at 2b63b0e"
+      },
+      "review": "Public-use permission and fictional data confirmed by Tyler; visually reviewed for visible sensitive information on 2026-10-03",
+      "bundlePath": "media/itinerary-desktop.png",
+      "sha256": "38924cacace1936db6a0cd52cdfb29babd341e08ef55432cd00e01b588dc5612"
+    },
+    {
+      "id": "media-itinerary-mobile-dark",
+      "type": "image",
+      "state": "included-approved",
+      "sourcePath": "docs/images/itinerary-mobile-dark.png",
+      "format": "png",
+      "width": 534,
+      "height": 1263,
+      "bytes": 53835,
+      "purpose": "mobile detail",
+      "supportsBlockId": "decision-responsive",
+      "alt": "Narrow dark-theme itinerary view with cards and cost summary.",
+      "caption": "A narrow-screen dark-theme repository image added 2026-09-05 (exact capture date unknown); not a measured device test.",
+      "relationship": {
+        "with": "media-itinerary-desktop",
+        "kind": "current responsive views; not before/after"
+      },
+      "provenance": {
+        "addedCommit": "2b63b0e",
+        "captureDate": "unknown",
+        "route": "authenticated trip detail, exact URL unknown",
+        "viewport": "unknown",
+        "data": "fictional/demo, confirmed by Tyler",
+        "captureRevision": "not recorded; image added at 2b63b0e"
+      },
+      "review": "Public-use permission and fictional data confirmed by Tyler; visually reviewed for visible sensitive information on 2026-10-03",
+      "bundlePath": "media/itinerary-mobile-dark.png",
+      "sha256": "999181cb2bec69d8baf53405895c559386028e31840550e852a5f4b17862b1b8"
+    },
+    {
+      "id": "media-library-ja",
+      "type": "image",
+      "state": "included-approved",
+      "sourcePath": "docs/images/trip-library-japanese.png",
+      "format": "png",
+      "width": 1270,
+      "height": 715,
+      "bytes": 88005,
+      "purpose": "localization detail",
+      "supportsBlockId": "decision-localization",
+      "alt": "Trip Library interface displaying Japanese labels and public templates.",
+      "caption": "Japanese Trip Library repository image added 2026-09-05 (exact capture date unknown); translation quality has not been independently reviewed.",
+      "provenance": {
+        "addedCommit": "2b63b0e",
+        "captureDate": "unknown",
+        "route": "likely /library; not recorded",
+        "viewport": "unknown",
+        "data": "fictional/demo, confirmed by Tyler",
+        "captureRevision": "not recorded; image added at 2b63b0e"
+      },
+      "review": "Public-use permission and fictional data confirmed by Tyler; visually reviewed for visible sensitive information on 2026-10-03",
+      "bundlePath": "media/trip-library-japanese.png",
+      "sha256": "36ca820e42d7bed7d5fb36375dff143fdcfe6f8776e6442a75dac32b2f4a68df"
+    },
+    {
+      "id": "media-school-original",
+      "type": "image",
+      "state": "needs-capture",
+      "proposedFilename": "school-original-authentic.png",
+      "purpose": "process",
+      "supportsBlockId": "origin-school",
+      "alt": "Original school-project application view, description to be written after an authentic capture is supplied.",
+      "caption": "To be written from an authentic dated school-version capture; do not imply the 2026-09-05 images are original.",
+      "captureRequirement": "Supply a genuine screenshot or archived recording of the first completed application iteration with revision/date, route, viewport and safe non-personal content; otherwise omit image.",
+      "review": "Authenticity, public permission and school-material restrictions require Tyler review."
+    },
+    {
+      "id": "media-filter-print-demo",
+      "type": "video",
+      "state": "needs-capture",
+      "proposedFilename": "filter-print-demo.mp4",
+      "purpose": "interaction detail",
+      "supportsBlockId": "technical-itinerary",
+      "description": "Optional silent demonstration of applying itinerary filters and opening print options using a synthetic local trip.",
+      "caption": "To be written after capture with source revision, viewport and synthetic-data setup.",
+      "durationSeconds": null,
+      "poster": {
+        "state": "needs-capture",
+        "proposedFilename": "filter-print-demo-poster.png"
+      },
+      "captureRequirement": "Requires an already available local demo backend/database and synthetic account/trip. At a recorded viewport: open the trip, filter by type/location, show changed visible items and total, open printable-itinerary options, preview output, restore filters. Use native playback controls; provide a poster and equivalent text explanation. No production writes or new infrastructure for this task.",
+      "review": "Recommendation only; no recording created or approved."
+    }
+  ],
+  "permissionProvenance": "Tyler explicitly approved the four demo screenshots and selected code excerpt in the follow-up authorization on 2026-10-03"
+}

@@ -88,14 +88,18 @@ try {
       if (route === "/en") home = html;
     }
   }
-  for (const route of [
+  const guardedRoutes = [
     "/dev/design-system",
     "/dev/compositions",
     "/dev/projects/portfolio",
+    "/dev/projects/japan-travel-planner",
     "/dev/fixtures/reference.svg",
     "/en/work/portfolio",
     "/ja/work/portfolio",
-  ]) {
+    "/en/work/japan-travel-planner",
+    "/ja/work/japan-travel-planner",
+  ];
+  for (const route of guardedRoutes) {
     assert.equal((await get(route)).status, 404, `Production guard ${route}`);
   }
   const script = home.match(/src="([^" ]*\/_next\/static\/[^" ]+\.js)"/);
@@ -119,7 +123,7 @@ try {
     "Preview sitemap stays empty",
   );
   process.stdout.write(
-    "Release smoke passed: 18 theme/route checks, six production guards, static/public assets, noindex robots and empty preview sitemap.\n",
+    `Release smoke passed: 18 theme/route checks, ${guardedRoutes.length} production guards, static/public assets, noindex robots and empty preview sitemap.\n`,
   );
 } finally {
   server.kill("SIGTERM");

@@ -32,6 +32,7 @@ async function main() {
       "Lighthouse default mobile simulated throttling; local production server; placeholder content; indexing disabled unless configured",
     modes: {},
     switches: [],
+    routes: [],
   };
 
   try {
@@ -174,6 +175,47 @@ async function main() {
         });
       }
       await context.close();
+      // Interaction diagnostics use real production routes, outside Lighthouse's
+      // simulated load audit. Frame gaps are main-thread samples, not GPU FPS or INP.
+      for (const mode of modes) {
+        const routeContext = await browser.newContext({
+          viewport: { width: 1440, height: 900 },
+        });
+        await routeContext.addCookies([
+          { name: "portfolio-mode", value: mode, url: origin },
+        ]);
+        const routePage = await routeContext.newPage();
+        await routePage.goto(`${origin}/en`);
+        await routePage.evaluate(() => document.fonts.ready);
+        for (const action of ["about", "back"]) {
+          await startInteractionSample(routePage);
+          const start = performance.now();
+          if (action === "about")
+            await routePage
+              .getByRole("navigation", { name: "Primary", exact: true })
+              .getByRole("link", { name: "About", exact: true })
+              .click();
+          else await routePage.goBack();
+          await routePage.waitForURL(
+            `${origin}${action === "about" ? "/en/about" : "/en"}`,
+          );
+          await routePage.locator("main h1").waitFor({ state: "visible" });
+          const contentReadyMs = Math.round(performance.now() - start);
+          await routePage.waitForFunction(
+            () => !document.documentElement.dataset.routeTransition,
+          );
+          summary.routes.push({
+            mode,
+            action,
+            contentReadyMs,
+            animationFinishedMs: Math.round(performance.now() - start),
+            ...(await finishInteractionSample(routePage)),
+            conditions:
+              "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP",
+          });
+        }
+        await routeContext.close();
+      }
     } finally {
       await browser.close();
     }
@@ -182,11 +224,48 @@ async function main() {
       JSON.stringify(summary, null, 2),
     );
     console.log("switches", JSON.stringify(summary.switches));
+    console.log("routes", JSON.stringify(summary.routes));
     console.log(`Reports saved to ${output}`);
   } finally {
     if (server.listening) await new Promise((resolve) => server.close(resolve));
     await app.close();
   }
+}
+
+async function startInteractionSample(page) {
+  await page.evaluate(() => {
+    const sample = { gaps: [], tasks: [], previous: null, frame: 0 };
+    sample.observer = new PerformanceObserver((list) => {
+      sample.tasks.push(...list.getEntries().map((entry) => entry.duration));
+    });
+    sample.observer.observe({ type: "longtask" });
+    const frame = (now) => {
+      if (sample.previous !== null) sample.gaps.push(now - sample.previous);
+      sample.previous = now;
+      sample.frame = requestAnimationFrame(frame);
+    };
+    sample.frame = requestAnimationFrame(frame);
+    window.performanceSample = sample;
+  });
+}
+
+async function finishInteractionSample(page) {
+  return page.evaluate(() => {
+    const sample = window.performanceSample;
+    sample.tasks.push(
+      ...sample.observer.takeRecords().map((entry) => entry.duration),
+    );
+    sample.observer.disconnect();
+    cancelAnimationFrame(sample.frame);
+    delete window.performanceSample;
+    return {
+      frameSamples: sample.gaps.length,
+      maxFrameGapMs: Math.round(Math.max(0, ...sample.gaps)),
+      frameGapsOver50Ms: sample.gaps.filter((gap) => gap > 50).length,
+      longTaskCount: sample.tasks.length,
+      maxLongTaskMs: Math.round(Math.max(0, ...sample.tasks)),
+    };
+  });
 }
 
 main().catch((error) => {

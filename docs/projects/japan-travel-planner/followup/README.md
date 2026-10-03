@@ -1,0 +1,9 @@
+# Japan Travel Planner discovery supplement
+
+Prepared 2026-10-03, Pacific/Honolulu, source revision `385c122b2d4669089f02fe576130fc178549d05b`. Application source was unchanged; the prior discovery directory was untracked. This supplement supersedes the original bundle's unresolved contribution, complete/active status and media permission, and corrects its history attribution.
+
+`FOLLOWUP.md` explains new confirmations, security evidence, capstone-tag evidence, tests, public checks and remaining questions. `IMPORT-PROPOSAL.json` is an unvalidated import proposal with a new `technical-security` section. `media/MANIFEST.json` records four approved fictional/demo screenshots actually included in `media/` and two optional assets that are missing. `evidence/VERIFICATION.md` distinguishes current unit tests and anonymous runtime checks from historical CI. `code/snippet-filter-pipeline.txt` is the complete approved function with dependency/source context. Diagram JSON files supply system and security relationships with accessible summaries.
+
+Use this bundle together with the original discovery report. The application is complete; its original school iteration was manual and later enhancements AI-assisted under Tyler's revision, decision and architecture ownership. Screenshots and the selected excerpt are approved for portfolio use. Publication and homepage featuring remain unapproved. Japanese portfolio translations were not made.
+
+Exact screenshot capture dates/viewports, capstone submission relationship, deployed source revision, production cookie/proxy variables, authenticated workflows and operational settings remain unverified. No original-version recreation or video is included. The original discovery ZIP remains the earlier snapshot; use this supplement's proposals and permissions for the current handoff.

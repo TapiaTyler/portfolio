@@ -125,6 +125,10 @@ export function setupDigitalMedia() {
         (image.naturalWidth || image.width) /
         Math.max(1, image.naturalHeight || image.height);
       const width = Math.min(
+        Number(image.getAttribute("width")) ||
+          image.naturalWidth ||
+          image.width,
+        image.naturalWidth || Infinity,
         1100,
         innerWidth - 80,
         Math.max(80, innerHeight - 240) * ratio,

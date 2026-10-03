@@ -1,7 +1,8 @@
 # Production performance review
 
-Measured 2026-10-01 (Hawaii time). This is an initial review of the provisional
-homepage, not final launch acceptance.
+Initial baseline measured 2026-10-01 (Hawaii time); latest full motion refresh
+measured 2026-10-03. This reviews the provisional homepage and local interactions,
+not final launch acceptance.
 
 ## Reproduce
 
@@ -21,7 +22,9 @@ status. Run one audit process at a time.
 
 The script also measures mobile menu mode changes, waiting for the selected
 composition and fonts. Timings include Playwright click/polling overhead and
-are not an INP measurement.
+are not an INP measurement. It additionally samples desktop Home → About → Back
+navigation in every mode, recording content availability, choreography completion,
+main-thread long tasks and requestAnimationFrame gaps.
 
 ## Conditions
 
@@ -194,3 +197,91 @@ project opening. The Digital intro now loads its lead image eagerly for snapshot
 continuity, while cards and narrative media retain lazy loading. Review its real
 asset loading and deployed navigation timings after content integration. Existing
 placeholder/deployment/field limitations remain.
+
+## Full motion refresh — 2026-10-03
+
+Rebuilt the current application and ran `motion-refresh` and
+`motion-refresh-repeat` sequentially with the same Node, Lighthouse and Chromium
+versions listed above. These cover the current headers, secondary-page styles,
+microinteraction controllers, gallery and disclosure code, and theme/route
+transition system in the production bundle. Lighthouse still loads the provisional
+`/en` homepage; it does not activate every interaction or load draft case studies.
+
+### Mobile initial load
+
+| Mode | Performance | FCP (seconds) | LCP (seconds) | TBT (ms) | CLS |
+| --- | --- | --- | --- | --- | --- |
+| Editorial | 95–98 | 1.66–1.67 | 2.26–2.79 | 13–13.5 | 0 |
+| Engineer | 96–97 | 1.36 | 2.63–2.64 | 13–16.5 | 0.0320 |
+| Digital | 95 | 1.51 | 2.78–2.79 | 12–14.5 | 0.0004 |
+
+Every run exceeded the Performance target of 90. Automated Accessibility and Best
+Practices remained 100 in all modes. SEO remained 63 because indexing is intentionally
+disabled while content integration and deployment are deferred. Neither run emitted
+Lighthouse runtime warnings.
+
+The latest earlier `route-motion` audit scored 98/97/96 with LCP 2.27/2.48/2.63
+seconds. Engineer and Digital now measure about 0.15 seconds slower; Digital's
+score is one point lower, and Editorial still varies within the original range.
+These observations do not isolate animation cost: the intervening changes also
+added header behavior, content, components and secondary-page styles. The scores
+remain acceptable, but the simulated LCP in Engineer and Digital exceeds the
+2.5-second good-LCP threshold and remains a release review item. Lab results do
+not establish field Core Web Vitals.
+
+All modes transferred approximately 157.2 KiB JavaScript and 15.0 KiB CSS, up
+7.7 KiB and 4.5 KiB respectively from `route-motion`. Font transfer remains
+93.4/61.8/87.2 KiB for Editorial/Engineer/Digital, with only the active mode's
+families requested on initial load. No project image was downloaded and no heavy
+graphics runtime was added. Existing findings remain: font/stylesheet dependency
+chains, approximately 13 KiB legacy JavaScript and, in most runs, 29 KiB unused
+JavaScript. Preserve the mode-specific font delivery when investigating these.
+
+### Interaction measurements
+
+Mobile mode selection at 390×844, without artificial throttling:
+
+| Destination | Composition/fonts ready | Choreography finished |
+| --- | --- | --- |
+| Engineer | 135–152 ms | 519–535 ms |
+| Digital | 73–74 ms | 774 ms |
+| Editorial | 73 ms | 656–657 ms |
+
+Desktop header navigation from Home to About at 1440×900, also unthrottled:
+
+| Mode | Content visible | Choreography finished | Back choreography finished |
+| --- | --- | --- | --- |
+| Editorial | 75–81 ms | 698–716 ms | 671–678 ms |
+| Engineer | 83–89 ms | 355–365 ms | 298 ms |
+| Digital | 85–86 ms | 840–877 ms | 809–817 ms |
+
+Back content became visible in 6–7 ms. These include automation overhead and
+intentional visual duration; they are not field INP measurements. The route
+sampler recorded zero main-thread long tasks (over 50 ms) across all twelve
+navigation windows. Maximum requestAnimationFrame gaps were approximately
+17–50 ms. Two first-run gaps narrowly exceeded 50 ms before rounding; neither
+recurred in the repeat. This sample does not demonstrate consistent 60fps:
+requestAnimationFrame timing is not compositor/GPU presentation timing, and a
+local desktop cannot establish performance on a slower mobile device.
+
+Populated development previews are checked separately for actual project opening,
+horizontal page turns, theme morphing, disclosure replay/reversed closure, pointer
+lighting, image-gallery expansion/contraction, reduced motion and mobile controls.
+Those browser checks verify behavior rather than assign production performance
+scores to draft content. All 23 targeted preview scenarios passed across the
+initial run and focused reruns. Corrected older test locators that selected the
+new mobile section index instead of technical disclosures, and replaced an
+obsolete immediate glow reset expectation with the approved retained-position
+behavior while focus keeps the glow visible. Script/test lint and formatting
+checks passed. Next's development diagnostics also flagged the pilot's first
+comparison image as an LCP candidate; review its loading priority with the final
+case-study composition instead of making every narrative image eager.
+
+The pilot remains unpublished, so production audits of
+populated project pages and real media delivery remain pending.
+
+No animation timing or approved visual treatment was changed in this review.
+The next performance acceptance pass should use the integrated project content,
+real media and a Vercel preview, including representative mobile hardware and
+interaction profiling. Deployment remains deferred at Tyler's request until the
+other projects are ready and integrated.

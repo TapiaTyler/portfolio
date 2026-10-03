@@ -1,0 +1,17 @@
+ID: snippet-filter-pipeline
+Title: Combining text and structured itinerary filters
+Language: JavaScript
+Source: frontend/src/utils/itineraryFilters.js, filterItineraryItems (lines 74 onward), revision 385c122
+Use: technical-itinerary; short excerpt for review, not a complete function.
+
+export function filterItineraryItems(items, query, filters) {
+    const normalizedQuery = normalize(query.trim());
+
+    return items.filter((item) => {
+        if (!matchesSearch(item, normalizedQuery)) {
+            return false;
+        }
+
+        if (filters.dateFrom && (!item.date || item.date < filters.dateFrom)) {
+            return false;
+        }

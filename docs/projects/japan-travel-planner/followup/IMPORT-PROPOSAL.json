@@ -1,0 +1,202 @@
+{
+  "proposalOnly": true,
+  "kind": "project",
+  "slug": "japan-travel-planner",
+  "year": 2026,
+  "type": "full-stack web app",
+  "status": "complete",
+  "statusConfidence": "Confirmed by Tyler in the follow-up authorization, 2026-10-03",
+  "title": "Japan Travel Planner",
+  "summary": "A responsive Japan itinerary planner with account-based trip editing, reusable templates, yen cost summaries, print output, and English/Japanese interface support.",
+  "description": "A completed WGU capstone application extended with AI-assisted enhancements under Tyler’s revision, decision and architecture ownership. It combines account-owned travel plans, reusable templates, filtering, JPY costs, print output and English/Japanese UI support.",
+  "distinction": "The original school application was completed without AI, per Tyler; subsequent enhancements used AI assistance under his direction. The repository preserves a capstone-v1.0 tag.",
+  "currentState": "Complete. Anonymous landing and library rendering, public template reads and health were checked on 2026-10-03; 25 backend unit tests passed with existing Java 21. Authenticated production workflows and operational settings remain unverified.",
+  "sourceRevision": "385c122b2d4669089f02fe576130fc178549d05b",
+  "inspectedDate": "2026-10-03",
+  "links": [
+    {
+      "kind": "repository",
+      "url": "https://github.com/TapiaTyler/japan-travel-planner",
+      "verified": true,
+      "evidence": "README.md:3",
+      "verificationScope": "Anonymous public GitHub API run/job metadata for this repository and matching HEAD"
+    },
+    {
+      "kind": "live",
+      "url": "https://japan-travel-planner-production.up.railway.app/",
+      "verified": true,
+      "evidence": "README.md:5",
+      "verificationScope": "Anonymous HTML routes, headless landing/library rendering, public templates GET and health on 2026-10-03; deployment revision and authenticated behavior unverified"
+    },
+    {
+      "kind": "documentation",
+      "path": "README.md",
+      "verifiedInRepository": true
+    }
+  ],
+  "technologies": [
+    "React",
+    "Vite",
+    "Spring Boot",
+    "PostgreSQL",
+    "Flyway",
+    "i18next"
+  ],
+  "capabilities": [
+    "Full-stack",
+    "Frontend",
+    "Backend",
+    "API Design",
+    "Data Modeling",
+    "Localization",
+    "Testing / Quality Engineering",
+    "DevOps / Deployment",
+    "Security"
+  ],
+  "previewMediaId": "media-itinerary-desktop",
+  "previewCondition": "Approved by Tyler for portfolio use, fictional/demo data; exact capture date and viewport unknown",
+  "assetIds": [
+    "media-landing-desktop",
+    "media-itinerary-desktop",
+    "media-itinerary-mobile-dark",
+    "media-library-ja",
+    "media-school-original",
+    "media-filter-print-demo"
+  ],
+  "diagramIds": [
+    "diagram-system-flow",
+    "diagram-security-boundaries"
+  ],
+  "snippetIds": [
+    "snippet-filter-pipeline"
+  ],
+  "blocks": [
+    {
+      "id": "intro-product",
+      "type": "intro",
+      "summary": "Product overview and capstone origin."
+    },
+    {
+      "id": "media-landing-support",
+      "type": "media",
+      "supportsBlockId": "intro-product",
+      "mediaId": "media-landing-desktop"
+    },
+    {
+      "id": "origin-school",
+      "type": "intro",
+      "summary": "Tyler confirms a manual school application, followed by AI-assisted enhancements under his architecture and revision direction. capstone-v1.0 marks a September 1 code version; submission relationship is unverified."
+    },
+    {
+      "id": "problem-planning",
+      "type": "problem",
+      "summary": "Trip items, cost and reusable plans are organized in one itinerary."
+    },
+    {
+      "id": "technical-itinerary",
+      "type": "technical",
+      "visibleSummary": "Trips combine date or location grouping, search, filters, JPY cost status and printable output.",
+      "snippetIds": [
+        "snippet-filter-pipeline"
+      ]
+    },
+    {
+      "id": "media-itinerary-support",
+      "type": "media",
+      "supportsBlockId": "technical-itinerary",
+      "mediaId": "media-itinerary-desktop"
+    },
+    {
+      "id": "decision-responsive",
+      "type": "decision",
+      "summary": "The itinerary UI supports narrow screens and a dark theme."
+    },
+    {
+      "id": "media-mobile-support",
+      "type": "media",
+      "supportsBlockId": "decision-responsive",
+      "mediaId": "media-itinerary-mobile-dark"
+    },
+    {
+      "id": "architecture-system",
+      "type": "architecture",
+      "visibleSummary": "The React client sends session-based requests to a Spring API, which stores account-scoped data in PostgreSQL.",
+      "diagramIds": [
+        "diagram-system-flow"
+      ]
+    },
+    {
+      "id": "technical-security",
+      "type": "technical",
+      "title": "Protecting account-owned travel plans",
+      "visibleSummary": "Authentication identifies the user, service ownership checks protect account resources, CSRF protects cookie-authenticated mutations, and per-username/IP counters limit failed logins. Existing unit tests cover specific cases; full security-chain and production settings remain unverified.",
+      "diagramIds": [
+        "diagram-security-boundaries"
+      ],
+      "evidenceReport": "FOLLOWUP.md"
+    },
+    {
+      "id": "decision-localization",
+      "type": "decision",
+      "summary": "Interface resources and curated public templates support English and Japanese; user content remains as entered."
+    },
+    {
+      "id": "media-localization-support",
+      "type": "media",
+      "supportsBlockId": "decision-localization",
+      "mediaId": "media-library-ja"
+    },
+    {
+      "id": "result-current",
+      "type": "result",
+      "summary": "Complete application; local frontend lint/72 tests/build and backend 25 tests passed. Historical CI at HEAD succeeded; anonymous public landing/library rendering works. Authenticated workflows and production configuration were not checked."
+    }
+  ],
+  "contribution": {
+    "ownership": "primary",
+    "implementation": "mixed",
+    "source": "Tyler confirmed the follow-up statements on 2026-10-03",
+    "scope": "Primary revision, decision and architecture direction; no contribution percentages or exclusive code authorship inferred",
+    "originalIteration": {
+      "implementation": "manual",
+      "source": "Tyler confirms original school application completed without AI"
+    },
+    "laterIterations": {
+      "implementation": "ai-assisted",
+      "responsibilities": [
+        "Revisions",
+        "Decisions",
+        "Architecture"
+      ],
+      "source": "Tyler confirmed"
+    },
+    "schoolBoundary": {
+      "tag": "capstone-v1.0",
+      "revision": "23a4dd6d6d5d6837a7301047be908378001ea9eb",
+      "commitDate": "2026-09-01T05:49:38-10:00",
+      "submissionVerified": false
+    }
+  },
+  "publication": {
+    "status": "draft",
+    "featured": false
+  },
+  "japanesePortfolioTranslation": "none",
+  "uncertainties": [
+    "Whether capstone-v1.0 is the submitted school revision",
+    "Exact screenshot capture dates/viewports",
+    "Deployed source revision and production cookie/proxy/operations settings",
+    "Authenticated production workflow behavior"
+  ],
+  "roles": [
+    "Full-stack development of the original school application",
+    "System architecture",
+    "Revision and technical decisions for later enhancements"
+  ],
+  "deployment": {
+    "provider": "Railway",
+    "plan": "free hosting",
+    "customDomain": false,
+    "provenance": "Tyler confirmed; billing/plan not independently checked"
+  }
+}

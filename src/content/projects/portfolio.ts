@@ -53,7 +53,7 @@ export const portfolioProject = {
     uiDirection: "primary",
     implementation: "ai-assisted",
     review:
-      "Tyler directed the product and design, reviewed the running site, and refined the interaction behavior through successive feedback. Coding agents assisted implementation, documentation and automated verification.",
+      "Product, architecture and design direction guided successive reviews of the running site. Interaction behavior was refined through repeated visual and functional review, with coding agents assisting implementation, documentation and automated verification.",
     testing:
       "Schema validation, unit tests, Playwright browser checks, automated accessibility scans and visual inspection; deployed and field-performance acceptance remain pending.",
   },
@@ -198,7 +198,7 @@ export const portfolioProject = {
       summary:
         "A portfolio that reinterprets the same project content through Editorial, Engineer and Digital compositions, with motion that reinforces each mode.",
       description:
-        "An active portfolio project and its first draft case study. Product, architecture and design direction are led by Tyler Tapia, with AI-assisted implementation and repeated browser review.",
+        "A portfolio built around one content source and three distinct ways of reading it. Shared semantic components support different compositions, visual systems and interactions without duplicating project narratives.",
       overview: {
         distinction:
           "One factual content source supports three different compositions, with theme morphing, navigation transitions and interaction patterns tailored to each reading experience.",
@@ -366,8 +366,9 @@ export const portfolioProject = {
           id: "state",
           type: "result",
           body: prose(
-            "Three compositions, theme-switch morphing, route transitions and theme-specific interactions are implemented and reviewed locally. This case study is the first real project record, and is deliberately kept as a development-only draft while copy and media are reviewed.",
-            "The current output demonstrates the presentation architecture and the iteration process. Deployment, final project copy, Japanese translations and populated deployment performance checks remain open. No user adoption, business outcome or performance improvement is claimed.",
+            "The implemented portfolio presents the same project content through three distinct compositions. Theme-switch morphing preserves continuity between them, while page transitions and smaller interactions extend each mode's reading model.",
+            "Shared content validation, publication controls and locale fallbacks support adding projects without creating separate narratives for each theme. Local browser and accessibility checks exercise the compositions, navigation and reduced-motion behavior.",
+            "The presentation system is implemented; final content, Japanese translations, deployment and performance acceptance with the completed project inventory remain the next release steps.",
           ),
         },
       ],

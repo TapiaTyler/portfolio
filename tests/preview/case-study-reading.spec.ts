@@ -17,7 +17,9 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       "deployed performance verification remain pending",
     );
     await brief.locator("summary").click();
-    await expect(brief).toContainText("Tyler directed the product and design");
+    await expect(brief).toContainText(
+      "Product, architecture and design direction",
+    );
     const nav = study.locator(".case-study-navigation__desktop");
     await expect(nav).toBeVisible();
     await expect(nav.getByRole("link")).toHaveCount(9);

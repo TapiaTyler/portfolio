@@ -1,0 +1,44 @@
+{
+  "sourceRevision": "385c122",
+  "reviewedDate": "2026-10-03",
+  "includedMediaCount": 0,
+  "assets": [
+    {
+      "id": "media-landing-desktop", "type": "image", "state": "needs-permission", "sourcePath": "docs/images/landing-desktop.png", "format": "png", "width": 1259, "height": 748, "bytes": 123584,
+      "purpose": "overview", "supportsBlockId": "intro-product", "alt": "Japan Travel Planner landing page with a trip preview and entry points.",
+      "caption": "Public landing page in the 2026-09-05 repository capture; preview trip is sample UI.",
+      "provenance": {"addedCommit": "2b63b0e", "captureDate": "unknown", "route": "likely /; not recorded", "viewport": "unknown", "data": "sample preview in component; screenshot capture setup unknown"},
+      "review": "Tyler must approve public use and verify screenshot content."
+    },
+    {
+      "id": "media-itinerary-desktop", "type": "image", "state": "needs-permission", "sourcePath": "docs/images/itinerary-desktop.png", "format": "png", "width": 1265, "height": 1179, "bytes": 93397,
+      "purpose": "detail and preview", "supportsBlockId": "technical-itinerary", "alt": "Desktop trip itinerary with date groups, search, map links and a yen cost summary.",
+      "caption": "A populated itinerary view in the 2026-09-05 repository capture; example trip data provenance awaits confirmation.",
+      "relationship": {"with": "media-itinerary-mobile-dark", "kind": "current responsive views; not before/after"},
+      "provenance": {"addedCommit": "2b63b0e", "captureDate": "unknown", "route": "authenticated trip detail, exact URL unknown", "viewport": "unknown", "data": "unconfirmed"},
+      "review": "Tyler must approve public use and confirm example trip data is safe."
+    },
+    {
+      "id": "media-itinerary-mobile-dark", "type": "image", "state": "needs-permission", "sourcePath": "docs/images/itinerary-mobile-dark.png", "format": "png", "width": 534, "height": 1263, "bytes": 53835,
+      "purpose": "mobile detail", "supportsBlockId": "decision-responsive", "alt": "Narrow dark-theme itinerary view with cards and cost summary.",
+      "caption": "A narrow-screen dark-theme capture from the 2026-09-05 repository; not a measured device test.",
+      "relationship": {"with": "media-itinerary-desktop", "kind": "current responsive views; not before/after"},
+      "provenance": {"addedCommit": "2b63b0e", "captureDate": "unknown", "route": "authenticated trip detail, exact URL unknown", "viewport": "unknown", "data": "unconfirmed"},
+      "review": "Tyler must approve public use and confirm example trip data is safe."
+    },
+    {
+      "id": "media-library-ja", "type": "image", "state": "needs-permission", "sourcePath": "docs/images/trip-library-japanese.png", "format": "png", "width": 1270, "height": 715, "bytes": 88005,
+      "purpose": "localization detail", "supportsBlockId": "decision-localization", "alt": "Trip Library interface displaying Japanese labels and public templates.",
+      "caption": "Japanese Trip Library capture from the 2026-09-05 repository; translation quality has not been independently reviewed.",
+      "provenance": {"addedCommit": "2b63b0e", "captureDate": "unknown", "route": "likely /library; not recorded", "viewport": "unknown", "data": "curated public templates; exact capture state unknown"},
+      "review": "Tyler must approve public use and review content and translation."
+    },
+    {
+      "id": "media-school-original", "type": "image", "state": "needs-capture", "proposedFilename": "school-original-authentic.png",
+      "purpose": "process", "supportsBlockId": "origin-school", "alt": "Original school-project application view, description to be written after an authentic capture is supplied.",
+      "caption": "To be written from an authentic dated school-version capture; do not imply the 2026-09-05 images are original.",
+      "captureRequirement": "Supply a genuine screenshot or archived recording of the first completed application iteration with revision/date, route, viewport and safe non-personal content; otherwise omit image.",
+      "review": "Authenticity, public permission and school-material restrictions require Tyler review."
+    }
+  ]
+}

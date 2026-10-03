@@ -31,7 +31,9 @@ for (const [mode, animation] of [
       await page.goto(
         "/dev/compositions?surface=project&project=fixture-system",
       );
-    const details = page.locator(".case-study details").first();
+    const details = page
+      .locator(".case-study details:has(> .technical-detail__content)")
+      .first();
     const summary = details.locator("summary");
     if (mode === "editorial")
       expect(
@@ -178,7 +180,9 @@ test("Editorial reverses its fold on closing, can reopen mid-fold and settles im
     },
   ]);
   await page.goto("/dev/compositions?surface=project&project=fixture-system");
-  const details = page.locator(".case-study details").first();
+  const details = page
+    .locator(".case-study details:has(> .technical-detail__content)")
+    .first();
   const summary = details.locator("summary");
   await summary.click();
   await expect
@@ -258,7 +262,7 @@ test("Editorial reverses its fold on closing, can reopen mid-fold and settles im
   await expect(details).not.toHaveAttribute("open");
 });
 
-test("Digital card lighting follows the pointer, resets for focus and reduction, and releases a press into navigation", async ({
+test("Digital card lighting follows the pointer, preserves position for focus, resets for reduction and releases a press into navigation", async ({
   page,
   context,
 }) => {
@@ -283,12 +287,17 @@ test("Digital card lighting follows the pointer, resets for focus and reduction,
     )
     .toBe("1");
   const link = card.getByRole("link", { name: "Explore the project" });
+  const pointerPosition = await card.evaluate((element) =>
+    element.style.getPropertyValue("--card-light-x"),
+  );
   await link.focus();
+  // Focus keeps the glow visible; retain its position instead of flashing the
+  // fallback center. Exit/reset timing is also covered by the real pilot tests.
   expect(
     await card.evaluate((element) =>
       element.style.getPropertyValue("--card-light-x"),
     ),
-  ).toBe("");
+  ).toBe(pointerPosition);
   await link.hover();
   await page.mouse.down();
   await expect(card).toHaveAttribute("data-card-pressed", "");

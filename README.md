@@ -1,126 +1,241 @@
-# Portfolio Website — Project Documentation
+# Portfolio — Three Ways of Reading the Same Work
 
-This documentation defines the product, design, content, and engineering contracts for Tyler Tapia's personal portfolio website.
+A professional portfolio for Tyler Tetsuo Tapia, built as a project in its own
+right. One canonical content model is presented through three distinct reading
+experiences: Editorial, Engineer and Digital.
 
-The portfolio is intentionally more ambitious than a conventional résumé site. It is both a professional portfolio and a portfolio project in its own right. Its defining idea is:
+The project separates facts and narrative from their composition, visual language
+and motion. Switching presentation changes hierarchy, density and interaction
+while preserving the content, project URLs and essential navigation.
 
-> **One portfolio. One semantic content model. Multiple coherent ways of reading it.**
+## Presentation modes
 
-The launch version supports three visual/compositional modes:
+| Mode                    | Reading model                                                    | Interaction character                                                                                 |
+| ----------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Editorial** (default) | Narrative, typography, imagery and controlled whitespace         | Page turns, unfolding disclosures, quiet link/image responses and reading progress                    |
+| **Engineer**            | System records, architecture, implementation and decision detail | Record-change scans, directory-style section navigation, code copying and diagram inspection          |
+| **Digital**             | Spatial composition, layered media and visual continuity         | Card-to-project expansion, image-gallery expansion/contraction, pointer lighting and animated borders |
 
-- **Editorial** — quiet, refined, narrative, image-aware, typography-led.
-- **Engineer** — structured, information-dense, architecture-forward, precise.
-- **Digital** — spatial, interactive, motion-led, visually experimental.
+Theme switching morphs matching semantic modules between compositions, preserves
+reading position and handles interruption. Route effects also cover internal links,
+language changes and browser history. Keyboard, touch and reduced-motion behavior
+are part of the implementation; motion is an optional enhancement.
 
-These are not color skins. Each mode may reorganize shared content, change emphasis, select different media treatments, and use different composition strategies while preserving factual content, accessibility, URLs, SEO identity, and project availability.
+See [theme morphing](docs/THEME-TRANSITIONS.md),
+[theme-specific interactions](docs/THEME-MOTION.md) and
+[route transitions](docs/ROUTE-TRANSITIONS.md).
 
-Future themes such as **Product** and **Graphic** may be added later through the same architecture.
+## Current status
+
+As of **October 3, 2026**:
+
+- Home, Work, project detail, About, Lab and Contact have compositions for all three modes.
+- Two real English case studies are imported and reviewed across the themes.
+- Both project records remain **draft and unfeatured**. Review of their presentation
+  does not automatically publish them; public Work and featured inventories are empty.
+- English and Japanese routes exist. Incomplete Japanese content intentionally falls
+  back to English with a notice; portfolio translation remains pending.
+- Final biography, contact details and opening copy still require content review.
+- Vercel is the selected portfolio host. Release configuration is prepared;
+  deployment remains deferred and a public origin has not been selected.
+
+### Imported projects
+
+| Project                           | Source-project state          | Case-study focus                                                                                          | Development preview                  |
+| --------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Portfolio presentation system** | Active local implementation   | Shared content, distinct compositions, theme morphing, navigation, microinteractions and design iteration | `/dev/projects/portfolio`            |
+| **Japan Travel Planner**          | Complete; deployed on Railway | Full-stack planning workflow, reuse, localization, account/security boundaries and capstone evolution     | `/dev/projects/japan-travel-planner` |
+
+Both use one English narrative across the modes, with a neutral report voice and
+results describing what the project delivers. Their discovery and review records:
+
+- [Portfolio pilot guide](docs/projects/portfolio/README.md).
+- [Travel Planner import review](docs/projects/japan-travel-planner/IMPORT-REVIEW.md)
+  and [follow-up evidence](docs/projects/japan-travel-planner/followup/FOLLOWUP.md).
+
+The Travel Planner's original manual school-project version is preserved at
+`capstone-v1.0`; later enhancements used AI assistance under directed architecture
+and revision review. Its application deployment is separate from this portfolio's
+pending deployment.
+
+### Project pipeline
+
+No additional project imports are available at present. The following is planning
+context, not published portfolio content or a delivery schedule:
+
+| Project                  | Current state                         | Import context                             |
+| ------------------------ | ------------------------------------- | ------------------------------------------ |
+| **Nihonest**             | In development, nearing deployment    | Discovery and case-study import when ready |
+| **Upwatch**              | Planning; intended to follow Nihonest | No GitHub repository or coding agent yet   |
+| **Hospitality Platform** | Planning                              | No GitHub repository or coding agent yet   |
+
+## Architecture
+
+```text
+CONTENT → SEMANTIC COMPONENTS → COMPOSITION → THEME TOKENS → INTERACTION / MOTION
+```
+
+- **Content:** typed project metadata, English narrative, media, diagrams and code references.
+- **Semantic components:** render meaning through shared blocks and accessible controls.
+- **Composition:** selects grouping, hierarchy and emphasis for each mode.
+- **Theme tokens:** define typography, color, spacing, geometry and motion personality.
+- **Interaction:** adds continuity and feedback with progressive browser enhancements.
+
+Adding a normal project requires a content record and approved assets, rather than
+three theme-specific implementations. Published project selectors control routes,
+indexes, sitemap and structured data. Draft/hidden records are excluded from public
+lookup; development review uses a separate guarded route.
+
+### Implemented stack
+
+- Next.js App Router, React, TypeScript and Node.js 24.
+- Zod validation and typed semantic rich text for narrative; MDX is not currently used.
+- CSS custom properties, scoped styles, local fonts, SVG and native browser
+  View Transition / Web Animations APIs; no animation framework or WebGL runtime.
+- Playwright, axe-core, Node tests, ESLint, Prettier and Lighthouse.
+- Vercel configuration for the Next.js runtime; no portfolio database, CMS or accounts.
+
+Material AI assistance is disclosed in the project records. Product, architecture,
+design direction and review remain distinct from assisted implementation,
+documentation and automated verification. No contribution percentages are asserted.
+
+### Repository layout
+
+```text
+src/app/                  Locale routes and guarded development tools
+src/content/              Identity, page copy, project records and separate fixtures
+src/components/semantic/  Shared meaning-oriented renderers
+src/compositions/         Editorial, Engineer and Digital information organization
+src/themes/               Theme token definitions
+src/registries/           Projects, compositions, themes and vocabulary
+src/lib/                  Content, localization, theme, motion and SEO contracts
+src/styles/               Shared and scoped theme/interaction styles
+public/media/projects/    Approved project assets and capture provenance
+scripts/                  Validation, capture, performance and release tooling
+tests/                    Unit, production browser and populated preview checks
+docs/                     Architecture, design references, discovery and review records
+```
 
 ## Local development
 
-The initial Next.js + TypeScript foundation is implemented. Use Node.js 24 and npm.
+Use **Node.js 24.x** and npm:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`. The root redirects to `/en`. Both `/en` and `/ja`
-support Home, Work, About, Lab, and Contact. The Japanese route shell currently
-uses English placeholders with an explicit translation notice. Language links
-preserve the current destination.
+Use the URL printed by Next.js, normally `http://localhost:3000`. If that port is
+occupied, Next.js may select another. The application root redirects to `/en`.
+Use the running application rather than opening reference HTML as a local file.
 
-Project detail routes use the publication-safe content registry and return 404
-until reviewed project content is available.
-All three launch modes have initial implementations of their approved designs.
-Final content, visual refinement and launch verification remain upcoming milestones.
+Public routes are `/en` or `/ja`, followed by `/work`, `/about`, `/lab`, `/contact`
+and `/work/[slug]` for published projects. Language links preserve the destination;
+the saved presentation cookie selects the server-rendered mode before paint.
+Both imported projects currently return 404 on public project routes because they
+remain drafts.
 
-Verification commands:
+### Development review tools
+
+| Route                                | Purpose                                                    |
+| ------------------------------------ | ---------------------------------------------------------- |
+| `/dev/projects/portfolio`            | Review the real portfolio draft in the selected mode       |
+| `/dev/projects/japan-travel-planner` | Review the imported travel planner draft                   |
+| `/dev/design-system`                 | Shared semantic fixtures, including sparse/no-image states |
+| `/dev/compositions`                  | Compare the same synthetic case study across all modes     |
+| `/dev/compositions?surface=homepage` | Populated synthetic homepage and project-opening flow      |
+| `/dev/compositions?surface=work`     | Populated synthetic Work index                             |
+
+Append `?locale=ja` to draft previews to inspect English fallback. Development
+routes and fixture media return 404 in production. Files under `public/` are
+servable independently of project publication; draft status is not asset privacy.
+
+## Verification
+
+Install Chromium once for browser checks:
 
 ```sh
-npm run typecheck
-npm run content:validate
-npm run lint
-npm test
-npm run format:check
-npm run build
+npx playwright install chromium
 ```
 
-Use `npm run format` to format application code and configuration. Production
-builds can be served locally with `npm start` after `npm run build`.
-
-The content foundation now includes typed project records, shared registries,
-semantic case-study blocks, and build-time validation. The portfolio itself is
-the first real draft project; public project content remains empty pending review.
-Read [the pilot discovery and review guide](./docs/projects/portfolio/README.md),
-then open `/dev/projects/portfolio` on the development server to review all three
-compositions and theme morphing. Synthetic development fixtures remain separate from the public
-registry. See [`docs/CONTENT-AUTHORING.md`](./docs/CONTENT-AUTHORING.md) for the
-implemented authoring contract and validation workflow.
-
-Shared semantic components now render all supported case-study blocks with
-locale-aware field fallback. With the development server running, open
-`http://localhost:3000/dev/design-system` to inspect synthetic project previews.
-Use `?locale=ja` to inspect English fallback behavior, and `?project=fixture-visual`
-or `?project=fixture-minimal` to inspect other records. The preview and its fixture
-media return 404 in production.
-
-Presentation controls now select a registered token/composition profile and save
-the preference in a local cookie. The server renders the saved mode before paint,
-including after locale changes. Editorial uses a split hero, local typography, sparse sections and
-project features. Engineer uses a profile dossier, project records, a capability
-matrix and early case-study system summaries. Digital uses a spatial hero, abstract
-portal, project deck, connected About section and media-led project introduction.
-Final copy, imagery and populated
-layout review are still pending.
-
-`http://localhost:3000/dev/compositions` compares the same synthetic case study
-across all three profiles, including project previews and case studies. This
-preview also returns 404 in production. See [the Editorial implementation notes](./docs/EDITORIAL-IMPLEMENTATION.md)
-and [the Engineer implementation notes](./docs/ENGINEER-IMPLEMENTATION.md)
-and [Digital implementation notes](./docs/DIGITAL-IMPLEMENTATION.md)
-for the current design scope and remaining review.
-
-Use `/dev/compositions?surface=homepage` to review a populated synthetic homepage
-in the selected mode. This preview also remains development-only.
-The preview motion controls simulate reduced link/card movement; the browser's
-actual reduced-motion preference is also supported. The visual fixture gallery
-includes landscape, wide and portrait images.
-
-For browser verification, run once `npx playwright install chromium`, then:
+Then run the relevant gates:
 
 ```sh
+npm run content:validate
+npm run lint
+npm run format:check
+npm test
 npm run build
+npm run typecheck
+npm run test:release
 npm run test:browser
 npm run test:preview
 ```
 
-The browser suite starts and stops its own production server on port 3217.
-The preview suite uses an isolated development build and server on port 3218,
-so it can run alongside the normal development server. It verifies populated
-compositions, locale fallbacks, scoped styles, image ratios, reduced motion and
-failed-media descriptions. Both suites run in CI.
+Builds validate every authoring record, including drafts, and check local media
+and cross-reference integrity. Use `npm run format` for code/configuration formatting.
+CI is configured to run lint, unit tests, formatting, build/type checks, release
+smoke and both browser suites. Local success does not establish hosted CI success.
 
-For production performance measurements after a build, run
-`npm run audit:performance -- --label=current`. It owns a separate local server
-on port 3219 and saves reports under `.cache/performance/`.
-See [the performance review](./docs/PERFORMANCE-REVIEW.md) for measurement
-conditions, current results and remaining launch acceptance.
+| Tool                     | Owned port | Scope                                                                         |
+| ------------------------ | ---------- | ----------------------------------------------------------------------------- |
+| Production browser suite | 3217       | Routes, themes, persistence, navigation, motion and production guards         |
+| Populated preview suite  | 3218       | Drafts/fixtures, media, responsive compositions and accessibility             |
+| Performance audit        | 3219       | Mobile production Lighthouse plus local theme/route diagnostics               |
+| Release smoke            | 3220       | Production responses, assets, draft/dev 404 guards and indexing configuration |
 
-Theme changes now animate matching semantic modules between server-rendered
-compositions, with destination-specific timing, reading-position continuity,
-interruptible snapshots and an immediate reduced-motion/unsupported fallback.
-See [theme transition notes](./docs/THEME-TRANSITIONS.md) for the implementation
-and the remaining entry/reveal motion work.
+Keep the requested port free. These tools own and stop their test servers.
+**Do not build concurrently with preview tests or captures:** a build can remove
+their isolated development output. After a build, `npm start` serves the normal
+production application locally.
 
-SEO uses explicit deployment configuration. Copy `.env.example` to `.env.local`
-when ready to supply the public origin. `SITE_INDEXABLE` defaults to false;
-Japanese fallback-only pages remain non-indexable until translations are ready.
-See [SEO integration notes](./docs/SEO-INTEGRATION.md) for canonical, sitemap,
-robots and share metadata behavior. Rebuild after changing deployment settings.
-See [docs/ROADMAP.md](./docs/ROADMAP.md) for completed integrations and the next
-milestones, and [theme integration notes](./docs/THEME-COMPOSITION-INTEGRATION.md)
-for the implemented rendering and persistence contract.
+### Performance and accessibility
+
+```sh
+npm run audit:performance -- --label=current
+```
+
+The latest two local mobile homepage audits measured Performance **95–98** for
+Editorial, **96–97** for Engineer and **95** for Digital; automated Accessibility
+and Best Practices were **100**. SEO remains **63** with indexing deliberately
+blocked. Raw reports are saved in ignored `.cache/performance/` directories.
+
+These audits load a provisional homepage without published project media. They
+are not final populated/deployed acceptance, field Core Web Vitals, or proof of
+full WCAG conformance. See [PERFORMANCE-REVIEW.md](docs/PERFORMANCE-REVIEW.md) for
+conditions, interaction measurements, LCP findings and remaining checks.
+
+## Content and publication workflow
+
+1. Run the [project-discovery prompt](docs/15-PROJECT-DISCOVERY-PROMPT.md) inside
+   the source project. Reports and optional ZIPs are evidence, not approved copy.
+2. Review supported claims, ownership, media permissions and unresolved questions.
+3. Add one English project record, resolve registry vocabulary and import approved
+   assets with dimensions, captions, alt text and provenance.
+4. Validate and preview the record in every launch mode, including mobile, keyboard
+   and reduced-motion behavior. Keep supporting media with its narrative owner.
+5. Review publication and homepage featuring separately; only published records
+   can be featured. Do not publish planning-only pipeline entries.
+
+See [CONTENT-AUTHORING.md](docs/CONTENT-AUTHORING.md) for the implemented schema,
+report-style narrative guidance and reference rules, and
+[CONTENT-REVIEW.md](docs/CONTENT-REVIEW.md) for remaining editorial decisions.
+
+## Release status
+
+Vercel configuration, Node 24.x settings, release smoke and the
+[release runbook](docs/RELEASE-RUNBOOK.md) are prepared. No portfolio deployment or
+custom domain has been created in this work; deployment remains deferred.
+
+`SITE_INDEXABLE` defaults to false. Configure `SITE_URL` explicitly when a canonical
+origin is chosen; do not infer it from request headers. Vercel previews cannot enable
+indexing through an inherited production flag, and Japanese fallback-only project
+pages remain non-indexable. Rebuild/redeploy after changing those settings.
+See [SEO-INTEGRATION.md](docs/SEO-INTEGRATION.md).
+
+Remaining release work includes final biography/contact/hero copy, separate project
+publication and featuring decisions, translations where appropriate, public-origin
+configuration and populated deployed accessibility/performance/SEO checks.
 
 ## Documentation map
 
@@ -149,91 +264,19 @@ Read in this order when implementing:
 21. [`docs/design-reference/IMPLEMENTATION-CONTRACT.md`](./docs/design-reference/IMPLEMENTATION-CONTRACT.md) — contract for translating the approved Stitch HTML into the shared production architecture.
 22. [`docs/design-reference/EXTENDING-THE-DESIGNS.md`](./docs/design-reference/EXTENDING-THE-DESIGNS.md) — rules for extending the approved homepage systems to secondary routes without generic visual drift.
 
-## Approved design references
+## Design and extension contracts
 
-The reviewed visual baselines for the three launch modes are stored in:
+Approved visual references live in [docs/design-reference](docs/design-reference/README.md).
+Their homepage visual direction takes precedence over older speculative design
+examples; architecture, accessibility, localization and factual content follow
+`AGENTS.md`, the project docs and implemented typed contracts. Reference HTML is
+visual source material, not production React code or verified portfolio content.
 
-```text
-docs/design-reference/
-```
+Preserve content, URLs, semantic reading logic and essential destinations across
+modes. Theme-specific composition must remain more than token changes. New block
+types need a shared semantic fallback; normal projects must not need theme edits.
+Future Product and Graphic modes remain outside V1 scope.
 
-This folder contains:
-
-- theme-specific reference documentation;
-- an implementation contract;
-- rules for extending the designs to new screens;
-- the approved exported HTML references.
-
-For **homepage visual direction**, these reviewed design references take precedence over earlier speculative examples in the planning documentation.
-
-For **architecture, content, factual claims, accessibility, localization, routing, and application behavior**, the main project documentation and typed content remain authoritative.
-
-The reference HTML is therefore a visual/composition source, not production code and not a factual content source.
-
-Coding agents should read the design-reference documentation before implementing or substantially revising Editorial, Engineer, or Digital.
-
-## Non-negotiable architectural rules
-
-1. **Content describes meaning.**
-2. **Semantic components represent purpose, not appearance.**
-3. **Composition controls information organization, grouping, and emphasis.**
-4. **Theme tokens control visual language.**
-5. **Motion enhances presentation but is never required to understand content.**
-6. **Every published project must render correctly in every launch theme.**
-7. **Adding normal project content must not require editing theme implementation.**
-8. **Adding a new theme must not require editing project content.**
-9. **Themes must not change project URLs, SEO identity, factual content, accessibility, or project availability.**
-10. **If a theme lacks a specialized renderer for a block, use a shared semantic fallback.**
-11. **Editorial is the default experience.**
-12. **The launch theme set is Editorial + Engineer + Digital.**
-13. **Product and Graphic are post-launch candidates, not V1 blockers.**
-14. **Advanced Digital effects are progressive enhancements and must not burden other themes.**
-15. **The site must remain polished even if a visitor never changes theme.**
-
-## V1 technology direction
-
-Planned default stack:
-
-- Next.js
-- TypeScript
-- MDX for narrative content where appropriate
-- typed TypeScript data for structured project/content metadata
-- build-time schema validation such as Zod
-- CSS custom properties/design tokens
-- scoped component styling
-- Motion or equivalent for animation
-- static generation wherever practical
-- no database or CMS unless a later requirement clearly justifies one
-
-The portfolio should remain deployable as a low-cost, CDN-friendly site and should not introduce infrastructure merely to demonstrate infrastructure.
-
-## Intentionally open to refinement
-
-These may change during implementation without violating the plan:
-
-- exact font families
-- exact color values
-- exact breakpoint values
-- exact animation durations
-- individual project layout details
-- screenshot crops
-- microcopy
-- final project order
-- detailed launch content inventory
-- final hosting provider
-
-Coding agents may propose options for these while preserving the higher-level contracts in this documentation.
-
-Theme-specific entry, reveal and interaction behavior is documented in [THEME-MOTION.md](./docs/THEME-MOTION.md).
-
-Digital card-to-project expansion and Editorial directional page turns are documented
-in [ROUTE-TRANSITIONS.md](./docs/ROUTE-TRANSITIONS.md). Review selected synthetic
-projects from `/dev/compositions?surface=homepage` during development.
-
-## Release and content review
-
-Vercel is the selected host. Start with [RELEASE-RUNBOOK.md](./docs/RELEASE-RUNBOOK.md)
-for framework settings, preview environment scopes, local release verification and
-hosted review steps. [CONTENT-REVIEW.md](./docs/CONTENT-REVIEW.md) collects the remaining
-biography, contact, pilot publication and domain decisions. The normal build remains
-non-indexed and the pilot remains an unpublished development draft.
+[ROADMAP.md](docs/ROADMAP.md) tracks completed integration and remaining review.
+The planned implementation sequence is retained separately in
+[14-IMPLEMENTATION-ROADMAP.md](docs/14-IMPLEMENTATION-ROADMAP.md).

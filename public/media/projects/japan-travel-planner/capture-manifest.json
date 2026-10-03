@@ -1,0 +1,68 @@
+{
+  "sourceRepository": "JapanTravelPlanner/japan-travel-planner",
+  "inspectedRevision": "385c122",
+  "importedDate": "2026-10-03",
+  "provenance": "Existing repository screenshots; commit date is not an established capture date.",
+  "assets": [
+    {
+      "file": "landing-desktop.png",
+      "sourcePath": "docs/images/landing-desktop.png",
+      "bytes": 123584,
+      "width": 1259,
+      "height": 748,
+      "sha256": "bba85eba6e8bf6ba7d871fa6975b3f7d8bd91666377ed75016fbe3f92ab279b6",
+      "addedCommit": "2b63b0e",
+      "captureDate": null,
+      "viewport": null,
+      "state": "repository-screenshot",
+      "data": "fictional/demo; confirmed by Tyler",
+      "publicUse": "approved by Tyler on 2026-10-03",
+      "reconstructed": false
+    },
+    {
+      "file": "itinerary-desktop.png",
+      "sourcePath": "docs/images/itinerary-desktop.png",
+      "bytes": 93397,
+      "width": 1265,
+      "height": 1179,
+      "sha256": "38924cacace1936db6a0cd52cdfb29babd341e08ef55432cd00e01b588dc5612",
+      "addedCommit": "2b63b0e",
+      "captureDate": null,
+      "viewport": null,
+      "state": "repository-screenshot",
+      "data": "fictional/demo; confirmed by Tyler",
+      "publicUse": "approved by Tyler on 2026-10-03",
+      "reconstructed": false
+    },
+    {
+      "file": "itinerary-mobile-dark.png",
+      "sourcePath": "docs/images/itinerary-mobile-dark.png",
+      "bytes": 53835,
+      "width": 534,
+      "height": 1263,
+      "sha256": "999181cb2bec69d8baf53405895c559386028e31840550e852a5f4b17862b1b8",
+      "addedCommit": "2b63b0e",
+      "captureDate": null,
+      "viewport": null,
+      "state": "repository-screenshot",
+      "data": "fictional/demo; confirmed by Tyler",
+      "publicUse": "approved by Tyler on 2026-10-03",
+      "reconstructed": false
+    },
+    {
+      "file": "trip-library-japanese.png",
+      "sourcePath": "docs/images/trip-library-japanese.png",
+      "bytes": 88005,
+      "width": 1270,
+      "height": 715,
+      "sha256": "36ca820e42d7bed7d5fb36375dff143fdcfe6f8776e6442a75dac32b2f4a68df",
+      "addedCommit": "2b63b0e",
+      "captureDate": null,
+      "viewport": null,
+      "state": "repository-screenshot",
+      "data": "fictional/demo; confirmed by Tyler",
+      "publicUse": "approved by Tyler on 2026-10-03",
+      "reconstructed": false
+    }
+  ]
+}

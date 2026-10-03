@@ -68,11 +68,13 @@ export function MediaAsset({
       loading={loading}
       // Remote host approval and optimization policy come with real asset integration.
       unoptimized={/^https:\/\//i.test(src) || src.startsWith("/dev/")}
-      style={
-        focalPoint
-          ? { objectPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%` }
-          : undefined
-      }
+      // Theme composition can fill available space, but must not upscale source pixels.
+      style={{
+        maxWidth: `min(100%, ${width}px)`,
+        ...(focalPoint && {
+          objectPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%`,
+        }),
+      }}
       onError={() => setFailed(true)}
     />
   );

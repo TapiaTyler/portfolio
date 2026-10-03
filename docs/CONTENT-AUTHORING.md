@@ -50,6 +50,18 @@ metadata. They must not be replaced by direct imports of draft records.
 
 ## Narrative and references
 
+Project narratives use a neutral case-study/report voice: describe the purpose,
+decisions, implementation and concrete results directly. Avoid referring to the
+portfolio owner by name in the third person. Ownership text can describe directed
+responsibilities and the development process without introducing an outside narrator.
+Keep material AI assistance explicit and distinguish it from the original manual work
+where applicable.
+
+Result sections describe what the project delivered. Discovery provenance, import
+approvals and unresolved historical-source questions belong in review documentation.
+Testing and technical sections can state verification scope and real limitations;
+do not turn those into invented outcomes or a substitute for the project result.
+
 `locale.en.blocks` contains semantic case-study blocks. Each block needs a stable
 ID unique within its locale. The initial union covers intro, problem, goals,
 constraints, decision, media, gallery, architecture, challenge, technical, and
@@ -66,6 +78,11 @@ referenced by ID from blocks. Images require intrinsic dimensions and localized
 alternative text. Videos also require a poster. Diagrams require a title,
 accessible summary, nodes, and edges with valid endpoints. Code is text in
 `codeSnippets`, not an image or a repeated copy in each translation.
+
+Images shrink responsively but their rendered size is capped at the declared
+source dimensions in every theme. Digital's image gallery also respects this cap;
+larger screens should not upscale a small screenshot. Supply the actual source
+width and height rather than a desired layout size.
 
 Local media paths are rooted at `public/`. Their files must exist, and paths cannot
 escape that directory. Remote media must use HTTPS; validation checks URL format

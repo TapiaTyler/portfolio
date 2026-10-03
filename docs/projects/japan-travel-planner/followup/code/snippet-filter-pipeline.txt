@@ -1,0 +1,74 @@
+ID: snippet-filter-pipeline
+Title: Combining text and structured itinerary filters
+Language: JavaScript
+Source: frontend/src/utils/itineraryFilters.js, filterItineraryItems, revision 385c122b2d4669089f02fe576130fc178549d05b
+Scope: Complete function, copied from tracked source; approved by Tyler.
+Dependencies: normalize lowercases text; matchesSearch searches name, notes and getItemLocations; getItemLocations covers location or transportation endpoints. All helpers are in this same file.
+Inputs: items array, query string, and filter object with dateFrom/dateTo, locations, itemTypes, costStatuses, minCost/maxCost and transportationTypes. Date comparisons assume ISO date strings; cost status filtering retains null-cost items as implemented.
+Supports: technical-itinerary
+
+export function filterItineraryItems(items, query, filters) {
+    const normalizedQuery = normalize(query.trim());
+
+    return items.filter((item) => {
+        if (!matchesSearch(item, normalizedQuery)) {
+            return false;
+        }
+
+        if (filters.dateFrom && (!item.date || item.date < filters.dateFrom)) {
+            return false;
+        }
+
+        if (filters.dateTo && (!item.date || item.date > filters.dateTo)) {
+            return false;
+        }
+
+        if (
+            filters.locations.length > 0 &&
+            !getItemLocations(item).some(
+                (location) => filters.locations.includes(location)
+            )
+        ) {
+            return false;
+        }
+
+        if (
+            filters.itemTypes.length > 0 &&
+            !filters.itemTypes.includes(item.itemType)
+        ) {
+            return false;
+        }
+
+        const costStatus = item.costStatus || "UNKNOWN";
+
+        if (
+            filters.costStatuses.length > 0 &&
+            item.cost !== null &&
+            !filters.costStatuses.includes(costStatus)
+        ) {
+            return false;
+        }
+
+        if (filters.minCost !== "") {
+            if (item.cost === null || Number(item.cost) < Number(filters.minCost)) {
+                return false;
+            }
+        }
+
+        if (filters.maxCost !== "") {
+            if (item.cost === null || Number(item.cost) > Number(filters.maxCost)) {
+                return false;
+            }
+        }
+
+        if (
+            filters.transportationTypes.length > 0 &&
+            item.itemType === "Transportation" &&
+            !filters.transportationTypes.includes(item.transportationType)
+        ) {
+            return false;
+        }
+
+        return true;
+    });
+}

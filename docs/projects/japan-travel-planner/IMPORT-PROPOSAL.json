@@ -1,0 +1,49 @@
+{
+  "proposalOnly": true,
+  "kind": "project",
+  "slug": "japan-travel-planner",
+  "year": 2026,
+  "type": "full-stack web app",
+  "status": "active",
+  "statusConfidence": "proposed; confirm with Tyler",
+  "title": "Japan Travel Planner",
+  "summary": "A responsive Japan itinerary planner with account-based trip editing, reusable templates, yen cost summaries, print output, and English/Japanese interface support.",
+  "description": "A WGU capstone project that developed into a full-stack travel-planning application. The original application iteration was completed without AI according to Tyler; later contribution boundaries need confirmation.",
+  "distinction": "Originated as a manually completed school project, per Tyler's statement; later revisions add public templates, localization, mobile and dark-theme views, and deployment support.",
+  "currentState": "Implemented at inspected revision; current live availability and backend test result were not verified.",
+  "sourceRevision": "385c122",
+  "inspectedDate": "2026-10-03",
+  "links": [
+    {"kind": "repository", "url": "https://github.com/TapiaTyler/japan-travel-planner", "verified": false, "evidence": "README.md:3"},
+    {"kind": "live", "url": "https://japan-travel-planner-production.up.railway.app/", "verified": false, "evidence": "README.md:5"},
+    {"kind": "documentation", "path": "README.md", "verifiedInRepository": true}
+  ],
+  "technologies": ["React", "Vite", "Spring Boot", "PostgreSQL", "Flyway", "i18next"],
+  "capabilities": ["Full-stack", "Frontend", "Backend", "API Design", "Data Modeling", "Localization", "Testing / Quality Engineering", "DevOps / Deployment"],
+  "previewMediaId": "media-itinerary-desktop",
+  "previewCondition": "Use only after public-use and data-provenance review; otherwise use no image.",
+  "assetIds": ["media-landing-desktop", "media-itinerary-desktop", "media-itinerary-mobile-dark", "media-library-ja", "media-school-original"],
+  "diagramIds": ["diagram-system-flow"],
+  "snippetIds": ["snippet-filter-pipeline"],
+  "blocks": [
+    {"id": "intro-product", "type": "intro", "summary": "Product overview and capstone origin."},
+    {"id": "media-landing-support", "type": "media", "supportsBlockId": "intro-product", "mediaId": "media-landing-desktop"},
+    {"id": "origin-school", "type": "process", "summary": "Tyler states the first application iteration was a manually completed school project; distinguish subsequent changes."},
+    {"id": "problem-planning", "type": "problem", "summary": "Trip items, cost and reusable plans are organized in one itinerary."},
+    {"id": "technical-itinerary", "type": "technical", "visibleSummary": "Trips combine date or location grouping, search, filters, JPY cost status and printable output.", "snippetIds": ["snippet-filter-pipeline"]},
+    {"id": "media-itinerary-support", "type": "media", "supportsBlockId": "technical-itinerary", "mediaId": "media-itinerary-desktop"},
+    {"id": "decision-responsive", "type": "decision", "summary": "The itinerary UI supports narrow screens and a dark theme."},
+    {"id": "media-mobile-support", "type": "media", "supportsBlockId": "decision-responsive", "mediaId": "media-itinerary-mobile-dark"},
+    {"id": "architecture-system", "type": "architecture", "visibleSummary": "The React client sends session-based requests to a Spring API, which stores account-scoped data in PostgreSQL.", "diagramIds": ["diagram-system-flow"]},
+    {"id": "decision-localization", "type": "decision", "summary": "Interface resources and curated public templates support English and Japanese; user content remains as entered."},
+    {"id": "media-localization-support", "type": "media", "supportsBlockId": "decision-localization", "mediaId": "media-library-ja"},
+    {"id": "result-current", "type": "result", "summary": "Frontend lint, 72 tests and build passed locally; backend and live deployment were not checked."}
+  ],
+  "contribution": {
+    "originalIteration": {"implementation": "manual", "source": "Tyler's direct statement in discovery request", "ownership": "unset pending scope confirmation"},
+    "laterIterations": {"implementation": "unset", "ownership": "unset"}
+  },
+  "publication": {"status": "draft", "featured": false},
+  "japanesePortfolioTranslation": "none",
+  "uncertainties": ["Original school-version revision boundary", "Later personal and AI/collaborator contributions", "Media permission and data provenance", "Live deployment status", "Project active/complete/archive status"]
+}

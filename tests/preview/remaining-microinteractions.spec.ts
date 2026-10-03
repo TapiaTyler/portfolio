@@ -114,7 +114,9 @@ test("Engineer inspects only actual connections and copies the full snippet with
   await expect(diagram.locator('[data-connection-state="muted"]')).toHaveCount(
     0,
   );
-  await page.locator(".case-study summary").click();
+  await page
+    .locator(".case-study details:has(> .technical-detail__content) > summary")
+    .click();
   const copy = page.getByRole("button", { name: "Copy code sample" });
   const code = await page.locator(".code-snippet code").textContent();
   await copy.click();

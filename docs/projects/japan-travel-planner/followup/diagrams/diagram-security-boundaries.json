@@ -1,0 +1,30 @@
+{
+  "id": "diagram-security-boundaries",
+  "title": "Account and mutation security boundaries",
+  "supportsBlockId": "technical-security",
+  "accessibleSummary": "The client obtains a CSRF token before cookie-bearing mutations. Spring checks route authentication and CSRF, login verifies credentials and limits failures, and services bind trip or template access to the authenticated username before persistence. Production proxy and cookie settings remain unverified.",
+  "sourceRevision": "385c122b2d4669089f02fe576130fc178549d05b",
+  "nodes": [
+    {"id": "client", "label": "React API client"},
+    {"id": "csrf", "label": "Public CSRF initialization endpoint"},
+    {"id": "filters", "label": "Spring authentication and CSRF route checks"},
+    {"id": "login", "label": "Credential verification and login counters"},
+    {"id": "session", "label": "Server HTTP session"},
+    {"id": "owner", "label": "Services using authenticated username and item membership"},
+    {"id": "store", "label": "JPA repositories / PostgreSQL"},
+    {"id": "public", "label": "Anonymous curated-template reads"}
+  ],
+  "edges": [
+    {"from": "client", "to": "csrf", "label": "GET token and header name"},
+    {"from": "csrf", "to": "client", "label": "token response and CSRF cookie"},
+    {"from": "client", "to": "filters", "label": "mutation with token header and cookies"},
+    {"from": "filters", "to": "login", "label": "login route; CSRF still applies"},
+    {"from": "login", "to": "session", "label": "store authenticated security context"},
+    {"from": "session", "to": "filters", "label": "authenticated identity on subsequent requests"},
+    {"from": "filters", "to": "owner", "label": "protected operation"},
+    {"from": "owner", "to": "store", "label": "owned resource lookup before mutation"},
+    {"from": "client", "to": "public", "label": "public GET templates"}
+  ],
+  "limits": ["No security filter-chain integration tests", "No explicit login session/token rotation shown in custom controller", "Login counters are per process", "Production proxy trust and cookie flags not inspected"],
+  "evidence": ["frontend/src/api/api.js:getCsrfToken/csrfFetch", "backend/src/main/java/com/japantravelplanner/config/SecurityConfig.java:securityFilterChain", "backend/src/main/java/com/japantravelplanner/controller/AuthController.java:login", "backend/src/main/java/com/japantravelplanner/service/TripItemService.java:updateActivity"]
+}
