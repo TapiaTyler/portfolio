@@ -1,0 +1,48 @@
+import localFont from "next/font/local";
+
+export const editorialDisplay = localFont({
+  src: [
+    {
+      path: "../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../node_modules/@fontsource/cormorant-garamond/files/cormorant-garamond-latin-400-italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-editorial-display",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: "Times New Roman",
+});
+
+export const interfaceFont = localFont({
+  src: "../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2",
+  weight: "100 900",
+  variable: "--font-interface",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: "Arial",
+});
+
+export const engineerMono = localFont({
+  src: "../../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2",
+  weight: "100 800",
+  variable: "--font-engineer-mono",
+  display: "swap",
+  preload: false,
+});
+
+export const engineerSans = localFont({
+  src: "../../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2",
+  weight: "300 700",
+  variable: "--font-engineer-sans",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: "Arial",
+});
+
+export const fontVariables = `${editorialDisplay.variable} ${interfaceFont.variable} ${engineerMono.variable} ${engineerSans.variable}`;

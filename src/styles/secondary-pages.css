@@ -1,0 +1,349 @@
+/* Content stays canonical; each mode extends its approved page grammar. */
+.secondary-page {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+.secondary-page-intro {
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+.secondary-page-intro h1 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: 1;
+}
+.secondary-page-intro__description,
+.secondary-page-section > p {
+  max-width: 60ch;
+  line-height: 1.8;
+}
+.secondary-page-intro__lead {
+  margin: 0;
+  max-width: 25ch;
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.2;
+}
+.secondary-page-body,
+.secondary-page-section {
+  min-width: 0;
+}
+.secondary-page-section {
+  margin-block: 0 2.5rem;
+}
+.secondary-page-section h2 {
+  margin-top: 0;
+  scroll-margin-top: 8rem;
+}
+.secondary-page-fields {
+  margin: 0;
+}
+.secondary-page-fields > div {
+  display: grid;
+  grid-template-columns: minmax(5rem, 1fr) minmax(0, 3fr);
+  gap: 1rem;
+  padding-block: 0.8rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.secondary-page-fields dt {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.secondary-page-fields dd {
+  margin: 0;
+}
+.secondary-page-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.secondary-page-items li {
+  min-width: 0;
+}
+.secondary-page-items h3 {
+  margin: 0 0 0.5rem;
+}
+.secondary-page-items p {
+  margin: 0;
+  line-height: 1.75;
+}
+.secondary-page-related {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.secondary-page-related > p {
+  margin: 0;
+}
+.secondary-page-related a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+@scope ([data-theme="editorial"]) to ([data-theme]) {
+  .secondary-page-intro h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+  .secondary-page-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: end;
+    gap: 3rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 3rem;
+  }
+  .secondary-page-intro__description {
+    max-width: 36ch;
+    color: var(--text-muted);
+  }
+  .secondary-page-intro__lead {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 4rem);
+  }
+  .secondary-page-body {
+    max-width: 58rem;
+    margin-left: auto;
+  }
+  .secondary-page--work .secondary-page-body {
+    max-width: none;
+  }
+  .secondary-page-section:not(.secondary-page-section--collection) {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 5fr);
+    gap: 1rem 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  .secondary-page-section:not(.secondary-page-section--collection) > h2 {
+    grid-row: 1 / span 4;
+    font-size: 1.5rem;
+  }
+  .secondary-page-section:not(.secondary-page-section--collection) > :not(h2) {
+    grid-column: 2;
+  }
+  .secondary-page-items li {
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .secondary-page-items li:first-child {
+    padding-top: 0;
+  }
+  .secondary-page-items h3 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
+  .secondary-page--contact .secondary-page-intro {
+    min-height: 22rem;
+  }
+}
+@scope ([data-theme="engineer"]) to ([data-theme]) {
+  .secondary-page {
+    padding-top: 2.5rem;
+  }
+  .secondary-page-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-primary);
+  }
+  .secondary-page-intro__identity {
+    padding: 1.5rem;
+  }
+  .secondary-page-intro h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+  }
+  .secondary-page-intro__lead {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    max-width: none;
+    border-left: 1px solid var(--border-subtle);
+    background: var(--surface-secondary);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--accent);
+  }
+  .secondary-page-reading-layout {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .secondary-page-reading-layout:not(:has(> .secondary-page-index)) {
+    display: block;
+  }
+  .secondary-page-index {
+    position: sticky;
+    top: 7rem;
+    border: 1px solid var(--border-subtle);
+    padding: 1rem;
+    font-family: var(--font-mono);
+  }
+  .secondary-page-index ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .secondary-page-index a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .secondary-page-index a:is(:hover, :focus-visible) {
+    background: var(--surface-secondary);
+  }
+  .secondary-page-section {
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem;
+    background: var(--surface-primary);
+    margin-bottom: 1.5rem;
+  }
+  .secondary-page-section h2 {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .secondary-page-items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .secondary-page-items h3 {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .secondary-page-items p {
+    font-size: 0.9rem;
+  }
+  .secondary-page-section .project-index {
+    margin-top: 1.5rem;
+  }
+  .secondary-page-section--collection {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+  .secondary-page-section--collection > h2 {
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+}
+@scope ([data-theme="digital"]) to ([data-theme]) {
+  .digital-secondary-surface {
+    border: 1px solid var(--border-subtle);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--surface-secondary) 85%, transparent);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    min-width: 0;
+  }
+  .secondary-page-opening {
+    margin-bottom: 2.5rem;
+  }
+  .secondary-page-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  .secondary-page-intro h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+  }
+  .secondary-page-intro__lead {
+    padding-left: 2rem;
+    border-left: 1px solid var(--border-subtle);
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+  .secondary-page-body {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    align-items: start;
+  }
+  .secondary-page-section {
+    margin: 0;
+  }
+  .secondary-page-section h2 {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .secondary-page-body > :last-child:nth-child(odd),
+  .secondary-page-section--collection {
+    grid-column: 1 / -1;
+  }
+  .secondary-page-items li {
+    padding-block: 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .secondary-page-items h3 {
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  .secondary-page--contact .secondary-page-opening {
+    padding-block: clamp(3rem, 7vw, 6rem);
+  }
+  .secondary-page-section--collection > h2 {
+    margin-bottom: 1.5rem;
+  }
+  .secondary-page-section--collection > .empty-content {
+    max-width: none;
+    padding: 2rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 1rem;
+    background: var(--surface-secondary);
+  }
+}
+@scope ([data-theme]) to ([data-theme]) {
+  @media (max-width: 48rem) {
+    .secondary-page {
+      padding-block: 2rem;
+    }
+    .secondary-page-intro,
+    .secondary-page-reading-layout,
+    .secondary-page-body {
+      display: block;
+    }
+    .secondary-page-intro__lead {
+      margin-top: 1.5rem;
+      padding-left: 0;
+      border-left: 0;
+    }
+    .secondary-page-index {
+      position: static;
+      margin-bottom: 1.5rem;
+    }
+    .secondary-page-section:not(.secondary-page-section--collection) {
+      display: block;
+    }
+    .secondary-page-items {
+      display: block;
+    }
+    .secondary-page-items li {
+      margin-bottom: 1rem;
+    }
+    .digital-secondary-surface {
+      margin-bottom: 1.5rem;
+    }
+    .secondary-page-intro h1 {
+      font-size: clamp(3rem, 13vw, 4rem);
+    }
+  }
+}

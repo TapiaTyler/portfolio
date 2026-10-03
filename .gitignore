@@ -1,5 +1,6 @@
 # Dependencies and package-manager caches
 node_modules/
+.npm-cache/
 .pnpm-store/
 .yarn/cache/
 .yarn/unplugged/
@@ -12,6 +13,7 @@ build/
 dist/
 .turbo/
 .cache/
+.eslintcache
 next-env.d.ts
 *.tsbuildinfo
 
@@ -19,6 +21,8 @@ next-env.d.ts
 coverage/
 .nyc_output/
 playwright-report/
+blob-report/
+playwright/.cache/
 test-results/
 
 # Local configuration and credentials

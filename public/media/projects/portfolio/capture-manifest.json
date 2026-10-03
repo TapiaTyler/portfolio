@@ -1,0 +1,152 @@
+{
+  "capturedAt": "2026-10-03T07:34:29.147Z",
+  "source": "Current local working tree; initial Git history contains documentation, not recoverable prior application versions.",
+  "captures": [
+    {
+      "file": "editorial-home.png",
+      "provenance": "live",
+      "route": "/en",
+      "mode": "editorial",
+      "width": 1440,
+      "height": 1000,
+      "contentState": "placeholder homepage; no published project records"
+    },
+    {
+      "file": "engineer-home.png",
+      "provenance": "live",
+      "route": "/en",
+      "mode": "engineer",
+      "width": 1440,
+      "height": 1000,
+      "contentState": "placeholder homepage; no published project records"
+    },
+    {
+      "file": "digital-home.png",
+      "provenance": "live",
+      "route": "/en",
+      "mode": "digital",
+      "width": 1440,
+      "height": 1000,
+      "contentState": "placeholder homepage; no published project records"
+    },
+    {
+      "file": "theme-morphing.webm",
+      "provenance": "live recording",
+      "route": "/en",
+      "sequence": [
+        "editorial",
+        "engineer",
+        "digital",
+        "editorial"
+      ],
+      "width": 1440,
+      "height": 1000,
+      "note": "Unedited browser recording including loading and control activation, not a latency measurement."
+    },
+    {
+      "file": "digital-navigation.png",
+      "provenance": "live",
+      "route": "/en/work",
+      "mode": "digital",
+      "width": 1440,
+      "height": 150
+    },
+    {
+      "file": "reconstruction-digital-navigation.png",
+      "provenance": "reconstruction",
+      "route": "/en/work",
+      "mode": "digital",
+      "width": 1440,
+      "height": 150,
+      "overrides": "Restore active anchor underline and place moving marker under the full 44px link box, including the slash prefix. Current typography and geometry retained; not an exact historical build."
+    },
+    {
+      "file": "digital-gallery.png",
+      "provenance": "live fixture capture",
+      "route": "/dev/compositions?surface=project&project=fixture-visual",
+      "mode": "digital",
+      "width": 1280,
+      "height": 1097,
+      "contentState": "Synthetic image-ratio fixtures, not project screenshots"
+    },
+    {
+      "file": "reconstruction-digital-gallery.png",
+      "provenance": "reconstruction",
+      "route": "/dev/compositions?surface=project&project=fixture-visual",
+      "mode": "digital",
+      "width": 1280,
+      "height": 1098,
+      "contentState": "Synthetic image-ratio fixtures, not project screenshots",
+      "overrides": "Single-column full-width media, no frame surface/padding, earlier Enlarge image label. Cropped to the current gallery panel height to compare initial image sizing; further images lie below the capture. Current fixture images/markup retained; not an exact historical build."
+    },
+    {
+      "file": "route-transitions.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-03T13:32:09.342Z",
+      "width": 1440,
+      "height": 1000,
+      "routes": [
+        "/en",
+        "/en/work",
+        "/dev/compositions?surface=homepage",
+        "/dev/compositions?surface=project&project=fixture-system"
+      ],
+      "sequence": [
+        "editorial header and Back",
+        "engineer header and Back",
+        "digital header and Back",
+        "digital synthetic selected-project card and Back"
+      ],
+      "note": "Unedited local recording with phase labels. Public homepage copy is placeholder; selected-project segment uses a labelled synthetic fixture. Loading time is not a benchmark."
+    },
+    {
+      "file": "route-transitions.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-03T13:32:09.342Z",
+      "width": 1440,
+      "height": 1000,
+      "routes": [
+        "/en",
+        "/en/work",
+        "/dev/compositions?surface=homepage",
+        "/dev/compositions?surface=project&project=fixture-system"
+      ],
+      "sequence": [
+        "editorial header and Back",
+        "engineer header and Back",
+        "digital header and Back",
+        "digital synthetic selected-project card and Back"
+      ],
+      "note": "Unedited local recording with phase labels. Public homepage copy is placeholder; selected-project segment uses a labelled synthetic fixture. Loading time is not a benchmark."
+    },
+    {
+      "file": "disclosure-interactions.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-03T13:32:24.629Z",
+      "width": 1440,
+      "height": 1000,
+      "route": "/dev/projects/portfolio",
+      "sequence": [
+        "editorial",
+        "engineer",
+        "digital"
+      ],
+      "note": "Unedited local recording of the real draft disclosure, opening and closing in each mode. Phase labels are capture-only; there is no audio or timing benchmark."
+    },
+    {
+      "file": "disclosure-interactions.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-03T13:32:24.629Z",
+      "width": 1440,
+      "height": 1000,
+      "route": "/dev/projects/portfolio",
+      "sequence": [
+        "editorial",
+        "engineer",
+        "digital"
+      ],
+      "note": "Unedited local recording of the real draft disclosure, opening and closing in each mode. Phase labels are capture-only; there is no audio or timing benchmark."
+    }
+  ],
+  "updatedAt": "2026-10-03T13:32:24.630Z"
+}

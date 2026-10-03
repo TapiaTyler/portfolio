@@ -16,6 +16,112 @@ These are not color skins. Each mode may reorganize shared content, change empha
 
 Future themes such as **Product** and **Graphic** may be added later through the same architecture.
 
+## Local development
+
+The initial Next.js + TypeScript foundation is implemented. Use Node.js 24 and npm.
+
+```sh
+npm ci
+npm run dev
+```
+
+Open `http://localhost:3000`. The root redirects to `/en`. Both `/en` and `/ja`
+support Home, Work, About, Lab, and Contact. The Japanese route shell currently
+uses English placeholders with an explicit translation notice. Language links
+preserve the current destination.
+
+Project detail routes use the publication-safe content registry and return 404
+until reviewed project content is available.
+All three launch modes have initial implementations of their approved designs.
+Final content, visual refinement and launch verification remain upcoming milestones.
+
+Verification commands:
+
+```sh
+npm run typecheck
+npm run content:validate
+npm run lint
+npm test
+npm run format:check
+npm run build
+```
+
+Use `npm run format` to format application code and configuration. Production
+builds can be served locally with `npm start` after `npm run build`.
+
+The content foundation now includes typed project records, shared registries,
+semantic case-study blocks, and build-time validation. The portfolio itself is
+the first real draft project; public project content remains empty pending review.
+Read [the pilot discovery and review guide](./docs/projects/portfolio/README.md),
+then open `/dev/projects/portfolio` on the development server to review all three
+compositions and theme morphing. Synthetic development fixtures remain separate from the public
+registry. See [`docs/CONTENT-AUTHORING.md`](./docs/CONTENT-AUTHORING.md) for the
+implemented authoring contract and validation workflow.
+
+Shared semantic components now render all supported case-study blocks with
+locale-aware field fallback. With the development server running, open
+`http://localhost:3000/dev/design-system` to inspect synthetic project previews.
+Use `?locale=ja` to inspect English fallback behavior, and `?project=fixture-visual`
+or `?project=fixture-minimal` to inspect other records. The preview and its fixture
+media return 404 in production.
+
+Presentation controls now select a registered token/composition profile and save
+the preference in a local cookie. The server renders the saved mode before paint,
+including after locale changes. Editorial uses a split hero, local typography, sparse sections and
+project features. Engineer uses a profile dossier, project records, a capability
+matrix and early case-study system summaries. Digital uses a spatial hero, abstract
+portal, project deck, connected About section and media-led project introduction.
+Final copy, imagery and populated
+layout review are still pending.
+
+`http://localhost:3000/dev/compositions` compares the same synthetic case study
+across all three profiles, including project previews and case studies. This
+preview also returns 404 in production. See [the Editorial implementation notes](./docs/EDITORIAL-IMPLEMENTATION.md)
+and [the Engineer implementation notes](./docs/ENGINEER-IMPLEMENTATION.md)
+and [Digital implementation notes](./docs/DIGITAL-IMPLEMENTATION.md)
+for the current design scope and remaining review.
+
+Use `/dev/compositions?surface=homepage` to review a populated synthetic homepage
+in the selected mode. This preview also remains development-only.
+The preview motion controls simulate reduced link/card movement; the browser's
+actual reduced-motion preference is also supported. The visual fixture gallery
+includes landscape, wide and portrait images.
+
+For browser verification, run once `npx playwright install chromium`, then:
+
+```sh
+npm run build
+npm run test:browser
+npm run test:preview
+```
+
+The browser suite starts and stops its own production server on port 3217.
+The preview suite uses an isolated development build and server on port 3218,
+so it can run alongside the normal development server. It verifies populated
+compositions, locale fallbacks, scoped styles, image ratios, reduced motion and
+failed-media descriptions. Both suites run in CI.
+
+For production performance measurements after a build, run
+`npm run audit:performance -- --label=current`. It owns a separate local server
+on port 3219 and saves reports under `.cache/performance/`.
+See [the performance review](./docs/PERFORMANCE-REVIEW.md) for measurement
+conditions, current results and remaining launch acceptance.
+
+Theme changes now animate matching semantic modules between server-rendered
+compositions, with destination-specific timing, reading-position continuity,
+interruptible snapshots and an immediate reduced-motion/unsupported fallback.
+See [theme transition notes](./docs/THEME-TRANSITIONS.md) for the implementation
+and the remaining entry/reveal motion work.
+
+SEO uses explicit deployment configuration. Copy `.env.example` to `.env.local`
+when ready to supply the public origin. `SITE_INDEXABLE` defaults to false;
+Japanese fallback-only pages remain non-indexable until translations are ready.
+See [SEO integration notes](./docs/SEO-INTEGRATION.md) for canonical, sitemap,
+robots and share metadata behavior. Rebuild after changing deployment settings.
+See [docs/ROADMAP.md](./docs/ROADMAP.md) for completed integrations and the next
+milestones, and [theme integration notes](./docs/THEME-COMPOSITION-INTEGRATION.md)
+for the implemented rendering and persistence contract.
+
 ## Documentation map
 
 Read in this order when implementing:
@@ -43,7 +149,6 @@ Read in this order when implementing:
 21. [`docs/design-reference/IMPLEMENTATION-CONTRACT.md`](./docs/design-reference/IMPLEMENTATION-CONTRACT.md) — contract for translating the approved Stitch HTML into the shared production architecture.
 22. [`docs/design-reference/EXTENDING-THE-DESIGNS.md`](./docs/design-reference/EXTENDING-THE-DESIGNS.md) — rules for extending the approved homepage systems to secondary routes without generic visual drift.
 
-
 ## Approved design references
 
 The reviewed visual baselines for the three launch modes are stored in:
@@ -66,7 +171,6 @@ For **architecture, content, factual claims, accessibility, localization, routin
 The reference HTML is therefore a visual/composition source, not production code and not a factual content source.
 
 Coding agents should read the design-reference documentation before implementing or substantially revising Editorial, Engineer, or Digital.
-
 
 ## Non-negotiable architectural rules
 
@@ -119,3 +223,17 @@ These may change during implementation without violating the plan:
 - final hosting provider
 
 Coding agents may propose options for these while preserving the higher-level contracts in this documentation.
+
+Theme-specific entry, reveal and interaction behavior is documented in [THEME-MOTION.md](./docs/THEME-MOTION.md).
+
+Digital card-to-project expansion and Editorial directional page turns are documented
+in [ROUTE-TRANSITIONS.md](./docs/ROUTE-TRANSITIONS.md). Review selected synthetic
+projects from `/dev/compositions?surface=homepage` during development.
+
+## Release and content review
+
+Vercel is the selected host. Start with [RELEASE-RUNBOOK.md](./docs/RELEASE-RUNBOOK.md)
+for framework settings, preview environment scopes, local release verification and
+hosted review steps. [CONTENT-REVIEW.md](./docs/CONTENT-REVIEW.md) collects the remaining
+biography, contact, pilot publication and domain decisions. The normal build remains
+non-indexed and the pilot remains an unpublished development draft.

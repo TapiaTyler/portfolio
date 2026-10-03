@@ -246,6 +246,12 @@ Possible implementation:
 
 Choose the simplest robust approach.
 
+The implemented choice uses one server-readable preference cookie and request
+rendering, with no local-storage mirror. Tokens and the selected composition are
+present in the first HTML; changing the cookie through a Server Action returns
+the updated tree. See `THEME-COMPOSITION-INTEGRATION.md` and D029 for the rendering
+tradeoff and extension contract.
+
 ## Locale state
 
 Locale comes from the route, not theme state.

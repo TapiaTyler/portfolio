@@ -1,0 +1,67 @@
+/* Snapshot geometry moves independently of the live semantic DOM. */
+html[data-theme-transition-target="editorial"] {
+  --theme-transition-duration: 560ms;
+  --theme-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+html[data-theme-transition-target="engineer"] {
+  --theme-transition-duration: 360ms;
+  --theme-transition-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html[data-theme-transition-target="digital"] {
+  --theme-transition-duration: 680ms;
+  --theme-transition-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+html[data-theme-transition]::view-transition {
+  pointer-events: none;
+}
+html[data-theme-transition]::view-transition-group(*) {
+  animation-duration: var(--theme-transition-duration);
+  animation-timing-function: var(--theme-transition-ease);
+}
+/* Keep open native menus above moving content snapshots, as in the live page. */
+html[data-theme-transition]::view-transition-group(module-site-navigation) {
+  z-index: 100;
+}
+html[data-theme-transition]::view-transition-old(*),
+html[data-theme-transition]::view-transition-new(*) {
+  animation-duration: 180ms;
+  animation-timing-function: ease-out;
+  mix-blend-mode: normal;
+}
+html[data-theme-transition]::view-transition-image-pair(*) {
+  isolation: isolate;
+}
+
+/* Swap text/surfaces in two short phases, avoiding doubled type during a morph. */
+html[data-theme-transition]::view-transition-old(*) {
+  animation-name: theme-content-out;
+}
+html[data-theme-transition]::view-transition-new(*) {
+  animation-name: theme-content-in;
+}
+@keyframes theme-content-out {
+  from {
+    opacity: 1;
+  }
+  40%,
+  to {
+    opacity: 0;
+  }
+}
+@keyframes theme-content-in {
+  from,
+  40% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html::view-transition-group(*),
+  html::view-transition-old(*),
+  html::view-transition-new(*) {
+    animation: none !important;
+  }
+}

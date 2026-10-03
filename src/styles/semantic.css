@@ -1,0 +1,336 @@
+/* Shared semantic styling, with composition overrides in the scoped theme files. */
+.case-study-orientation {
+  margin-block: 1.5rem;
+  min-width: 0;
+}
+.case-study-orientation dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  margin: 0;
+}
+.case-study-orientation dl > div {
+  border-top: 1px solid var(--rule);
+  padding-top: 0.75rem;
+}
+.case-study-orientation dt {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+.case-study-orientation dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+.case-study-orientation dd p {
+  margin: 0.4rem 0 0;
+}
+.case-study-orientation__approach,
+.case-study-orientation__state {
+  grid-column: 1 / -1;
+}
+.case-study-status {
+  text-transform: capitalize;
+}
+.case-study-contribution summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 0.75rem;
+}
+.case-study-contribution p {
+  max-width: 65ch;
+  font-size: 0.9rem;
+}
+.case-study-reading-layout {
+  display: grid;
+  grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+.case-study-body {
+  min-width: 0;
+}
+.case-study-navigation {
+  position: sticky;
+  top: 7rem;
+  min-width: 0;
+  margin-block: 2rem;
+}
+.case-study-navigation__desktop {
+  max-height: calc(100dvh - 9rem);
+  overflow-y: auto;
+  padding: 0.25rem;
+}
+.case-study-navigation ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.case-study-navigation a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.6rem 0.25rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.case-study-navigation__number {
+  flex: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: 0.65rem;
+}
+.case-study-navigation a[aria-current="location"] {
+  font-weight: 600;
+}
+.case-study-navigation__mobile {
+  display: none;
+}
+.case-study-navigation summary {
+  min-height: 44px;
+  cursor: pointer;
+  padding: 0.75rem 0;
+}
+.case-study-navigation summary span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+/* Section navigation is a native disclosure, not a technical footnote fold. */
+.case-study-navigation details > summary::after {
+  content: none !important;
+}
+.case-study-navigation details > nav {
+  animation: none !important;
+}
+.motion-preview--reduced .case-study-navigation a {
+  transition: none !important;
+  translate: 0 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-study-navigation a {
+    transition: none !important;
+    translate: 0 !important;
+  }
+}
+@media (max-width: 48rem) {
+  .case-study-reading-layout {
+    display: block;
+  }
+  .case-study-navigation {
+    position: static;
+    margin-block: 1.5rem;
+    border-block: 1px solid var(--rule);
+  }
+  .case-study-navigation__desktop {
+    display: none;
+  }
+  .case-study-navigation__mobile {
+    display: block;
+  }
+  .case-study-orientation dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.motion-preview--reduced {
+  --motion-fast: 0ms;
+  --motion-slow: 0ms;
+}
+/* Development simulation matches the link/card response disabled by the OS preference. */
+.motion-preview--reduced :is(.text-link, .digital-project),
+.motion-preview--reduced :is(.text-link, .digital-project):hover {
+  transition: none !important;
+  transform: none !important;
+}
+.project-index {
+  display: grid;
+  gap: var(--space-section);
+  padding-block: 2rem 5rem;
+}
+.project-feature {
+  min-width: 0;
+  padding-block: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.project-feature h2,
+.project-feature h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+}
+.project-feature h2 a,
+.project-feature h3 a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.project-meta {
+  margin-block: 2rem;
+  max-width: 55rem;
+}
+.project-meta > div {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(0, 3fr);
+  gap: 1rem;
+  padding-block: 0.6rem;
+  border-bottom: 1px solid var(--rule);
+}
+.project-meta dt {
+  color: var(--muted);
+}
+.project-meta dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-block: 1.5rem;
+}
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.case-study {
+  padding-block: 3rem 6rem;
+  overflow-wrap: anywhere;
+}
+.case-study-intro {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--rule);
+}
+.case-study-intro > h1,
+.case-study-intro > h2 {
+  max-width: 60rem;
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.case-study-block {
+  margin-block: var(--space-section);
+  scroll-margin-top: 2rem;
+}
+.case-study-block > h2,
+.case-study-block > h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+.rich-text,
+.case-study-intro > p,
+.case-study-block > p {
+  max-width: 70ch;
+}
+.case-study-block summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 0.75rem;
+}
+.case-study-block summary:focus-visible,
+.code-snippet pre:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+}
+.case-study-block details {
+  border-block: 1px solid var(--rule);
+  padding-block: 0.25rem;
+}
+.media-frame {
+  margin: 2rem 0;
+}
+.media-frame img,
+.media-frame video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: var(--image-filter);
+}
+.media-frame figcaption,
+.code-snippet figcaption {
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.media-gallery {
+  display: grid;
+  gap: 2rem;
+}
+.media-unavailable {
+  border-block: 1px solid var(--rule);
+  padding-block: 1rem;
+}
+.architecture-display {
+  margin: 2rem 0;
+  border-block: 1px solid var(--rule);
+  padding-block: 1.5rem;
+}
+.architecture-display figcaption {
+  font-weight: 700;
+}
+.diagram-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}
+.diagram-nodes li {
+  border: 1px solid var(--rule);
+  padding: 0.75rem 1rem;
+}
+.diagram-connections {
+  padding-left: 1.25rem;
+}
+.code-snippet {
+  margin: 1.5rem 0;
+  min-width: 0;
+}
+.code-snippet pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  background: var(--surface-secondary);
+  white-space: pre;
+  overflow-wrap: normal;
+}
+.content-notice {
+  margin-block: 1.5rem;
+  border-left: 3px solid var(--focus);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.composition-previews {
+  display: grid;
+  gap: 2rem;
+  padding-bottom: 5rem;
+}
+.composition-preview {
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  padding: clamp(1rem, 3vw, 3rem);
+  border: 1px solid var(--border-subtle);
+  /* Legacy aliases must be rebound at this scope rather than inherited from the root mode. */
+  --paper: var(--surface-primary);
+  --ink: var(--text-primary);
+  --muted: var(--text-muted);
+  --rule: var(--border-subtle);
+  --focus: var(--focus-ring);
+}
