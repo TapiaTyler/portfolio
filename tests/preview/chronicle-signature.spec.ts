@@ -118,7 +118,7 @@ test("cards are dealt in and selection locks on with a light sweep", async ({
     .poll(() =>
       page.evaluate(() => (window as unknown as { dealt: string[] }).dealt),
     )
-    .toHaveLength(2);
+    .toHaveLength(3);
   expect(
     await page.evaluate(() => (window as unknown as { dealt: string[] }).dealt),
   ).toEqual(expect.arrayContaining([expect.stringContaining("36px 0")]));
@@ -161,7 +161,7 @@ test("the chapter rail is lit to the current chapter and the crystal travels", a
     .not.toBe("none");
   const start = await lit();
   await page
-    .locator('.case-study-navigation__desktop a[href="#navigation-motion"]')
+    .locator('.case-study-navigation__desktop a[href="#chronicle"]')
     .click();
   await expect.poll(lit).toBeGreaterThan(start + 40);
 });

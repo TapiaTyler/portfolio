@@ -34,6 +34,10 @@ export function ChronicleSelection({
   // Swipes, dots and arrows move the selection but disarm, so a card that has
   // just slid into place never opens on a single tap.
   const armed = useRef<number | null>(null);
+  // While a tap, dot, arrow or key scrolls the strip, that choice is final: the
+  // scroll's end must not re-pick a card. Only a user's own swipe selects by
+  // position. The timer releases the guard if no scroll end ever arrives.
+  const steering = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     const element = track.current;
     if (!element || !window.ResizeObserver) return;
@@ -57,13 +61,19 @@ export function ChronicleSelection({
     setDirection(index >= selected ? 1 : -1);
     setSelected(index);
     const card = track.current?.children[index] as HTMLElement | undefined;
-    if (card && track.current)
+    if (card && track.current) {
+      const left = cardScrollPosition(track.current, card);
+      if (Math.abs(track.current.scrollLeft - left) > 2) {
+        if (steering.current) clearTimeout(steering.current);
+        steering.current = setTimeout(() => (steering.current = null), 1500);
+      }
       track.current.scrollTo({
-        left: cardScrollPosition(track.current, card),
+        left,
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "instant"
           : "smooth",
       });
+    }
   };
   if (!items.length) return null;
   return (
@@ -143,16 +153,27 @@ export function ChronicleSelection({
         }}
         onScrollEnd={(event) => {
           const element = event.currentTarget;
+          if (steering.current) {
+            clearTimeout(steering.current);
+            steering.current = null;
+            return;
+          }
           if (element.scrollWidth <= element.clientWidth + 2) return;
-          const nearest = Array.from(element.children)
-            .map((card, index) => ({
-              index,
-              distance: Math.abs(
-                cardScrollPosition(element, card as HTMLElement) -
-                  element.scrollLeft,
-              ),
-            }))
-            .sort((a, b) => a.distance - b.distance)[0];
+          // The strip cannot scroll far enough to snap its last card, so reaching
+          // the end means the last card, whatever position is nearest.
+          const atEnd =
+            element.scrollLeft >= element.scrollWidth - element.clientWidth - 2;
+          const nearest = atEnd
+            ? { index: element.children.length - 1 }
+            : Array.from(element.children)
+                .map((card, index) => ({
+                  index,
+                  distance: Math.abs(
+                    cardScrollPosition(element, card as HTMLElement) -
+                      element.scrollLeft,
+                  ),
+                }))
+                .sort((a, b) => a.distance - b.distance)[0];
           if (nearest && nearest.index !== selected) {
             setDirection(nearest.index > selected ? 1 : -1);
             armed.current = null;

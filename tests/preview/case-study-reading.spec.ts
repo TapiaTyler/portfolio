@@ -22,12 +22,12 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     );
     const nav = study.locator(".case-study-navigation__desktop");
     await expect(nav).toBeVisible();
-    await expect(nav.getByRole("link")).toHaveCount(9);
+    await expect(nav.getByRole("link")).toHaveCount(8);
     if (theme === "engineer") {
       await expect(nav.locator(".case-study-navigation__root")).toHaveText(
         "portfolio/",
       );
-      await expect(nav.locator(".case-study-navigation__file")).toHaveCount(9);
+      await expect(nav.locator(".case-study-navigation__file")).toHaveCount(8);
       await expect(
         nav.locator(".case-study-navigation__number").first(),
       ).toBeHidden();
@@ -43,11 +43,11 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       "location",
     );
     await study
-      .locator("#navigation-motion")
+      .locator("#chronicle")
       .evaluate((element) =>
         element.scrollIntoView({ block: "start", behavior: "instant" }),
       );
-    await expect(nav.locator('a[href="#navigation-motion"]')).toHaveAttribute(
+    await expect(nav.locator('a[href="#chronicle"]')).toHaveAttribute(
       "aria-current",
       "location",
     );
@@ -110,7 +110,7 @@ test("theme switching preserves the narrative position rather than anchoring the
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/dev/projects/portfolio");
-  const section = page.locator(".case-study #navigation-motion");
+  const section = page.locator(".case-study #chronicle");
   await page.evaluate(() => document.fonts.ready);
   await section.evaluate((element) =>
     element.scrollIntoView({ block: "start", behavior: "instant" }),

@@ -16,7 +16,12 @@ export function useDismissibleDisclosure(
 ) {
   const pathname = usePathname();
   useEffect(() => {
-    if (ref.current) ref.current.open = false;
+    const details = ref.current;
+    if (!details?.open) return;
+    // Hiding the focused control would drop focus to the page; keep it on the menu.
+    const hadFocus = details.contains(document.activeElement);
+    details.open = false;
+    if (hadFocus) details.querySelector("summary")?.focus();
   }, [pathname, resetKey, ref]);
   useEffect(() => {
     const details = ref.current;

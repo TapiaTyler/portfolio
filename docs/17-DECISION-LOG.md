@@ -433,3 +433,20 @@ microinteraction pass.
 **Reason:** The matching, history and cleanup logic was mode-agnostic but hard-coded to
 Digital's selectors; duplicating it for Chronicle would have split one mechanism in two.
 URLs, content and native links are unchanged; reduced motion keeps plain navigation.
+
+## D040 — Case-study contract for published projects
+
+**Decision, 2026-10-05:** Published case studies follow
+[CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md): one visible spine in a fixed order
+(problem, what was built, 2–3 decisions, architecture, at most one challenge, one
+"Engineering details" disclosure, result), at most 8 sections, 6 media items and 2
+galleries, a 1,500 visible-word ceiling, opening field limits, and wording rules. A
+test enforces the measurable rules. The Portfolio, Japan Travel Planner and Nihonest
+case studies were restructured to it.
+
+**Reason:** The case studies had grown to 10–13 sections with different shapes and up
+to about 1,900 visible words, much of it process and verification detail written for
+review rather than for evaluators. Evaluators scan first; the spine makes every
+project quick to evaluate and comparable, while the disclosure keeps the depth. This
+narrows the per-project "narrative flexibility" of 03 for published work; drafts and
+discovery reports stay unconstrained.

@@ -30,8 +30,8 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       for (const id of [
         "intent",
         "architecture",
-        "navigation-motion",
-        "quality",
+        "chronicle",
+        "engineering-details",
         "state",
       ]) {
         await expect(
@@ -42,7 +42,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         study.locator(".engineer-block-record .engineer-block-record"),
       ).toHaveCount(0);
       const cells = study.locator(".engineer-system-overview li");
-      await expect(cells).toHaveCount(5);
+      await expect(cells).toHaveCount(4);
       for (const cell of await cells.all()) {
         await expect(cell.locator("p")).not.toBeEmpty();
         expect(
@@ -125,8 +125,8 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       for (const id of [
         "intent",
         "architecture",
-        "navigation-motion",
-        "quality",
+        "chronicle",
+        "engineering-details",
         "state",
       ]) {
         await expect(
@@ -143,15 +143,15 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         exact: true,
       }),
     ).toBeVisible();
-    await expect(study.locator("#continuity")).toContainText(
-      "560ms for Editorial, 360ms for Engineer and 680ms for Digital",
+    await expect(study.locator("#engineering-details")).toContainText(
+      "Engineering details",
     );
-    await expect(study.locator("#microinteractions")).toContainText(
-      "Small responses carry the same design intent",
+    await study.locator("#engineering-details summary").click();
+    await expect(study.locator("#engineering-details")).toContainText(
+      "560ms for Editorial, 360ms for Engineer, 680ms for Digital",
     );
-    await study.locator("#microinteractions summary").click();
-    await expect(study.locator("#microinteractions")).toContainText(
-      "View image opens a deduplicated carousel",
+    await expect(study.locator("#engineering-details")).toContainText(
+      "a carousel that expands from the selected image",
     );
     for (const width of [320, 1440]) {
       await page.setViewportSize({ width, height: 1000 });
@@ -176,7 +176,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
               width: element.getBoundingClientRect().width,
             })),
           );
-          expect(boxes).toHaveLength(3);
+          expect(boxes).toHaveLength(4);
           expect(
             Math.max(...boxes.map((box) => box.top)) -
               Math.min(...boxes.map((box) => box.top)),
@@ -216,7 +216,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         )
         .toBeGreaterThan(0);
     }
-    await expect(study.locator("video")).toHaveCount(4);
+    await expect(study.locator("video")).toHaveCount(3);
     for (const video of await study.locator("video").all()) {
       await video.scrollIntoViewIfNeeded();
       await expect(video).toHaveAttribute("controls", "");

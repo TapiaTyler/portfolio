@@ -21,7 +21,7 @@ export const homepageContent: HomepageContent = {
   },
   capabilities: {
     title: "Areas of Practice",
-    lead: "Design, engineering and systems, considered together.",
+    lead: "Interfaces, applications, and the systems behind them.",
     items: [
       {
         title: "Design",
@@ -42,24 +42,24 @@ export const homepageContent: HomepageContent = {
   },
   about: {
     label: `About / ${identity.name}`,
-    title: "A considered approach to making things.",
+    title: "From web design to full-stack engineering.",
     paragraphs: [
-      "A space for the thinking behind the work: the questions, the decisions, and the care that connects them.",
-      "Professional background and the full story will follow after content review.",
+      "I'm a software engineer and web developer based in Hawaii, with more than a decade around the web: from digital media and web design to full-stack applications and software architecture.",
+      "I'm preparing to continue my software engineering career in Japan.",
     ],
     linkLabel: "More About Me",
   },
   lab: {
     title: "Lab & Explorations",
-    description: "Smaller ideas, studies, and works in progress.",
+    description:
+      "Experiments, prototypes, and studies outside the main projects.",
     emptyText: "New studies will appear here.",
     linkLabel: "Explore the Lab",
   },
   contact: {
     label: "Start a Conversation",
-    title: "Let’s build something meaningful.",
-    description:
-      "For conversations about thoughtful software and useful digital experiences.",
+    title: "Open to software engineering and web development roles in Japan.",
+    description: "For roles, projects, or questions about the work.",
     linkLabel: "Get in Touch",
   },
 };
@@ -75,12 +75,12 @@ export const placeholderPages = {
   work: {
     title: "Work",
     description:
-      "Project entries will appear here after their source repositories have been reviewed.",
+      "Web applications, content systems, and full-stack projects, each with a case study.",
   },
   about: {
     title: "About",
     description:
-      "A reviewed professional background and résumé links will be added here.",
+      "Software engineer and web developer based in Hawaii, preparing to continue my career in Japan.",
   },
   lab: {
     title: "Lab",

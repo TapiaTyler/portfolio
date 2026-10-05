@@ -1,0 +1,30 @@
+{
+  "id": "architecture-content-boundaries",
+  "title": "Nihonest content and state boundaries",
+  "kind": "implemented-checkout-architecture",
+  "supportsBlockId": "architecture",
+  "summary": "Repository content is validated before public rendering. Browser preferences remain local until an optional account syncs selected state through Supabase. The local CMS edits repository files but is not a public route.",
+  "nodes": [
+    { "id": "canonical-content", "label": "English MDX and typed repository records" },
+    { "id": "catalog-validation", "label": "Zod and cross-reference validation" },
+    { "id": "search-index", "label": "In-memory search index" },
+    { "id": "public-routes", "label": "Next.js public routes" },
+    { "id": "translation-overlays", "label": "Revision-addressed Japanese overlays" },
+    { "id": "browser-state", "label": "Anonymous browser preferences and progress" },
+    { "id": "account-sync", "label": "Optional validated account sync" },
+    { "id": "supabase-rls", "label": "Supabase owner-scoped tables and functions" },
+    { "id": "local-cms", "label": "Loopback editorial CMS" }
+  ],
+  "edges": [
+    { "from": "canonical-content", "to": "catalog-validation", "label": "parsed and checked" },
+    { "from": "catalog-validation", "to": "public-routes", "label": "renders" },
+    { "from": "catalog-validation", "to": "search-index", "label": "indexes" },
+    { "from": "search-index", "to": "public-routes", "label": "discovery results" },
+    { "from": "translation-overlays", "to": "public-routes", "label": "Japanese text with fallback" },
+    { "from": "browser-state", "to": "public-routes", "label": "anonymous personalization" },
+    { "from": "browser-state", "to": "account-sync", "label": "optional snapshot" },
+    { "from": "account-sync", "to": "supabase-rls", "label": "validated RPC" },
+    { "from": "local-cms", "to": "canonical-content", "label": "guarded local file edits" }
+  ],
+  "evidence": ["src/lib/content/articles.ts:42-79", "src/lib/search/knowledgebase-search.ts:128-142", "src/lib/sync/account-content-sync.ts:10-31", "tools/cms/README.md:62-72"]
+}

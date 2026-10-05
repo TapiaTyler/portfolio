@@ -132,7 +132,7 @@ test("full-shell review selects homepage tabs and preserves project navigation",
   expect(errors).toEqual([]);
 });
 
-test("public empty discovery and Japanese shell fit the viewport without overlap", async ({
+test("public discovery and Japanese shell fit the viewport without overlap", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -142,10 +142,14 @@ test("public empty discovery and Japanese shell fit the viewport without overlap
     const header = await page
       .locator(".selected-work .home-section-header")
       .boundingBox();
-    const empty = await page
-      .locator(".selected-work .empty-content")
+    // Published projects (or the empty state) start below the section header.
+    const discovery = await page
+      .locator(
+        ".selected-work .chronicle-selection__track, .selected-work .empty-content",
+      )
+      .first()
       .boundingBox();
-    expect(empty!.y).toBeGreaterThanOrEqual(header!.y + header!.height);
+    expect(discovery!.y).toBeGreaterThanOrEqual(header!.y + header!.height);
     for (const viewport of [
       { width: 320, height: 800 },
       { width: 844, height: 390 },
@@ -168,7 +172,7 @@ test("a deep chapter remains reachable after switching out of the contained read
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/preview/chronicle?project=portfolio");
   const destination = page.locator(
-    '.case-study-navigation__desktop a[href="#navigation-motion"]',
+    '.case-study-navigation__desktop a[href="#chronicle"]',
   );
   await destination.click();
   await expect(destination).toHaveAttribute("aria-current", "location");
@@ -190,7 +194,7 @@ test("a deep chapter remains reachable after switching out of the contained read
   await expect
     .poll(() => page.locator("html").getAttribute("data-theme-transition"))
     .toBeNull();
-  await expect(page.locator("#navigation-motion")).toBeInViewport();
+  await expect(page.locator("#chronicle")).toBeInViewport();
   await expect(
     page.getByRole("region", { name: "Case study reading panel" }),
   ).toBeVisible();
@@ -309,7 +313,7 @@ test("project controls sit above cards and lower panels protect their content", 
     if (surface === "work") {
       await expect(
         page.locator(".chronicle-selection__card-target"),
-      ).toHaveCount(2);
+      ).toHaveCount(3);
       await page.locator(".chronicle-selection__dots button").nth(1).click();
       await expect(
         page.locator(".chronicle-preview__panel:not([hidden])"),
@@ -431,7 +435,7 @@ test("Work cards select previews by click, keyboard and touch", async ({
   await page.setViewportSize({ width: 1672, height: 941 });
   await page.goto("/preview/chronicle?surface=work");
   const targets = page.locator(".chronicle-selection__card-target");
-  await expect(targets).toHaveCount(2);
+  await expect(targets).toHaveCount(3);
   const card = await page
     .locator(".chronicle-selection__item")
     .nth(1)
@@ -551,7 +555,7 @@ test("Chronicle case-study navigation shares sliding selection and hides scrollb
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/preview/chronicle?project=portfolio");
   const navigation = page.locator(".case-study-navigation__desktop");
-  const chapter = navigation.locator('a[href="#navigation-motion"]');
+  const chapter = navigation.locator('a[href="#chronicle"]');
   await chapter.click();
   await expect(chapter).toHaveAttribute("aria-current", "location");
   await expect

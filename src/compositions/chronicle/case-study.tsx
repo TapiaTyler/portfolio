@@ -61,7 +61,12 @@ function ChronicleBody(props: CaseStudyBodyProps) {
               {index === 0 && (
                 <ProjectMeta
                   project={content.project}
-                  exclude={["Technology", "Capabilities"]}
+                  exclude={[
+                    "Languages",
+                    "Frameworks & Libraries",
+                    "Tools & Platforms",
+                    "Capabilities",
+                  ]}
                 />
               )}
             </div>
@@ -95,12 +100,13 @@ function ChronicleBody(props: CaseStudyBodyProps) {
 export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
   const labels: Record<string, string> = {};
   const shortLabels = {
-    intro: "Context",
+    // Short rail labels follow the case-study spine (CASE-STUDY-CONTRACT.md).
     problem: "Objective",
+    intro: "Overview",
     goals: "Goals",
     constraints: "Constraints",
     architecture: "System Overview",
-    technical: "Implementation",
+    technical: "Engineering Details",
     result: "Outcome",
   };
   for (const { block } of props.content.blocks) {
@@ -111,11 +117,6 @@ export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
       labels[`${props.anchorPrefix ?? ""}${block.id}`] =
         shortLabels[block.type as keyof typeof shortLabels];
   }
-  const first = props.content.blocks.find(
-    ({ block }) => block.type !== "media" && block.type !== "gallery",
-  );
-  if (first)
-    labels[`${props.anchorPrefix ?? ""}${first.block.id}`] = "Overview";
   return (
     <div className="chronicle-dossier">
       <CaseStudy

@@ -42,6 +42,11 @@
   padding-block: 0.8rem;
   border-top: 1px solid var(--border-subtle);
 }
+/* The section's own rule (or heading) already separates the list; a top border
+   on the first row would draw a second line just below it. */
+.secondary-page-fields > div:first-child {
+  border-top: 0;
+}
 .secondary-page-fields dt {
   font-family: var(--font-mono);
   color: var(--text-muted);
@@ -271,12 +276,39 @@
     font-weight: 700;
     letter-spacing: -0.04em;
   }
+  /* A bento grid sized by what each section holds (never by its id): long prose
+     leads beside a stack of short sections, field lists pair up, and a short
+     closing section spans the width. Dense packing fills the gaps; reading order
+     still follows the document. */
   .secondary-page-body {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-flow: dense;
     gap: 1.5rem;
     margin-bottom: 3rem;
-    align-items: start;
+    align-items: stretch;
+  }
+  .secondary-page-body > * {
+    grid-column: span 6;
+  }
+  .secondary-page-body > :has(> .secondary-page-section > p + p) {
+    grid-column: span 7;
+    grid-row: span 2;
+  }
+  .secondary-page-body
+    > :has(> .secondary-page-section > p:only-of-type):not(
+      :has(.secondary-page-fields, .secondary-page-items)
+    ) {
+    grid-column: span 5;
+  }
+  .secondary-page-body
+    > :last-child:has(> .secondary-page-section > p:only-of-type):not(
+      :has(.secondary-page-fields, .secondary-page-items)
+    ) {
+    grid-column: 1 / -1;
+  }
+  .secondary-page-body > :last-child p {
+    max-width: 75ch;
   }
   .secondary-page-section {
     margin: 0;

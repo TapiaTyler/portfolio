@@ -97,14 +97,21 @@ try {
     "/dev/compositions",
     "/dev/projects/portfolio",
     "/dev/projects/japan-travel-planner",
+    "/dev/projects/nihonest",
     "/dev/fixtures/reference.svg",
-    "/en/work/portfolio",
-    "/ja/work/portfolio",
-    "/en/work/japan-travel-planner",
-    "/ja/work/japan-travel-planner",
   ];
   for (const route of guardedRoutes) {
     assert.equal((await get(route)).status, 404, `Production guard ${route}`);
+  }
+  for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
+    for (const slug of ["nihonest", "portfolio", "japan-travel-planner"]) {
+      assert.equal(
+        (await get(`/en/work/${slug}`, mode)).status,
+        200,
+        `${mode} published project ${slug}`,
+      );
+      routeChecks++;
+    }
   }
   const script = home.match(/src="([^" ]*\/_next\/static\/[^" ]+\.js)"/);
   assert.ok(script, "Homepage includes a static JavaScript asset");

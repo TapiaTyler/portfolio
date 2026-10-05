@@ -18,7 +18,9 @@ export function ThemeSwitcher({
   const theme = useTheme();
   const transitions = useThemeTransition();
   const picker = useRef<HTMLDetailsElement>(null);
-  useDismissibleDisclosure(picker, theme);
+  // Stays open across theme switches so modes can be compared; focus stays on the
+  // chosen option. Outside presses, focus loss, navigation and Escape close it.
+  useDismissibleDisclosure(picker);
   const [state, action, pending] = useActionState<ThemeActionState, FormData>(
     saveThemePreference,
     {},

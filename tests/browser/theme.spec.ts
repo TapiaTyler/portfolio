@@ -145,8 +145,6 @@ test("development previews and fixture assets remain unavailable in production",
     "/dev/compositions?surface=homepage&motion=reduce",
     "/en/work/fixture-system",
     "/dev/projects/portfolio",
-    "/en/work/portfolio",
-    "/ja/work/portfolio",
   ]) {
     expect((await request.get(path)).status(), path).toBe(404);
   }

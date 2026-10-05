@@ -50,6 +50,9 @@ metadata. They must not be replaced by direct imports of draft records.
 
 ## Narrative and references
 
+Published case studies must satisfy [CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md):
+its spine, budgets and wording rules, checked by `tests/case-study-contract.test.ts`.
+
 Project narratives use a neutral case-study/report voice: describe the purpose,
 decisions, implementation and concrete results directly. Avoid referring to the
 portfolio owner by name in the third person. Ownership text can describe directed

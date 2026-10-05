@@ -56,8 +56,8 @@ test("the pilot's complete canonical narrative renders in every composition and 
       assert.ok(
         html.includes("Morph the composition without duplicating the content"),
       );
-      assert.ok(html.includes("Small responses carry the same design intent"));
-      assert.ok(html.includes("not an original historical screenshot"));
+      assert.ok(html.includes("Engineering details"));
+      assert.ok(html.includes("Before: the first AI-assisted Chronicle build"));
       assert.ok(html.includes("<video"));
     }
   }
@@ -81,15 +81,15 @@ test("supporting media references preserve adjacent narrative meaning", () => {
     <composition.CaseStudy content={selectProjectContent(project, "en")} />,
   );
   assert.ok(!html.includes('aria-describedby="continuity-heading"'));
-  assert.ok(html.includes('aria-describedby="navigation-motion-heading"'));
-  assert.ok(html.includes('aria-describedby="microinteractions-heading"'));
+  assert.ok(html.includes('aria-describedby="engineering-details-heading"'));
+  assert.ok(html.includes('aria-describedby="chronicle-heading"'));
 });
 
 test("section navigation preserves canonical narrative anchors and overview fallback", () => {
   const project = projectSchema.parse(portfolioProject);
   const content = selectProjectContent(project, "ja");
   const sections = caseStudySections(content, "pilot-");
-  assert.equal(sections.length, 10);
+  assert.equal(sections.length, 8);
   assert.deepEqual(
     sections.map(({ id }) => id),
     content.blocks

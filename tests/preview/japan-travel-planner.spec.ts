@@ -14,37 +14,33 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     await expect(
       study.getByRole("heading", { name: "Japan Travel Planner", exact: true }),
     ).toBeVisible();
-    await expect(study.locator("#origin-school")).toContainText("without AI");
-    await expect(study.locator("#origin-school")).toContainText(
+    await expect(study.locator("#intro-product")).toContainText("without AI");
+    await expect(study.locator("#intro-product")).toContainText(
       "capstone-v1.0",
     );
-    await expect(study.locator("#technical-security")).toContainText("CSRF");
-    await expect(study.locator("#technical-security")).toContainText(
-      "local to a process",
+    await expect(study.locator("#challenge-security")).toContainText("CSRF");
+    await expect(study.locator("#engineering-details")).toContainText(
+      "per process",
     );
     await expect(
       study.locator("#architecture-system .diagram-nodes [data-node-id]"),
     ).toHaveCount(8);
-    await expect(
-      study.locator("#architecture-security .diagram-nodes [data-node-id]"),
-    ).toHaveCount(8);
-    await expect(study.locator("#technical-quality")).toContainText(
-      "25 backend unit tests",
+    await expect(study.locator("#engineering-details")).toContainText(
+      "25 backend tests",
     );
     // Verification detail belongs in its own section; the result describes the delivered application.
     await expect(study.locator("#result-current")).toContainText(
-      "completed application",
+      "complete full-stack application",
     );
     await expect(study.locator("#result-current")).not.toContainText(
       "backend unit tests",
     );
     await expect(
-      study.locator("#technical-itinerary .code-snippet"),
+      study.locator("#engineering-details .code-snippet"),
     ).toHaveCount(1);
     const mediaPairs = [
-      ["intro-product", "media-landing-support"],
-      ["technical-itinerary", "media-itinerary-support"],
-      ["decision-responsive", "media-mobile-support"],
+      ["intro-product", "media-itinerary-support"],
+      ["intro-product", "media-mobile-support"],
       ["decision-localization", "media-localization-support"],
     ];
     for (const [owner, evidence] of mediaPairs) {
@@ -110,10 +106,10 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       await page.emulateMedia({ reducedMotion: "no-preference" });
     }
     await expect(
-      study.locator("#technical-itinerary details > summary"),
+      study.locator("#engineering-details details > summary"),
     ).toBeVisible();
-    await study.locator("#technical-itinerary details > summary").click();
-    await expect(study.locator("#technical-itinerary code")).toContainText(
+    await study.locator("#engineering-details details > summary").click();
+    await expect(study.locator("#engineering-details code")).toContainText(
       "filters.transportationTypes",
     );
     const scan = await new AxeBuilder({ page })
@@ -129,7 +125,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     );
     await expect(page.locator(".case-study")).toContainText("English");
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await expect(page.locator(".case-study #technical-security")).toContainText(
+    await expect(page.locator(".case-study #challenge-security")).toContainText(
       "CSRF",
     );
   });

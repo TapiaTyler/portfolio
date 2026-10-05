@@ -16,14 +16,16 @@ test("Chronicle selects reviewed drafts without publishing them and preserves th
 }) => {
   await page.goto("/dev/compositions?surface=homepage&inventory=projects");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "chronicle");
-  await expect(page.locator(".chronicle-selection__item")).toHaveCount(2);
+  await expect(page.locator(".chronicle-selection__item")).toHaveCount(3);
+  // Development review pages list records in file order, not by priority.
   await expect(page.locator(".chronicle-selection__item")).toContainText([
     "One Portfolio, Several Ways of Reading It",
     "Japan Travel Planner",
+    "Nihonest",
   ]);
   await page.getByRole("button", { name: "Next project", exact: true }).click();
   await expect(page.locator(".chronicle-selection__dots button")).toHaveCount(
-    2,
+    3,
   );
   await expect(
     page.locator('.chronicle-selection__item[data-selected="true"]'),
@@ -53,7 +55,7 @@ test("Chronicle selects reviewed drafts without publishing them and preserves th
     fullPage: true,
   });
   await page.goto("/en");
-  await expect(page.locator(".chronicle-selection__item")).toHaveCount(0);
+  await expect(page.locator(".chronicle-selection__item")).toHaveCount(3);
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "chronicle");
 });
@@ -207,10 +209,14 @@ test("Chronicle keeps discovery inside short and landscape viewports", async ({
   ]) {
     await page.setViewportSize(viewport);
     await page.goto("/dev/compositions?surface=homepage&inventory=projects");
+    // Clicking before hydration would hit a server-rendered dot with no handler.
+    await page.waitForFunction(
+      () => "motionEnhanced" in document.documentElement.dataset,
+    );
     await page.locator(".chronicle-selection__dots button").last().click();
     await expect(
       page.locator('.chronicle-selection__item[data-selected="true"]'),
-    ).toContainText("Japan Travel Planner");
+    ).toContainText("Nihonest");
     expect(
       await page.evaluate(() => document.documentElement.scrollHeight),
     ).toBeLessThanOrEqual(viewport.height);

@@ -18,9 +18,11 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         route[0].toUpperCase() + route.slice(1),
       );
       await expect(article.locator(".secondary-page-related a")).toHaveCount(2);
-      await expect(article.locator("[data-project-slug]")).toHaveCount(0);
+      // Only Work lists projects; other pages never embed project cards.
+      if (route !== "work")
+        await expect(article.locator("[data-project-slug]")).toHaveCount(0);
       if (route === "about")
-        await expect(article).toContainText("Tyler Tetsuo Tapia");
+        await expect(article).toContainText("Western Governors University");
       if (route === "contact") {
         await expect(article).toContainText(
           "Verified contact links will be added here.",

@@ -302,6 +302,13 @@ Render only relevant, supported content.
 
 Do not invent business outcomes, user counts, metrics, architecture rationale, design rationale, or personal reflections.
 
+Published case studies follow `docs/CASE-STUDY-CONTRACT.md`: a fixed visible spine
+(problem, what was built, decisions, architecture, optional challenge, one grouped
+Engineering details disclosure, result), section and media caps, a visible-word
+ceiling, and wording rules (no commit hashes or audit language). Run its editorial
+pass between project discovery and the project record.
+`tests/case-study-contract.test.ts` enforces the measurable rules.
+
 ## 6. Project-discovery workflow
 
 When project content is needed, use:

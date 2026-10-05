@@ -26,11 +26,19 @@ interface ActiveTransition {
  * The line a reader is looking at: just inside a contained reading panel (Chronicle)
  * or below the sticky header for ordinary document scrolling.
  */
-function readingLine() {
+/** A case-study body that scrolls on its own (a contained reading region). */
+function containedReading() {
   const reading = document.querySelector<HTMLElement>(".case-study-body");
   return reading &&
     /(auto|scroll)/.test(getComputedStyle(reading).overflowY) &&
     reading.scrollHeight > reading.clientHeight + 2
+    ? reading
+    : null;
+}
+
+function readingLine() {
+  const reading = containedReading();
+  return reading
     ? reading.getBoundingClientRect().top +
         Math.min(100, reading.clientHeight * 0.25)
     : 120;
@@ -60,13 +68,80 @@ function visibleModules() {
   });
 }
 
+/**
+ * View-transition snapshots are drawn above the page, ignoring ancestor overflow,
+ * so a module that a scroll container cuts off would spill its hidden text over
+ * the banner and header while morphing. Such modules are not named; they change
+ * with the page's own cross-fade, which is clipped correctly. `except` is an
+ * ancestor whose nested group clips its contents during the transition; only
+ * clipping between the module and that ancestor is checked.
+ */
+function unclipped(element: HTMLElement, except?: Element | null) {
+  const rect = element.getBoundingClientRect();
+  for (
+    let ancestor = element.parentElement;
+    ancestor && ancestor !== document.body;
+    ancestor = ancestor.parentElement
+  ) {
+    // The nested group clips at least as tightly as anything outside it.
+    if (ancestor === except) return true;
+    const style = getComputedStyle(ancestor);
+    if (style.overflowX === "visible" && style.overflowY === "visible")
+      continue;
+    const box = ancestor.getBoundingClientRect();
+    if (
+      rect.top < box.top - 1 ||
+      rect.bottom > box.bottom + 1 ||
+      rect.left < box.left - 1 ||
+      rect.right > box.right + 1
+    )
+      return false;
+  }
+  return true;
+}
+
+/** Nested view-transition groups let a named parent clip its children's snapshots. */
+const nestedGroups =
+  typeof CSS !== "undefined" &&
+  CSS.supports("view-transition-group", "contain");
+
+/**
+ * Clips the nested reading group to the panel's edges. Inserted at runtime because
+ * the build's CSS parser does not yet recognise ::view-transition-group-children.
+ */
+function ensureNestedClip() {
+  if (document.getElementById("contained-reading-clip")) return;
+  const style = document.createElement("style");
+  style.id = "contained-reading-clip";
+  style.textContent =
+    "html[data-theme-transition]::view-transition-group-children(contained-reading){overflow:clip}";
+  document.head.append(style);
+}
+
 // Identities belong to semantic modules. Content never needs to know the active mode.
 function nameModules(active: ActiveTransition) {
   // React can reuse an old element for a different semantic module. Remove
   // imperative names before assigning the identities of the committed tree.
-  for (const element of active.elements)
+  for (const element of active.elements) {
     element.style.removeProperty("view-transition-name");
-  active.elements = visibleModules();
+    element.style.removeProperty("view-transition-group");
+  }
+  // Text in a contained reading region still morphs into place, but inside a
+  // group named after the region, which clips it to the region's edges (see
+  // theme-transition.css). Without nested groups that text cross-fades in place,
+  // since unclipped snapshots would slide over the banner and header.
+  const reading = containedReading();
+  const nested = nestedGroups ? reading : null;
+  active.elements = visibleModules().filter((element) =>
+    reading?.contains(element)
+      ? nested && unclipped(element, nested)
+      : unclipped(element),
+  );
+  if (nested) {
+    ensureNestedClip();
+    nested.style.viewTransitionName = "contained-reading";
+    nested.style.setProperty("view-transition-group", "contain");
+  }
   for (const element of active.elements) {
     const id = element.dataset.motionId!;
     const name = Array.from(id, (character) =>
@@ -75,6 +150,7 @@ function nameModules(active: ActiveTransition) {
     element.style.viewTransitionName =
       id === "site-navigation" ? "module-site-navigation" : `module-${name}`;
   }
+  if (nested) active.elements.push(nested);
 }
 
 /** Record the reader's place before a different composition changes the layout. */
@@ -185,8 +261,10 @@ export function createThemeTransitionController() {
     current.cleared = true;
     clearTimeout(current.timeout);
     current.release();
-    for (const element of current.elements)
+    for (const element of current.elements) {
       element.style.removeProperty("view-transition-name");
+      element.style.removeProperty("view-transition-group");
+    }
     if (active === current) {
       active = null;
       delete document.documentElement.dataset.themeTransition;

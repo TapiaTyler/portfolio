@@ -1,0 +1,53 @@
+{
+  "capturedAt": "2026-10-05T12:32:38.135Z",
+  "sourceRevision": "4bc3df99a38b1a97290c1b9074c3633ae792adb4",
+  "provenance": "Live local screenshots from an isolated copy of Nihonest, without copied environment credentials, account login, database setup, or source application changes. Public demo captures approved by Tyler on October 5, 2026. Only the Next development badge is hidden for capture.",
+  "limitations": "Predeployment UI evidence. No qualified guidance review, hosted verification, historical comparison, or performance metric is implied. CMS capture omitted; no inert review fixture supplied.",
+  "assets": [
+    {
+      "file": "home-desktop.png",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "state": "Anonymous English homepage; fresh browser context, no account or personal data."
+    },
+    {
+      "file": "explore-desktop.png",
+      "route": "/explore",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "state": "Neutral demo query juminhyo; default result kinds and filters. Shows source-linked discovery, not a legal determination."
+    },
+    {
+      "file": "journey-mobile.png",
+      "route": "/explore/journeys/student-moving-to-japan?route=student-status",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "Anonymous Student journey, selected student-status route from the URL; no saved progress."
+    },
+    {
+      "file": "journey-conditions-mobile.png",
+      "route": "/explore/journeys/student-moving-to-japan?route=student-status",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "Conditional steps within the same selected route; applicability labels from the captured checkout."
+    },
+    {
+      "file": "local-guidance-desktop.png",
+      "route": "/articles/registering-your-address-after-arrival",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "state": "Tokyo / Shinjuku selected through native controls; source and review dates belong to the captured checkout, not a fresh official-source check."
+    }
+  ]
+}

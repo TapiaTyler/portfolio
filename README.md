@@ -40,8 +40,8 @@ case studies were previously reviewed in the original three modes.
 
 - Home, Work, project detail, About, Lab and Contact have compositions for all four modes.
 - Two real English case studies are imported and reviewed across the original three themes.
-- Both project records remain **draft and unfeatured**. Review of their presentation
-  does not automatically publish them; public Work and featured inventories are empty.
+- Portfolio and Japan Travel Planner are published and featured in the current
+  registry. Nihonest is imported as a **draft, unfeatured** project for review.
 - English and Japanese routes exist. Incomplete Japanese content intentionally falls
   back to English with a notice; portfolio translation remains pending.
 - Final biography, contact details and opening copy still require content review.
@@ -50,17 +50,19 @@ case studies were previously reviewed in the original three modes.
 
 ### Imported projects
 
-| Project                           | Source-project state          | Case-study focus                                                                                          | Development preview                  |
-| --------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| **Portfolio presentation system** | Active local implementation   | Shared content, distinct compositions, theme morphing, navigation, microinteractions and design iteration | `/dev/projects/portfolio`            |
-| **Japan Travel Planner**          | Complete; deployed on Railway | Full-stack planning workflow, reuse, localization, account/security boundaries and capstone evolution     | `/dev/projects/japan-travel-planner` |
+| Project                           | Source-project state             | Case-study focus                                                                                          | Development preview                  |
+| --------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Portfolio presentation system** | Active local implementation      | Shared content, distinct compositions, theme morphing, navigation, microinteractions and design iteration | `/dev/projects/portfolio`            |
+| **Japan Travel Planner**          | Complete; deployed on Railway    | Full-stack planning workflow, reuse, localization, account/security boundaries and capstone evolution     | `/dev/projects/japan-travel-planner` |
+| **Nihonest**                      | Active development; not deployed | Source-linked discovery, route-aware journeys, canonical content, optional accounts and editorial tooling | `/dev/projects/nihonest`             |
 
-Both use one English narrative across the modes, with a neutral report voice and
+Each uses one English narrative across the modes, with a neutral report voice and
 results describing what the project delivers. Their discovery and review records:
 
 - [Portfolio pilot guide](docs/projects/portfolio/README.md).
 - [Travel Planner import review](docs/projects/japan-travel-planner/IMPORT-REVIEW.md)
   and [follow-up evidence](docs/projects/japan-travel-planner/followup/FOLLOWUP.md).
+- [Nihonest import review](docs/projects/nihonest/IMPORT-REVIEW.md).
 
 The Travel Planner's original manual school-project version is preserved at
 `capstone-v1.0`; later enhancements used AI assistance under directed architecture
@@ -69,14 +71,14 @@ pending deployment.
 
 ### Project pipeline
 
-No additional project imports are available at present. The following is planning
+Nihonest has been imported as an active draft; its first deployment is still pending.
+The following is planning
 context, not published portfolio content or a delivery schedule:
 
-| Project                  | Current state                         | Import context                             |
-| ------------------------ | ------------------------------------- | ------------------------------------------ |
-| **Nihonest**             | In development, nearing deployment    | Discovery and case-study import when ready |
-| **Upwatch**              | Planning; intended to follow Nihonest | No GitHub repository or coding agent yet   |
-| **Hospitality Platform** | Planning                              | No GitHub repository or coding agent yet   |
+| Project                  | Current state                         | Import context                           |
+| ------------------------ | ------------------------------------- | ---------------------------------------- |
+| **Upwatch**              | Planning; intended to follow Nihonest | No GitHub repository or coding agent yet |
+| **Hospitality Platform** | Planning                              | No GitHub repository or coding agent yet |
 
 ## Architecture
 
@@ -141,8 +143,8 @@ Use the running application rather than opening reference HTML as a local file.
 Public routes are `/en` or `/ja`, followed by `/work`, `/about`, `/lab`, `/contact`
 and `/work/[slug]` for published projects. Language links preserve the destination;
 the saved presentation cookie selects the server-rendered mode before paint.
-Both imported projects currently return 404 on public project routes because they
-remain drafts.
+Portfolio and Japan Travel Planner have public project routes. Nihonest remains a
+draft and returns 404 on its public project routes.
 
 ### Development review tools
 
@@ -150,6 +152,7 @@ remain drafts.
 | ------------------------------------------------- | ---------------------------------------------------------- |
 | `/dev/projects/portfolio`                         | Review the real portfolio draft in the selected mode       |
 | `/dev/projects/japan-travel-planner`              | Review the imported travel planner draft                   |
+| `/dev/projects/nihonest`                          | Review the active, undeployed Nihonest draft               |
 | `/dev/design-system`                              | Shared semantic fixtures, including sparse/no-image states |
 | `/dev/compositions`                               | Compare the same synthetic case study across all modes     |
 | `/dev/compositions?surface=homepage`              | Populated synthetic homepage and project-opening flow      |
@@ -157,6 +160,7 @@ remain drafts.
 | `/preview/chronicle`                              | Real draft homepage in the full site shell                 |
 | `/preview/chronicle?project=portfolio`            | Full-shell portfolio draft; select Chronicle in the header |
 | `/preview/chronicle?project=japan-travel-planner` | Full-shell travel planner draft                            |
+| `/preview/chronicle?project=nihonest`             | Full-shell Nihonest draft                                  |
 
 Append `?locale=ja` to draft previews to inspect English fallback. Development
 routes and fixture media return 404 in production. Files under `public/` are

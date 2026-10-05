@@ -1,5 +1,9 @@
 import type { Project } from "@/lib/content/schema";
-import { technologies } from "@/registries/technologies";
+import {
+  technologies,
+  technologyKindLabels,
+  type TechnologyKind,
+} from "@/registries/technologies";
 import { capabilities } from "@/registries/capabilities";
 import { projectStatusLabels } from "@/lib/content/status";
 
@@ -15,12 +19,18 @@ export function ProjectMeta({
     ["Year", project.year?.toString()],
     ["Type", project.type.length ? project.type.join(" / ") : undefined],
     ["Role", project.roles.length ? project.roles.join(" / ") : undefined],
-    [
-      "Technology",
-      project.technologyIds.length
-        ? project.technologyIds.map((id) => technologies[id].label).join(", ")
-        : undefined,
-    ],
+    // Grouped as job listings group them, so a framework search finds a match.
+    ...(Object.keys(technologyKindLabels) as TechnologyKind[]).map(
+      (kind): [string, string | undefined] => {
+        const labels = project.technologyIds
+          .filter((id) => technologies[id].kind === kind)
+          .map((id) => technologies[id].label);
+        return [
+          technologyKindLabels[kind],
+          labels.length ? labels.join(", ") : undefined,
+        ];
+      },
+    ),
     [
       "Capabilities",
       project.capabilityIds.length
@@ -50,7 +60,8 @@ export function ProjectLinks({ project }: { project: Project }) {
     { label: "View Source", href: project.links?.repository },
     { label: "Read Documentation", href: project.links?.documentation },
   ].filter((link) => link.href);
-  if (!links.length) return null;
+  const privateSource = project.links?.repositoryVisibility === "private";
+  if (!links.length && !privateSource) return null;
   return (
     <nav className="project-links" aria-label="Project resources" lang="en">
       {links.map(({ href, label }) => (
@@ -58,6 +69,9 @@ export function ProjectLinks({ project }: { project: Project }) {
           {label}
         </a>
       ))}
+      {privateSource && (
+        <span className="project-links__note">Source private</span>
+      )}
     </nav>
   );
 }

@@ -142,7 +142,7 @@ for (const other of ["editorial", "engineer", "digital"] as const) {
     ]);
     await page.goto("/preview/chronicle?project=portfolio");
     await page.evaluate(() => document.fonts.ready);
-    const section = "navigation-motion";
+    const section = "chronicle";
     // Place the section at the reading line, just below the sticky header.
     await page.evaluate((id) => {
       const top = document.getElementById(id)!.getBoundingClientRect().top;

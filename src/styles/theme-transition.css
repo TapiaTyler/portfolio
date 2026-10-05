@@ -35,6 +35,8 @@ html[data-theme-transition]::view-transition-new(*) {
 html[data-theme-transition]::view-transition-image-pair(*) {
   isolation: isolate;
 }
+/* The contained-reading clip (::view-transition-group-children) is inserted by
+   transition.ts: the build's CSS parser does not recognise that pseudo-element. */
 
 /* Swap text/surfaces in two short phases, avoiding doubled type during a morph. */
 html[data-theme-transition]::view-transition-old(*) {

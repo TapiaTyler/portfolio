@@ -31,5 +31,5 @@
     ".next/preview-tests/types/**/*.ts",
     ".next/preview-tests/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".cache"]
 }

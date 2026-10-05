@@ -463,3 +463,38 @@ main {
   z-index: 50;
   background: var(--paper);
 }
+
+/* Profile links (site-shell.tsx): 44px icon targets in the header controls and
+   the mobile menu; icons follow each theme's text colour. */
+/* The pair reads as one group: the targets touch, so the icons sit close while
+   each keeps its full 44px target. */
+.site-profiles {
+  display: inline-flex;
+  flex: none;
+  gap: 0;
+}
+.site-profile {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  color: inherit;
+}
+.site-profile:hover {
+  opacity: 0.75;
+}
+.site-footer__links {
+  display: flex;
+  gap: 1.25rem;
+}
+.site-footer__link {
+  color: inherit;
+}
+/* "Source private" sits among project links but is plain text, not a control. */
+.project-links__note {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  opacity: 0.7;
+}

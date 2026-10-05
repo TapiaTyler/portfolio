@@ -7,6 +7,10 @@ The receiving agent does not need access to the portfolio repository.
 The output is discovery source material, not approved copy or a publishable record.
 English is the source language; Japanese translation remains a later pass.
 
+> **After discovery:** run the editorial pass in
+> [CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md) before writing the project record.
+> Discovery stays exhaustive; the editorial pass decides what is published.
+
 ## Copy-ready prompt
 
 You are reviewing this repository for inclusion in Tyler Tetsuo Tapia's software

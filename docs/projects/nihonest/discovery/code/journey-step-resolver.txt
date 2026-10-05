@@ -1,0 +1,14 @@
+Source: src/domain/discovery/discovery.ts:75-85, resolveJourneySteps (TypeScript)
+Purpose: route-aware journey resolution; supports narrative block journeys.
+
+export function resolveJourneySteps(journey: GuidedJourney, routeId?: string): readonly ResolvedJourneyStep[] {
+  const route = getJourneyRouteById(journey, routeId);
+  // Route choices replace one placeholder with one canonical guide; alternatives must never become sequential steps.
+  return journey.phases.flatMap<ResolvedJourneyStep>((phase) => phase.steps.flatMap<ResolvedJourneyStep>((step) => {
+    if (step.type === "route-choice") {
+      return route ? [{ phaseId: phase.id, phaseTitle: phase.title, articleId: route.articleId, requiredness: "required" as const, isRouteSelection: true }] : [];
+    }
+    if (step.routeIds && (!route || !step.routeIds.includes(route.id))) return [];
+    return [{ phaseId: phase.id, phaseTitle: phase.title, articleId: step.articleId, requiredness: step.requiredness, conditionLabel: step.conditionLabel, isRouteSelection: false }];
+  }));
+}

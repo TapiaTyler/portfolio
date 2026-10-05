@@ -366,6 +366,10 @@ Do not fabricate personal reflection.
 
 ## Narrative flexibility
 
+> Published case studies now follow the fixed spine in
+> [CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md) (D040). The flexibility below
+> applies to drafts and to which material is chosen, not to the published order.
+
 A product-heavy project might use:
 
 ```text

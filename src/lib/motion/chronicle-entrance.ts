@@ -118,9 +118,10 @@ export function setupChronicleEntrance(
     );
   }
   function lightFrame(element: Element, delay: number) {
-    // Cards in a snapping strip keep their geometry: browsers snap to the
-    // transformed box, so a settling scale could pull the strip back.
-    if (!element.closest(".chronicle-selection__track"))
+    // Only image frames settle with a scale. Scaling a text panel makes a long
+    // reading region visibly wobble into place after a mode switch, and cards in
+    // a snapping strip must keep their geometry (snap uses the transformed box).
+    if (element.matches(".media-frame"))
       play(element, [{ scale: "0.985" }, { scale: "1" }], {
         duration: 600,
         delay,

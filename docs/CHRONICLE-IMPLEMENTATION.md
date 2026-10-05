@@ -349,9 +349,10 @@ was removed (the hero still states it).
 - **Scene wakes up:** on the document's first load a warm ivory haze over the hero,
   case-study banner and page intros clears over 1.1s. Text is readable from the first
   frame; later routes and mode switches arrive with the scene already awake.
-- **Frames assemble:** as framed panels enter view their gold frame art lights up and the
-  glass settles from 98.5% scale. Cards in the snapping strip only light their frames
-  (a scale there would disturb snap positions). Corner art blooms from its corner.
+- **Frames assemble:** as framed panels enter view their gold frame art lights up.
+  Only image frames also settle from 98.5% scale: scaling text panels made long
+  reading regions wobble into place after a mode switch, and a scale on strip cards
+  would disturb snap positions. Corner art blooms from its corner.
 - **Images reveal:** a screenshot still downloading shows a gold shimmer in its frame,
   then fades in once decoded. Cached images appear immediately; failures keep the
   existing fallback.

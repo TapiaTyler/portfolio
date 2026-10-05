@@ -1,0 +1,35 @@
+{
+  "proposalOnly": true,
+  "includedAssetCount": 0,
+  "assets": [
+    {
+      "id": "capture-explore-desktop", "state": "needs-capture", "type": "image", "proposedFilename": "explore-desktop.png", "purpose": "overview", "supportsBlockId": "discovery", "format": "png", "width": null, "height": null, "sizeBytes": null,
+      "alt": "Explore results and filters for a Japan guidance query.",
+      "caption": "Local checkout search joins guides, glossary terms, FAQs, and groups; results do not establish legal eligibility.",
+      "provenance": { "sourceRevision": "4bc3df9 or approved recapture", "captureDate": null, "route": "/explore", "viewport": "1440x900 proposed", "data": "synthetic query" },
+      "capture": "Enter a neutral query yielding at least a guide and glossary term, show filters and results.", "publicUseReview": "pending"
+    },
+    {
+      "id": "capture-journey-mobile", "state": "needs-capture", "type": "image", "proposedFilename": "journey-mobile.png", "purpose": "mobile detail", "supportsBlockId": "journeys", "format": "png", "width": null, "height": null, "sizeBytes": null,
+      "alt": "Mobile journey view with a selected route and conditional step.",
+      "caption": "A selected route narrows the reading sequence; applicability remains for the reader to verify.",
+      "provenance": { "sourceRevision": "4bc3df9 or approved recapture", "captureDate": null, "route": "/my-journey", "viewport": "390x844 proposed", "data": "fixture or local preferences" },
+      "capture": "Select a named journey route, expose a conditional step, then capture the resolved sequence.", "publicUseReview": "pending"
+    },
+    {
+      "id": "capture-guidance-clip", "state": "needs-capture", "type": "video", "proposedFilename": "local-guidance.webm", "purpose": "interaction", "supportsBlockId": "local-guidance", "format": "webm", "width": null, "height": null, "sizeBytes": null, "durationSeconds": null, "posterProposedFilename": "local-guidance-poster.png",
+      "description": "Native selectors change from general advice to a researched municipality supplement and display source context.",
+      "caption": "The captured local supplement reflects its recorded check date, not a current official instruction.",
+      "transcriptRequirement": "Text transcript or caption describing the selection and resulting guidance; silent clip, no autoplay needed.",
+      "provenance": { "sourceRevision": "4bc3df9 or approved recapture", "captureDate": null, "route": "National guide with local panel", "viewport": "desktop or mobile to be recorded", "data": "fixture location" },
+      "capture": "Open native prefecture and municipality controls, select a researched location, show responsible body and sources in 10–20 seconds.", "publicUseReview": "pending"
+    },
+    {
+      "id": "capture-cms-review", "state": "needs-capture", "type": "image", "proposedFilename": "cms-review.png", "purpose": "process", "supportsBlockId": "editorial-safety", "format": "png", "width": null, "height": null, "sizeBytes": null,
+      "alt": "Local editorial workspace showing a proposed content change and review controls.",
+      "caption": "The CMS previews a repository edit and requires separate review; it does not publish.",
+      "provenance": { "sourceRevision": "4bc3df9 or approved recapture", "captureDate": null, "route": "Loopback CMS fixture record", "viewport": "to be recorded", "data": "synthetic fixture" },
+      "capture": "Open an inert fixture article, make a safe text edit, reveal the proposed diff and review controls; hide internal paths and endpoints.", "publicUseReview": "pending"
+    }
+  ]
+}

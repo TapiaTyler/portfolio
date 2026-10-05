@@ -110,3 +110,18 @@ while other modes place it below, which previously moved readers a whole section
 Without a containing module, the nearest module keeps its distance from the reading
 line. Panel restores scroll instantly because reading panels use smooth scrolling.
 `tests/preview/chronicle-morphing.spec.ts` covers every surface and both directions.
+
+## Contained reading and clipped modules — 2026-10-05
+
+Snapshots of named modules are drawn above the page and ignore ancestor overflow, so
+text inside Chronicle's scrolling reading panel used to spill over the banner and
+header while morphing (seen when switching partway through a long case study).
+
+- The contained reading region (a `.case-study-body` that scrolls on its own) is
+  named `contained-reading` with `view-transition-group: contain`. Text modules
+  inside it nest in its group, and `::view-transition-group-children(contained-reading)`
+  clips them, so text still morphs into place but only within the panel.
+- Outside that region, a module that a clipping ancestor cuts off is not named; it
+  changes with the page's own cross-fade, which is clipped correctly.
+- Browsers without nested view-transition groups do not name text inside the panel;
+  it cross-fades in place. Other modes use document scrolling and are unaffected.

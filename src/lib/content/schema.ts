@@ -100,6 +100,12 @@ export const projectSchema = z
         live: externalLinkSchema.optional(),
         repository: externalLinkSchema.optional(),
         documentation: externalLinkSchema.optional(),
+        // Says plainly that source exists but is not public, instead of omitting it.
+        repositoryVisibility: z.literal("private").optional(),
+      })
+      .refine((links) => !(links.repository && links.repositoryVisibility), {
+        message: "A private repository cannot also have a public link",
+        path: ["repositoryVisibility"],
       })
       .optional(),
     media: z.array(mediaSchema).default([]),

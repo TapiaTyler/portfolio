@@ -168,23 +168,26 @@
     filter: blur(12px);
     pointer-events: none;
   }
+  /* The hero grows to fit its text (it never scrolls internally, so the fade
+     always covers it) with a minimum height proportional to its width so the
+     scenery is not squeezed into a strip. The tab band keeps room for its
+     content and takes any spare height. A short window scrolls main instead. */
   .chronicle-homepage {
     position: relative;
-    flex: 1;
-    min-height: 825px;
-    height: 100%;
+    /* Grow past the viewport rather than squeeze the rows; main then scrolls. */
+    flex: 1 0 auto;
+    min-height: 100%;
+    height: auto;
     display: grid;
-    grid-template-rows: minmax(225px, 1fr) 370px minmax(240px, 1fr);
+    grid-template-rows: auto 370px minmax(320px, 1fr);
     gap: 0;
     overflow: hidden;
   }
   .chronicle-hero {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    min-height: 0;
-    padding: 12px clamp(2rem, 9vw, 9.5rem);
-    overflow: auto;
-    scrollbar-width: none;
+    min-height: clamp(300px, 22vw, 440px);
+    padding: 24px clamp(2rem, 9vw, 9.5rem);
   }
   .chronicle-hero__narrative {
     position: relative;
@@ -438,10 +441,15 @@
     cursor: pointer;
     touch-action: pan-x pan-y;
   }
-  /* Homepage cards: the title opens the project directly, above the card target. */
-  .chronicle-selection--cards .chronicle-project h3 a {
-    position: relative;
+  /* Homepage cards: the title opens the project directly. The record already forms
+     its own stacking layer (z-index 4), so lift the whole record above the card
+     target and let presses fall through it everywhere except the title link. */
+  .chronicle-selection--cards .chronicle-project__record {
     z-index: 7;
+    pointer-events: none;
+  }
+  .chronicle-selection--cards .chronicle-project h3 a {
+    pointer-events: auto;
   }
   .chronicle-selection__card-target:focus-visible {
     outline: 2px solid #873ce6;
@@ -2007,9 +2015,10 @@
   }
   @media (max-height: 650px) and (orientation: landscape) {
     .chronicle-homepage {
-      grid-template-rows: 180px 300px minmax(280px, 1fr);
+      grid-template-rows: auto 300px minmax(280px, 1fr);
     }
     .chronicle-hero {
+      min-height: 180px;
       padding: 16px 48px;
     }
     .chronicle-hero__name {

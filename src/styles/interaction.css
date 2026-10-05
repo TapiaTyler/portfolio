@@ -70,11 +70,13 @@
   }
   .technical-detail__content {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: 1fr;
     transform-origin: top center;
   }
   .technical-detail__body {
     min-height: 0;
+    min-width: 0;
     overflow: clip;
   }
   .navigation-marker {

@@ -7,18 +7,19 @@ copy, contact details, translations and publication/featuring decisions remain o
 
 ## Current source inventory
 
-| Area                 | Source                                       | Current state                                                                                                           | Needed decision                                                        |
-| -------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Identity             | src/content/identity.ts                      | Confirmed English and Japanese name spelling                                                                            | No additional identity claims inferred                                 |
-| Home                 | src/content/placeholder.ts                   | Provisional English introduction and practice descriptions                                                              | Final opening statement and wording                                    |
-| About                | src/content/pages.ts                         | Confirmed name, provisional role/practice, pending background                                                           | Short biography, experience and any credentials Tyler wants to include |
-| Contact              | src/content/pages.ts                         | Contact methods pending                                                                                                 | Verified email and optional GitHub/LinkedIn/resume destinations        |
-| Work                 | Filtered project registry                    | No public projects                                                                                                      | Review project publication and homepage featuring separately           |
-| Lab                  | src/content/pages.ts                         | Intentional empty catalogue                                                                                             | Reviewed study content, if any; it is fine to remain empty             |
-| Pilot                | src/content/projects/portfolio.ts            | Reviewed English draft, real captures and labelled reconstructions                                                      | Publication and featuring                                              |
-| Japan Travel Planner | src/content/projects/japan-travel-planner.ts | Complete source application; reviewed English draft with approved demo screenshots, diagrams, code and security section | Publication and featuring; optional further evidence                   |
-| Japanese             | Route and field fallback infrastructure      | English fallback with notices; no new translations                                                                      | Translation remains a later content pass                               |
-| Release              | docs/RELEASE-RUNBOOK.md                      | Vercel selected; local preparation                                                                                      | Public origin and first hosted preview                                 |
+| Area                 | Source                                       | Current state                                                                                                                             | Needed decision                                                        |
+| -------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Identity             | src/content/identity.ts                      | Confirmed English and Japanese name spelling                                                                                              | No additional identity claims inferred                                 |
+| Home                 | src/content/placeholder.ts                   | Provisional English introduction and practice descriptions                                                                                | Final opening statement and wording                                    |
+| About                | src/content/pages.ts                         | Confirmed name, provisional role/practice, pending background                                                                             | Short biography, experience and any credentials Tyler wants to include |
+| Contact              | src/content/pages.ts                         | Contact methods pending                                                                                                                   | Verified email and optional GitHub/LinkedIn/resume destinations        |
+| Work                 | Filtered project registry                    | Portfolio and Japan Travel Planner are published and featured                                                                             | Review project publication and homepage featuring separately           |
+| Lab                  | src/content/pages.ts                         | Intentional empty catalogue                                                                                                               | Reviewed study content, if any; it is fine to remain empty             |
+| Pilot                | src/content/projects/portfolio.ts            | Published English case study, real captures and labelled reconstructions                                                                  | Ongoing content maintenance                                            |
+| Japan Travel Planner | src/content/projects/japan-travel-planner.ts | Complete source application; published English case study with approved demo screenshots, diagrams, code and security section             | Optional further evidence                                              |
+| Nihonest             | src/content/projects/nihonest.ts             | Active, undeployed application; imported English draft with confirmed AI-assisted contribution, diagram, code and approved local captures | Narrative/media review, publication and featuring                      |
+| Japanese             | Route and field fallback infrastructure      | English fallback with notices; no new translations                                                                                        | Translation remains a later content pass                               |
+| Release              | docs/RELEASE-RUNBOOK.md                      | Vercel selected; local preparation                                                                                                        | Public origin and first hosted preview                                 |
 
 ## Pilot review record
 
@@ -52,8 +53,10 @@ of full accessibility conformance, deployed performance gains or business outcom
 
 ## Publication decision record
 
-Current state: retain `status: draft`, `featured: false` for both imported projects
-until an explicit publication/featuring decision.
+Current records: Portfolio and Japan Travel Planner are `published` and featured.
+Nihonest remains `draft`, `featured: false` pending narrative/media review and an
+explicit publication/featuring decision. This import does not change the publication
+settings of the earlier projects.
 Publishing and featuring are separate decisions. An active, reviewed project may
 be published while the site continues to evolve; publication does not require
 invented outcome metrics or complete Japanese deep content.
@@ -68,7 +71,7 @@ project routes, mode compatibility, metadata, sitemap and image/video references
 - The biography and experience facts Tyler wants to publish.
 - Verified contact and resume URLs, and which should be visible.
 - Final hero/role wording and any revisions to the three practice descriptions.
-- Publication and homepage-feature decisions for both reviewed projects.
+- Narrative/media review and publication/homepage-feature decisions for Nihonest.
 - The intended public domain or chosen permanent Vercel origin.
 
 Home/About/Contact copy remains intentionally provisional until these details are supplied.

@@ -246,6 +246,21 @@
     color: #eee5ff;
   }
 
+  /* Between the menu switch point and 1150px the centred navigation and the
+     controls (profile icons, language, presentation) share little width; the
+     summary drops its visible "Presentation:" prefix but keeps it for screen
+     readers. */
+  @media (min-width: 62.001rem) and (max-width: 1150px) {
+    .site-controls--desktop .mode-picker__label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+
   .mode-picker__chevron {
     color: #f8ebff;
   }

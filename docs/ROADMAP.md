@@ -209,10 +209,10 @@ A completed foundation does not mean final content or visual design is approved.
 
 ## Project pipeline — 2026-10-03
 
-- Portfolio and Japan Travel Planner are imported and reviewed; no further imports
-  are available at present. Publication and homepage featuring remain separate decisions.
-- Nihonest is in development and nearing deployment; discovery/import will follow
-  when source material is ready.
+- Portfolio and Japan Travel Planner are imported and reviewed. Nihonest was
+  imported on October 5 as an active, undeployed draft, with confirmed contribution,
+  architecture/code evidence and approved local screenshots. Its narrative/media
+  review remains open. Publication and homepage featuring remain separate decisions.
 - Upwatch is in planning and will follow Nihonest. Hospitality Platform is also in
   planning. Neither has a GitHub repository or coding agent yet.
 - The root README now describes the implemented system, reviewed inventory,

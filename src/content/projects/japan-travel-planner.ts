@@ -25,19 +25,14 @@ const image = (
   caption: { en: caption },
 });
 
-/** Discovery at 385c122; Tyler confirmed status, ownership and media use on Oct 3. */
+/** Tyler confirmed status, ownership and media use on Oct 3, 2026. */
 export const japanTravelPlannerProject = {
   kind: "project",
   slug: "japan-travel-planner",
   year: 2026,
   status: "complete",
   type: ["Full-stack web application", "Travel planning"],
-  roles: [
-    "Product direction",
-    "Architecture direction",
-    "Implementation",
-    "Revision review",
-  ],
+  roles: ["Product direction", "Architecture", "Implementation", "Code review"],
   technologyIds: [
     "react",
     "javascript",
@@ -48,6 +43,7 @@ export const japanTravelPlannerProject = {
     "flyway",
     "i18next",
     "docker",
+    "vitest",
   ],
   capabilityIds: [
     "full-stack-development",
@@ -59,7 +55,7 @@ export const japanTravelPlannerProject = {
     "testing-quality",
     "security",
   ],
-  publication: { status: "published", featured: true, priority: 1 },
+  publication: { status: "published", featured: true, priority: 2 },
   links: {
     live: "https://japan-travel-planner-production.up.railway.app/",
     repository: "https://github.com/TapiaTyler/japan-travel-planner",
@@ -72,19 +68,10 @@ export const japanTravelPlannerProject = {
     review:
       "The original school-project application was completed manually without AI. Later enhancements used AI assistance, with revisions, decisions and architecture directed and reviewed throughout the work.",
     testing:
-      "Frontend lint, 72 frontend tests, 25 backend unit tests and the frontend build passed at revision 385c122. Historical CI at that revision also succeeded. Anonymous public pages and template reads were checked; authenticated production workflows and deployed security settings remain unverified.",
+      "Frontend lint, 72 frontend tests, 25 backend unit tests and the frontend build pass, and CI passed. Authenticated production workflows have not been tested end to end.",
   },
   previewMediaId: "media-itinerary-desktop",
   media: [
-    image(
-      "media-landing-desktop",
-      "landing-desktop.png",
-      1259,
-      748,
-      "overview",
-      "Japan Travel Planner landing page with a sample Tokyo and Kyoto trip preview and planning entry points.",
-      "The public landing page presents a sample trip and entry points for planning and template browsing. Repository screenshot with demo data; exact capture date was not recorded.",
-    ),
     image(
       "media-itinerary-desktop",
       "itinerary-desktop.png",
@@ -161,73 +148,6 @@ export const japanTravelPlannerProject = {
         { from: "static", to: "browser", label: { en: "Deliver interface" } },
       ],
     },
-    {
-      id: "diagram-security-boundaries",
-      title: { en: "Account and mutation security boundaries" },
-      accessibleSummary: {
-        en: "The client obtains a CSRF token before cookie-bearing mutations. Spring checks authentication and CSRF. Login verifies credentials and limits failures; services bind private resources to the authenticated user before persistence. Public templates have a separate anonymous read path.",
-      },
-      nodes: [
-        { id: "client", label: { en: "React API client" } },
-        { id: "csrf", label: { en: "Public CSRF initialization endpoint" } },
-        {
-          id: "filters",
-          label: { en: "Spring authentication and CSRF route checks" },
-        },
-        {
-          id: "login",
-          label: { en: "Credential verification and login counters" },
-        },
-        { id: "session", label: { en: "Server HTTP session" } },
-        {
-          id: "owner",
-          label: {
-            en: "Services using authenticated username and item membership",
-          },
-        },
-        { id: "store", label: { en: "JPA repositories / PostgreSQL" } },
-        { id: "public", label: { en: "Anonymous curated-template reads" } },
-      ],
-      edges: [
-        {
-          from: "client",
-          to: "csrf",
-          label: { en: "GET token and header name" },
-        },
-        {
-          from: "csrf",
-          to: "client",
-          label: { en: "token response and CSRF cookie" },
-        },
-        {
-          from: "client",
-          to: "filters",
-          label: { en: "mutation with token header and cookies" },
-        },
-        {
-          from: "filters",
-          to: "login",
-          label: { en: "login route; CSRF still applies" },
-        },
-        {
-          from: "login",
-          to: "session",
-          label: { en: "store authenticated security context" },
-        },
-        {
-          from: "session",
-          to: "filters",
-          label: { en: "authenticated identity on subsequent requests" },
-        },
-        { from: "filters", to: "owner", label: { en: "protected operation" } },
-        {
-          from: "owner",
-          to: "store",
-          label: { en: "owned resource lookup before mutation" },
-        },
-        { from: "client", to: "public", label: { en: "public GET templates" } },
-      ],
-    },
   ],
   locale: {
     en: {
@@ -244,129 +164,47 @@ export const japanTravelPlannerProject = {
       },
       blocks: [
         {
-          id: "intro-product",
-          type: "intro",
-          heading: "Keep a trip's working details together",
-          body: prose(
-            "Trips combine activities, lodging and transportation in an account-based itinerary. Date and location grouping, search, cost summaries and print output offer several ways to work with the same planning data.",
-            "The project focuses on planning travel within Japan. Costs use Japanese yen, while map shortcuts open an external map application rather than an embedded map service.",
-          ),
-        },
-        {
-          id: "media-landing-support",
-          type: "media",
-          mediaId: "media-landing-desktop",
-          supportsBlockId: "intro-product",
-        },
-        {
-          id: "origin-school",
-          type: "intro",
-          heading: "From a capstone to a broader application",
-          body: prose(
-            "The original WGU software engineering capstone is preserved at the capstone-v1.0 tag, pointing to revision 23a4dd6 from September 1, 2026. It already included authentication and CSRF protection. Later iterations added filtering, mobile and dark-theme refinements, localization, reusable planning content, login limiting and deployment tooling.",
-            "The original school-project application was completed manually without AI. Subsequent enhancements used AI assistance while retaining direct control over revisions, decisions and architecture.",
-          ),
-        },
-        {
           id: "problem-planning",
           type: "problem",
           heading: "Organize plans without losing their context",
           body: prose(
-            "Activities, accommodation and transport have different details, but need to remain part of the same trip. The implemented model keeps those item types together while allowing travelers to group, filter, duplicate and reuse their plans.",
+            "A trip combines activities, accommodation and transport, each with different details, but travelers plan them together and revisit them as dates, costs and routes change.",
+            "The planner keeps those item types in one itinerary while letting travelers group, filter, duplicate and reuse their plans.",
           ),
         },
         {
-          id: "technical-itinerary",
-          type: "technical",
-          title: "Filter the working itinerary and its print output",
-          summary:
-            "Text search and structured filters narrow the itinerary by date, location, item type, cost and transport mode. Print output uses the visible filtered source.",
-          codeSnippetIds: ["snippet-filter-pipeline"],
+          id: "intro-product",
+          type: "intro",
+          heading: "Keep a trip's working details together",
           body: prose(
-            "The client combines the search query and structured conditions in filterItineraryItems. Cost summaries and print options operate on the chosen itinerary view, so the output reflects the work currently being reviewed.",
-            "A print-component test checks this visible-source behavior. Filtering and cost calculations run on the client, alongside the itinerary view.",
+            "Trips combine activities, lodging and transportation in an account-based itinerary. Date and location grouping, search, yen cost summaries and print output offer several ways to work with the same data, and public templates, private reusable trips and saved items avoid starting each plan from scratch.",
+            "It began as a WGU software engineering capstone, built without AI and preserved under the capstone-v1.0 tag (September 1, 2026). Later iterations added filtering, mobile and dark-theme refinements, localization, reusable planning content, login limiting and deployment tooling.",
           ),
         },
         {
           id: "media-itinerary-support",
           type: "media",
           mediaId: "media-itinerary-desktop",
-          supportsBlockId: "technical-itinerary",
-        },
-        {
-          id: "decision-reuse",
-          type: "decision",
-          title: "Reuse a whole plan or an individual item",
-          decision: prose(
-            "Public trip templates can be browsed without signing in. Instantiating a template requires an account, while private templates and saved itinerary items support personal reuse.",
-          ),
-          tradeoffs: prose(
-            "Template dates are instantiated from offsets. Public template content and user-entered itinerary content have different ownership and localization rules.",
-          ),
-        },
-        {
-          id: "decision-responsive",
-          type: "decision",
-          title: "Retain the planning workflow on narrow screens",
-          decision: prose(
-            "The client includes responsive layouts, light and dark theme preferences, focus styles and reduced-motion rules.",
-          ),
-          tradeoffs: prose(
-            "Responsive and reduced-motion behavior are implemented. A comprehensive device/browser matrix and accessibility conformance review remain verification work.",
-          ),
+          supportsBlockId: "intro-product",
         },
         {
           id: "media-mobile-support",
           type: "media",
           mediaId: "media-itinerary-mobile-dark",
-          supportsBlockId: "decision-responsive",
-        },
-        {
-          id: "architecture-system",
-          type: "architecture",
-          title: "Keep account boundaries in the service layer",
-          diagramId: "diagram-system-flow",
-          explanation: prose(
-            "The React client sends session-based requests to Spring controllers. Validated operations pass through services and account-scoped repository access before reaching PostgreSQL. Flyway versions database changes.",
-            "The implementation includes CSRF protection, BCrypt password hashing and login limiting. Login-limit state is held per process, which limits its scope to the running instance.",
-          ),
-        },
-        {
-          id: "technical-security",
-          type: "technical",
-          title: "Protect account-owned plans across request boundaries",
-          summary:
-            "Authentication identifies the user, server-side ownership checks bind plans to that user, CSRF tokens protect cookie-authenticated mutations, and login limiting constrains repeated failures.",
-          body: prose(
-            "Spring Security permits anonymous template reads while requiring authentication for account, trip, template mutation and saved-item operations. Login stores the authenticated security context in a server session; logout clears the current login. Private-resource services use the authenticated username rather than an owner value supplied by the client, and item operations check membership in the owned trip.",
-            "The API client obtains a CSRF token and its header name before sending cookie-bearing mutation requests. Spring validates that token at the request boundary. The CSRF cookie is readable by JavaScript for this exchange; the session cookie is configured HttpOnly. Password registration and changes use the configured BCrypt encoder.",
-            "DTO and service validation cover required values, trip date order, item dates and cost rules before persistence. Controlled exception responses supply stable field/domain codes. These checks complement authentication: an authenticated operation still needs valid input and permission to access its target resource.",
-            "Login limiting tracks failures by normalized username and client IP in bounded, expiring caches. Defaults allow five username failures or 25 IP failures within 15 minutes. That state is local to a process and resets on restart or eviction; the admission sequence is not atomic across concurrent requests. Proxy handling also affects which client address is counted.",
-            "Existing mocked service tests reject another user's private template and saved item, invalid trip/item dates, and login attempts above selected thresholds. A frontend test checks CSRF headers and credentials for template instantiation. These tests provide evidence for specific boundaries without proving the full HTTP security flow.",
-            "The custom login path does not explicitly establish session-ID or CSRF-token rotation. Filter-chain tests for unauthenticated requests and missing or invalid CSRF remain absent, and deployed cookie/proxy settings have not been inspected. Protected API namespaces are explicitly listed; the fallback permits other routes, so new API boundaries need deliberate review. This is implementation and test evidence, not a completed security audit.",
-          ),
-        },
-        {
-          id: "architecture-security",
-          type: "architecture",
-          title: "Follow identity and mutation checks to persistence",
-          diagramId: "diagram-security-boundaries",
-          explanation: prose(
-            "CSRF initialization, session authentication and private-resource ownership serve different purposes. The diagram separates those boundaries from anonymous template browsing and shows where the client, request filters and services participate.",
-          ),
+          supportsBlockId: "intro-product",
         },
         {
           id: "decision-delivery",
           type: "decision",
           title: "Package the client and API under one origin",
           decision: prose(
-            "The Docker build compiles the frontend into Spring's static resources and packages the application in one non-root JVM container.",
+            "The Docker build compiles the React frontend into Spring's static resources and packages the application in one non-root JVM container.",
           ),
           rationale: prose(
-            "The documented architecture uses a single origin for the interface and API, simplifying the browser's session-cookie and CSRF integration.",
+            "A single origin for the interface and API simplifies the browser's session-cookie and CSRF integration.",
           ),
           tradeoffs: prose(
-            "Frontend and server releases are coupled. The application is deployed on Railway's free hosting with a Railway-provided domain and no custom domain.",
+            "Frontend and server releases are coupled into one deployment.",
           ),
         },
         {
@@ -374,10 +212,10 @@ export const japanTravelPlannerProject = {
           type: "decision",
           title: "Separate interface translation from personal trip content",
           decision: prose(
-            "Interface resources and curated public templates support English and Japanese. User-entered content remains in the language in which it was written.",
+            "Interface resources and curated public templates support English and Japanese. User-entered content stays in the language it was written in.",
           ),
           tradeoffs: prose(
-            "Localization support is implemented; translation quality and completeness were not independently reviewed. The portfolio case study itself currently has English source content only.",
+            "Translation quality and completeness have not been independently reviewed.",
           ),
         },
         {
@@ -387,24 +225,48 @@ export const japanTravelPlannerProject = {
           supportsBlockId: "decision-localization",
         },
         {
-          id: "technical-quality",
+          id: "architecture-system",
+          type: "architecture",
+          title: "Keep account boundaries in the service layer",
+          diagramId: "diagram-system-flow",
+          explanation: prose(
+            "The React client sends session-based requests to Spring controllers. Validated operations pass through services and account-scoped repository access before reaching PostgreSQL, and Flyway versions database changes.",
+          ),
+        },
+        {
+          id: "challenge-security",
+          type: "challenge",
+          title: "Protect account-owned plans across request boundaries",
+          problem: prose(
+            "Public templates must be readable without an account, while trips, private templates and saved items belong to one user and must never be reachable through another account or a forged request.",
+          ),
+          response: prose(
+            "Spring Security permits anonymous template reads and requires authentication for everything else. Services use the authenticated username instead of an owner value sent by the client, CSRF tokens protect cookie-authenticated mutations, passwords use BCrypt, and login limiting constrains repeated failures.",
+          ),
+          result: prose(
+            "Mocked service tests reject access to another user's resources. Known gaps: the login path does not rotate the session ID or CSRF token, and filter-chain tests for missing CSRF are not yet written.",
+          ),
+        },
+        {
+          id: "engineering-details",
           type: "technical",
-          title: "Verify behavior at the appropriate boundary",
+          title: "Engineering details",
           summary:
-            "At revision 385c122, 72 frontend tests and 25 backend unit tests passed. Anonymous public rendering and template reads were checked separately from authenticated workflows.",
+            "The client-side filter pipeline, the full security model, responsive and theme behavior, and how the application is tested.",
+          codeSnippetIds: ["snippet-filter-pipeline"],
           body: prose(
-            "Frontend lint, the Vitest suite and the Vite build passed during the October 3, 2026 source review. The follow-up ran the backend suite with an existing Java 21 environment: 25 tests in nine classes passed with no failures, errors or skips. Those backend checks primarily use mocked services and handlers rather than a full Spring security or database integration environment.",
-            "Historical CI at the same source revision reports successful backend tests and frontend lint, tests and build. Anonymous checks returned the landing and library pages, three public templates containing 11 items, and a health response of UP. Landing and library content also rendered in a fresh browser profile.",
-            "These are recorded source-project checks. Authenticated production workflows, the deployed revision, operations, accessibility conformance and field performance were not established by them. Test provenance and execution conditions are retained in the project review documentation.",
+            "Text search and structured filters narrow the itinerary by date, location, item type, cost and transport mode in filterItineraryItems. Cost summaries and print output use the visible filtered view, which a print-component test checks.",
+            "Login stores the authenticated security context in a server session; the session cookie is HttpOnly, and the CSRF cookie is readable by JavaScript so the API client can send its header. Item operations check membership in the owned trip. DTO and service validation cover required values, date order and cost rules, with stable error codes. Login limiting tracks failures per username and client IP in bounded, expiring caches (five username or 25 IP failures in 15 minutes); that state is per process and resets on restart. Protected API namespaces are listed explicitly, so a new API boundary needs deliberate review.",
+            "The client includes responsive layouts, light and dark themes, focus styles and reduced-motion rules. Public templates are instantiated from date offsets.",
+            "Frontend lint, 72 Vitest tests and the Vite build pass; 25 backend tests in nine classes pass on Java 21, mostly against mocked services rather than a full Spring security or database environment. The landing, library, public template and health endpoints of the deployed application responded as expected when checked; authenticated production workflows, accessibility conformance and field performance have not been tested end to end.",
           ),
         },
         {
           id: "result-current",
           type: "result",
           body: prose(
-            "The completed application brings activities, lodging and transportation into an account-based itinerary. Plans can be grouped and filtered, reviewed with yen cost summaries, and printed from the selected view.",
-            "Public templates, private reusable trips and saved items extend the workflow beyond creating each itinerary from scratch. Responsive layouts, light and dark themes, and English/Japanese interface resources provide different ways to use the same planning model; personal trip content remains in its original language.",
-            "The project progressed from a manually implemented capstone to a deployed full-stack application. A React client and Spring API share one deployable container, with PostgreSQL persistence and Flyway migrations supporting the planning data.",
+            "A complete full-stack application: account-based itineraries with grouping, filtering, yen cost summaries and printing, plus public templates and private reuse, in English and Japanese, light and dark, on desktop and mobile.",
+            "It grew from a manually built capstone into a deployed application, with a React client and a Spring API in one container on Railway, backed by PostgreSQL and Flyway migrations.",
           ),
         },
       ],
