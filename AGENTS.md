@@ -27,6 +27,10 @@ Future modes may include:
 - `product`
 - `graphic`
 
+Chronicle (`chronicle`) is an explicitly authorized additional mode as of
+2026-10-03. Use `docs/design-reference/CHRONICLE-REFERENCE.md` and its three PNG
+references, plus `docs/CHRONICLE-IMPLEMENTATION.md`. It has no reference HTML.
+
 Do not implement future modes unless explicitly asked.
 
 ## 2. Central architecture

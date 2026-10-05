@@ -139,7 +139,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     }
     await expect(
       study.getByRole("heading", {
-        name: "One portfolio, three ways of reading it",
+        name: "One Portfolio, Several Ways of Reading It",
         exact: true,
       }),
     ).toBeVisible();
@@ -216,7 +216,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         )
         .toBeGreaterThan(0);
     }
-    await expect(study.locator("video")).toHaveCount(3);
+    await expect(study.locator("video")).toHaveCount(4);
     for (const video of await study.locator("video").all()) {
       await video.scrollIntoViewIfNeeded();
       await expect(video).toHaveAttribute("controls", "");
@@ -242,9 +242,9 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         ),
       ).toBeGreaterThan(3);
     }
-    await study.locator("#navigation-iteration").scrollIntoViewIfNeeded();
-    await expect(study.locator("#navigation-iteration")).toContainText(
-      "Before, reconstructed",
+    await study.locator("#chronicle-iteration").scrollIntoViewIfNeeded();
+    await expect(study.locator("#chronicle-iteration")).toContainText(
+      "Before: the first AI-assisted Chronicle build",
     );
     const scan = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])

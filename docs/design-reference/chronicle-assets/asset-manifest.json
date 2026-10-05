@@ -1,0 +1,208 @@
+[
+  {
+    "name": "panel-frame",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_00 AM-1.png",
+    "sourceDimensions": [1672, 941],
+    "hasAlpha": true,
+    "deliveryDimensions": [1200, 630],
+    "deliveryBytes": 125420
+  },
+  {
+    "name": "project-frame",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_01 AM-2.png",
+    "sourceDimensions": [1619, 971],
+    "hasAlpha": true,
+    "deliveryDimensions": [1200, 611],
+    "deliveryBytes": 109302
+  },
+  {
+    "name": "project-frame-active",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_02 AM-3.png",
+    "sourceDimensions": [1619, 971],
+    "hasAlpha": true,
+    "deliveryDimensions": [1200, 682],
+    "deliveryBytes": 203452
+  },
+  {
+    "name": "glass-button",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_03 AM-4.png",
+    "sourceDimensions": [2172, 724],
+    "hasAlpha": true,
+    "deliveryDimensions": [600, 150],
+    "deliveryBytes": 20116,
+    "deliveryNote": "Re-encoded at 600px (2x the ~300px display width) on 2026-10-04"
+  },
+  {
+    "name": "crystal-corner",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_03 AM-5.png",
+    "sourceDimensions": [1254, 1254],
+    "hasAlpha": true,
+    "deliveryDimensions": [800, 785],
+    "deliveryBytes": 173896,
+    "deliveryVariants": [
+      {
+        "file": "crystal-corner-compact.webp",
+        "dimensions": [480, 471],
+        "hasAlpha": true,
+        "bytes": 61694,
+        "use": "Corner artwork at viewports above 900px"
+      },
+      {
+        "file": "crystal-corner-mobile.webp",
+        "dimensions": [320, 314],
+        "hasAlpha": true,
+        "bytes": 29524,
+        "use": "Corner artwork at viewports up to 900px"
+      }
+    ]
+  },
+  {
+    "name": "sakura-corner",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_04 AM-6.png",
+    "sourceDimensions": [1448, 1086],
+    "hasAlpha": true,
+    "deliveryDimensions": [800, 606],
+    "deliveryBytes": 219258,
+    "deliveryVariants": [
+      {
+        "file": "sakura-corner-compact.webp",
+        "dimensions": [480, 364],
+        "hasAlpha": true,
+        "bytes": 77646,
+        "use": "Corner artwork at viewports above 900px"
+      },
+      {
+        "file": "sakura-corner-mobile.webp",
+        "dimensions": [320, 242],
+        "hasAlpha": true,
+        "bytes": 37140,
+        "use": "Corner artwork at viewports up to 900px"
+      }
+    ]
+  },
+  {
+    "name": "chapter-divider",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_05 AM-7.png",
+    "sourceDimensions": [2172, 724],
+    "hasAlpha": true,
+    "deliveryDimensions": [1200, 73],
+    "deliveryBytes": 36304
+  },
+  {
+    "name": "chapter-rail",
+    "original": "ChatGPT Image Oct 3, 2026, 09_54_05 AM-8.png",
+    "sourceDimensions": [724, 2172],
+    "hasAlpha": true,
+    "deliveryDimensions": [109, 1200],
+    "deliveryBytes": 60542
+  },
+  {
+    "name": "landscape-v2",
+    "original": "imagegen output, 2026-10-03 reference refinement",
+    "generationPrompt": "landscape-v2-prompt.md",
+    "sourceDimensions": [2172, 724],
+    "hasAlpha": false,
+    "deliveryDimensions": [1920, 640],
+    "deliveryBytes": 297788,
+    "deliveryVariants": [
+      {
+        "file": "landscape-v2-compact.webp",
+        "dimensions": [1440, 480],
+        "hasAlpha": false,
+        "bytes": 141082,
+        "use": "Scenic background at viewports up to 900px; matching high-priority preload"
+      }
+    ]
+  },
+  {
+    "name": "chapter-rail-marker",
+    "original": "sliceable-chapter-rail-01.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1254, 1254],
+    "hasAlpha": true,
+    "deliveryFile": "chapter-rail-marker.webp",
+    "deliveryDimensions": [96, 96],
+    "deliveryBytes": 4396,
+    "use": "Selected chapter/tab marker"
+  },
+  {
+    "name": "chapter-rail-cap-top",
+    "original": "sliceable-chapter-rail-04.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1086, 1448],
+    "hasAlpha": true,
+    "deliveryFile": "chapter-rail-cap-top.webp",
+    "deliveryDimensions": [65, 192],
+    "deliveryBytes": 6380,
+    "use": "Top finial of measured chapter rails"
+  },
+  {
+    "name": "chapter-rail-cap-bottom",
+    "original": "sliceable-chapter-rail-02.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1254, 1254],
+    "hasAlpha": true,
+    "deliveryFile": "chapter-rail-cap-bottom.webp",
+    "deliveryDimensions": [55, 160],
+    "deliveryBytes": 3904,
+    "use": "Bottom finial of measured chapter rails"
+  },
+  {
+    "name": "chapter-rail-segment",
+    "original": "sliceable-chapter-rail-03.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1717, 916],
+    "hasAlpha": true,
+    "deliveryFile": "chapter-rail-segment.webp",
+    "deliveryDimensions": [12, 262],
+    "deliveryBytes": 1250,
+    "use": "Repeating gold rail segment (uniform middle band)"
+  },
+  {
+    "name": "card-crest",
+    "original": "card-selector-crest-01.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1254, 1254],
+    "hasAlpha": true,
+    "deliveryFile": "card-crest.webp",
+    "deliveryDimensions": [160, 160],
+    "deliveryBytes": 8722,
+    "use": "Home card selector, default"
+  },
+  {
+    "name": "card-crest-selected",
+    "original": "card-selector-crest-02.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1254, 1254],
+    "hasAlpha": true,
+    "deliveryFile": "card-crest-selected.webp",
+    "deliveryDimensions": [160, 160],
+    "deliveryBytes": 10994,
+    "use": "Home card selector, selected"
+  },
+  {
+    "name": "scenic-portrait",
+    "original": "portrait-background.png (ChatGPT, user-supplied 2026-10-04)",
+    "sourceDimensions": [1086, 1448],
+    "hasAlpha": false,
+    "deliveryFile": "scenic-portrait.webp",
+    "deliveryDimensions": [780, 1040],
+    "deliveryBytes": 97274,
+    "use": "Scenic backdrop for portrait phones and the landscape-phone identity column",
+    "deliveryNote": "780px, WebP q72: phone hero shows a band behind the readability gradient"
+  },
+  {
+    "name": "glass-button-hover",
+    "original": "glass-button-hover.png (user-supplied 2026-10-04, same frame as glass-button)",
+    "sourceDimensions": [2172, 724],
+    "hasAlpha": true,
+    "deliveryFile": "glass-button-hover.webp",
+    "deliveryDimensions": [600, 150],
+    "deliveryBytes": 20960,
+    "use": "Glass button hover and keyboard-focus state"
+  },
+  {
+    "name": "glass-button-active",
+    "original": "glass-button-active.png (user-supplied 2026-10-04, same frame as glass-button)",
+    "sourceDimensions": [2172, 724],
+    "hasAlpha": true,
+    "deliveryFile": "glass-button-active.webp",
+    "deliveryDimensions": [600, 150],
+    "deliveryBytes": 21846,
+    "use": "Glass button pressed state"
+  }
+]

@@ -329,3 +329,107 @@ Next runtime, and a preview environment must not inherit launch indexing acciden
 engines, an owned local production smoke server, CI smoke integration, environment
 scope instructions, content review inventory and release runbook. No hosted project,
 domain, deployment or project publication is performed by this preparation pass.
+
+## D036 — Chronicle as a fourth composition with contained reading
+
+**Decision:** Extend the existing composition registry with the explicitly requested
+Chronicle mode. Translate the supplied home, project and mobile images into a
+landscape shell, horizontal project discovery, a contextual preview chapter rail
+and a separate native case-study reading container. English and Japanese route
+identity, shared project facts and publication rules remain the same.
+
+**Reason:** The mobile-game reference calls for a scenic composition with minimal
+document scrolling. Changing fonts and surfaces on the existing page arrangement
+would not establish that reading model. Portrait and zoomed windows still need
+native scroll containers so all content remains available.
+
+**Implementation:** Cards, previews and chapters consume existing typed records and
+semantic renderers. The supplied alpha artwork frames live HTML rather than baked
+interface labels. Scenic image generation is decorative and documented. The
+header prioritizes the full bilingual name and uses a glass language slider,
+violet navigation marker and stylized presentation dropdown. Preview chapters omit
+unsupported sections; case studies preserve canonical anchors and evidence
+ownership. Scrollable text regions have keyboard access. Native links and forms
+remain usable without JavaScript; reduced motion keeps static state feedback.
+Theme morphing now preserves anchors within native overflow containers as well
+as document scrolling.
+
+The development-only `/preview/chronicle` route shows actual draft records in the
+site shell for visual review. Its query parameter selects a draft case study;
+production returns 404. Initial captures and source snapshots remain unchanged,
+with new captures archived separately. Product and Graphic remain future modes.
+
+**Homepage review correction:** Remove the reference-only header monogram and
+identity dividers. Homepage supplementary views belong in a left-side tab rail
+below Selected work, with selected content on the right and a persistent bottom-right
+action for an existing destination. About, practice areas, Lab and Contact consume
+the shared semantic content; no theme-specific facts or unavailable page links are
+introduced. The Work composition retains its project-specific preview chapters.
+
+**Project-strip review correction:** Home and Work keep dots/arrows at the upper
+right above the cards. Work removes the optional card diamonds. Card topics span
+the full width below image/copy, with readable insets around the ornamental frame.
+Lower tab/preview sections are full-width and borderless. Decorative corners attach
+to those section boundaries, with corrected orientation and a fade before the
+reading/action gutters; they do not use fixed viewport layers or intercept input.
+
+**Interaction and type review:** Chronicle trials locally hosted Cormorant Garamond
+500/600 in place of Times New Roman. Work cards select previews through full-area
+buttons, with View Details as the explicit route action and conventional no-JavaScript
+title links. No-image cards use full-width copy. Home tabs use a measured moving
+selector/connector; glitter uses independent decorative timelines with static reduced
+motion. Shared header-link targets adjoin through padding while markers measure labels.
+
+**Directed refinement, 2026-10-03:** Use a viewport-sized landscape shell with
+native overflow inside reading panels, discovery tracks and disclosures. This is
+an intentional Chronicle composition choice; other modes retain document scrolling.
+No wheel interception or mandatory motion is introduced. Chapter tracking and
+theme-change position restoration account for the contained reading panel. Preserve
+the actual initial implementation in an evidence archive before revising its visuals.
+See [CHRONICLE-IMPLEMENTATION.md](CHRONICLE-IMPLEMENTATION.md).
+
+**Landscape-phone refinement, 2026-10-04:** Tyler confirmed Chronicle is primarily a
+landscape-oriented mobile-game reading model that must also work in portrait. Short
+landscape viewports (landscape, height ≤ 500px) no longer inherit the portrait/narrow
+stack. Home becomes two snapped screens: identity beside horizontal discovery, then the
+tab panel. Case studies place identity, the at-a-glance disclosure and chapter rail in
+one column beside a full-height reading panel; Work and About follow the same
+identity-beside-content split. `main` is the size container that defines one screen.
+Hidden scrollbars, proximity snapping and native overflow are unchanged. Home tab
+panels share one header grammar (section eyebrow, then headline); the optional
+capabilities `lead` is provisional copy. Chapter rails keep their shorter labels, with
+the canonical section title appended to each link's accessible name.
+
+## D037 — Grouped case-study bodies honor block renderers
+
+**Decision, 2026-10-04:** Engineer, Digital and Chronicle share one grouped body helper
+(`src/compositions/grouped-body.tsx`) that renders each block through the composition's
+`blockRenderers` entry before falling back to the shared semantic renderer.
+
+**Reason:** The custom bodies rendered shared blocks directly, so registered block
+renderers were silently ignored, and the same evidence-grouping loop existed three
+times. Record/surface framing now belongs to the body; `blockRenderers` is reserved
+for block-specific treatments inside that frame, so the obsolete wrapper registrations
+(which would otherwise double-frame each section) were removed.
+
+## D038 — Title Case for labels, sentence case for statements
+
+**Decision, 2026-10-04:** Names and labels (navigation, section names, page and project
+titles, buttons, links, tab and chapter labels) use Title Case; sentences, claims,
+case-study section headings, captions and body text use sentence case. Applied in
+content and component labels, not CSS, so every mode shows identical text.
+
+**Reason:** Tyler found the all-sentence-case interface read as generic generated copy,
+and casing was already inconsistent ("View Details" beside "View all work"). The
+Chronicle references also title-case their labels. Statements stay in sentence case so
+headlines do not read as marketing copy. See `CONTENT-AUTHORING.md`.
+
+## D039 — Project opening transition per mode
+
+**Decision, 2026-10-04:** Generalize Digital's card-to-project route transition into a
+per-mode surface map, and give Chronicle its own card-to-banner opening as part of its
+microinteraction pass.
+
+**Reason:** The matching, history and cleanup logic was mode-agnostic but hard-coded to
+Digital's selectors; duplicating it for Chronicle would have split one mechanism in two.
+URLs, content and native links are unchanged; reduced motion keeps plain navigation.

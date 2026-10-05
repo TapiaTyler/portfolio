@@ -1,4 +1,6 @@
 import { setupEditorialReading } from "./editorial-reading";
+import { setupChronicleGlitter } from "./chronicle-glitter";
+import { setupChronicleChapterNavigation } from "./chronicle-navigation";
 import { setupEngineerInteractions } from "./engineer-interactions";
 import { setupDigitalMedia, setupDigitalPointerLabels } from "./digital-media";
 
@@ -9,6 +11,8 @@ export function setupMicrointeractions() {
   const dispose: (() => void)[] = [];
   dispose.push(
     setupEditorialReading(),
+    setupChronicleGlitter(),
+    setupChronicleChapterNavigation(),
     setupEngineerInteractions(),
     setupDigitalMedia(),
     setupDigitalPointerLabels(),
@@ -162,7 +166,7 @@ export function setupMicrointeractions() {
       const parent = nav.getBoundingClientRect();
       const engineer =
         nav.closest<HTMLElement>("[data-theme]")?.dataset.theme === "engineer";
-      const label = engineer ? null : target.querySelector(".site-nav__label");
+      const label = target.querySelector(".site-nav__label");
       const rect = (label ?? target).getBoundingClientRect();
       marker.style.left = `${rect.left - parent.left - (engineer ? 11 : 0)}px`;
       marker.style.top = `${engineer ? rect.top - parent.top + (rect.height - 5) / 2 : rect.bottom - parent.top + 2}px`;

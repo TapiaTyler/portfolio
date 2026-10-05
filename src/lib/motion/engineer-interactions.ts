@@ -61,7 +61,7 @@ export function setupEngineerInteractions() {
         status.textContent = "Code copied to clipboard.";
       } catch {
         if (disposed) return;
-        button.textContent = "Copy unavailable";
+        button.textContent = "Copy Unavailable";
         status.textContent =
           "Clipboard unavailable. Select the code sample to copy it manually.";
       } finally {

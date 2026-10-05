@@ -50,7 +50,7 @@ test("switching persists across reload, routes and locales without hydration err
     .click();
   await page
     .getByRole("navigation", { name: "Language", exact: true })
-    .getByRole("link", { name: "JA" })
+    .getByRole("link", { name: "JP" })
     .click();
   await expect(page).toHaveURL(/\/ja\/work$/);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "engineer");

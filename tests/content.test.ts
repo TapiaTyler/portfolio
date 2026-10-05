@@ -75,7 +75,12 @@ test("fixtures cannot enter production and published is independent of featured"
     () => createProjectRegistry(fixtureProjects),
     /Fixture .* cannot enter/,
   );
-  assert.deepEqual(getPublishedProjects(), []);
+  // The public inventory holds real published records only, never fixtures.
+  assert.ok(
+    getPublishedProjects().every(
+      ({ slug }) => !fixtureProjects.some((fixture) => fixture.slug === slug),
+    ),
+  );
   const project: ProjectInput = { ...minimal, kind: "project" };
   const catalog = createProjectRegistry([project]);
   assert.equal(catalog.getPublishedProjects().length, 1);

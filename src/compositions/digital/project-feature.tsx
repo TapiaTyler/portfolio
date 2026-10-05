@@ -48,7 +48,7 @@ export function DigitalProjectFeature({
       <FallbackNotice content={content} />
       <ProjectMeta project={project} />
       <Link className="text-link" href={href} lang="en">
-        Explore the project
+        Explore the Project
       </Link>
     </article>
   );

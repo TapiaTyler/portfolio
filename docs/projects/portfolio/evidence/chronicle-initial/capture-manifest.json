@@ -1,0 +1,61 @@
+{
+  "capturedAt": "2026-10-03T19:40:16.998Z",
+  "phase": "Initial AI-assisted Chronicle implementation before requested landscape/glass refinements",
+  "motion": "reduced for stable capture",
+  "records": [
+    {
+      "name": "homepage-desktop",
+      "route": "/dev/compositions?surface=homepage&inventory=projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentHeight": 1817
+    },
+    {
+      "name": "project-desktop",
+      "route": "/dev/projects/portfolio",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentHeight": 13495
+    },
+    {
+      "name": "header-desktop",
+      "route": "/en",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentHeight": 900
+    },
+    {
+      "name": "homepage-mobile",
+      "route": "/dev/compositions?surface=homepage&inventory=projects",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentHeight": 2643
+    },
+    {
+      "name": "project-mobile",
+      "route": "/dev/projects/portfolio",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentHeight": 14874
+    },
+    {
+      "name": "header-mobile",
+      "route": "/en",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentHeight": 996
+    }
+  ]
+}

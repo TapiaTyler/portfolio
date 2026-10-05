@@ -1,0 +1,283 @@
+{
+  "capturedAt": "2026-10-04T09:16:54.854Z",
+  "captures": [
+    {
+      "file": "desktop-home.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "layout": {
+        "documentWidth": 1672,
+        "cards": [
+          {
+            "width": 796,
+            "height": 241,
+            "scrollWidth": 796,
+            "scrollHeight": 241
+          },
+          {
+            "width": 796,
+            "height": 241,
+            "scrollWidth": 796,
+            "scrollHeight": 241
+          }
+        ],
+        "controls": {
+          "x": 1482.40625,
+          "y": 340.5,
+          "width": 161.59375,
+          "height": 40,
+          "top": 340.5,
+          "right": 1644,
+          "bottom": 380.5,
+          "left": 1482.40625
+        },
+        "track": {
+          "x": 0,
+          "y": 388.5,
+          "width": 1672,
+          "height": 264,
+          "top": 388.5,
+          "right": 1672,
+          "bottom": 652.5,
+          "left": 0
+        }
+      }
+    },
+    {
+      "file": "mobile-home.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "documentWidth": 390,
+        "cards": [
+          {
+            "width": 309,
+            "height": 478,
+            "scrollWidth": 309,
+            "scrollHeight": 478
+          },
+          {
+            "width": 309,
+            "height": 478,
+            "scrollWidth": 309,
+            "scrollHeight": 478
+          }
+        ],
+        "controls": {
+          "x": 239.8125,
+          "y": 337,
+          "width": 133.1875,
+          "height": 36,
+          "top": 337,
+          "right": 373,
+          "bottom": 373,
+          "left": 239.8125
+        },
+        "track": {
+          "x": 0,
+          "y": 383,
+          "width": 390,
+          "height": 509.1875,
+          "top": 383,
+          "right": 390,
+          "bottom": 892.1875,
+          "left": 0
+        }
+      }
+    },
+    {
+      "file": "mobile-home-lower.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "narrow-home.png",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "layout": {
+        "documentWidth": 320,
+        "cards": [
+          {
+            "width": 246,
+            "height": 540,
+            "scrollWidth": 246,
+            "scrollHeight": 540
+          },
+          {
+            "width": 246,
+            "height": 540,
+            "scrollWidth": 246,
+            "scrollHeight": 540
+          }
+        ],
+        "controls": {
+          "x": 169.8125,
+          "y": 337,
+          "width": 133.1875,
+          "height": 36,
+          "top": 337,
+          "right": 303,
+          "bottom": 373,
+          "left": 169.8125
+        },
+        "track": {
+          "x": 0,
+          "y": 383,
+          "width": 320,
+          "height": 571.25,
+          "top": 383,
+          "right": 320,
+          "bottom": 954.25,
+          "left": 0
+        }
+      }
+    },
+    {
+      "file": "desktop-work.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "layout": {
+        "documentWidth": 1672,
+        "cards": [
+          {
+            "width": 796,
+            "height": 207,
+            "scrollWidth": 796,
+            "scrollHeight": 207
+          },
+          {
+            "width": 796,
+            "height": 207,
+            "scrollWidth": 796,
+            "scrollHeight": 207
+          }
+        ],
+        "controls": {
+          "x": 1482.40625,
+          "y": 263.328125,
+          "width": 161.59375,
+          "height": 40,
+          "top": 263.328125,
+          "right": 1644,
+          "bottom": 303.328125,
+          "left": 1482.40625
+        },
+        "track": {
+          "x": 0,
+          "y": 311.328125,
+          "width": 1672,
+          "height": 230,
+          "top": 311.328125,
+          "right": 1672,
+          "bottom": 541.328125,
+          "left": 0
+        }
+      }
+    },
+    {
+      "file": "mobile-work.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "layout": {
+        "documentWidth": 390,
+        "cards": [
+          {
+            "width": 309,
+            "height": 478,
+            "scrollWidth": 309,
+            "scrollHeight": 478
+          },
+          {
+            "width": 309,
+            "height": 478,
+            "scrollWidth": 309,
+            "scrollHeight": 478
+          }
+        ],
+        "controls": {
+          "x": 239.8125,
+          "y": 272.171875,
+          "width": 133.1875,
+          "height": 36,
+          "top": 272.171875,
+          "right": 373,
+          "bottom": 308.171875,
+          "left": 239.8125
+        },
+        "track": {
+          "x": 0,
+          "y": 324.171875,
+          "width": 390,
+          "height": 509.1875,
+          "top": 324.171875,
+          "right": 390,
+          "bottom": 833.359375,
+          "left": 0
+        }
+      }
+    },
+    {
+      "file": "mobile-work-lower.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "narrow-work.png",
+      "viewport": {
+        "width": 320,
+        "height": 800
+      },
+      "layout": {
+        "documentWidth": 320,
+        "cards": [
+          {
+            "width": 246,
+            "height": 540,
+            "scrollWidth": 246,
+            "scrollHeight": 540
+          },
+          {
+            "width": 246,
+            "height": 540,
+            "scrollWidth": 246,
+            "scrollHeight": 540
+          }
+        ],
+        "controls": {
+          "x": 169.8125,
+          "y": 295.109375,
+          "width": 133.1875,
+          "height": 36,
+          "top": 295.109375,
+          "right": 303,
+          "bottom": 331.109375,
+          "left": 169.8125
+        },
+        "track": {
+          "x": 0,
+          "y": 347.109375,
+          "width": 320,
+          "height": 571.25,
+          "top": 347.109375,
+          "right": 320,
+          "bottom": 918.359375,
+          "left": 0
+        }
+      }
+    }
+  ]
+}

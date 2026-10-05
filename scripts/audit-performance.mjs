@@ -4,6 +4,16 @@ import path from "node:path";
 import lighthouse from "lighthouse";
 import { chromium } from "@playwright/test";
 
+// Keep this registry aligned with src/lib/theme/ids.ts. It is intentionally
+// local so the audit remains a plain Node script without a TypeScript loader.
+const registeredModes = ["editorial", "engineer", "digital", "chronicle"];
+const modeLabels = {
+  editorial: "Editorial",
+  engineer: "Engineer",
+  digital: "Digital",
+  chronicle: "Chronicle",
+};
+
 async function main() {
   process.env.NODE_ENV = "production";
   const { default: next } = await import("next");
@@ -15,15 +25,31 @@ async function main() {
     throw new Error(
       "Use a simple audit label containing lowercase letters, numbers and hyphens.",
     );
+  const modeArguments = process.argv.filter((argument) =>
+    argument.startsWith("--modes="),
+  );
+  if (modeArguments.length > 1) throw new Error("Specify --modes only once.");
+  const modes = modeArguments.length
+    ? modeArguments[0].slice("--modes=".length).split(",")
+    : registeredModes;
+  if (
+    modes.length === 0 ||
+    modes.some((mode) => !mode || !registeredModes.includes(mode))
+  )
+    throw new Error(
+      `Choose one or more registered modes: ${registeredModes.join(", ")}.`,
+    );
+  if (new Set(modes).size !== modes.length)
+    throw new Error("List each mode only once in --modes.");
   const output = path.resolve(".cache/performance", label);
   await mkdir(output, { recursive: true });
   const app = next({ dev: false, hostname: "127.0.0.1", port: 3219 });
   const server = createServer(app.getRequestHandler());
   const origin = "http://127.0.0.1:3219";
-  const modes = ["editorial", "engineer", "digital"];
   const summary = {
     timestamp: new Date().toISOString(),
     label,
+    selectedModes: modes,
     route: "/en",
     node: process.version,
     platform: process.platform,
@@ -129,11 +155,11 @@ async function main() {
       const page = await context.newPage();
       await page.goto(`${origin}/en`);
       await page.evaluate(() => document.fonts.ready);
-      for (const [mode, label] of [
-        ["engineer", "Engineer"],
-        ["digital", "Digital"],
-        ["editorial", "Editorial"],
-      ]) {
+      const switchSequence = modes.filter((mode) => mode !== "editorial");
+      if (modes.length > 1 && modes.includes("editorial"))
+        switchSequence.push("editorial");
+      for (const mode of switchSequence) {
+        const label = modeLabels[mode];
         if (
           !(await page
             .locator(".mobile-navigation")

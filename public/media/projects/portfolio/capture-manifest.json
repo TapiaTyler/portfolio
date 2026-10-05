@@ -5,40 +5,41 @@
     {
       "file": "editorial-home.png",
       "provenance": "live",
+      "capturedAt": "2026-10-05T05:29:59.391Z",
       "route": "/en",
       "mode": "editorial",
       "width": 1440,
       "height": 1000,
-      "contentState": "placeholder homepage; no published project records"
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
     },
     {
       "file": "engineer-home.png",
       "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:00.974Z",
       "route": "/en",
       "mode": "engineer",
       "width": 1440,
       "height": 1000,
-      "contentState": "placeholder homepage; no published project records"
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
     },
     {
       "file": "digital-home.png",
       "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:02.656Z",
       "route": "/en",
       "mode": "digital",
       "width": 1440,
       "height": 1000,
-      "contentState": "placeholder homepage; no published project records"
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
     },
     {
       "file": "theme-morphing.webm",
       "provenance": "live recording",
       "route": "/en",
-      "sequence": [
-        "editorial",
-        "engineer",
-        "digital",
-        "editorial"
-      ],
+      "sequence": ["editorial", "engineer", "digital", "editorial"],
       "width": 1440,
       "height": 1000,
       "note": "Unedited browser recording including loading and control activation, not a latency measurement."
@@ -126,11 +127,7 @@
       "width": 1440,
       "height": 1000,
       "route": "/dev/projects/portfolio",
-      "sequence": [
-        "editorial",
-        "engineer",
-        "digital"
-      ],
+      "sequence": ["editorial", "engineer", "digital"],
       "note": "Unedited local recording of the real draft disclosure, opening and closing in each mode. Phase labels are capture-only; there is no audio or timing benchmark."
     },
     {
@@ -140,12 +137,117 @@
       "width": 1440,
       "height": 1000,
       "route": "/dev/projects/portfolio",
-      "sequence": [
-        "editorial",
-        "engineer",
-        "digital"
-      ],
+      "sequence": ["editorial", "engineer", "digital"],
       "note": "Unedited local recording of the real draft disclosure, opening and closing in each mode. Phase labels are capture-only; there is no audio or timing benchmark."
+    },
+    {
+      "file": "chronicle-before-home.png",
+      "provenance": "initial capture",
+      "source": "docs/projects/portfolio/evidence/chronicle-initial/header-desktop.png",
+      "capturedAt": "2026-10-03T19:40:16.998Z",
+      "route": "/en",
+      "width": 1440,
+      "height": 900,
+      "note": "First Chronicle build on the public homepage; no projects were published yet. Unmodified copy of the original capture."
+    },
+    {
+      "file": "chronicle-before-mobile.png",
+      "provenance": "initial capture",
+      "source": "docs/projects/portfolio/evidence/chronicle-initial/header-mobile.png",
+      "capturedAt": "2026-10-03T19:40:16.998Z",
+      "route": "/en",
+      "width": 390,
+      "height": 844,
+      "note": "First Chronicle build on the public homepage, portrait phone viewport; no projects were published yet. Unmodified copy of the original capture."
+    },
+    {
+      "file": "chronicle-home.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:04.411Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
+    },
+    {
+      "file": "chronicle-landscape-home.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:06.000Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 844,
+      "height": 390,
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
+    },
+    {
+      "file": "chronicle-portrait-home.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:07.585Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 390,
+      "height": 844,
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
+    },
+    {
+      "file": "chronicle-case-study.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:09.473Z",
+      "route": "/en/work/portfolio",
+      "mode": "chronicle",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
+    },
+    {
+      "file": "chronicle-case-study-landscape.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:11.197Z",
+      "route": "/en/work/portfolio",
+      "mode": "chronicle",
+      "width": 844,
+      "height": 390,
+      "motion": "reduced for stable capture",
+      "contentState": "published portfolio and Japan Travel Planner records"
+    },
+    {
+      "file": "chronicle-interactions.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-05T05:30:28.460Z",
+      "route": "/en → /en/work/japan-travel-planner → /en",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "Editorial to Chronicle theme morph",
+        "card select and arm",
+        "second tap opens case study (card-to-banner)",
+        "chapter rail navigation",
+        "crystal image gallery open and close",
+        "browser Back (banner furls into card)"
+      ],
+      "note": "Unedited local recording with capture-only phase labels and no audio; not a benchmark."
+    },
+    {
+      "file": "chronicle-interactions.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-05T05:30:28.460Z",
+      "route": "/en → /en/work/japan-travel-planner → /en",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "Editorial to Chronicle theme morph",
+        "card select and arm",
+        "second tap opens case study (card-to-banner)",
+        "chapter rail navigation",
+        "crystal image gallery open and close",
+        "browser Back (banner furls into card)"
+      ],
+      "note": "Unedited local recording with capture-only phase labels and no audio; not a benchmark."
     }
   ],
   "updatedAt": "2026-10-03T13:32:24.630Z"

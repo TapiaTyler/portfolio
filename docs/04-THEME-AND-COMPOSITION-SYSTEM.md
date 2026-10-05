@@ -53,6 +53,12 @@ The active mode selects both:
 1. a theme token set;
 2. a composition profile.
 
+Chronicle (`chronicle`) was explicitly authorized as an additional mode on
+2026-10-03, after the original three-mode implementation. Its horizontal discovery
+and chapter-based reading composition follows the image reference documented in
+[CHRONICLE-IMPLEMENTATION.md](CHRONICLE-IMPLEMENTATION.md). Product and Graphic
+remain unimplemented future modes.
+
 ## Shared semantic contract
 
 High-level page components operate on shared content.

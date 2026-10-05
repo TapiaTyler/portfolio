@@ -9,7 +9,13 @@ import { locales, pathForLocale, type Locale } from "@/lib/i18n/locales";
 let pendingSlide: { from: Locale; to: Locale } | undefined;
 let previousLocale: Locale | undefined;
 
-export function LocaleSwitcher({ locale }: { locale: Locale }) {
+export function LocaleSwitcher({
+  locale,
+  routePath,
+}: {
+  locale: Locale;
+  routePath?: string;
+}) {
   const pathname = usePathname();
   const indicator = useRef<HTMLSpanElement>(null);
   useEffect(() => {
@@ -67,7 +73,7 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
       {locales.map((option) => (
         <Link
           key={option}
-          href={pathForLocale(pathname, option)}
+          href={pathForLocale(routePath ?? pathname, option)}
           hrefLang={option}
           lang="en"
           aria-current={locale === option ? "page" : undefined}
@@ -84,7 +90,7 @@ export function LocaleSwitcher({ locale }: { locale: Locale }) {
             if (option !== locale) pendingSlide = { from: locale, to: option };
           }}
         >
-          {option.toUpperCase()}
+          {option === "ja" ? "JP" : "EN"}
         </Link>
       ))}
     </nav>

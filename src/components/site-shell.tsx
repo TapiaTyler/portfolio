@@ -11,14 +11,16 @@ import { identity } from "@/content/identity";
 export function SiteShell({
   children,
   locale,
+  localeRoutePath,
 }: {
   children: ReactNode;
   locale: Locale;
+  localeRoutePath?: string;
 }) {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        Skip to Content
       </a>
       <header className="site-header" data-theme-transition-scope>
         <div className="site-header__inner" data-motion-id="site-navigation">
@@ -35,13 +37,13 @@ export function SiteShell({
             items={navigation}
             controls={
               <>
-                <LocaleSwitcher locale={locale} />
+                <LocaleSwitcher locale={locale} routePath={localeRoutePath} />
                 <ThemeSwitcher options={themeOptions} />
               </>
             }
           />
           <div className="site-controls site-controls--desktop">
-            <LocaleSwitcher locale={locale} />
+            <LocaleSwitcher locale={locale} routePath={localeRoutePath} />
             <ThemeSwitcher options={themeOptions} />
           </div>
         </div>
@@ -64,7 +66,7 @@ export function SiteShell({
       <footer className="site-footer" data-theme-transition-scope>
         <div className="site-footer__inner" data-motion-id="site-footer">
           <span>{identity.name}</span>
-          <span>Portfolio preview</span>
+          <span>Portfolio Preview</span>
         </div>
       </footer>
     </>

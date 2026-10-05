@@ -24,7 +24,7 @@ export function caseStudySections(content: ProjectContent, anchorPrefix = "") {
       architecture: "Architecture",
       decision: "Decision",
       challenge: "Challenge",
-      technical: "Technical details",
+      technical: "Technical Details",
       result: "Result",
     };
     return [

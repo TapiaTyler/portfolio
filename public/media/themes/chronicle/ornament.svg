@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="420" viewBox="0 0 140 420" fill="none">
+  <defs><linearGradient id="prism" x2="1" y2="1"><stop stop-color="#acd6ff" stop-opacity=".6"/><stop offset=".5" stop-color="#dbb0f6" stop-opacity=".45"/><stop offset="1" stop-color="#f9cbdf" stop-opacity=".7"/></linearGradient></defs>
+  <path d="M0 0 82 46 18 126 103 192 37 278 75 355 0 420Z" fill="url(#prism)"/>
+  <path d="M0 0 18 126 82 46 37 278 103 192 75 355 0 420M0 183 103 192M0 320 75 355M0 57 82 46" stroke="#fff" stroke-opacity=".9"/>
+  <path d="M0 246Q43 199 91 186M25 220 46 162M45 205 90 222" stroke="#976287" stroke-opacity=".4"/>
+  <g fill="#e9a4c8" fill-opacity=".6"><path d="M88 183Q63 169 73 157Q83 150 88 169Q98 148 107 161Q113 173 94 180Q119 178 114 192Q108 204 94 190Q94 215 80 208Q70 199 86 188Q61 199 60 186Q62 174 88 183Z"/><path d="M44 166Q27 157 34 149Q42 145 44 157Q51 145 57 153Q61 161 49 164Q63 164 61 173Q56 180 48 172Q49 187 40 183Q33 178 42 170Q27 178 26 169Q28 161 44 166Z"/></g>
+  <path d="M69 306Q93 288 85 280Q65 282 69 306ZM35 85Q62 81 56 65Q36 66 35 85Z" fill="#f5c0dd" fill-opacity=".6"/>
+</svg>

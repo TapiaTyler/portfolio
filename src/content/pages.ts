@@ -12,14 +12,14 @@ export const pageContent = {
     sections: [
       {
         id: "work-collection",
-        title: "Project collection",
+        title: "Project Collection",
         collection: true,
         emptyText: homepageContent.work.emptyText,
       },
     ],
     related: [
-      { label: "About my approach", destination: "/about" },
-      { label: "Explore the lab", destination: "/lab" },
+      { label: "About My Approach", destination: "/about" },
+      { label: "Explore the Lab", destination: "/lab" },
     ],
   },
   about: {
@@ -46,7 +46,7 @@ export const pageContent = {
       },
       {
         id: "background",
-        title: "Background & experience",
+        title: "Background & Experience",
         paragraphs: [
           homepageContent.about.paragraphs[1],
           placeholderPages.about.description,
@@ -54,8 +54,8 @@ export const pageContent = {
       },
     ],
     related: [
-      { label: "Explore the work", destination: "/work" },
-      { label: "Start a conversation", destination: "/contact" },
+      { label: "Explore the Work", destination: "/work" },
+      { label: "Start a Conversation", destination: "/contact" },
     ],
   },
   lab: {
@@ -65,14 +65,14 @@ export const pageContent = {
     sections: [
       {
         id: "lab-collection",
-        title: "Studies & explorations",
+        title: "Studies & Explorations",
         collection: true,
         emptyText: homepageContent.lab.emptyText,
       },
     ],
     related: [
-      { label: "Explore the work", destination: "/work" },
-      { label: "About my approach", destination: "/about" },
+      { label: "Explore the Work", destination: "/work" },
+      { label: "About My Approach", destination: "/about" },
     ],
   },
   contact: {
@@ -83,13 +83,13 @@ export const pageContent = {
     sections: [
       {
         id: "contact-methods",
-        title: "Start a conversation",
+        title: "Start a Conversation",
         paragraphs: [placeholderPages.contact.description],
       },
     ],
     related: [
-      { label: "Explore the work", destination: "/work" },
-      { label: "About my approach", destination: "/about" },
+      { label: "Explore the Work", destination: "/work" },
+      { label: "About My Approach", destination: "/about" },
     ],
   },
 } satisfies Record<string, SecondaryPageContent>;

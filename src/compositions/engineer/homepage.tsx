@@ -29,7 +29,7 @@ export function EngineerHomepage({
           aria-labelledby="project-overview-heading"
         >
           <h2 id="project-overview-heading" className="engineer-panel-label">
-            Project overview
+            Project Overview
           </h2>
           <div className="engineer-project-overview__body">
             <p className="engineer-index-count">

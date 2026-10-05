@@ -2,7 +2,7 @@ export const capabilities = {
   "product-ui-engineering": { label: "Product & UI Engineering" },
   "frontend-development": { label: "Frontend Development" },
   "backend-development": { label: "Backend Development" },
-  "full-stack-development": { label: "Full-stack Development" },
+  "full-stack-development": { label: "Full-Stack Development" },
   "system-architecture": { label: "System Architecture" },
   "api-design": { label: "API Design" },
   "data-modeling": { label: "Data Modeling" },

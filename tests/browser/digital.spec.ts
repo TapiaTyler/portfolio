@@ -22,8 +22,8 @@ test("Digital renders a responsive spatial composition with local fonts and nati
       .evaluate((element) => getComputedStyle(element).fontFamily),
   ).toContain("interfaceFont");
   await expect(
-    page.getByRole("link", { name: "Explore work", exact: true }),
-  ).toHaveText("Explore work");
+    page.getByRole("link", { name: "Explore Work", exact: true }),
+  ).toHaveText("Explore Work");
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     expect(

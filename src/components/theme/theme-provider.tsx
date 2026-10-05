@@ -40,9 +40,10 @@ export function ThemeProvider({
   const previousTheme = useRef(theme);
   useLayoutEffect(() => routes.connect(), [routes]);
   useEffect(() => {
-    const skipVisible = previousTheme.current !== theme || routes.running;
+    const enteredTheme = previousTheme.current !== theme;
+    const skipVisible = enteredTheme || routes.running;
     previousTheme.current = theme;
-    return setupPageMotion(skipVisible);
+    return setupPageMotion(skipVisible, enteredTheme);
   }, [theme, pathname, query, routes]);
   useLayoutEffect(
     () => routes.committed(pathname + (query ? `?${query}` : "")),

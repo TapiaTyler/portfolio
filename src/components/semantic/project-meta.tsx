@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/content/schema";
 import { technologies } from "@/registries/technologies";
 import { capabilities } from "@/registries/capabilities";
+import { projectStatusLabels } from "@/lib/content/status";
 
 export function ProjectMeta({
   project,
@@ -10,7 +11,7 @@ export function ProjectMeta({
   exclude?: string[];
 }) {
   const entries: [string, string | undefined][] = [
-    ["Status", project.status],
+    ["Status", projectStatusLabels[project.status]],
     ["Year", project.year?.toString()],
     ["Type", project.type.length ? project.type.join(" / ") : undefined],
     ["Role", project.roles.length ? project.roles.join(" / ") : undefined],
@@ -45,9 +46,9 @@ export function ProjectMeta({
 
 export function ProjectLinks({ project }: { project: Project }) {
   const links = [
-    { label: "Open live project", href: project.links?.live },
-    { label: "View source", href: project.links?.repository },
-    { label: "Read documentation", href: project.links?.documentation },
+    { label: "Open Live Project", href: project.links?.live },
+    { label: "View Source", href: project.links?.repository },
+    { label: "Read Documentation", href: project.links?.documentation },
   ].filter((link) => link.href);
   if (!links.length) return null;
   return (

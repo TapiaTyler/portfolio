@@ -8,6 +8,7 @@ import {
 import type { ThemeId } from "@/lib/theme/ids";
 import { isThemeId } from "@/lib/theme/ids";
 import { useTheme, useThemeTransition } from "./theme-provider";
+import { useDismissibleDisclosure } from "../use-dismissible-disclosure";
 
 export function ThemeSwitcher({
   options,
@@ -17,6 +18,7 @@ export function ThemeSwitcher({
   const theme = useTheme();
   const transitions = useThemeTransition();
   const picker = useRef<HTMLDetailsElement>(null);
+  useDismissibleDisclosure(picker, theme);
   const [state, action, pending] = useActionState<ThemeActionState, FormData>(
     saveThemePreference,
     {},

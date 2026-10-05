@@ -5,8 +5,9 @@ import { EngineerHomepage } from "./homepage";
 import { EngineerProjectFeature } from "./project-feature";
 import { EngineerCaseStudyIntro } from "./case-study-intro";
 import { EngineerCaseStudy } from "./case-study";
-import { EngineerBlock } from "./record-block";
 
+// Record framing lives in the grouped case-study body; blockRenderers is reserved
+// for block-specific treatments inside that frame.
 export const engineerComposition = {
   SecondaryPage: EngineerSecondaryPage,
   Hero: EngineerHero,
@@ -14,15 +15,4 @@ export const engineerComposition = {
   ProjectFeature: EngineerProjectFeature,
   CaseStudyIntro: EngineerCaseStudyIntro,
   CaseStudy: EngineerCaseStudy,
-  blockRenderers: {
-    intro: EngineerBlock,
-    problem: EngineerBlock,
-    goals: EngineerBlock,
-    challenge: EngineerBlock,
-    result: EngineerBlock,
-    architecture: EngineerBlock,
-    decision: EngineerBlock,
-    technical: EngineerBlock,
-    constraints: EngineerBlock,
-  },
 } satisfies CompositionProfile;

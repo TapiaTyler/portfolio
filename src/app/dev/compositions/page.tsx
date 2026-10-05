@@ -9,6 +9,7 @@ import { themeRegistry } from "@/registries/themes";
 import { getActiveTheme } from "@/lib/theme/server";
 import { homepageContent } from "@/content/placeholder";
 import { pageContent } from "@/content/pages";
+import { projectSchema } from "@/lib/content/schema";
 
 export default async function CompositionsPage({
   searchParams,
@@ -18,6 +19,7 @@ export default async function CompositionsPage({
     project?: string;
     surface?: string;
     motion?: string;
+    inventory?: string;
   }>;
 }) {
   if (process.env.NODE_ENV !== "development") notFound();
@@ -94,27 +96,42 @@ export default async function CompositionsPage({
   }
   if (query.surface === "homepage") {
     const composition = resolveComposition(await getActiveTheme());
+    const realInventory = query.inventory === "projects";
+    const projects = realInventory
+      ? (await import("@/content/projects")).projectRecords.map((record) =>
+          projectSchema.parse(record),
+        )
+      : catalog.getPublishedProjects();
     return (
-      <>
-        <p className="eyebrow">Development only / synthetic homepage content</p>
-        <Link href="/dev/compositions">Compare case studies</Link>
-        <p>{disclosurePreview}</p>
-        {motionControls}
+      <div className="composition-home-review">
+        <header className="composition-review-tools">
+          <p className="eyebrow">
+            Development only /{" "}
+            {realInventory
+              ? "reviewed draft projects"
+              : "synthetic homepage content"}
+          </p>
+          <Link href="/dev/compositions">Compare case studies</Link>
+          <p>{disclosurePreview}</p>
+          {motionControls}
+        </header>
         <div
-          className={reduced ? "motion-preview--reduced" : undefined}
+          className={`composition-review-stage${reduced ? " motion-preview--reduced" : ""}`}
           data-theme-transition-scope
         >
           <composition.Homepage
             content={homepageContent}
             locale={locale}
-            projects={catalog.getPublishedProjects()}
-            assetUrl={assetUrl}
+            projects={projects}
+            assetUrl={realInventory ? undefined : assetUrl}
             projectHref={(record) =>
-              `/dev/compositions?locale=${locale}&project=${record.slug}&surface=project${reduced ? "&motion=reduce" : ""}`
+              realInventory
+                ? `/dev/projects/${record.slug}?locale=${locale}`
+                : `/dev/compositions?locale=${locale}&project=${record.slug}&surface=project${reduced ? "&motion=reduce" : ""}`
             }
           />
         </div>
-      </>
+      </div>
     );
   }
   return (

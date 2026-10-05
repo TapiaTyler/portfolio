@@ -3,6 +3,7 @@ import type { ThemeTokens } from "@/themes/contract";
 import { editorialTokens } from "@/themes/editorial/tokens";
 import { engineerTokens } from "@/themes/engineer/tokens";
 import { digitalTokens } from "@/themes/digital/tokens";
+import { chronicleTokens } from "@/themes/chronicle/tokens";
 
 interface ThemeDefinition {
   label: string;
@@ -18,6 +19,11 @@ export const themeRegistry = {
   },
   engineer: { label: "Engineer", colorScheme: "dark", tokens: engineerTokens },
   digital: { label: "Digital", colorScheme: "dark", tokens: digitalTokens },
+  chronicle: {
+    label: "Chronicle",
+    colorScheme: "light",
+    tokens: chronicleTokens,
+  },
 } satisfies Record<ThemeId, ThemeDefinition>;
 
 // Only labels and IDs enter the switcher's client bundle; tokens stay on the server.

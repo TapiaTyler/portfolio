@@ -126,7 +126,7 @@ test("Engineer inspects only actual connections and copies the full snippet with
   await expect(copy).toHaveText("Copied");
   await page.evaluate(() => Reflect.set(window, "clipboardFailure", true));
   await copy.click();
-  await expect(copy).toHaveText("Copy unavailable");
+  await expect(copy).toHaveText("Copy Unavailable");
   await expect(page.locator(".code-snippet [role=status]")).toContainText(
     "Select the code sample",
   );
@@ -148,7 +148,7 @@ test("Engineer record presses brighten the surface and release without adding a 
     document.documentElement.style.scrollBehavior = "auto";
   });
   const record = page.locator(".engineer-project").first();
-  const link = record.getByRole("link", { name: "Explore the project" });
+  const link = record.getByRole("link", { name: "Explore the Project" });
   await link.hover();
   await page.mouse.down();
   await expect(record).toHaveAttribute("data-record-pressed", "");
@@ -168,7 +168,7 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
   ]);
   await page.goto("/dev/compositions?surface=project&project=fixture-visual");
   const frame = page.locator(".case-study .media-frame").first();
-  const trigger = frame.getByRole("button", { name: /^View image:/ });
+  const trigger = frame.getByRole("button", { name: /^View Image:/ });
   await frame.scrollIntoViewIfNeeded();
   await expect(trigger).toBeVisible();
   const source = await frame
@@ -178,20 +178,20 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
   const dialog = page.getByRole("dialog", { name: "Project image gallery" });
   await expect(dialog).toBeVisible();
   await expect(
-    dialog.getByRole("button", { name: "Close gallery" }),
+    dialog.getByRole("button", { name: "Close Gallery" }),
   ).toBeFocused();
   expect(await dialog.locator("img").getAttribute("src")).toBe(source);
   await page.keyboard.press("Tab");
   await expect(
-    dialog.getByRole("button", { name: "Previous image" }),
+    dialog.getByRole("button", { name: "Previous Image" }),
   ).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(
-    dialog.getByRole("button", { name: "Next image" }),
+    dialog.getByRole("button", { name: "Next Image" }),
   ).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(
-    dialog.getByRole("button", { name: "Close gallery" }),
+    dialog.getByRole("button", { name: "Close Gallery" }),
   ).toBeFocused();
   await dialog
     .locator("img")
@@ -227,7 +227,7 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
   await expect(dialog.getByRole("status")).toHaveText("Image 1 of 3");
   await page.keyboard.press("ArrowRight");
   await expect(dialog.getByRole("status")).toHaveText("Image 2 of 3");
-  await dialog.getByRole("button", { name: "Next image" }).click();
+  await dialog.getByRole("button", { name: "Next Image" }).click();
   await expect(dialog.getByRole("status")).toHaveText("Image 3 of 3");
   const portrait = page
     .locator('.case-study .media-frame[data-media-aspect="portrait"]')
@@ -239,10 +239,10 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
       .evaluate((image) => (image as HTMLImageElement).src),
   );
   await page.screenshot({ path: ".cache/digital-gallery-portrait.png" });
-  await dialog.getByRole("button", { name: "Close gallery" }).click();
+  await dialog.getByRole("button", { name: "Close Gallery" }).click();
   await expect(dialog).toHaveCount(0);
   await expect(
-    portrait.getByRole("button", { name: /^View image:/ }),
+    portrait.getByRole("button", { name: /^View Image:/ }),
   ).toBeFocused();
   await expect(portrait).toBeInViewport();
   await page.screenshot({
@@ -269,7 +269,7 @@ test("Digital gallery contracts into the last browsed frame and varies page imag
   });
   const frames = page.locator(".case-study .media-frame");
   const intro = frames.first();
-  await intro.getByRole("button", { name: /^View image:/ }).click();
+  await intro.getByRole("button", { name: /^View Image:/ }).click();
   const dialog = page.getByRole("dialog", { name: "Project image gallery" });
   await dialog
     .locator("img")
@@ -283,7 +283,7 @@ test("Digital gallery contracts into the last browsed frame and varies page imag
     .evaluate((image) =>
       image.getAnimations().forEach((animation) => animation.finish()),
     );
-  await dialog.getByRole("button", { name: "Close gallery" }).click();
+  await dialog.getByRole("button", { name: "Close Gallery" }).click();
   const closing = await dialog.locator("img").evaluate((image) => {
     const animation = image
       .getAnimations()
@@ -303,7 +303,7 @@ test("Digital gallery contracts into the last browsed frame and varies page imag
     );
   await expect(dialog).toHaveCount(0);
   await expect(
-    portrait.getByRole("button", { name: /^View image:/ }),
+    portrait.getByRole("button", { name: /^View Image:/ }),
   ).toBeFocused();
   const introWidth = (await intro.boundingBox())!.width;
   const portraitWidth = (await portrait.boundingBox())!.width;
@@ -327,7 +327,7 @@ test("Digital contextual labels accompany the native pointer only on actionable 
   const link = page
     .locator(".digital-project")
     .first()
-    .getByRole("link", { name: "Explore the project" });
+    .getByRole("link", { name: "Explore the Project" });
   await link.hover();
   await expect(page.locator(".project-pointer-label")).toBeVisible();
   await expect(page.locator(".project-pointer-label")).toHaveCSS(

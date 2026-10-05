@@ -59,7 +59,7 @@ export const japanTravelPlannerProject = {
     "testing-quality",
     "security",
   ],
-  publication: { status: "draft", featured: false, priority: 1 },
+  publication: { status: "published", featured: true, priority: 1 },
   links: {
     live: "https://japan-travel-planner-production.up.railway.app/",
     repository: "https://github.com/TapiaTyler/japan-travel-planner",

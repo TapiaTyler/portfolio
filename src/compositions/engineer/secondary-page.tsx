@@ -17,7 +17,7 @@ export function EngineerSecondaryPage(props: SecondaryPageProps) {
               aria-label="Page sections"
               data-motion-id="page-index"
             >
-              <p className="eyebrow">Record index</p>
+              <p className="eyebrow">Record Index</p>
               <ol>
                 {props.content.sections.map((section) => (
                   <li key={section.id}>

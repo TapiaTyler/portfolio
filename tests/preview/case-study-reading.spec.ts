@@ -11,7 +11,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/dev/projects/portfolio");
     const study = page.locator(".case-study");
-    const brief = study.getByRole("region", { name: "Project at a glance" });
+    const brief = study.getByRole("region", { name: "Project at a Glance" });
     await expect(brief).toContainText("AI-assisted development");
     await expect(brief).toContainText(
       "deployed performance verification remain pending",

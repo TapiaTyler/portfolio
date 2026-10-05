@@ -48,3 +48,14 @@ their owner's record/surface in Engineer and Digital without nested media cards.
 Next review: directory hierarchy, evidence captions and the focused recordings.
 Then continue refining the remaining Work, About, Lab and Contact screens before
 publication/featured review and populated deployed performance verification.
+
+To refresh the Chronicle before/after set and the homepage captures against an
+already-running server (a second dev server cannot start beside it):
+
+```sh
+node scripts/capture-portfolio-chronicle.mjs --base http://localhost:3000
+```
+
+"Before" images are crops of the preserved `evidence/chronicle-initial` captures;
+everything else is captured live with reduced motion, plus one unedited recording
+(`chronicle-interactions.webm`). The script merges its entries into the manifest.

@@ -83,12 +83,14 @@ export function setupDigitalMedia() {
     const from = origin.image.getBoundingClientRect();
     const dialog = document.createElement("dialog");
     dialog.className = "media-viewer";
-    dialog.dataset.theme = "digital";
+    dialog.dataset.theme =
+      origin.figure.closest<HTMLElement>("[data-theme]")?.dataset.theme ??
+      "digital";
     dialog.setAttribute("aria-label", "Project image gallery");
     const closeButton = document.createElement("button");
     closeButton.type = "button";
     closeButton.className = "media-viewer__close";
-    closeButton.textContent = "Close gallery";
+    closeButton.textContent = "Close Gallery";
     closeButton.autofocus = true;
     const stage = document.createElement("div");
     stage.className = "media-viewer__stage";
@@ -100,10 +102,10 @@ export function setupDigitalMedia() {
     navigation.className = "media-viewer__navigation";
     const previous = document.createElement("button");
     previous.type = "button";
-    previous.textContent = "Previous image";
+    previous.textContent = "Previous Image";
     const next = document.createElement("button");
     next.type = "button";
-    next.textContent = "Next image";
+    next.textContent = "Next Image";
     const counter = document.createElement("span");
     counter.setAttribute("role", "status");
     counter.setAttribute("aria-atomic", "true");
@@ -153,17 +155,28 @@ export function setupDigitalMedia() {
     render();
     document.documentElement.style.overflow = "hidden";
     dialog.showModal();
+    // Chronicle opens images through a crystal: a diamond grows from the centre
+    // until it covers the frame (same four vertices, so it interpolates cleanly).
+    const crystal = dialog.dataset.theme === "chronicle";
+    const crystalClosed = "polygon(50% 40%, 60% 50%, 50% 60%, 40% 50%)";
+    const crystalOpen = "polygon(50% -50%, 150% 50%, 50% 150%, -50% 50%)";
     const map = (source: DOMRect, destination: DOMRect) =>
       `translate(${source.left - destination.left}px, ${source.top - destination.top}px) scale(${source.width / Math.max(1, destination.width)}, ${source.height / Math.max(1, destination.height)})`;
     if (motionAllowed(origin.figure))
       viewer.animations.push(
         expanded.animate(
           [
-            { transform: map(from, expanded.getBoundingClientRect()) },
-            { transform: "translate(0, 0) scale(1)" },
+            {
+              transform: map(from, expanded.getBoundingClientRect()),
+              ...(crystal ? { clipPath: crystalClosed } : {}),
+            },
+            {
+              transform: "translate(0, 0) scale(1)",
+              ...(crystal ? { clipPath: crystalOpen } : {}),
+            },
           ],
           {
-            duration: 520,
+            duration: crystal ? 600 : 520,
             easing: "cubic-bezier(0.16, 1, 0.3, 1)",
             fill: "backwards",
           },
@@ -223,8 +236,15 @@ export function setupDigitalMedia() {
       const destination = expanded.getBoundingClientRect();
       const animation = expanded.animate(
         [
-          { transform: map(current, destination) },
-          { transform: map(target, destination), opacity: 0.35 },
+          {
+            transform: map(current, destination),
+            ...(crystal ? { clipPath: crystalOpen } : {}),
+          },
+          {
+            transform: map(target, destination),
+            opacity: 0.35,
+            ...(crystal ? { clipPath: crystalClosed } : {}),
+          },
         ],
         {
           duration: 360,
@@ -233,8 +253,14 @@ export function setupDigitalMedia() {
         },
       );
       viewer.animations.push(animation);
+      // Cleanup must not depend on the animation: an interrupted or stalled close
+      // would otherwise leave the page scroll-locked behind a modal dialog.
+      const fallback = window.setTimeout(() => {
+        if (active === viewer) shut();
+      }, 600);
       void animation.finished.then(
         () => {
+          window.clearTimeout(fallback);
           if (active === viewer) shut();
         },
         () => {},
@@ -279,12 +305,19 @@ export function setupDigitalMedia() {
     // Removed with the dialog even when navigation interrupts a decode or animation.
     const removeResize = () => window.removeEventListener("resize", fit);
     dialog.addEventListener("close", removeResize, { once: true });
+    // The browser can close a modal dialog itself (a repeated Escape or the Android
+    // back gesture without a cancelable "cancel"); release the scroll lock then too.
+    dialog.addEventListener("close", () => {
+      if (active === viewer) shut();
+    });
   }
   for (const figure of document.querySelectorAll<HTMLElement>(
     ".case-study .media-frame",
   )) {
     if (
-      figure.closest<HTMLElement>("[data-theme]")?.dataset.theme !== "digital"
+      !["digital", "chronicle"].includes(
+        figure.closest<HTMLElement>("[data-theme]")?.dataset.theme ?? "",
+      )
     )
       continue;
     const candidate = figure.querySelector<HTMLImageElement>("img");
@@ -293,8 +326,8 @@ export function setupDigitalMedia() {
     const trigger = document.createElement("button");
     trigger.type = "button";
     trigger.className = "media-view-trigger";
-    trigger.textContent = "View image";
-    trigger.setAttribute("aria-label", `View image: ${image.alt}`);
+    trigger.textContent = "View Image";
+    trigger.setAttribute("aria-label", `View Image: ${image.alt}`);
     figure.insertBefore(trigger, figure.querySelector("figcaption"));
     const item: GalleryItem = { figure, image, trigger, failed: false };
     items.push(item);
@@ -317,11 +350,18 @@ export function setupDigitalMedia() {
     image.addEventListener("error", failed);
     availability();
     const activate = () => open(item);
+    // The image itself is also a touch target; the button remains the keyboard
+    // and screen-reader path. Images inside links keep their link behaviour.
+    const activateImage = () => {
+      if (!trigger.hidden && !image.closest("a")) open(item);
+    };
     trigger.addEventListener("click", activate);
+    image.addEventListener("click", activateImage);
     disposers.push(() => {
       observer.disconnect();
       trigger.remove();
       trigger.removeEventListener("click", activate);
+      image.removeEventListener("click", activateImage);
       image.removeEventListener("load", availability);
       image.removeEventListener("error", failed);
     });

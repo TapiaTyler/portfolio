@@ -186,6 +186,8 @@ export function CaseStudyBlock({
               : undefined
           }
           data-motion-id={`block-${id}`}
+          // Supporting evidence moves with its owner; it is never a reading anchor.
+          data-motion-supporting={block.supportsBlockId ? "" : undefined}
           lang="en"
         >
           <MediaFrame
@@ -264,7 +266,7 @@ export function CaseStudyBlock({
           ),
         },
         {
-          label: "Current result",
+          label: "Current Result",
           value: resolveOptionalValue(block.result, translated?.result, locale),
         },
       ];

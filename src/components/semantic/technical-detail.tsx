@@ -50,7 +50,7 @@ export function TechnicalDetail({
         <details open={block.defaultExpanded}>
           <summary lang="en">
             <span className="technical-detail__indicator" aria-hidden="true" />
-            Read implementation details
+            Read Implementation Details
           </summary>
           <div className="technical-detail__content">
             <div className="technical-detail__body">

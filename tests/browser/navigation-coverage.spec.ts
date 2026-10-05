@@ -68,7 +68,7 @@ for (const [mode, kind] of [
     await finish();
     await page
       .getByRole("navigation", { name: "Language" })
-      .getByRole("link", { name: "JA", exact: true })
+      .getByRole("link", { name: "JP", exact: true })
       .click();
     await expect(page).toHaveURL(/\/ja\/work$/);
     await finish();
@@ -105,7 +105,7 @@ test("history remains usable without the Navigation API and same-page anchors re
     }),
   );
   await page.goto("/en");
-  await page.getByRole("link", { name: "Skip to content" }).focus();
+  await page.getByRole("link", { name: "Skip to Content" }).focus();
   await page.keyboard.press("Enter");
   await expect(page.locator("html")).not.toHaveAttribute(
     "data-route-transition",

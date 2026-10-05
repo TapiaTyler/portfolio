@@ -19,6 +19,8 @@ import "@/styles/theme-transition.css";
 import "@/styles/interaction.css";
 import "@/styles/microinteraction.css";
 import "@/styles/route-transition.css";
+import "@/styles/chronicle.css";
+import "@/styles/chronicle-header.css";
 
 // One server-rendered composition is selected from the incoming preference cookie.
 export const dynamic = "force-dynamic";
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: readSiteConfig().url,
   robots: { index: readSiteConfig().indexable, follow: true },
   title: {
-    default: `${identity.name} | Portfolio preview`,
+    default: `${identity.name} | Portfolio Preview`,
     template: `%s | ${identity.name}`,
   },
   description: `A preview of ${identity.name}'s portfolio website.`,
@@ -48,7 +50,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} data-theme={theme} className={fontVariables}>
       <head>
-        <ThemeStyles />
+        <ThemeStyles theme={theme} />
       </head>
       <body>
         {/* Interface labels stay English for now; project fields declare their own language. */}

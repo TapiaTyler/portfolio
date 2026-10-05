@@ -1,7 +1,14 @@
 import { isThemeId } from "@/lib/theme/ids";
 import { setupMicrointeractions } from "./microinteractions";
+import { setupChronicleEntrance } from "./chronicle-entrance";
 
 export const motionProfiles = {
+  chronicle: {
+    distance: 12,
+    duration: 520,
+    stagger: 55,
+    easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+  },
   editorial: {
     distance: 12,
     duration: 600,
@@ -23,11 +30,12 @@ export const motionProfiles = {
 };
 
 /** Enhance visible semantic modules without hiding content before hydration or observation. */
-export function setupPageMotion(skipVisible: boolean) {
+export function setupPageMotion(skipVisible: boolean, enteredTheme = false) {
   const cleanupMicrointeractions = setupMicrointeractions();
   if (!window.IntersectionObserver || !Element.prototype.animate)
     return cleanupMicrointeractions;
   document.documentElement.dataset.motionEnhanced = "";
+  const cleanupChronicle = setupChronicleEntrance(skipVisible, enteredTheme);
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const active = new Map<Animation, HTMLElement>();
@@ -98,6 +106,12 @@ export function setupPageMotion(skipVisible: boolean) {
           element.closest(".motion-preview--reduced") ||
           document.documentElement.dataset.themeTransition ||
           document.documentElement.dataset.routeTransition
+        )
+          continue;
+        // Chronicle deals its strip cards itself (chronicle-entrance.ts).
+        if (
+          mode === "chronicle" &&
+          element.closest(".chronicle-selection__track")
         )
           continue;
         const profile = motionProfiles[mode];
@@ -223,6 +237,7 @@ export function setupPageMotion(skipVisible: boolean) {
   reduced.addEventListener("change", preferenceChanged);
   return () => {
     cleanupMicrointeractions();
+    cleanupChronicle();
     delete document.documentElement.dataset.motionEnhanced;
     observer.disconnect();
     settle();

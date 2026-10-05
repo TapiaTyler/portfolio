@@ -23,10 +23,10 @@ export function EngineerCaseStudy(props: ComponentProps<typeof CaseStudy>) {
     systemBlocks.length > 0 ? (
       <aside
         className="engineer-system-overview"
-        aria-label="System overview"
+        aria-label="System Overview"
         lang="en"
       >
-        <p className="engineer-panel-label">System overview</p>
+        <p className="engineer-panel-label">System Overview</p>
         <nav aria-label="Technical sections">
           <ul>
             {systemBlocks.map(({ block, translation }) => {
@@ -114,7 +114,7 @@ export function EngineerCaseStudy(props: ComponentProps<typeof CaseStudy>) {
         IntroRenderer={EngineerCaseStudyIntro}
         afterIntro={overview}
         BodyRenderer={EngineerCaseStudyBody}
-        navigationLabel="Section directory"
+        navigationLabel="Section Directory"
         navigationDirectory={content.project.slug}
       />
     </div>

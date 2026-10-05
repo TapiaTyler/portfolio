@@ -2,6 +2,103 @@
 
 Last updated: 2026-10-03.
 
+## Chronicle — additional mode implementation
+
+- [x] Landscape-phone layer (2026-10-04): two snapped home screens with identity beside
+      discovery; case-study identity/rail column beside a full-height reading panel;
+      Work/About identity beside content. Uniform home-tab headers, fewer redundant
+      keyboard stops, canonical titles in chapter-link names, shared status labels and a
+      shared grouped case-study body that honors block renderers (D037). Unit tests,
+      lint, formatting and 28 targeted preview scenarios passed.
+- [x] Reference-alignment pass (2026-10-04): centred header with larger links, 700
+      display titles, wider framed card evidence, slash topics, full rail titles,
+      larger reading text and unclipped banner/Work intros. 28 preview scenarios passed.
+- [x] Morphing parity (2026-10-04): Chronicle morphs to/from every mode on every
+      surface with matching module counts; reading position now survives every
+      direction and no longer depends on the animation running. View Image overlays
+      the image corner in Digital and Chronicle; rail accent bars removed.
+- [x] Chronicle microinteractions group 1 (load): scene wake-up, frame assembly,
+      image shimmer reveal. Group 2 (signature): card-to-banner opening (D039),
+      selection lock-on, dealt cards, lit chapter rail, crystal image opening.
+      Performance recovered to 89–92 after deferring/resizing new art.
+- [x] Chronicle microinteractions group 3: directional panel/chapter swipes, power-on
+      after switching into Chronicle, glass gleam on press. Pending crest dropped (the
+      theme view transition holds the old frame while the action is pending).
+- [ ] Next: Chronicle token pass for raw colors.
+- [x] Chronicle mobile header simplification, readable presentation picker and hero
+      text, fixed menu artwork, softer carousel snapping, and architecture rule cleanup.
+
+- [x] Share sliding selectors/hover feedback across home, Work and case-study
+      navigation, including Work's horizontal mobile rail and reading-section tracking.
+- [x] Hide scrollbar chrome throughout Chronicle while retaining native overflow,
+      wheel/touch and keyboard scrolling; four focused browser checks passed.
+
+- [x] Trial Cormorant Garamond with local 500/600 weights and readable card sizes.
+- [x] Continuous scattered glitter with independent timelines; moving home-tab
+      selectors, hover highlights and a connector measured through the final tab.
+- [x] Replace header-link gaps with adjoining padded targets across all four modes,
+      keeping underlines/dots aligned to labels; cross-theme geometry verified.
+
+- [x] Make Work cards full-area preview buttons with selected state, mouse/touch
+      and keyboard activation; preserve View Details and no-JavaScript title links.
+- [x] Render cards without preview media in a full-width reading column.
+
+- [x] Restore lower-panel rail/section separators without an enclosing frame;
+      remove the content bottom rule, expand tapered corner overlap and loosen titles.
+- [x] Hide project-strip scrollbars and add glitter to framed button hovers/focus,
+      with static reduced-motion highlights. Ten Chronicle browser checks passed.
+
+- [x] Refine Home/Work project strips: upper-right dots/arrows, wider card copy,
+      full-width topic footers, safe frame insets and no Work diamond selectors.
+- [x] Full-width borderless lower panels with section-anchored, correctly oriented
+      corner artwork that fades before text/actions; portrait cards show all content.
+- [x] Add real-draft Work review, responsive control/card/action checks and a separate
+      `chronicle-card-layout` evidence archive. Ten Chronicle browser scenarios passed
+      across the complete run and focused correction run; lint, formatting and build checked.
+
+- [x] Translate the approved image references into a fourth registered composition
+      and bright ivory/navy/gold/violet token profile; Editorial remains the default.
+- [x] Scenic hero, horizontally selected projects with connected previews,
+      compact homepage disclosures, Work selection and shared secondary-page content.
+- [x] Case-study banner, factual metadata/ownership, persistent chapter rail and
+      adjacent supporting evidence; responsive mobile reading and source-sized media.
+- [x] Cookie preference, header controls, existing module morphing, chapter route
+      transitions, image gallery and reduced-motion support.
+- [x] Separate generated atmospheric artwork from real project media and record provenance.
+- [x] Development-only real-draft homepage inventory for reviewing both imported projects.
+- [x] Capture the initial AI-assisted implementation at desktop/mobile sizes with
+      a manifest and partial source snapshots before directed revisions.
+- [x] Bounded landscape shell, native contained reading, project dots/chevrons,
+      glass framing, transparent header, reference typography and connected chapter rail.
+- [x] Import and name eight user-supplied transparent layout assets, preserve PNG
+      sources and deliver optimized Chronicle-only WebP artwork.
+- [x] Refine landscape proportions against the references, generate and preserve a
+      brighter scenic backdrop, restore legible ornate frames and glass actions.
+- [x] Add content-derived preview chapters and an actual-screenshot stack, prioritize
+      the full bilingual header name, and refine portrait chapter navigation.
+- [x] Add a guarded full-shell real-draft review route, preserve contained reading
+      through theme morphing, and correct empty-state overlap and keyboard scrolling.
+- [x] Fit portrait card topics and project identity to actual content, retain a
+      reading region on short screens, and capture updated desktop/mobile evidence
+      with an actual interaction recording.
+- [x] Complete a focused Chronicle production performance audit, resize decorative
+      assets per viewport and prioritize the active scenic background: final local
+      scores 91 Performance / 100 Accessibility / 100 Best Practices.
+- [ ] Tyler's visual and interaction review against the Chronicle reference images.
+- [x] Apply homepage review: remove the reference-only header logo/dividers and
+      Explore more disclosure; restore a styled presentation dropdown and place
+      About, practice areas, Lab and Contact in a persistent left tab rail below
+      Selected work, with destination-specific bottom-right actions.
+
+See [CHRONICLE-IMPLEMENTATION.md](CHRONICLE-IMPLEMENTATION.md) for scope and review URLs.
+Verification: 38 unit tests, 22 distinct targeted preview scenarios across Chronicle
+and the original modes, portrait topic-fit checks, original-theme header regression,
+lint, formatting, content validation and production build. Production smoke checks
+passed across all four modes with draft/development guards and preview indexing
+preserved. The performance audit uses the empty public inventory, local production
+server and mobile simulation; the final LCP is 3.459s, so deployed/populated review
+remains open. SEO is 63 because indexing is intentionally disabled.
+
 This file tracks implemented integration. The planned sequence and acceptance
 gates remain in [14-IMPLEMENTATION-ROADMAP.md](14-IMPLEMENTATION-ROADMAP.md).
 Update this tracker after each implementation pass and record the checks performed.

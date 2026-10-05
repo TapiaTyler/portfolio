@@ -3,24 +3,25 @@ import type { HomepageContent } from "@/components/semantic/homepage";
 import { identity } from "./identity";
 export const homeHero = {
   name: identity.name,
-  label: "Portfolio preview",
+  label: "Portfolio Preview",
   title: "Software Engineer",
   emphasis: "& Web Developer",
   description:
     "This portfolio is being built. Project stories and final copy will be added after content review.",
-  link: { label: "Explore work", destination: "/work" },
+  link: { label: "Explore Work", destination: "/work" },
 };
 
 export const homepageContent: HomepageContent = {
   hero: homeHero,
   work: {
-    title: "Selected work",
-    linkLabel: "View all work",
+    title: "Selected Work",
+    linkLabel: "View All Work",
     emptyText:
       "Project stories are being prepared. A selection of work will appear here soon.",
   },
   capabilities: {
-    title: "Areas of practice",
+    title: "Areas of Practice",
+    lead: "Design, engineering and systems, considered together.",
     items: [
       {
         title: "Design",
@@ -46,20 +47,20 @@ export const homepageContent: HomepageContent = {
       "A space for the thinking behind the work: the questions, the decisions, and the care that connects them.",
       "Professional background and the full story will follow after content review.",
     ],
-    linkLabel: "More about me",
+    linkLabel: "More About Me",
   },
   lab: {
-    title: "Lab & explorations",
+    title: "Lab & Explorations",
     description: "Smaller ideas, studies, and works in progress.",
     emptyText: "New studies will appear here.",
-    linkLabel: "Explore the lab",
+    linkLabel: "Explore the Lab",
   },
   contact: {
-    label: "Start a conversation",
+    label: "Start a Conversation",
     title: "Let’s build something meaningful.",
     description:
       "For conversations about thoughtful software and useful digital experiences.",
-    linkLabel: "Get in touch",
+    linkLabel: "Get in Touch",
   },
 };
 

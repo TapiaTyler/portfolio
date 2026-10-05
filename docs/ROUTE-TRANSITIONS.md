@@ -72,13 +72,13 @@ effect at 800ms. Tyler requested slower turns on 2026-10-02,
 then reported blinking when the content snapshot repeated. The updated treatment
 keeps overlapping sheet movement without resetting the content animation. Examples:
 
-| Navigation | Direction | Turns |
-| --- | --- | --- |
-| Home → Work | Forward | 1 |
-| Work → About | Forward | 1 |
-| About → Work | Backward | 1 |
-| Home → project | Forward | 2 |
-| Project → Home | Backward | 2 |
+| Navigation     | Direction | Turns |
+| -------------- | --------- | ----- |
+| Home → Work    | Forward   | 1     |
+| Work → About   | Forward   | 1     |
+| About → Work   | Backward  | 1     |
+| Home → project | Forward   | 2     |
+| Project → Home | Backward  | 2     |
 
 The selected-project fixture flow maps to the same conceptual homepage/project
 depths so layered turns can be reviewed before public projects exist. Intermediate
@@ -171,3 +171,12 @@ remains recorded in the roadmap.
 Tyler's review accepted the layered Editorial turn and Engineer record change.
 The expanded navigation coverage remains open to review. Published-project and
 real-image performance review remains pending content integration.
+
+## Project opening in other modes — 2026-10-04
+
+The card-to-project transition is no longer Digital-only. `projectSurfaces` in
+`route-transition.ts` maps a mode to its card and destination selectors (Digital:
+card → case-study intro; Chronicle: card → dossier banner). Both carry the project
+slug as a matching key. Matching, history waiting, closing into the matching card
+and cleanup are shared; each mode supplies its own keyframes. Chronicle unfurls the
+banner from the centre over 600ms and furls it back on Back.

@@ -3,6 +3,8 @@ import type { ThemeId } from "@/lib/theme/ids";
 const chapters = ["", "work", "about", "lab", "contact"];
 
 function projectAt(url: URL) {
+  if (url.pathname === "/preview/chronicle")
+    return url.searchParams.get("project");
   if (url.pathname === "/dev/compositions")
     return url.searchParams.get("surface") === "project"
       ? url.searchParams.get("project")
@@ -12,22 +14,38 @@ function projectAt(url: URL) {
     ? decodeURIComponent(segments[2])
     : null;
 }
+/**
+ * Modes whose project cards open into their case study. The card and the
+ * destination carry the project slug; the slug is a matching key, not theme data.
+ */
+const projectSurfaces: Partial<
+  Record<ThemeId, { card: string; intro: string }>
+> = {
+  digital: { card: ".digital-project", intro: ".digital-case-study-intro" },
+  chronicle: { card: ".chronicle-project", intro: ".chronicle-dossier-banner" },
+};
+
 function isPortfolioRoute(url: URL) {
   return (
     /^\/(en|ja)(\/|$)/.test(url.pathname) ||
-    url.pathname === "/dev/compositions"
+    url.pathname === "/dev/compositions" ||
+    url.pathname === "/preview/chronicle"
   );
 }
 
 export function bookNavigation(from: URL, to: URL) {
   const path = (url: URL) =>
-    url.pathname === "/dev/compositions"
-      ? url.searchParams.get("surface") === "project"
+    url.pathname === "/preview/chronicle"
+      ? url.searchParams.has("project")
         ? ["work", url.searchParams.get("project") ?? "project"]
-        : url.searchParams.get("surface") === "work"
-          ? ["work"]
-          : []
-      : url.pathname.split("/").filter(Boolean).slice(1);
+        : []
+      : url.pathname === "/dev/compositions"
+        ? url.searchParams.get("surface") === "project"
+          ? ["work", url.searchParams.get("project") ?? "project"]
+          : url.searchParams.get("surface") === "work"
+            ? ["work"]
+            : []
+        : url.pathname.split("/").filter(Boolean).slice(1);
   const source = path(from);
   const destination = path(to);
   const depth = destination.length - source.length;
@@ -44,8 +62,9 @@ export function bookNavigation(from: URL, to: URL) {
 
 interface Pending {
   href: string;
-  kind: "book" | "project" | "record" | "panel";
+  kind: "book" | "project" | "record" | "panel" | "chapter";
   slug?: string;
+  surfaces?: { card: string; intro: string };
   view?: ViewTransition;
   release: () => void;
   timer: ReturnType<typeof setTimeout>;
@@ -96,9 +115,10 @@ export function createRouteTransitionController() {
     pending.named.push(element);
   }
   function projectDestination(pending: Pending) {
+    if (!pending.surfaces) return undefined;
     return Array.from(
       document.querySelectorAll<HTMLElement>(
-        pending.closing ? ".digital-project" : ".digital-case-study-intro",
+        pending.closing ? pending.surfaces.card : pending.surfaces.intro,
       ),
     ).find((element) => element.dataset.projectSlug === pending.slug);
   }
@@ -183,23 +203,25 @@ export function createRouteTransitionController() {
       release = resolve;
     });
     const targetSlug = projectAt(to);
-    const intro = document.querySelector<HTMLElement>(
-      ".digital-case-study-intro",
-    );
+    const surfaces = projectSurfaces[theme];
+    const intro = surfaces
+      ? document.querySelector<HTMLElement>(surfaces.intro)
+      : null;
     const closing =
-      theme === "digital" &&
       !!intro &&
       !targetSlug &&
       (to.pathname === "/dev/compositions"
         ? ["homepage", "work"].includes(to.searchParams.get("surface") ?? "")
-        : /^(\/en|\/ja)(\/work)?\/?$/.test(to.pathname));
+        : to.pathname === "/preview/chronicle"
+          ? !to.searchParams.has("project")
+          : /^(\/en|\/ja)(\/work)?\/?$/.test(to.pathname));
     const sourceCard =
-      theme === "digital" && targetSlug
+      surfaces && targetSlug
         ? (origin?.closest<HTMLElement>(
-            ".digital-project[data-project-slug]",
+            `${surfaces.card}[data-project-slug]`,
           ) ??
           Array.from(
-            document.querySelectorAll<HTMLElement>(".digital-project"),
+            document.querySelectorAll<HTMLElement>(surfaces.card),
           ).find((element) => element.dataset.projectSlug === targetSlug) ??
           null)
         : null;
@@ -223,8 +245,11 @@ export function createRouteTransitionController() {
           ? "panel"
           : theme === "engineer"
             ? "record"
-            : "book",
+            : theme === "chronicle"
+              ? "chapter"
+              : "book",
       slug: source?.dataset.projectSlug,
+      surfaces,
       release,
       named: [],
       history,
@@ -308,7 +333,7 @@ export function createRouteTransitionController() {
           // Reuse cached card media in the incoming snapshot rather than
           // capturing a lazy image's empty frame. Slow media never holds navigation.
           const intro = pending.named.find((element) =>
-            element.classList.contains("digital-case-study-intro"),
+            element.matches(pending.surfaces?.intro ?? ""),
           );
           const images = Array.from(intro?.querySelectorAll("img") ?? []);
           let timer: ReturnType<typeof setTimeout> | undefined;

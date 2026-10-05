@@ -94,7 +94,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       await page.setViewportSize({ width: 1440, height: 1800 });
       await page.emulateMedia({ reducedMotion: "reduce" });
       const mobile = study.locator("#media-mobile-support");
-      await mobile.getByRole("button", { name: /^View image:/ }).click();
+      await mobile.getByRole("button", { name: /^View Image:/ }).click();
       const viewer = page.getByRole("dialog", {
         name: "Project image gallery",
       });
@@ -104,7 +104,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         .locator("img")
         .evaluate((image) => image.getBoundingClientRect().width);
       expect(expandedWidth).toBeLessThanOrEqual(Number(sourceWidth) + 1);
-      await viewer.getByRole("button", { name: "Close gallery" }).click();
+      await viewer.getByRole("button", { name: "Close Gallery" }).click();
       await expect(viewer).not.toBeVisible();
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.emulateMedia({ reducedMotion: "no-preference" });

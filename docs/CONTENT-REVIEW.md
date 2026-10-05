@@ -25,8 +25,9 @@ copy, contact details, translations and publication/featuring decisions remain o
 The narrative, media and long-page presentation have been reviewed across all
 three themes. The points below preserve the review criteria for future revisions.
 
-Keep the existing title, **One portfolio, three ways of reading it**, and its focus
-on shared meaning, different compositions, continuity and iterative design judgment.
+Keep the current title, **One portfolio, several ways of reading it** (updated from
+"three ways" when Chronicle was added), and its focus on shared meaning, different
+compositions, continuity and iterative design judgment.
 The draft now includes the secondary-page content/composition separation and the
 directory/mobile-menu decisions alongside the existing motion evidence.
 

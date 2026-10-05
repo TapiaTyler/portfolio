@@ -43,7 +43,7 @@ export function EditorialHero({
           <circle className="editorial-study__point" cx="540" cy="250" r="5" />
         </svg>
         <span className="editorial-study__ampersand">&amp;</span>
-        <span className="editorial-study__caption">Form &amp; structure</span>
+        <span className="editorial-study__caption">Form &amp; Structure</span>
         <span className="editorial-study__index">01 / A study in balance</span>
       </div>
     </section>

@@ -48,7 +48,7 @@ export function EngineerProjectFeature({
           )}
           <FallbackNotice content={content} />
           <Link className="text-link" href={href} lang="en">
-            Explore the project
+            Explore the Project
           </Link>
         </div>
       </div>

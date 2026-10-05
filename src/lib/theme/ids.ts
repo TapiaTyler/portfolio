@@ -1,4 +1,9 @@
-export const themeIds = ["editorial", "engineer", "digital"] as const;
+export const themeIds = [
+  "editorial",
+  "engineer",
+  "digital",
+  "chronicle",
+] as const;
 export type ThemeId = (typeof themeIds)[number];
 export const defaultTheme: ThemeId = "editorial";
 

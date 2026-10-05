@@ -24,7 +24,7 @@ export default async function DraftProjectPage({
   const content = selectProjectContent(projectSchema.parse(record), locale);
   const composition = resolveComposition(await getActiveTheme());
   return (
-    <>
+    <div className="draft-project-review">
       <header className="page-intro">
         <p className="eyebrow">Development only / draft project review</p>
         <h1>Draft project preview</h1>
@@ -63,6 +63,6 @@ export default async function DraftProjectPage({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }

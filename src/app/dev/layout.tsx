@@ -16,6 +16,8 @@ import "@/styles/theme-transition.css";
 import "@/styles/interaction.css";
 import "@/styles/microinteraction.css";
 import "@/styles/route-transition.css";
+import "@/styles/chronicle.css";
+import "@/styles/chronicle-header.css";
 
 export const metadata: Metadata = {
   title: "Portfolio development preview",
@@ -31,12 +33,12 @@ export default async function DevelopmentLayout({
   return (
     <html lang="en" data-theme={theme} className={fontVariables}>
       <head>
-        <ThemeStyles />
+        <ThemeStyles theme={theme} />
       </head>
       <body>
         <ThemeProvider theme={theme}>
           <a className="skip-link" href="#main-content">
-            Skip to content
+            Skip to Content
           </a>
           <main id="main-content" data-theme-transition-scope>
             <ThemeSwitcher options={themeOptions} />

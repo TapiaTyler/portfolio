@@ -24,4 +24,18 @@ test("book navigation follows chapter order and counts crossed hierarchy levels"
     bookNavigation(url("/en"), url("/en/work/project/section/deeper")),
     { direction: "forward", turns: 3 },
   );
+  assert.deepEqual(
+    bookNavigation(
+      url("/preview/chronicle"),
+      url("/preview/chronicle?project=portfolio"),
+    ),
+    { direction: "forward", turns: 2 },
+  );
+  assert.deepEqual(
+    bookNavigation(
+      url("/preview/chronicle?project=portfolio"),
+      url("/preview/chronicle"),
+    ),
+    { direction: "backward", turns: 2 },
+  );
 });

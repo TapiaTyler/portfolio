@@ -68,7 +68,8 @@ try {
   }
   assert.ok(ready, "Production server did not become ready");
   let home;
-  for (const mode of ["editorial", "engineer", "digital"]) {
+  let routeChecks = 0;
+  for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
     for (const route of [
       "/en",
       "/en/work",
@@ -85,10 +86,13 @@ try {
         `${route} cookie-selected theme`,
       );
       assert.ok(!html.includes("fixture-system"), `${route} excludes fixtures`);
+      routeChecks++;
       if (route === "/en") home = html;
     }
   }
   const guardedRoutes = [
+    "/preview/chronicle",
+    "/preview/chronicle?project=portfolio",
     "/dev/design-system",
     "/dev/compositions",
     "/dev/projects/portfolio",
@@ -123,7 +127,7 @@ try {
     "Preview sitemap stays empty",
   );
   process.stdout.write(
-    `Release smoke passed: 18 theme/route checks, ${guardedRoutes.length} production guards, static/public assets, noindex robots and empty preview sitemap.\n`,
+    `Release smoke passed: ${routeChecks} theme/route checks, ${guardedRoutes.length} production guards, static/public assets, noindex robots and empty preview sitemap.\n`,
   );
 } finally {
   server.kill("SIGTERM");

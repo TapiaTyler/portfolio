@@ -181,3 +181,20 @@ copy. Replace pending biography/contact copy only with supplied, verified materi
 Public Work receives only published project records. Lab is currently empty; adding
 actual studies should begin with reviewed source material, not synthetic fixtures.
 The Japanese routes explicitly retain English page content and translation notice.
+
+## Capitalization
+
+English copy uses one rule in every mode; casing is content, so never apply it with
+CSS `text-transform: capitalize` (CSS uppercase for eyebrow styling is fine).
+
+- **Title Case** for names and labels: navigation, tab and chapter labels, section
+  names, page titles, project titles, buttons and links ("Selected Work", "Areas of
+  Practice", "View All Work", "Explore the Project"). Lowercase articles, short
+  conjunctions and short prepositions unless first or last ("Lab & Explorations",
+  "Project at a Glance"). Capitalize both parts of hyphenated compounds
+  ("Full-Stack Development").
+- **Sentence case** for anything written as a sentence or a claim: headlines and
+  statements ("A considered approach to making things."), case-study section
+  headings ("Keep account boundaries in the service layer"), figure titles, body
+  text, captions, alt text, status messages and metadata values.
+- Japanese text is unaffected.

@@ -1,0 +1,84 @@
+import {
+  CapabilityList,
+  ProfilePreview,
+  LabPreview,
+  ContactClosing,
+  HomeSectionHeader,
+  type HomepageProps,
+} from "@/components/semantic/homepage";
+import { ChronicleHero } from "./hero";
+import { ChronicleCollection } from "./collection";
+import { ChronicleHomeTabs } from "./home-tabs";
+
+export function ChronicleHomepage({
+  content,
+  projects,
+  locale,
+  projectHref,
+  assetUrl,
+}: HomepageProps) {
+  return (
+    <div className="homepage chronicle-homepage" lang="en">
+      <ChronicleHero content={content.hero} locale={locale} />
+      <section
+        className="home-section selected-work chronicle-frame"
+        data-motion-id="work"
+        data-motion-group
+        aria-labelledby="selected-work-heading"
+      >
+        <HomeSectionHeader
+          title={content.work.title}
+          id="selected-work-heading"
+          href={`/${locale}/work`}
+          linkLabel={content.work.linkLabel}
+        />
+        {projects.length ? (
+          <ChronicleCollection
+            projects={projects}
+            locale={locale}
+            projectHref={projectHref}
+            assetUrl={assetUrl}
+            showPreview={false}
+          />
+        ) : (
+          <p className="empty-content">{content.work.emptyText}</p>
+        )}
+      </section>
+      <ChronicleHomeTabs
+        sections={[
+          {
+            id: "about",
+            label: "About",
+            content: <ProfilePreview content={content.about} locale={locale} />,
+            action: {
+              href: `/${locale}/about`,
+              label: content.about.linkLabel,
+            },
+          },
+          {
+            id: "capabilities",
+            label: content.capabilities.title,
+            content: <CapabilityList content={content.capabilities} />,
+          },
+          {
+            id: "lab",
+            label: content.lab.title,
+            content: <LabPreview content={content.lab} locale={locale} />,
+            action: { href: `/${locale}/lab`, label: content.lab.linkLabel },
+          },
+          {
+            id: "contact",
+            label: content.contact.label,
+            content: (
+              <ContactClosing content={content.contact} locale={locale} />
+            ),
+            action: {
+              href: `/${locale}/contact`,
+              label: content.contact.linkLabel,
+            },
+          },
+        ]}
+      />
+    </div>
+  );
+}

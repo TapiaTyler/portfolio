@@ -15,7 +15,7 @@ import { fixtureProjects } from "../src/content/fixtures/projects";
 import { projectSchema } from "../src/lib/content/schema";
 import { selectProjectContent } from "../src/lib/i18n/project-content";
 
-test("only launch modes are accepted and invalid saved preferences default to Editorial", () => {
+test("only registered modes are accepted and invalid saved preferences default to Editorial", () => {
   for (const id of themeIds) {
     assert.equal(isThemeId(id), true);
     assert.equal(resolveThemePreference(id), id);

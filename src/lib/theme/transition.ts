@@ -1,5 +1,16 @@
 import type { ThemeId } from "./ids";
 
+/**
+ * `progress` is how far the reading line was through the anchor (0–1) when it was
+ * inside it; otherwise `offset` is the anchor's distance from the reading line.
+ * Both are relative to the reading line, because compositions place it differently.
+ */
+interface ReadingAnchor {
+  id: string;
+  offset: number;
+  progress?: number;
+}
+
 interface ActiveTransition {
   target: ThemeId;
   view: ViewTransition | null;
@@ -7,21 +18,32 @@ interface ActiveTransition {
   timeout: ReturnType<typeof setTimeout>;
   elements: HTMLElement[];
   cleared: boolean;
-  anchor?: { id: string; top: number };
+  anchor?: ReadingAnchor;
   focus: HTMLElement | null;
 }
 
-// Identities belong to semantic modules. Content never needs to know the active mode.
-function nameModules(active: ActiveTransition) {
-  // React can reuse an old element for a different semantic module. Remove
-  // imperative names before assigning the identities of the committed tree.
-  for (const element of active.elements)
-    element.style.removeProperty("view-transition-name");
-  active.elements = [];
+/**
+ * The line a reader is looking at: just inside a contained reading panel (Chronicle)
+ * or below the sticky header for ordinary document scrolling.
+ */
+function readingLine() {
+  const reading = document.querySelector<HTMLElement>(".case-study-body");
+  return reading &&
+    /(auto|scroll)/.test(getComputedStyle(reading).overflowY) &&
+    reading.scrollHeight > reading.clientHeight + 2
+    ? reading.getBoundingClientRect().top +
+        Math.min(100, reading.clientHeight * 0.25)
+    : 120;
+}
+
+/** Visible semantic modules of the document's own presentation, one per identity. */
+function visibleModules() {
   const seen = new Set<string>();
-  for (const element of document.querySelectorAll<HTMLElement>(
-    "[data-theme-transition-scope] [data-motion-id]",
-  )) {
+  return Array.from(
+    document.querySelectorAll<HTMLElement>(
+      "[data-theme-transition-scope] [data-motion-id]",
+    ),
+  ).filter((element) => {
     const id = element.dataset.motionId!;
     const rect = element.getBoundingClientRect();
     if (
@@ -32,19 +54,112 @@ function nameModules(active: ActiveTransition) {
       rect.bottom < 0 ||
       rect.top > innerHeight
     )
-      continue;
+      return false;
     seen.add(id);
+    return true;
+  });
+}
+
+// Identities belong to semantic modules. Content never needs to know the active mode.
+function nameModules(active: ActiveTransition) {
+  // React can reuse an old element for a different semantic module. Remove
+  // imperative names before assigning the identities of the committed tree.
+  for (const element of active.elements)
+    element.style.removeProperty("view-transition-name");
+  active.elements = visibleModules();
+  for (const element of active.elements) {
+    const id = element.dataset.motionId!;
     const name = Array.from(id, (character) =>
       character.codePointAt(0)!.toString(16),
     ).join("-");
     element.style.viewTransitionName =
       id === "site-navigation" ? "module-site-navigation" : `module-${name}`;
-    active.elements.push(element);
   }
+}
+
+/** Record the reader's place before a different composition changes the layout. */
+function captureAnchor(): ReadingAnchor | undefined {
+  const reading = document.querySelector<HTMLElement>(".case-study-body");
+  const main = document.querySelector("main");
+  if (
+    scrollY <= 160 &&
+    (reading?.scrollTop ?? 0) <= 160 &&
+    (main?.scrollTop ?? 0) <= 160
+  )
+    return undefined;
+  const threshold = readingLine();
+  const candidates = visibleModules().filter(
+    (element) =>
+      element.closest("main") && !element.closest(".case-study-navigation"),
+  );
+  // Prefer the innermost narrative module that contains the reading line.
+  // Supporting evidence can sit beside its owner in one composition and below
+  // it in another, so anchoring on it would jump the reader a whole section.
+  const containing = candidates
+    .filter((element) => {
+      if (element.hasAttribute("data-motion-supporting")) return false;
+      const { top, bottom } = element.getBoundingClientRect();
+      return top <= threshold && bottom > threshold;
+    })
+    .sort(
+      (a, b) => b.getBoundingClientRect().top - a.getBoundingClientRect().top,
+    )[0];
+  const anchor =
+    containing ??
+    candidates.sort(
+      (a, b) =>
+        Math.abs(a.getBoundingClientRect().top - threshold) -
+        Math.abs(b.getBoundingClientRect().top - threshold),
+    )[0];
+  if (!anchor) return undefined;
+  const { top, height } = anchor.getBoundingClientRect();
+  return {
+    id: anchor.dataset.motionId!,
+    offset: top - threshold,
+    progress: containing ? (threshold - top) / height : undefined,
+  };
+}
+
+/** Put the anchor back at the reader's place in whichever composition is now live. */
+function restoreAnchor(saved: ReadingAnchor) {
+  const anchor = Array.from(
+    document.querySelectorAll<HTMLElement>(
+      "[data-theme-transition-scope] [data-motion-id]",
+    ),
+  ).find((element) => element.dataset.motionId === saved.id);
+  if (!anchor) return;
+  let panel = anchor.parentElement;
+  while (panel && panel !== document.documentElement) {
+    if (
+      /(auto|scroll)/.test(getComputedStyle(panel).overflowY) &&
+      panel.scrollHeight > panel.clientHeight + 2
+    )
+      break;
+    panel = panel.parentElement;
+  }
+  // A section the reader was inside keeps the same progress at the new layout's
+  // reading line; compositions can change its height and evidence placement.
+  const bounds = anchor.getBoundingClientRect();
+  const line = readingLine();
+  const desiredTop =
+    saved.progress !== undefined
+      ? line - saved.progress * bounds.height
+      : line + saved.offset;
+  if (panel && panel !== document.documentElement)
+    // Instant: reading panels use smooth scrolling, which the transition interrupts.
+    panel.scrollTo({
+      top: panel.scrollTop + bounds.top - desiredTop,
+      behavior: "instant",
+    });
+  else
+    scrollTo({ top: scrollY + bounds.top - desiredTop, behavior: "instant" });
 }
 
 export function createThemeTransitionController() {
   let active: ActiveTransition | null = null;
+  // Reading position is restored on commit even when no animation runs (reduced
+  // motion, unsupported API, or a slow response that outlasts the capture bound).
+  let pending: { target: ThemeId; anchor: ReadingAnchor } | null = null;
 
   function restoreFocus(current: ActiveTransition) {
     if (
@@ -61,19 +176,7 @@ export function createThemeTransitionController() {
   }
 
   function positionModules(current: ActiveTransition) {
-    if (current.anchor) {
-      const anchor = Array.from(
-        document.querySelectorAll<HTMLElement>(
-          "[data-theme-transition-scope] [data-motion-id]",
-        ),
-      ).find((element) => element.dataset.motionId === current.anchor!.id);
-      if (anchor)
-        scrollTo({
-          top:
-            scrollY + anchor.getBoundingClientRect().top - current.anchor.top,
-          behavior: "instant",
-        });
-    }
+    if (current.anchor) restoreAnchor(current.anchor);
     nameModules(current);
   }
 
@@ -91,11 +194,18 @@ export function createThemeTransitionController() {
     }
   }
 
-  function cancel() {
+  /** Stop the animation only; a still-pending commit keeps its reading position. */
+  function abandonAnimation() {
     if (!active) return;
     const current = active;
     current.view?.skipTransition();
     clear(current);
+  }
+
+  /** Route changes and failed actions discard both the animation and the position. */
+  function cancel() {
+    pending = null;
+    abandonAnimation();
   }
 
   return {
@@ -103,6 +213,8 @@ export function createThemeTransitionController() {
     begin(target: ThemeId, dispatch: () => void) {
       cancel();
       document.dispatchEvent(new Event("portfolio:theme-transition"));
+      const anchor = captureAnchor();
+      pending = anchor ? { target, anchor } : null;
       if (
         !document.startViewTransition ||
         matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -117,34 +229,16 @@ export function createThemeTransitionController() {
         target,
         view: null,
         release,
-        timeout: setTimeout(cancel, 1500),
+        timeout: setTimeout(abandonAnimation, 1500),
         elements: [],
         cleared: false,
+        anchor,
         focus: document.activeElement as HTMLElement | null,
       };
       active = current;
       document.documentElement.dataset.themeTransition = "pending";
       document.documentElement.dataset.themeTransitionTarget = target;
       nameModules(current);
-      // Preserve a reader's place when a different composition changes page height.
-      if (scrollY > 160) {
-        const anchor = current.elements
-          .filter(
-            (element) =>
-              element.closest("main") &&
-              !element.closest(".case-study-navigation"),
-          )
-          .sort(
-            (a, b) =>
-              Math.abs(a.getBoundingClientRect().top - 120) -
-              Math.abs(b.getBoundingClientRect().top - 120),
-          )[0];
-        if (anchor)
-          current.anchor = {
-            id: anchor.dataset.motionId!,
-            top: anchor.getBoundingClientRect().top,
-          };
-      }
       let dispatched = false;
       try {
         current.view = document.startViewTransition(async () => {
@@ -179,10 +273,19 @@ export function createThemeTransitionController() {
     },
     committed(theme: ThemeId) {
       const current = active;
-      if (!current || current.target !== theme) return;
-      positionModules(current);
-      restoreFocus(current);
-      current.release();
+      if (current && current.target === theme) {
+        pending = null;
+        positionModules(current);
+        restoreFocus(current);
+        current.release();
+        return;
+      }
+      if (pending?.target !== theme) return;
+      const { anchor } = pending;
+      pending = null;
+      restoreAnchor(anchor);
+      // Late font metrics can still move the layout; settle once more.
+      void document.fonts.ready.then(() => restoreAnchor(anchor));
     },
   };
 }

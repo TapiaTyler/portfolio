@@ -55,6 +55,8 @@ export function CaseStudy({
   BodyRenderer = CaseStudyBody,
   navigationLabel,
   navigationDirectory,
+  containedReading = false,
+  navigationLabels,
 }: {
   content: ProjectContent;
   level?: HeadingLevel;
@@ -66,6 +68,8 @@ export function CaseStudy({
   BodyRenderer?: ComponentType<CaseStudyBodyProps>;
   navigationLabel?: string;
   navigationDirectory?: string;
+  containedReading?: boolean;
+  navigationLabels?: Record<string, string>;
 }) {
   const blockLevel = Math.min(level + 1, 6) as HeadingLevel;
   const sections = caseStudySections(content, anchorPrefix);
@@ -84,9 +88,15 @@ export function CaseStudy({
             sections={sections}
             label={navigationLabel}
             directoryRoot={navigationDirectory}
+            labels={navigationLabels}
           />
         )}
-        <div className="case-study-body">
+        <div
+          className="case-study-body"
+          tabIndex={containedReading ? 0 : undefined}
+          role={containedReading ? "region" : undefined}
+          aria-label={containedReading ? "Case study reading panel" : undefined}
+        >
           <BodyRenderer
             content={content}
             level={blockLevel}

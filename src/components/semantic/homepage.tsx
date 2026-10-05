@@ -10,6 +10,8 @@ export interface HomepageContent {
   work: { title: string; linkLabel: string; emptyText: string };
   capabilities: {
     title: string;
+    /** Optional one-line summary for compositions that pair a label with a headline. */
+    lead?: string;
     items: { title: string; description: string }[];
   };
   about: {

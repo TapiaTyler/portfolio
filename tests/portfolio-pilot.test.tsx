@@ -7,6 +7,7 @@ import { projectSchema } from "../src/lib/content/schema";
 import { validateAssetFiles } from "../src/lib/content/assets";
 import { selectProjectContent } from "../src/lib/i18n/project-content";
 import { resolveComposition } from "../src/registries/compositions";
+import { themeIds } from "../src/lib/theme/ids";
 import { caseStudySections } from "../src/lib/content/case-study-sections";
 import {
   getProject,
@@ -14,16 +15,17 @@ import {
   getFeaturedProjects,
 } from "../src/registries/projects";
 
-test("real portfolio pilot validates its media and stays outside every public project selector", () => {
+test("the published portfolio record validates its media and appears in the public selectors", () => {
   const project = projectSchema.parse(portfolioProject);
   validateAssetFiles([project], path.resolve("public"));
-  assert.equal(project.publication.status, "draft");
-  assert.equal(getProject("portfolio"), undefined);
+  assert.equal(project.publication.status, "published");
+  assert.equal(getProject("portfolio")?.slug, "portfolio");
   assert.ok(
-    !getPublishedProjects().some((record) => record.slug === "portfolio"),
+    getPublishedProjects().some((record) => record.slug === "portfolio"),
   );
-  assert.ok(
-    !getFeaturedProjects().some((record) => record.slug === "portfolio"),
+  assert.equal(
+    getFeaturedProjects().some((record) => record.slug === "portfolio"),
+    project.publication.featured,
   );
   assert.equal(project.contribution?.implementation, "ai-assisted");
   assert.equal(project.translationStatus.ja, "none");
@@ -37,7 +39,7 @@ test("the pilot's complete canonical narrative renders in every composition and 
       content.blocks.map(({ block }) => block.id),
       project.locale.en.blocks.map((block) => block.id),
     );
-    for (const theme of ["editorial", "engineer", "digital"] as const) {
+    for (const theme of themeIds) {
       const composition = resolveComposition(theme);
       const html = renderToStaticMarkup(
         <composition.CaseStudy
@@ -87,7 +89,7 @@ test("section navigation preserves canonical narrative anchors and overview fall
   const project = projectSchema.parse(portfolioProject);
   const content = selectProjectContent(project, "ja");
   const sections = caseStudySections(content, "pilot-");
-  assert.equal(sections.length, 9);
+  assert.equal(sections.length, 10);
   assert.deepEqual(
     sections.map(({ id }) => id),
     content.blocks

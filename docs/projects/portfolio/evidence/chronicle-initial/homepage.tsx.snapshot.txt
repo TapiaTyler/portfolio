@@ -1,0 +1,65 @@
+import {
+  CapabilityList,
+  ProfilePreview,
+  LabPreview,
+  ContactClosing,
+  HomeSectionHeader,
+  type HomepageProps,
+} from "@/components/semantic/homepage";
+import { ChronicleHero } from "./hero";
+import { ChronicleCollection } from "./collection";
+
+export function ChronicleHomepage({
+  content,
+  projects,
+  locale,
+  projectHref,
+  assetUrl,
+}: HomepageProps) {
+  return (
+    <div className="homepage chronicle-homepage" lang="en">
+      <ChronicleHero content={content.hero} locale={locale} />
+      <section
+        className="home-section selected-work chronicle-frame"
+        data-motion-id="work"
+        data-motion-group
+        aria-labelledby="selected-work-heading"
+      >
+        <HomeSectionHeader
+          title={content.work.title}
+          id="selected-work-heading"
+          href={`/${locale}/work`}
+          linkLabel={content.work.linkLabel}
+        />
+        {projects.length ? (
+          <ChronicleCollection
+            projects={projects}
+            locale={locale}
+            projectHref={projectHref}
+            assetUrl={assetUrl}
+          />
+        ) : (
+          <p className="empty-content">{content.work.emptyText}</p>
+        )}
+      </section>
+      <div className="chronicle-home-chapters">
+        <details>
+          <summary>{content.about.label}</summary>
+          <ProfilePreview content={content.about} locale={locale} />
+        </details>
+        <details>
+          <summary>{content.capabilities.title}</summary>
+          <CapabilityList content={content.capabilities} />
+        </details>
+        <details>
+          <summary>{content.lab.title}</summary>
+          <LabPreview content={content.lab} locale={locale} />
+        </details>
+        <details>
+          <summary>{content.contact.label}</summary>
+          <ContactClosing content={content.contact} locale={locale} />
+        </details>
+      </div>
+    </div>
+  );
+}

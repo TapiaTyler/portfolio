@@ -135,8 +135,26 @@
   font-size: 0.75rem;
   cursor: pointer;
 }
-.media-view-trigger {
-  margin-top: 0.75rem;
+/* The trigger overlays the image's bottom-right corner instead of taking its own
+   row. The column hugs the rendered image (which may be narrower than the frame
+   when capped at its source width); the caption keeps the row below. */
+.case-study .media-frame:has(> .media-view-trigger) {
+  display: grid;
+  grid-template-columns: fit-content(100%);
+  align-content: start;
+}
+.case-study .media-frame:has(> .media-view-trigger) > :is(img, video) {
+  grid-area: 1 / 1;
+}
+.case-study .media-frame > .media-view-trigger {
+  grid-area: 1 / 1;
+  justify-self: end;
+  align-self: end;
+  z-index: 2;
+  margin: 0 0.75rem 0.75rem 0;
+}
+.case-study .media-frame:has(> .media-view-trigger) > figcaption {
+  grid-area: 2 / 1;
 }
 .media-view-trigger:focus-visible,
 .media-viewer__close:focus-visible,
@@ -241,4 +259,9 @@
   :is(.reading-progress__fill, .engineer-project, [data-connection-state]) {
     transition: none !important;
   }
+}
+
+/* Images with a gallery can be tapped directly (digital-gallery.ts). */
+.case-study .media-frame:has(> .media-view-trigger:not([hidden])) img {
+  cursor: zoom-in;
 }

@@ -2,7 +2,8 @@
 
 ## Implemented boundary
 
-`src/lib/theme/ids.ts` defines the three launch mode IDs and Editorial default.
+`src/lib/theme/ids.ts` defines the registered mode IDs (the three launch modes plus
+Chronicle) and the Editorial default.
 `src/registries/themes.ts` maps each ID to a label, color scheme and typed token
 profile. Token categories cover typography, color, spacing, borders, radius,
 elevation, grid, imagery and motion. `ThemeStyles` emits the same stylesheet in
@@ -14,14 +15,14 @@ served Cormorant Garamond and Inter. Engineer uses local JetBrains Mono and
 Space Grotesk. Digital reuses local Inter and JetBrains Mono.
 
 `src/registries/compositions.ts` maps IDs to composition profiles separately from
-tokens. The current typed slots are Homepage, Hero, ProjectFeature, CaseStudy, CaseStudyIntro and
-optional case-study block renderers. Missing slots resolve to shared semantic
-components; an absent specialized block uses the exhaustive semantic block renderer.
-Editorial now specializes Homepage, Hero, ProjectFeature and CaseStudyIntro.
-Engineer specializes these surfaces plus CaseStudy and four block treatments.
-Digital specializes Homepage, Hero, ProjectFeature and CaseStudyIntro, with layered
-decision and technical blocks. Missing specialized block types continue
-through shared semantics. See `EDITORIAL-IMPLEMENTATION.md` and
+tokens. The current typed slots are SecondaryPage, Homepage, Hero, ProjectFeature,
+CaseStudy, CaseStudyIntro and optional case-study block renderers. Missing slots
+resolve to shared semantic components; an absent specialized block uses the
+exhaustive semantic block renderer. Every mode currently specializes all six page
+surfaces. Engineer, Digital and Chronicle frame narrative sections through the shared
+grouped body in `src/compositions/grouped-body.tsx`, which honors `blockRenderers`
+(D037). No mode currently registers a block renderer; add one only for a genuinely
+block-specific treatment inside the existing record or surface frame. See `EDITORIAL-IMPLEMENTATION.md` and
 `ENGINEER-IMPLEMENTATION.md` and `DIGITAL-IMPLEMENTATION.md` for the initial design passes; final content and
 populated-layout refinement remain open.
 

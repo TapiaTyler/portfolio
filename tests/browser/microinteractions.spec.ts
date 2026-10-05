@@ -20,9 +20,10 @@ for (const mode of ["editorial", "engineer", "digital"] as const) {
         const engineer =
           element.closest("[data-theme]")?.getAttribute("data-theme") ===
           "engineer";
-        const rect = (
-          engineer ? element : element.querySelector(".site-nav__label")!
-        ).getBoundingClientRect();
+        // Every marker measures the label; Engineer's square sits 11px to its left.
+        const rect = element
+          .querySelector(".site-nav__label")!
+          .getBoundingClientRect();
         return (
           rect.left -
           element.parentElement!.getBoundingClientRect().left -

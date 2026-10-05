@@ -8,6 +8,11 @@ This folder contains the approved homepage design references for the portfolio's
 
 These HTML files were generated as design prototypes and then explicitly selected as strong visual baselines.
 
+Chronicle is an explicitly requested fourth mode. Its approved references are
+[CHRONICLE-REFERENCE.md](CHRONICLE-REFERENCE.md), `Chronicle-home.png`,
+`Chronicle-project.png` and `Chronicle-mobile.png`. No HTML prototype is available;
+the same production translation and content-source rules apply to these images.
+
 They are **design references, not production source code and not authoritative portfolio content**.
 
 ## What these references are authoritative for
@@ -28,7 +33,7 @@ Treat the HTML files as high-priority references for:
 - interaction flavor represented by hover/focus/transition classes;
 - decorative motifs.
 
-When these HTML references conflict with older speculative descriptions of how a theme *might* look, prefer these references for the **homepage visual direction**, because these are the layouts that were reviewed and selected.
+When these HTML references conflict with older speculative descriptions of how a theme _might_ look, prefer these references for the **homepage visual direction**, because these are the layouts that were reviewed and selected.
 
 ## What these references are NOT authoritative for
 

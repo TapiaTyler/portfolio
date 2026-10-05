@@ -44,7 +44,7 @@ export function EditorialProjectFeature({
         <FallbackNotice content={content} />
         <ProjectMeta project={content.project} />
         <Link className="text-link" href={href} lang="en">
-          Explore the project
+          Explore the Project
         </Link>
       </div>
     </article>

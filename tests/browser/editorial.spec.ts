@@ -23,9 +23,9 @@ test("Editorial keeps its hierarchy and locally served fonts across viewport siz
     await page.setViewportSize({ width, height: 1000 });
     await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
     for (const name of [
-      "Selected work",
-      "Areas of practice",
-      "Lab & explorations",
+      "Selected Work",
+      "Areas of Practice",
+      "Lab & Explorations",
       "Let’s build something meaningful.",
     ]) {
       await expect(
@@ -119,7 +119,7 @@ test("mobile navigation and presentation controls work with keyboard and preserv
   await expect(page.locator(".mobile-navigation")).toHaveAttribute("open", "");
   await page
     .getByRole("navigation", { name: "Language", exact: true })
-    .getByRole("link", { name: "JA" })
+    .getByRole("link", { name: "JP" })
     .click();
   await expect(page).toHaveURL(/\/ja\/about$/);
   await expect(page.locator("html")).toHaveAttribute("data-theme", "editorial");

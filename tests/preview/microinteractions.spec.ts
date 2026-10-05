@@ -286,7 +286,7 @@ test("Digital card lighting follows the pointer, preserves position for focus, r
       card.evaluate((element) => getComputedStyle(element, "::before").opacity),
     )
     .toBe("1");
-  const link = card.getByRole("link", { name: "Explore the project" });
+  const link = card.getByRole("link", { name: "Explore the Project" });
   const pointerPosition = await card.evaluate((element) =>
     element.style.getPropertyValue("--card-light-x"),
   );
@@ -362,7 +362,7 @@ test("Digital touch activation compresses the card without pointer lighting", as
     const link = page
       .locator(".digital-project")
       .first()
-      .getByRole("link", { name: "Explore the project" });
+      .getByRole("link", { name: "Explore the Project" });
     await link.tap();
     await expect(page).toHaveURL(/surface=project/);
     expect(

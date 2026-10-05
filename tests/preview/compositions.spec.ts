@@ -326,7 +326,7 @@ test("failed media retains its accessible description in every composition", asy
       "A labeled development fixture",
     );
     await expect(
-      article.getByRole("link", { name: "Explore the project", exact: true }),
+      article.getByRole("link", { name: "Explore the Project", exact: true }),
     ).toBeVisible();
   }
 });

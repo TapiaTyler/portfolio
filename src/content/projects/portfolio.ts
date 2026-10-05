@@ -23,7 +23,7 @@ const image = (
   caption: { en: caption },
 });
 
-/** Source-backed draft: keep unpublished until narrative, media and launch review. */
+/** Source-backed record; claims stay limited to what the repository and captures show. */
 export const portfolioProject = {
   kind: "project",
   slug: "portfolio",
@@ -44,7 +44,7 @@ export const portfolioProject = {
     "accessibility",
     "testing-quality",
   ],
-  publication: { status: "draft", featured: false, priority: 0 },
+  publication: { status: "published", featured: true, priority: 0 },
   links: { repository: "https://github.com/TapiaTyler/portfolio" },
   translationStatus: { ja: "none" },
   contribution: {
@@ -63,7 +63,7 @@ export const portfolioProject = {
       "editorial-home",
       "editorial-home.png",
       "Editorial homepage with publication typography and an asymmetric hero composition.",
-      "Live local capture, October 2026. Editorial prioritizes narrative and whitespace; homepage copy is still placeholder content.",
+      "Live local capture, October 2026. Editorial prioritizes narrative and whitespace; the homepage introduction is still placeholder copy.",
     ),
     image(
       "engineer-home",
@@ -77,6 +77,73 @@ export const portfolioProject = {
       "Digital homepage with a spatial hero, atmospheric grid and cyan interface accents.",
       "The same homepage facts in Digital: spatial composition, layered surfaces and expressive responses.",
     ),
+    image(
+      "chronicle-home",
+      "chronicle-home.png",
+      "Chronicle homepage on one landscape screen: scenic hero, a horizontal strip of framed project cards and a tab rail with the selected section.",
+      "The same homepage facts in Chronicle: one landscape game screen with horizontal project selection and a tab rail.",
+    ),
+    image(
+      "chronicle-before-home",
+      "chronicle-before-home.png",
+      "First Chronicle homepage: a scenic hero, an empty boxed Selected Work panel and a row of four collapsed sections, with the mode picker as a row of buttons.",
+      "Before: the first AI-assisted Chronicle build on the public homepage, captured October 3, before any project was published. It followed the reference palette but used ordinary stacked boxes and disclosures.",
+      1440,
+      900,
+    ),
+    image(
+      "chronicle-before-mobile",
+      "chronicle-before-mobile.png",
+      "First Chronicle homepage on a portrait phone: a hero, an empty boxed Selected Work panel and collapsed sections stacked down the page.",
+      "Before, portrait phone: the same build as a stacked page of boxes, captured October 3 before any project was published.",
+      390,
+      844,
+    ),
+    image(
+      "chronicle-landscape-home",
+      "chronicle-landscape-home.png",
+      "Chronicle homepage on a landscape phone: identity in a left column beside one large project card, with dots and arrows above it.",
+      "After, landscape phone (the primary handheld target): identity beside the project strip, one card plus a peek of the next, 44px dots and arrows.",
+      844,
+      390,
+    ),
+    image(
+      "chronicle-portrait-home",
+      "chronicle-portrait-home.png",
+      "Chronicle homepage on a portrait phone with a compact hero and a full-width project card in a horizontal strip.",
+      "After, portrait phone: the same horizontal strip adapted to portrait, with a menu button in place of the header links.",
+      390,
+      844,
+    ),
+    image(
+      "chronicle-case-study",
+      "chronicle-case-study.png",
+      "Chronicle case study: scenic project banner above a framed reading panel with a lit chapter rail on the left and evidence on the right.",
+      "After: the case study opens like a dossier. The shell fits the screen, the chapter rail lights up to the current chapter and long text scrolls inside its own panel.",
+    ),
+    image(
+      "chronicle-case-study-landscape",
+      "chronicle-case-study-landscape.png",
+      "Chronicle case study on a landscape phone with title and chapter rail in a left column beside a full-height reading panel.",
+      "After, landscape phone: identity, Project at a Glance and the chapter rail share a column beside full-height reading.",
+      844,
+      390,
+    ),
+    {
+      id: "chronicle-interactions",
+      type: "video" as const,
+      src: "/media/projects/portfolio/chronicle-interactions.webm",
+      poster: "/media/projects/portfolio/chronicle-interactions.png",
+      width: 1440,
+      height: 1000,
+      purpose: "process" as const,
+      alt: {
+        en: "Editorial morphing into Chronicle, then a project card selected with one tap and opened with a second, unfolding into its case-study banner; a chapter link, an image opening through a crystal shape, and browser Back folding the banner into its card.",
+      },
+      caption: {
+        en: "Watch the morph into Chronicle, the first tap arming a card and the second opening it, the lit chapter rail, the crystal image opening and Back returning the banner to its card. Unedited local recording with capture-only phase labels and no audio; not a benchmark.",
+      },
+    },
     {
       id: "theme-morphing",
       type: "video",
@@ -101,7 +168,7 @@ export const portfolioProject = {
       height: 1000,
       purpose: "process",
       alt: {
-        en: "Header navigation and browser Back in all three modes, followed by a Digital synthetic project card opening into its detail view and contracting on Back.",
+        en: "Header navigation and browser Back in the original three modes, followed by a Digital synthetic project card opening into its detail view and contracting on Back.",
       },
       caption: {
         en: "Watch the top-bound Editorial page turn, Engineer scan rule and Digital spatial opening on header navigation and browser Back. The final selected-card expansion and contraction uses a labelled synthetic fixture. This unedited local recording includes loading and control activation; it is not a benchmark.",
@@ -122,22 +189,6 @@ export const portfolioProject = {
         en: "Watch the same disclosure open and close in each mode: Editorial folds from its top edge and reverses on closing, Engineer gives a brief stepped response, and Digital uses a short spatial response. Recorded from this real local draft, with capture-only phase labels and no audio.",
       },
     },
-    image(
-      "navigation-before",
-      "reconstruction-digital-navigation.png",
-      "Reconstructed Digital header showing an active-link underline and a second moving rule below the whole link.",
-      "Before, reconstructed: the active underline and moving rule compete, and the lower rule spans the slash prefix. CSS overrides recreate the issue on the current site; this is not an original historical screenshot.",
-      1440,
-      150,
-    ),
-    image(
-      "navigation-after",
-      "digital-navigation.png",
-      "Digital header with one rule just below the active label and the slash prefix outside the underline.",
-      "After, live capture: one marker sits close to the label, excluding the slash prefix. The 44px link target remains intact while only the visible rule becomes narrower.",
-      1440,
-      150,
-    ),
     image(
       "gallery-before",
       "reconstruction-digital-gallery.png",
@@ -167,7 +218,9 @@ export const portfolioProject = {
         { id: "semantics", label: { en: "Shared semantic components" } },
         {
           id: "composition",
-          label: { en: "Editorial / Engineer / Digital composition" },
+          label: {
+            en: "Editorial / Engineer / Digital / Chronicle composition",
+          },
         },
         { id: "tokens", label: { en: "Theme tokens" } },
         { id: "motion", label: { en: "Progressive interaction and motion" } },
@@ -193,17 +246,17 @@ export const portfolioProject = {
   ],
   locale: {
     en: {
-      title: "One portfolio, three ways of reading it",
-      shortTitle: "Portfolio presentation system",
+      title: "One Portfolio, Several Ways of Reading It",
+      shortTitle: "Portfolio Presentation System",
       summary:
-        "A portfolio that reinterprets the same project content through Editorial, Engineer and Digital compositions, with motion that reinforces each mode.",
+        "A shared content system interpreted through Editorial, Engineer, Digital and Chronicle compositions, with visual systems and motion adapted to each mode.",
       description:
-        "A portfolio built around one content source and three distinct ways of reading it. Shared semantic components support different compositions, visual systems and interactions without duplicating project narratives.",
+        "A portfolio built around one content source and several ways of reading it. Shared semantic components support different compositions, visual systems and interactions without duplicating project narratives.",
       overview: {
         distinction:
-          "One factual content source supports three different compositions, with theme morphing, navigation transitions and interaction patterns tailored to each reading experience.",
+          "One factual content source supports different compositions, with theme morphing, navigation transitions and interaction patterns tailored to each reading experience.",
         currentState:
-          "Three modes and their interaction systems are implemented. This case study is a draft; final content, deployment, Japanese translations and deployed performance verification remain pending.",
+          "Editorial, Engineer, Digital and Chronicle are implemented and published. Final homepage copy, deployment, Japanese translations and deployed performance verification remain pending.",
       },
       blocks: [
         {
@@ -212,7 +265,7 @@ export const portfolioProject = {
           heading: "The portfolio is part of the work",
           body: prose(
             "The site needs to communicate both design judgment and software-engineering ability. A single conventional portfolio layout would show only one way of organizing that work.",
-            "The requirement was to keep one factual source while offering three complete reading experiences. Changing modes should alter hierarchy, grouping, density and interaction—not project availability, URLs or meaning.",
+            "The initial requirement was to keep one factual source while offering three complete reading experiences. Chronicle extends that system with a fourth composition. Changing modes should alter hierarchy, grouping, density and interaction—not project availability, URLs or meaning.",
           ),
         },
         {
@@ -221,7 +274,7 @@ export const portfolioProject = {
           diagramId: "presentation-pipeline",
           explanation: prose(
             "Project metadata, media references and narrative blocks live in a typed content record. Validation checks publication rules, asset references and translation declarations before rendering.",
-            "Shared semantic components express meaning. Compositions can introduce summaries or groupings while preserving the canonical narrative sequence. Tokens and motion remain separate presentation layers. A new project does not require three copies of its content.",
+            "Shared semantic components express meaning. Compositions can introduce summaries or groupings while preserving the canonical narrative sequence. Tokens and motion remain separate presentation layers. A new project does not require a separate copy of its content for each mode.",
             "Work, About, Lab and Contact follow the same separation: one English page inventory supplies introductions, profile fields, areas of practice and continuation links. Each mode organizes those facts through a registered page composition, while public Work reads only the published project inventory.",
           ),
         },
@@ -234,7 +287,8 @@ export const portfolioProject = {
           ),
           decision: prose(
             "Editorial uses publication rhythm, serif display typography and narrative-led project features. Engineer uses project records, metadata and a technical section overview. Digital uses spatial project cards, layered media and continuity between project index and detail.",
-            "Navigation changes too: Editorial follows the text with an ink rule; Engineer uses a square beside the label; Digital separates its slash prefix from a glowing label-width rule. Language selection uses a pill in Editorial and Digital, and a moving square in Engineer.",
+            "Chronicle presents the portfolio as a touch-first, landscape mobile-game screen: horizontal project selection, contained reading and art-directed frames, built from the same content records.",
+            "Navigation changes too: Editorial follows the text with an ink rule; Engineer uses a square beside the label; Digital separates its slash prefix from a glowing label-width rule; Chronicle moves a crystal marker along a gold rail.",
           ),
           tradeoffs: prose(
             "Separate compositions require more responsive and accessibility review than a token-only switch. Shared content, semantic blocks and isolated theme scopes keep those differences maintainable.",
@@ -243,7 +297,12 @@ export const portfolioProject = {
         {
           id: "compositions",
           type: "gallery",
-          mediaIds: ["editorial-home", "engineer-home", "digital-home"],
+          mediaIds: [
+            "editorial-home",
+            "engineer-home",
+            "digital-home",
+            "chronicle-home",
+          ],
           relationship: "comparison",
         },
         {
@@ -255,7 +314,7 @@ export const portfolioProject = {
           ),
           decision: prose(
             "The server selects the composition using one validated preference cookie. Around that commit, the browser matches visible semantic modules by temporary identities, then moves and resizes their snapshots into the next layout.",
-            "Geometry follows the destination: 560ms for Editorial, 360ms for Engineer and 680ms for Digital. A shorter 180ms content swap changes typography and surfaces without leaving doubled text on screen. A reader's section and control focus are preserved where possible.",
+            "Geometry follows the destination: 560ms for Editorial, 360ms for Engineer, 680ms for Digital and 620ms for Chronicle. A shorter 180ms content swap changes typography and surfaces without leaving doubled text on screen. A reader's section and control focus are preserved where possible.",
           ),
           rationale: prose(
             "Snapshot continuity bridges different server-rendered structures without adding another accessible content tree or a heavy animation runtime.",
@@ -279,8 +338,8 @@ export const portfolioProject = {
           ),
           response: prose(
             "Editorial content links use horizontal page turns derived from chapter order and route depth. Header and language links use a top-bound page that swings down from the front. Both use 600ms timing. Deeper horizontal navigation adds blank sheets 100ms apart, capped at three turns.",
-            "Earlier repeated content turns looked like blinking. Blank sheet snapshots retained depth without fetching parent pages. The header stays live, and the whole Editorial snapshot layer is clipped beneath it. The top-bound flip was refined from a bottom hinge, through a shallow reveal, to a full front-side rotation after visual feedback.",
-            "Engineer swaps records over 240ms with a cyan scan rule. Digital expands a selected project card into its detail view over 720ms, contracts back to a matching card over 560ms, and uses spatial opening for other links. Theme changes cancel route effects.",
+            "Repeated content turns looked like blinking, so blank sheets now carry the depth. The top-bound flip reached its final front-side rotation after several rounds of visual feedback.",
+            "Engineer swaps records over 240ms with a cyan scan rule. Digital expands a selected project card into its detail view over 720ms, contracts back to a matching card over 560ms, and uses spatial opening for other links. Chronicle slides chapters forward or back by direction; an opened card's frame grows into the case-study banner, which unfurls like a scroll, and Back folds it into the matching card. Theme changes cancel route effects.",
           ),
           result: prose(
             "The navigation contract remains ordinary URLs and native links. Motion is an enhancement with reduced-motion, unsupported-browser, interruption and slow-response behavior.",
@@ -303,8 +362,6 @@ export const portfolioProject = {
             "Engineer uses brief record brightness feedback, stepped disclosure indicators, code copying with honest clipboard failure feedback, and diagram inspection based on actual node IDs and edge relationships. Pointer hover and keyboard focus inspect connections; activation pins a node and Escape clears it. Hover rails and capability borders were removed after review.",
             "Digital uses a restrained portal tilt, pointer-following card lighting, press feedback, image scaling, contextual Open labels and monochrome moving border glimmers. Touch gets press feedback without mouse tracking; reduced motion keeps static feedback.",
             "Its case-study images now use a split introduction, an offset standalone panel and mixed-width galleries. View image opens a deduplicated carousel, expanding from the selected frame. Closing contracts into the last viewed frame, scrolls it into view and returns focus. This replaced a full-width presentation where Enlarge image could make the image smaller.",
-            "Double underlines were removed by measuring label geometry independently of the 44px link target. Digital's slash decoration stays outside the marker, and Engineer's square moves without shifting the labels. These are small changes, but they preserve both the theme's character and predictable controls.",
-            "Engineer chapter navigation now resembles a directory, with the project slug as a folder, decorative file icons and neutral branch guides. Green current and hovered entries balance the cyan technical links. The mobile Menu control also varies: fine lines for Editorial, a bracketed stepped control for Engineer and staggered bars for Digital, all using one native disclosure.",
           ),
         },
         {
@@ -314,16 +371,54 @@ export const portfolioProject = {
           supportsBlockId: "microinteractions",
         },
         {
-          id: "navigation-iteration",
-          type: "gallery",
-          mediaIds: ["navigation-before", "navigation-after"],
-          relationship: "comparison",
-        },
-        {
           id: "gallery-iteration",
           type: "gallery",
           mediaIds: ["gallery-before", "gallery-after"],
           relationship: "comparison",
+        },
+        {
+          id: "chronicle",
+          type: "challenge",
+          title: "Rebuild Chronicle as a touch-first game screen",
+          problem: prose(
+            "The first Chronicle build was AI-assisted from three reference images. It matched their palette and scenery but read as a conventional webpage: stacked boxed panels, collapsed sections and a vertical case study.",
+            "The intent was different: a landscape mobile-game interface you hold and touch, that must also work in portrait.",
+          ),
+          response: prose(
+            "Directed review rebuilt the composition rather than its colors. Each page is now a screen: the shell fits the viewport, projects are chosen from a snapping horizontal strip with dots and arrows, and case studies open into a lit chapter rail beside contained reading. Landscape phones get their own layouts, with identity beside the content instead of a portrait stack.",
+            "Touch became the rule. Controls are at least 44px, the whole card is the tap target, and a first tap selects and arms a card while a second opens it; a swipe never opens a card by accident. Menus and dropdowns close when focus leaves them. Small responses complete the feel: cards are dealt in, a light sweeps the selected frame, images open through a crystal shape and glass buttons gleam when pressed.",
+          ),
+          result: prose(
+            "The same project records now read as a game screen on desktop, landscape and portrait phones. Every response has a reduced-motion state, and the content, URLs and native links are unchanged.",
+          ),
+        },
+        {
+          id: "chronicle-evidence",
+          type: "media",
+          mediaId: "chronicle-interactions",
+          supportsBlockId: "chronicle",
+        },
+        {
+          id: "chronicle-iteration",
+          type: "gallery",
+          mediaIds: ["chronicle-before-home", "chronicle-home"],
+          relationship: "comparison",
+        },
+        {
+          id: "chronicle-handheld",
+          type: "gallery",
+          mediaIds: [
+            "chronicle-before-mobile",
+            "chronicle-landscape-home",
+            "chronicle-portrait-home",
+          ],
+          relationship: "comparison",
+        },
+        {
+          id: "chronicle-reading",
+          type: "gallery",
+          mediaIds: ["chronicle-case-study", "chronicle-case-study-landscape"],
+          relationship: "sequence",
         },
         {
           id: "quality",
@@ -358,7 +453,7 @@ export const portfolioProject = {
           summary:
             "A draft is validated but excluded from the public inventory, including direct slug lookup.",
           body: prose(
-            "This excerpt from src/lib/content/registry.ts shows public lookup searching the already-filtered published inventory. The development preview reads authoring records only behind a development-environment guard. That allows this pilot to test real content without silently publishing it.",
+            "This excerpt from src/lib/content/registry.ts shows public lookup searching the already-filtered published inventory. The development preview reads authoring records only behind a development-environment guard. That let this project be reviewed with real content before it was published.",
           ),
           codeSnippetIds: ["public-lookup"],
         },
@@ -366,9 +461,9 @@ export const portfolioProject = {
           id: "state",
           type: "result",
           body: prose(
-            "The implemented portfolio presents the same project content through three distinct compositions. Theme-switch morphing preserves continuity between them, while page transitions and smaller interactions extend each mode's reading model.",
+            "The implemented portfolio presents the same project content through four distinct compositions. Editorial, Engineer and Digital established the system; Chronicle extended it with a touch-first landscape composition without changing the content model. Theme-switch morphing preserves continuity between them, while page transitions and smaller interactions extend each mode's reading model.",
             "Shared content validation, publication controls and locale fallbacks support adding projects without creating separate narratives for each theme. Local browser and accessibility checks exercise the compositions, navigation and reduced-motion behavior.",
-            "The presentation system is implemented; final content, Japanese translations, deployment and performance acceptance with the completed project inventory remain the next release steps.",
+            "The presentation system is implemented and published; final homepage copy, Japanese translations, deployment and performance acceptance remain the next release steps.",
           ),
         },
       ],

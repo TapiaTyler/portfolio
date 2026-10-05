@@ -97,3 +97,29 @@ and synthetic-fixture provenance. Existing historical capture files are preserve
 The directory's hover/current-row text and file icons were subsequently changed
 to the same green accent as the Engineer header, at Tyler's request, to balance
 the concentration of cyan technical links. Neutral branch guides remain unchanged.
+
+## Chronicle rework and case-study refresh — 2026-10-04
+
+The first Chronicle build (preserved in `evidence/chronicle-initial`) followed the
+reference palette but read as a long vertical webpage. Directed review rebuilt it as
+a touch-first, landscape-first game screen: a viewport shell, horizontal project
+selection, contained case-study reading, landscape-phone layouts, 44px controls,
+whole-card targets with select-then-confirm taps, self-dismissing menus and a set of
+Chronicle microinteractions. See CHRONICLE-IMPLEMENTATION and CHRONICLE-REFERENCE.
+
+The published case study now tells that story in its own chapter with:
+
+- before/after homepage comparisons (desktop, and portrait vs landscape phone). The
+  "before" images are unmodified copies of the first build's public-homepage captures
+  (`header-desktop.png`, `header-mobile.png`), taken before any project was published;
+- after-only case-study captures (no useful "before" exists: the initial case-study
+  captures show mostly development tooling);
+- one unedited recording of the morph into Chronicle, select/arm/open, the lit chapter
+  rail, the crystal image gallery and Back.
+
+Removed as minor relative to the rest of the story: the Digital navigation
+before/after (a double-underline fix), and the paragraphs on underline geometry and
+Engineer's directory-style chapter navigation. Their image files remain in
+`public/media/projects/portfolio` (still produced by `capture-portfolio-pilot.mjs`)
+and can be deleted if no longer wanted. Homepage captures for all four modes were
+refreshed now that projects are published, and Chronicle joins that comparison.

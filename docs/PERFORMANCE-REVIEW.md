@@ -11,20 +11,26 @@ Use Node.js 24, install dependencies and the Playwright Chromium browser, then:
 ```sh
 npm run build
 npm run audit:performance -- --label=current
+# Optional: focus on one or more registered modes
+npm run audit:performance -- --label=chronicle-refined --modes=chronicle
 ```
 
 The script starts and stops its own production server on `127.0.0.1:3219`.
 Leave that port free. Chromium uses an available debugging port. Each mode is
 audited in a fresh browser with its preference supplied as a request cookie.
 HTML reports, Lighthouse JSON and a combined `summary.json` are saved under
-`.cache/performance/<label>/`, ignored by Git. Failures return a nonzero exit
-status. Run one audit process at a time.
+`.cache/performance/<label>/`, ignored by Git. By default, it audits all four
+registered modes: Editorial, Engineer, Digital and Chronicle. Use the optional
+comma-separated `--modes=` argument to audit a subset; unregistered and duplicate
+mode names are rejected. Failures return a nonzero exit status. Run one audit
+process at a time.
 
 The script also measures mobile menu mode changes, waiting for the selected
 composition and fonts. Timings include Playwright click/polling overhead and
 are not an INP measurement. It additionally samples desktop Home → About → Back
-navigation in every mode, recording content availability, choreography completion,
-main-thread long tasks and requestAnimationFrame gaps.
+navigation in each selected mode, recording content availability, choreography
+completion, main-thread long tasks and requestAnimationFrame gaps. A focused
+single-mode audit starts from Editorial and measures a switch into that mode.
 
 ## Conditions
 
@@ -42,11 +48,11 @@ main-thread long tasks and requestAnimationFrame gaps.
 
 Ranges include both runs. FCP/LCP are seconds; TBT is milliseconds.
 
-| Mode | Performance | FCP | LCP | TBT | CLS |
-| --- | --- | --- | --- | --- | --- |
-| Editorial | 95–99 | 1.51–1.67 | 2.11–2.79 | 28–33 | 0 |
-| Engineer | 97 | 1.36 | 2.49 | 16–16.5 | 0.0318 |
-| Digital | 96 | 1.51 | 2.64 | 15–15.5 | 0.0003 |
+| Mode      | Performance | FCP       | LCP       | TBT     | CLS    |
+| --------- | ----------- | --------- | --------- | ------- | ------ |
+| Editorial | 95–99       | 1.51–1.67 | 2.11–2.79 | 28–33   | 0      |
+| Engineer  | 97          | 1.36      | 2.49      | 16–16.5 | 0.0318 |
+| Digital   | 96          | 1.51      | 2.64      | 15–15.5 | 0.0003 |
 
 All runs scored 100 for automated Accessibility and Best Practices. These
 supplement the existing accessibility tests and manual review; they do not
@@ -60,11 +66,11 @@ acceptance remains pending.
 
 Lighthouse transfer sizes, rounded to KiB (1024 bytes):
 
-| Mode | JavaScript | CSS | Fonts | Project images |
-| --- | --- | --- | --- | --- |
-| Editorial | 145.7 | 8.8 | 93.4 | 0 |
-| Engineer | 145.7 | 8.8 | 61.8 | 0 |
-| Digital | 145.7 | 8.8 | 87.2 | 0 |
+| Mode      | JavaScript | CSS | Fonts | Project images |
+| --------- | ---------- | --- | ----- | -------------- |
+| Editorial | 145.7      | 8.8 | 93.4  | 0              |
+| Engineer  | 145.7      | 8.8 | 61.8  | 0              |
+| Digital   | 145.7      | 8.8 | 87.2  | 0              |
 
 The repeat report confirms these font requests:
 
@@ -82,10 +88,10 @@ contributes to the document rather than a separate image request.
 The sequence starts from Editorial with the local server running:
 
 | Destination | Elapsed time across both runs |
-| --- | --- |
-| Engineer | 122 ms |
-| Digital | 78–80 ms |
-| Editorial | 67–68 ms |
+| ----------- | ----------------------------- |
+| Engineer    | 122 ms                        |
+| Digital     | 78–80 ms                      |
+| Editorial   | 67–68 ms                      |
 
 Newly required fonts can load during the sequence. These are local observations,
 not fully cached-font or real network timings. Existing browser tests cover
@@ -130,11 +136,11 @@ The `theme-transitions-final` production audit on the same date and equipment
 measured the new snapshot transition system. Initial-load results remain within
 the baseline range:
 
-| Mode | Performance | LCP (seconds) | CLS |
-| --- | --- | --- | --- |
-| Editorial | 95 | 2.79 | 0 |
-| Engineer | 97 | 2.48 | 0.0318 |
-| Digital | 96 | 2.64 | 0.0003 |
+| Mode      | Performance | LCP (seconds) | CLS    |
+| --------- | ----------- | ------------- | ------ |
+| Editorial | 95          | 2.79          | 0      |
+| Engineer  | 97          | 2.48          | 0.0318 |
+| Digital   | 96          | 2.64          | 0.0003 |
 
 Automated Accessibility/Best Practices remain 100; preview SEO remains 63.
 JavaScript transfer was approximately 146.8 KiB and CSS 9.1 KiB, an increase of
@@ -142,10 +148,10 @@ about 1.2 KiB JavaScript and 0.3 KiB CSS over the original baseline. No animatio
 package or extra font family was added.
 
 | Destination | Composition/fonts ready | Choreography finished |
-| --- | --- | --- |
-| Engineer | 131 ms | 515 ms |
-| Digital | 76 ms | 775 ms |
-| Editorial | 60 ms | 644 ms |
+| ----------- | ----------------------- | --------------------- |
+| Engineer    | 131 ms                  | 515 ms                |
+| Digital     | 76 ms                   | 775 ms                |
+| Editorial   | 60 ms                   | 644 ms                |
 
 `elapsedMs` retains the composition/font readiness measurement;
 `animationFinishedMs` also includes the intentional geometry animation and test
@@ -159,11 +165,11 @@ metrics. The previous LCP/content/deployment limitations still apply.
 The `theme-motion-final` production run measured the entrance/reveal and interaction
 layer with the same mobile simulation and placeholder content:
 
-| Mode | Performance | LCP (seconds) | CLS |
-| --- | --- | --- | --- |
-| Editorial | 95 | 2.79 | 0 |
-| Engineer | 97 | 2.49 | 0.0318 |
-| Digital | 96 | 2.65 | 0.0003 |
+| Mode      | Performance | LCP (seconds) | CLS    |
+| --------- | ----------- | ------------- | ------ |
+| Editorial | 95          | 2.79          | 0      |
+| Engineer  | 97          | 2.49          | 0.0318 |
+| Digital   | 96          | 2.65          | 0.0003 |
 
 Accessibility and Best Practices remain 100 in every mode. SEO remains 63 because
 indexing is intentionally disabled. JavaScript transfer is approximately 148.1 KiB
@@ -209,11 +215,11 @@ transition system in the production bundle. Lighthouse still loads the provision
 
 ### Mobile initial load
 
-| Mode | Performance | FCP (seconds) | LCP (seconds) | TBT (ms) | CLS |
-| --- | --- | --- | --- | --- | --- |
-| Editorial | 95–98 | 1.66–1.67 | 2.26–2.79 | 13–13.5 | 0 |
-| Engineer | 96–97 | 1.36 | 2.63–2.64 | 13–16.5 | 0.0320 |
-| Digital | 95 | 1.51 | 2.78–2.79 | 12–14.5 | 0.0004 |
+| Mode      | Performance | FCP (seconds) | LCP (seconds) | TBT (ms) | CLS    |
+| --------- | ----------- | ------------- | ------------- | -------- | ------ |
+| Editorial | 95–98       | 1.66–1.67     | 2.26–2.79     | 13–13.5  | 0      |
+| Engineer  | 96–97       | 1.36          | 2.63–2.64     | 13–16.5  | 0.0320 |
+| Digital   | 95          | 1.51          | 2.78–2.79     | 12–14.5  | 0.0004 |
 
 Every run exceeded the Performance target of 90. Automated Accessibility and Best
 Practices remained 100 in all modes. SEO remained 63 because indexing is intentionally
@@ -242,18 +248,18 @@ JavaScript. Preserve the mode-specific font delivery when investigating these.
 Mobile mode selection at 390×844, without artificial throttling:
 
 | Destination | Composition/fonts ready | Choreography finished |
-| --- | --- | --- |
-| Engineer | 135–152 ms | 519–535 ms |
-| Digital | 73–74 ms | 774 ms |
-| Editorial | 73 ms | 656–657 ms |
+| ----------- | ----------------------- | --------------------- |
+| Engineer    | 135–152 ms              | 519–535 ms            |
+| Digital     | 73–74 ms                | 774 ms                |
+| Editorial   | 73 ms                   | 656–657 ms            |
 
 Desktop header navigation from Home to About at 1440×900, also unthrottled:
 
-| Mode | Content visible | Choreography finished | Back choreography finished |
-| --- | --- | --- | --- |
-| Editorial | 75–81 ms | 698–716 ms | 671–678 ms |
-| Engineer | 83–89 ms | 355–365 ms | 298 ms |
-| Digital | 85–86 ms | 840–877 ms | 809–817 ms |
+| Mode      | Content visible | Choreography finished | Back choreography finished |
+| --------- | --------------- | --------------------- | -------------------------- |
+| Editorial | 75–81 ms        | 698–716 ms            | 671–678 ms                 |
+| Engineer  | 83–89 ms        | 355–365 ms            | 298 ms                     |
+| Digital   | 85–86 ms        | 840–877 ms            | 809–817 ms                 |
 
 Back content became visible in 6–7 ms. These include automation overhead and
 intentional visual duration; they are not field INP measurements. The route
@@ -285,3 +291,133 @@ The next performance acceptance pass should use the integrated project content,
 real media and a Vercel preview, including representative mobile hardware and
 interaction profiling. Deployment remains deferred at Tyler's request until the
 other projects are ready and integrated.
+
+## Chronicle refinement audit — 2026-10-03
+
+Ran `chronicle-refined` after the production build with
+`npm run audit:performance -- --label=chronicle-refined --modes=chronicle`.
+This is a single Lighthouse mobile-simulation run on `/en`, with Chronicle
+selected by request cookie, local production server, placeholder portfolio
+content, and indexing disabled. It does not represent deployed or field data.
+
+Scores: Performance 83, Accessibility 100, Best Practices 100 and SEO 63. The
+SEO score remains constrained by the intentional no-index preview setting. FCP
+was 1.061 seconds, LCP 4.666 seconds, TBT 40 ms and CLS 0. The Chronicle result
+is below the Performance target of 90; the measured LCP needs investigation.
+
+Initial transfer was 162,759 bytes of JavaScript, 23,644 bytes of CSS, no font
+files and 692,381 bytes of images. The image requests were `landscape-v2.webp`
+(298,072 bytes transferred), `sakura-corner.webp` (219,542 bytes),
+`crystal-corner.webp` (174,180 bytes) and `monogram.svg` (587 bytes). Lighthouse's
+image-delivery insight estimated about 294 KiB in savings across the three large
+WebP assets. It identified the Chronicle hero section as the LCP candidate and
+reported that its image request was not discoverable from the initial document;
+the hero artwork is currently a CSS background. Other findings included about
+450 ms of render-blocking savings, 29 KiB of unused JavaScript and 13 KiB of
+legacy JavaScript. No Lighthouse runtime warnings were reported.
+
+In the unthrottled 390×844 mobile switch sample, moving from Editorial to
+Chronicle took 120 ms until the composition and fonts were ready and 801 ms
+through the end of the transition. Desktop Home → About at 1440×900 showed
+content in 80 ms and finished its transition in 692 ms; Back showed content in
+7 ms and finished in 585 ms. Neither route sample observed a main-thread long
+task. The About sample recorded three animation-frame gaps above 50 ms, with a
+maximum of 67 ms; the Back sample's maximum was 50 ms. These local timings
+include automation overhead and do not measure compositor frame rate or field
+INP.
+
+This result adds Chronicle to the performance review; historical tables above
+remain the earlier three-mode measurements. Review the CSS background LCP
+discovery and large decorative artwork before the next Chronicle audit.
+
+### Chronicle optimized follow-up — 2026-10-03
+
+After reducing the Chronicle artwork for mobile and adding a high-priority,
+discoverable preload, reran the same focused command with label
+`chronicle-refined-optimized`. Conditions, route and single-run limitation match
+the Chronicle refinement audit above. Performance improved from 83 to 89, still
+one point below the target of 90. Accessibility and Best Practices remained 100;
+SEO remained 63 because indexing is disabled. FCP was 1.059 seconds, LCP 3.759
+seconds, TBT 28 ms and CLS 0.
+
+Image transfer fell from 692,381 bytes to 281,858 bytes (about 59%). JavaScript
+was unchanged at 162,759 bytes, CSS was 23,665 bytes and no font files were
+requested. The browser requested one each of `landscape-v2-compact.webp`
+(141,366 bytes transferred), `sakura-corner-compact.webp` (77,929 bytes), and
+`crystal-corner-compact.webp` (61,976 bytes), plus `monogram.svg` (587 bytes).
+The Lighthouse request-discovery checklist now passes all three checks:
+high priority, discoverable in the initial document and not lazy-loaded. No
+duplicate asset request appeared in the network-request audit. Estimated image
+compression savings fell from about 294 KiB to about 96 KiB.
+
+The remaining scored findings were LCP 3.8 seconds, unused JavaScript (29 KiB),
+legacy JavaScript (13 KiB), and render-blocking savings estimated at 450 ms.
+The LCP discovery and priority findings are resolved in this run, but overall
+LCP remains over the 2.5-second good threshold. The Lighthouse LCP breakdown
+listed approximately 158 ms TTFB, 11 ms resource-load delay, 14 ms resource-load
+duration and 68 ms element-render delay; this sub-breakdown does not account for
+the full 3.759-second reported LCP, so repeat and inspect its trace before
+attributing the remaining delay.
+
+Unthrottled mobile switching from Editorial to Chronicle measured 120 ms until
+composition/fonts were ready and 784 ms through choreography. On desktop,
+Home → About showed content in 110 ms and finished in 715 ms; Back showed content
+in 7 ms and finished in 584 ms. Neither route sample recorded a long task. About
+had one animation-frame gap above 50 ms (maximum 50 ms); Back also peaked at
+50 ms. These local automation timings are not compositor FPS or field INP.
+
+### Chronicle mobile-corner follow-up — 2026-10-03
+
+After adding 320px mobile corner artwork with matching mobile-only background
+overrides, ran `chronicle-refined-final` using the same focused audit command and
+conditions above. Performance reached 91, meeting the initial score target;
+Accessibility and Best Practices remained 100 and SEO remained 63 due to
+intentional no-indexing. FCP was 1.059 seconds, LCP 3.459 seconds, TBT 26 ms and
+CLS 0. The score target is met, though LCP still exceeds 2.5 seconds and remains
+a review item.
+
+Image transfer fell from 281,858 to 209,181 bytes (about 25.8% from the previous
+run, 69.8% from the initial Chronicle run). The request list contained exactly
+one each of `landscape-v2-compact.webp` (141,366 bytes transferred),
+`crystal-corner-mobile.webp` (29,806 bytes),
+`sakura-corner-mobile.webp` (37,422 bytes), and `monogram.svg` (587 bytes); no
+duplicate image requests appeared. Desktop artwork retains larger delivery
+sizes and is outside this mobile Lighthouse viewport. Lighthouse still
+reported approximately 61 KiB estimated image savings. The LCP preload checks
+for priority, initial-document discoverability and eager loading all passed.
+JavaScript was 162,759 bytes, CSS 23,729 bytes and no font files were requested.
+
+Other scored findings included 17 KiB estimated unused CSS, 29 KiB unused
+JavaScript, 13 KiB legacy JavaScript, a forced-reflow insight and approximately
+450 ms potential render-blocking savings. No Lighthouse runtime warnings were
+reported.
+
+The unthrottled mobile switch sample measured 122 ms until Chronicle and its
+fonts were ready and 785 ms through choreography. Desktop Home → About showed
+content in 98 ms and finished in 659 ms; Back showed content in 7 ms and finished
+in 567 ms. Neither sample recorded a long task. The About transition had three
+frame gaps above 50 ms (the reported rounded maximum was 50 ms); Back had none
+and a maximum gap of 34 ms. These local timings include automation overhead and
+are not compositor FPS or field INP.
+
+## Chronicle microinteraction pass — 2026-10-04
+
+Same focused command and conditions as the Chronicle audits above (single mobile
+Lighthouse runs on the empty public `/en`, local production server, indexing off).
+
+The first run after the wide-screen, ornament, font-weight and load-choreography work
+measured Performance 81 and LCP 5.14s. The LCP element (the hero) loaded quickly in the
+trace; the simulated delay came from other requests sharing bandwidth before it painted
+(images 402 KiB). Changes, re-measured after each step:
+
+| Change                                                                                         | Performance | LCP        |
+| ---------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| Baseline after the new work                                                                    | 81          | 5.14s      |
+| Defer glass-button hover/pressed art to idle after load; phone corner art for home-tab corners | 87          | 3.99s      |
+| Glass-button states re-encoded at 600px (2× display width; ~72 → ~21 KiB each)                 | 87–88       | 3.91–3.98s |
+| Scene haze disabled (attribution only, not kept)                                               | 88          | 3.91s      |
+| Portrait scene 780px WebP q72 (141 → 97 KiB)                                                   | 89–92       | 3.31–3.69s |
+
+The haze wake-up has no measurable cost. Remaining pre-LCP bytes are the portrait
+scene, phone corner art, two Cormorant weights (500/700, 46 KiB) and small ornaments.
+These are local simulated results, not field data.

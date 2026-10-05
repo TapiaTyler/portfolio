@@ -2,17 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { caseStudySections } from "@/lib/content/case-study-sections";
+import { useDismissibleDisclosure } from "../use-dismissible-disclosure";
 
 export function CaseStudyNavigation({
   sections,
   label = "On this page",
   directoryRoot,
+  labels,
 }: {
   sections: ReturnType<typeof caseStudySections>;
   label?: string;
   directoryRoot?: string;
+  labels?: Record<string, string>;
 }) {
   const root = useRef<HTMLElement>(null);
+  const mobileMenu = useRef<HTMLDetailsElement>(null);
+  useDismissibleDisclosure(mobileMenu);
   const [current, setCurrent] = useState<string | null>(null);
   useEffect(() => {
     const study = root.current?.closest(".case-study");
@@ -27,12 +32,25 @@ export function CaseStudyNavigation({
     let frame = 0;
     const update = () => {
       frame = 0;
-      const last = targets
-        .filter(
-          (element) =>
-            element.getBoundingClientRect().top <= innerHeight * 0.35,
-        )
-        .at(-1);
+      const panel = study.querySelector<HTMLElement>(".case-study-body");
+      const contained =
+        panel && /(auto|scroll)/.test(getComputedStyle(panel).overflowY);
+      const threshold = contained
+        ? panel.getBoundingClientRect().top + panel.clientHeight * 0.25
+        : innerHeight * 0.35;
+      // Short final chapters cannot always reach the normal reading threshold.
+      const atEnd = contained
+        ? panel.scrollTop > 0 &&
+          panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 2
+        : scrollY > 0 &&
+          scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+      const last = atEnd
+        ? targets.at(-1)
+        : targets
+            .filter(
+              (element) => element.getBoundingClientRect().top <= threshold,
+            )
+            .at(-1);
       setCurrent(last?.id ?? null);
     };
     const schedule = () => {
@@ -42,12 +60,19 @@ export function CaseStudyNavigation({
       ? new ResizeObserver(schedule)
       : null;
     observer?.observe(study);
+    const panel = study.querySelector<HTMLElement>(".case-study-body");
+    if (panel) observer?.observe(panel);
+    study.addEventListener("scroll", schedule, {
+      passive: true,
+      capture: true,
+    });
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
     update();
     return () => {
       cancelAnimationFrame(frame);
       observer?.disconnect();
+      study.removeEventListener("scroll", schedule, true);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
@@ -58,6 +83,11 @@ export function CaseStudyNavigation({
         <li key={id}>
           <a
             href={`#${id}`}
+            title={labels?.[id] ? title.value : undefined}
+            // A composition's short label leads; the canonical heading keeps its meaning.
+            aria-label={
+              labels?.[id] ? `${labels[id]}: ${title.value}` : undefined
+            }
             aria-current={current === id ? "location" : undefined}
             onClick={
               mobile
@@ -97,7 +127,9 @@ export function CaseStudyNavigation({
                 <path d="M9 1v4h4M5 9h6M5 12h6" />
               </svg>
             )}
-            <span lang={title.lang}>{title.value}</span>
+            <span lang={labels?.[id] ? "en" : title.lang}>
+              {labels?.[id] ?? title.value}
+            </span>
           </a>
         </li>
       ))}
@@ -127,7 +159,16 @@ export function CaseStudyNavigation({
         {directory}
         {links()}
       </nav>
-      <details className="case-study-navigation__mobile">
+      <details
+        className="case-study-navigation__mobile"
+        ref={mobileMenu}
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && mobileMenu.current?.open) {
+            mobileMenu.current.open = false;
+            mobileMenu.current.querySelector("summary")?.focus();
+          }
+        }}
+      >
         <summary>
           {label}
           <span

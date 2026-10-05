@@ -1,0 +1,34 @@
+{
+  "capturedAt": "2026-10-04T10:05:19.226Z",
+  "conditions": "Actual development captures, normal motion. Earlier archives preserved.",
+  "captures": [
+    {
+      "file": "desktop-work-selector.png",
+      "viewport": {
+        "width": 1672,
+        "height": 1000
+      }
+    },
+    {
+      "file": "mobile-work-selector.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "desktop-case-study-selector.png",
+      "viewport": {
+        "width": 1672,
+        "height": 1000
+      }
+    },
+    {
+      "file": "mobile-case-study-selector.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ]
+}

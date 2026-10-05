@@ -19,14 +19,14 @@ export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
   return (
     <section
       className="case-study-orientation"
-      aria-label="Project at a glance"
+      aria-label="Project at a Glance"
       lang="en"
     >
-      <p className="eyebrow">At a glance</p>
+      <p className="eyebrow">At a Glance</p>
       <dl>
         {distinction && (
           <div className="case-study-orientation__approach">
-            <dt>Distinguishing approach</dt>
+            <dt>Distinguishing Approach</dt>
             <dd lang={distinction.lang}>{distinction.value}</dd>
           </div>
         )}
@@ -51,7 +51,7 @@ export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
           </div>
         )}
         <div className="case-study-orientation__state">
-          <dt>Current state</dt>
+          <dt>Current State</dt>
           <dd>
             <span className="case-study-status">{project.status}</span>
             {state && <p lang={state.lang}>{state.value}</p>}
@@ -60,7 +60,7 @@ export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
       </dl>
       {project.contribution?.review && (
         <details className="case-study-contribution">
-          <summary>Ownership and review</summary>
+          <summary>Ownership and Review</summary>
           <p>{project.contribution.review}</p>
           {project.contribution.testing && (
             <p>{project.contribution.testing}</p>

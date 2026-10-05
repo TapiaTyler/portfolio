@@ -1,0 +1,26 @@
+import type { ThemeTokens } from "../contract";
+
+export const chronicleTokens = {
+  "surface-primary": "#fffdfb",
+  "surface-secondary": "#fff2f7",
+  "text-primary": "#171b39",
+  "text-muted": "#55536b",
+  accent: "#6540b4",
+  "status-planning": "#785126",
+  "border-subtle": "#d9be98",
+  "focus-ring": "#6540b4",
+  "font-display": "var(--font-chronicle-serif), Georgia, serif",
+  "font-body": "var(--font-chronicle-serif), Georgia, serif",
+  "font-mono": '"Cascadia Code", Consolas, monospace',
+  "space-section": "clamp(1.5rem, 3vw, 3rem)",
+  "space-content": "1.5rem",
+  "radius-control": "3px",
+  "border-width": "1px",
+  "elevation-panel": "0 8px 28px rgb(87 48 119 / 10%)",
+  "grid-max-width": "100rem",
+  "grid-gap": "1.5rem",
+  "image-filter": "none",
+  "motion-fast": "180ms",
+  "motion-slow": "480ms",
+  "motion-ease": "cubic-bezier(0.22, 1, 0.36, 1)",
+} satisfies ThemeTokens;

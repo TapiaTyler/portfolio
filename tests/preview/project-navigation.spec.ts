@@ -38,7 +38,7 @@ test("Digital opens the selected fixture by expanding its card into the project 
         .evaluate((image) => (image as HTMLImageElement).naturalWidth),
     )
     .toBeGreaterThan(0);
-  await card.getByRole("link", { name: "Explore the project" }).click();
+  await card.getByRole("link", { name: "Explore the Project" }).click();
   await expect(page).toHaveURL(new RegExp(`project=${slug}&surface=project`));
   await expect(page.locator("html")).toHaveAttribute(
     "data-route-transition",
@@ -132,7 +132,7 @@ test("Digital selected-project preview stays usable with reduced motion", async 
   await page
     .locator(".digital-project")
     .first()
-    .getByRole("link", { name: "Explore the project" })
+    .getByRole("link", { name: "Explore the Project" })
     .click();
   await expect(page.locator(".case-study")).toHaveCount(1);
   await expect(page.locator("html")).not.toHaveAttribute(
@@ -157,7 +157,7 @@ test("Editorial uses staggered sheets without replaying content when opening a d
   await page
     .locator(".project-feature")
     .first()
-    .getByRole("link", { name: "Explore the project" })
+    .getByRole("link", { name: "Explore the Project" })
     .click();
   await expect(page.locator("html")).toHaveAttribute(
     "data-route-transition",

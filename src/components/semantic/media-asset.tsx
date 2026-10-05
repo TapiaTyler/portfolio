@@ -52,7 +52,7 @@ export function MediaAsset({
       >
         <source src={src} />
         <a href={src} lang="en">
-          Open the video
+          Open the Video
         </a>
       </video>
     );

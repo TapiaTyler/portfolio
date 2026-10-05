@@ -1,8 +1,8 @@
-# Portfolio — Three Ways of Reading the Same Work
+# Portfolio — Multiple Ways of Reading the Same Work
 
 A professional portfolio for Tyler Tetsuo Tapia, built as a project in its own
-right. One canonical content model is presented through three distinct reading
-experiences: Editorial, Engineer and Digital.
+right. One canonical content model is presented through four distinct reading
+experiences: Editorial, Engineer, Digital and the new Chronicle implementation.
 
 The project separates facts and narrative from their composition, visual language
 and motion. Switching presentation changes hierarchy, density and interaction
@@ -10,11 +10,12 @@ while preserving the content, project URLs and essential navigation.
 
 ## Presentation modes
 
-| Mode                    | Reading model                                                    | Interaction character                                                                                 |
-| ----------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **Editorial** (default) | Narrative, typography, imagery and controlled whitespace         | Page turns, unfolding disclosures, quiet link/image responses and reading progress                    |
-| **Engineer**            | System records, architecture, implementation and decision detail | Record-change scans, directory-style section navigation, code copying and diagram inspection          |
-| **Digital**             | Spatial composition, layered media and visual continuity         | Card-to-project expansion, image-gallery expansion/contraction, pointer lighting and animated borders |
+| Mode                    | Reading model                                                              | Interaction character                                                                                 |
+| ----------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Editorial** (default) | Narrative, typography, imagery and controlled whitespace                   | Page turns, unfolding disclosures, quiet link/image responses and reading progress                    |
+| **Engineer**            | System records, architecture, implementation and decision detail           | Record-change scans, directory-style section navigation, code copying and diagram inspection          |
+| **Digital**             | Spatial composition, layered media and visual continuity                   | Card-to-project expansion, image-gallery expansion/contraction, pointer lighting and animated borders |
+| **Chronicle**           | Chapter-based discovery, horizontal project selection and a linked preview | Luminous selected frames, panel changes, scenic artwork and a chapter archive                         |
 
 Theme switching morphs matching semantic modules between compositions, preserves
 reading position and handles interruption. Route effects also cover internal links,
@@ -29,8 +30,16 @@ See [theme morphing](docs/THEME-TRANSITIONS.md),
 
 As of **October 3, 2026**:
 
-- Home, Work, project detail, About, Lab and Contact have compositions for all three modes.
-- Two real English case studies are imported and reviewed across the themes.
+Chronicle has a reference refinement pass ready for visual review, with a landscape
+shell, connected project/chapter selection, ornate glass frames and native contained
+reading. Its earlier local mobile audit scored 91 Performance, 100 Accessibility and 100
+Best Practices. The subsequent homepage tab/dropdown correction has not been
+re-audited; deployed performance and final visual approval remain pending. See
+[Chronicle implementation](docs/CHRONICLE-IMPLEMENTATION.md). The two imported
+case studies were previously reviewed in the original three modes.
+
+- Home, Work, project detail, About, Lab and Contact have compositions for all four modes.
+- Two real English case studies are imported and reviewed across the original three themes.
 - Both project records remain **draft and unfeatured**. Review of their presentation
   does not automatically publish them; public Work and featured inventories are empty.
 - English and Japanese routes exist. Incomplete Japanese content intentionally falls
@@ -82,7 +91,7 @@ CONTENT → SEMANTIC COMPONENTS → COMPOSITION → THEME TOKENS → INTERACTION
 - **Interaction:** adds continuity and feedback with progressive browser enhancements.
 
 Adding a normal project requires a content record and approved assets, rather than
-three theme-specific implementations. Published project selectors control routes,
+separate theme-specific implementations. Published project selectors control routes,
 indexes, sitemap and structured data. Draft/hidden records are excluded from public
 lookup; development review uses a separate guarded route.
 
@@ -105,7 +114,7 @@ documentation and automated verification. No contribution percentages are assert
 src/app/                  Locale routes and guarded development tools
 src/content/              Identity, page copy, project records and separate fixtures
 src/components/semantic/  Shared meaning-oriented renderers
-src/compositions/         Editorial, Engineer and Digital information organization
+src/compositions/         Editorial, Engineer, Digital and Chronicle organization
 src/themes/               Theme token definitions
 src/registries/           Projects, compositions, themes and vocabulary
 src/lib/                  Content, localization, theme, motion and SEO contracts
@@ -137,14 +146,17 @@ remain drafts.
 
 ### Development review tools
 
-| Route                                | Purpose                                                    |
-| ------------------------------------ | ---------------------------------------------------------- |
-| `/dev/projects/portfolio`            | Review the real portfolio draft in the selected mode       |
-| `/dev/projects/japan-travel-planner` | Review the imported travel planner draft                   |
-| `/dev/design-system`                 | Shared semantic fixtures, including sparse/no-image states |
-| `/dev/compositions`                  | Compare the same synthetic case study across all modes     |
-| `/dev/compositions?surface=homepage` | Populated synthetic homepage and project-opening flow      |
-| `/dev/compositions?surface=work`     | Populated synthetic Work index                             |
+| Route                                             | Purpose                                                    |
+| ------------------------------------------------- | ---------------------------------------------------------- |
+| `/dev/projects/portfolio`                         | Review the real portfolio draft in the selected mode       |
+| `/dev/projects/japan-travel-planner`              | Review the imported travel planner draft                   |
+| `/dev/design-system`                              | Shared semantic fixtures, including sparse/no-image states |
+| `/dev/compositions`                               | Compare the same synthetic case study across all modes     |
+| `/dev/compositions?surface=homepage`              | Populated synthetic homepage and project-opening flow      |
+| `/dev/compositions?surface=work`                  | Populated synthetic Work index                             |
+| `/preview/chronicle`                              | Real draft homepage in the full site shell                 |
+| `/preview/chronicle?project=portfolio`            | Full-shell portfolio draft; select Chronicle in the header |
+| `/preview/chronicle?project=japan-travel-planner` | Full-shell travel planner draft                            |
 
 Append `?locale=ja` to draft previews to inspect English fallback. Development
 routes and fixture media return 404 in production. Files under `public/` are

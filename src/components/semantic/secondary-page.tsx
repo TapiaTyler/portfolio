@@ -31,10 +31,12 @@ export interface SecondaryPageProps {
 }
 export function SecondaryPageIntro({
   content,
-}: Pick<SecondaryPageProps, "content">) {
+  tabIndex,
+}: Pick<SecondaryPageProps, "content"> & { tabIndex?: number }) {
   return (
     <header
       className="secondary-page-intro"
+      tabIndex={tabIndex}
       data-motion-id="page-intro"
       data-motion-reveal
     >
@@ -140,10 +142,10 @@ export function SecondaryPage({
       </div>
       <nav
         className="secondary-page-related"
-        aria-label="Continue exploring"
+        aria-label="Continue Exploring"
         data-motion-id="page-related"
       >
-        <p className="eyebrow">Continue exploring</p>
+        <p className="eyebrow">Continue Exploring</p>
         {content.related.map(({ label, destination }) => (
           <Link
             className="text-link"

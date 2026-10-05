@@ -40,6 +40,9 @@
     text-transform: uppercase;
     color: var(--text-muted);
   }
+  .site-header .site-nav a {
+    padding-inline: 1rem;
+  }
   .navigation-delimiter {
     display: inline;
   }

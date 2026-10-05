@@ -93,3 +93,20 @@ Desktop/mobile transition frames were inspected locally.
 The performance audit now records `elapsedMs` for composition/font readiness
 and `animationFinishedMs` for the entire choreography. These are local test
 observations, not INP or field Core Web Vitals. See `PERFORMANCE-REVIEW.md`.
+
+## Reading position across compositions — 2026-10-04
+
+Reading position is captured on every presentation change and restored when the new
+composition commits, independently of the animation. Reduced motion, an unsupported
+View Transition API, or a response slower than the 1500 ms capture bound now abandon
+only the animation, not the restore. Route changes and failed actions still discard it.
+
+The anchor is the innermost narrative module containing the reading line (the line
+below the sticky header, or just inside Chronicle's contained reading panel). Its
+progress through that module is restored at the new composition's reading line, so
+height changes between modes do not shift the reader. Supporting evidence
+(`data-motion-supporting`) is never the anchor: Chronicle places it beside its owner
+while other modes place it below, which previously moved readers a whole section.
+Without a containing module, the nearest module keeps its distance from the reading
+line. Panel restores scroll instantly because reading panels use smooth scrolling.
+`tests/preview/chronicle-morphing.spec.ts` covers every surface and both directions.

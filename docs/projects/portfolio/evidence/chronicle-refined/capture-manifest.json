@@ -1,0 +1,241 @@
+{
+  "capturedAt": "2026-10-04T03:23:52.941Z",
+  "browser": "Playwright Chromium",
+  "conditions": "Local development review, reduced motion for still captures; normal motion for the unedited silent video. No reconstructed states or generated screenshots. Project records remain drafts. Native viewport screenshots; no content compositing.",
+  "captures": [
+    {
+      "file": "home-reference-width.png",
+      "description": "Actual implementation at the desktop reference dimensions.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "documentDimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-desktop.png",
+      "description": "Viewport matches the original desktop evidence for comparison.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentDimensions": {
+        "width": 1440,
+        "height": 900
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-mobile.png",
+      "description": "Initial portrait viewport; the main region scrolls natively.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-mobile-card.png",
+      "description": "Main scrolled to show the complete selected card, with text inset clear of its ornate corners.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 49,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-mobile-preview.png",
+      "description": "Main scrolled to the selected project preview.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 756,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-mobile-outcome.png",
+      "description": "Keyboard focus moves the horizontal chapter strip into view.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 756,
+      "readingScrollTop": null
+    },
+    {
+      "file": "header-mobile-open.png",
+      "description": "Native mobile menu with language and theme controls.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 756,
+      "readingScrollTop": null
+    },
+    {
+      "file": "home-short-landscape.png",
+      "description": "Short landscape uses native overflow within the shell.",
+      "url": "/preview/chronicle",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "documentDimensions": {
+        "width": 844,
+        "height": 390
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": null
+    },
+    {
+      "file": "portfolio-reference-width.png",
+      "description": "Actual implementation at the desktop reference dimensions.",
+      "url": "/preview/chronicle?project=portfolio",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "documentDimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "portfolio-mobile.png",
+      "description": "Contained portrait case-study reading, with native chapter archive.",
+      "url": "/preview/chronicle?project=portfolio",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "portfolio-mobile-chapters.png",
+      "description": "Connected mobile chapter archive opened.",
+      "url": "/preview/chronicle?project=portfolio",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "travel-reference-width.png",
+      "description": "Actual implementation at the desktop reference dimensions.",
+      "url": "/preview/chronicle?project=japan-travel-planner",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "documentDimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "travel-mobile.png",
+      "description": "Contained portrait case-study reading, with native chapter archive.",
+      "url": "/preview/chronicle?project=japan-travel-planner",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "travel-mobile-chapters.png",
+      "description": "Connected mobile chapter archive opened.",
+      "url": "/preview/chronicle?project=japan-travel-planner",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "documentDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": 0
+    },
+    {
+      "file": "public-reference-width.png",
+      "description": "Actual implementation at the desktop reference dimensions.",
+      "url": "/en",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "documentDimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "mainScrollTop": 0,
+      "readingScrollTop": null
+    }
+  ],
+  "errors": [],
+  "video": {
+    "file": "chronicle-interactions.webm",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "description": "Actual selection, preview chapters, case-study navigation, Engineer/Chronicle morphing and browser history. Server response and automation pauses are included; this is not a benchmark."
+  }
+}

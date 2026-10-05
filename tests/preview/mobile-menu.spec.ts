@@ -32,6 +32,12 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(321);
     await page.screenshot({ path: `.cache/mobile-menu-${theme}-open.png` });
+    // Scan the settled menu; mid-fade link colours blend and read as low contrast.
+    await page.evaluate(() =>
+      Promise.all(
+        document.getAnimations().map((animation) => animation.finished),
+      ).catch(() => undefined),
+    );
     expect(
       (
         await new AxeBuilder({ page })

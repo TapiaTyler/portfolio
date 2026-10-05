@@ -20,6 +20,9 @@ for (const mode of ["editorial", "engineer", "digital"] as const) {
       };
     });
     await page.goto("/en/about");
+    await expect(
+      page.locator('link[rel="preload"][href*="/media/themes/chronicle/"]'),
+    ).toHaveCount(0);
     await page.evaluate(() => document.fonts.ready);
     const slider = page.locator(".site-controls--desktop .locale-switcher");
     const indicator = slider.locator(".locale-switcher__indicator");
@@ -38,19 +41,19 @@ for (const mode of ["editorial", "engineer", "digital"] as const) {
         ),
       ).toBe("5px");
     } else await expect(indicator).toHaveCSS("border-radius", "999px");
-    await slider.getByRole("link", { name: "JA", exact: true }).click();
+    await slider.getByRole("link", { name: "JP", exact: true }).click();
     await expect(page).toHaveURL(/\/ja\/about$/);
     await expect(page.locator("html")).toHaveAttribute(
       "data-test-language-frames",
       JSON.stringify([{ translate: "0 0" }, { translate: "100% 0" }]),
     );
     await expect(
-      slider.getByRole("link", { name: "JA", exact: true }),
+      slider.getByRole("link", { name: "JP", exact: true }),
     ).toHaveAttribute("aria-current", "page");
     await expect(indicator).toHaveCSS("translate", "100%");
     expect((await slider.boundingBox())!.width).toBe(initial.width);
     await expect(
-      slider.getByRole("link", { name: "JA", exact: true }),
+      slider.getByRole("link", { name: "JP", exact: true }),
     ).toHaveCSS("text-decoration-line", "none");
     await page.screenshot({ path: `.cache/header-${mode}.png` });
     await page.emulateMedia({ reducedMotion: "reduce" });

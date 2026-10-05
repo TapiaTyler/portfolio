@@ -1,0 +1,116 @@
+{
+  "capturedAt": "2026-10-04T08:43:28.447Z",
+  "route": "/preview/chronicle",
+  "conditions": "Actual local development captures, reduced motion, real draft inventory. Prior archives preserved.",
+  "captures": [
+    {
+      "file": "desktop-about.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "document": [
+        1672,
+        941
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "desktop-practice.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "document": [
+        1672,
+        941
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "desktop-lab.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "document": [
+        1672,
+        941
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "desktop-contact.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "document": [
+        1672,
+        941
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "desktop-dropdown.png",
+      "viewport": {
+        "width": 1672,
+        "height": 941
+      },
+      "document": [
+        1672,
+        941
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "mobile-home.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": [
+        390,
+        844
+      ],
+      "mainScroll": 0
+    },
+    {
+      "file": "mobile-about.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": [
+        390,
+        844
+      ],
+      "mainScroll": 546
+    },
+    {
+      "file": "mobile-practice.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": [
+        390,
+        844
+      ],
+      "mainScroll": 546
+    },
+    {
+      "file": "mobile-dropdown.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": [
+        390,
+        844
+      ],
+      "mainScroll": 546
+    }
+  ],
+  "errors": []
+}

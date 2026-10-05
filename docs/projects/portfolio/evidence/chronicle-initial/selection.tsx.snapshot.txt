@@ -1,0 +1,107 @@
+"use client";
+
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
+// Server-rendered semantic cards/evidence cross the boundary; content never selects a theme.
+export function ChronicleSelection({
+  items,
+}: {
+  items: { slug: string; title: string; card: ReactNode; preview: ReactNode }[];
+}) {
+  const [selected, setSelected] = useState(0);
+  const track = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const element = track.current;
+    if (!element || !window.ResizeObserver) return;
+    const observer = new ResizeObserver(() => {
+      const card = element.children[selected] as HTMLElement | undefined;
+      if (card)
+        element.scrollTo({
+          left: card.offsetLeft - element.offsetLeft,
+          behavior: "instant",
+        });
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [selected]);
+  const choose = (index: number) => {
+    setSelected(index);
+    const card = track.current?.children[index] as HTMLElement | undefined;
+    if (card && track.current)
+      track.current.scrollTo({
+        left: card.offsetLeft - track.current.offsetLeft,
+        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+      });
+  };
+  if (!items.length) return null;
+  return (
+    <div className="chronicle-selection">
+      <noscript>
+        <style>{`.chronicle-selection__controls,.chronicle-selection__select{display:none}`}</style>
+      </noscript>
+      <div
+        className="chronicle-selection__controls"
+        aria-label="Project selection"
+        role="group"
+      >
+        <button
+          type="button"
+          onClick={() => choose(selected - 1)}
+          disabled={selected === 0}
+        >
+          Previous
+        </button>
+        <span role="status" aria-live="polite">
+          {items[selected].title}
+        </span>
+        <button
+          type="button"
+          onClick={() => choose(selected + 1)}
+          disabled={selected === items.length - 1}
+        >
+          Next
+        </button>
+      </div>
+      <div className="chronicle-selection__track" ref={track}>
+        {items.map((item, index) => (
+          <div
+            className="chronicle-selection__item"
+            key={item.slug}
+            data-selected={selected === index}
+          >
+            <button
+              className="chronicle-selection__select"
+              type="button"
+              aria-pressed={selected === index}
+              aria-controls={`chronicle-preview-${item.slug}`}
+              onClick={() => choose(index)}
+            >
+              Preview <span>{item.title}</span>
+            </button>
+            {item.card}
+          </div>
+        ))}
+      </div>
+      <section
+        className="chronicle-preview"
+        aria-label="Selected project preview"
+      >
+        {items.map((item, index) => (
+          <div
+            id={`chronicle-preview-${item.slug}`}
+            key={item.slug}
+            hidden={selected !== index}
+            className="chronicle-preview__panel"
+            data-motion-id={
+              selected === index ? "selected-project-preview" : undefined
+            }
+          >
+            {item.preview}
+          </div>
+        ))}
+      </section>
+    </div>
+  );
+}

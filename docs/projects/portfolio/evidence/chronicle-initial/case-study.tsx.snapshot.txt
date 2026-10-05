@@ -1,0 +1,114 @@
+import type { ComponentProps } from "react";
+import {
+  CaseStudy,
+  CaseStudyIntro,
+  type CaseStudyBodyProps,
+} from "@/components/semantic/case-study";
+import { CaseStudyBlock } from "@/components/semantic/case-study-block";
+import { groupCaseStudyEvidence } from "../case-study-groups";
+import { SectionHeading } from "@/components/semantic/section-heading";
+import { MediaFrame } from "@/components/semantic/media-frame";
+import { ProjectMeta, ProjectLinks } from "@/components/semantic/project-meta";
+import { CaseStudyOrientation } from "@/components/semantic/case-study-orientation";
+
+export function ChronicleCaseStudyIntro(
+  props: ComponentProps<typeof CaseStudyIntro>,
+) {
+  const { content, level = 1, assetUrl } = props;
+  const media = content.project.media.find(
+    (item) => item.id === content.project.previewMediaId,
+  );
+  return (
+    <div className="chronicle-dossier-banner">
+      <header className="case-study-intro" data-motion-id="case-study-intro">
+        <p className="eyebrow" lang="en">
+          Chronicle / Project
+        </p>
+        <SectionHeading level={level}>
+          <span lang={content.title.lang}>{content.title.value}</span>
+        </SectionHeading>
+        <p className="chronicle-status" lang="en">
+          {content.project.status === "active"
+            ? "Active development"
+            : content.project.status}
+        </p>
+        {content.summary && (
+          <p lang={content.summary.lang}>{content.summary.value}</p>
+        )}
+        {content.description && (
+          <p lang={content.description.lang}>{content.description.value}</p>
+        )}
+        {media && (
+          <MediaFrame
+            media={media}
+            locale={content.locale}
+            assetUrl={assetUrl}
+          />
+        )}
+      </header>
+    </div>
+  );
+}
+
+function ChronicleBody({
+  content,
+  level,
+  anchorPrefix,
+  assetUrl,
+}: CaseStudyBodyProps) {
+  const render = (entry: (typeof content.blocks)[number]) => (
+    <CaseStudyBlock
+      key={entry.block.id}
+      entry={entry}
+      project={content.project}
+      locale={content.locale}
+      level={level}
+      anchorPrefix={anchorPrefix}
+      assetUrl={assetUrl}
+    />
+  );
+  return (
+    <>
+      {groupCaseStudyEvidence(content.blocks).map(({ owner, evidence }) => (
+        <div
+          key={owner.block.id}
+          className={`chronicle-chapter${evidence.length ? " chronicle-chapter--evidence" : ""}`}
+        >
+          {render(owner)}
+          {evidence.length > 0 && (
+            <div className="chronicle-chapter__evidence">
+              {evidence.map(render)}
+            </div>
+          )}
+        </div>
+      ))}
+    </>
+  );
+}
+
+export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
+  return (
+    <div className="chronicle-dossier">
+      <CaseStudy
+        {...props}
+        IntroRenderer={ChronicleCaseStudyIntro}
+        BodyRenderer={ChronicleBody}
+        navigationLabel="Chapter archive"
+        afterIntro={
+          <div
+            className="chronicle-record-summary"
+            data-motion-id="case-study-orientation"
+          >
+            <CaseStudyOrientation content={props.content} />
+            <ProjectMeta
+              project={props.content.project}
+              exclude={["Role", "Status"]}
+            />
+            <ProjectLinks project={props.content.project} />
+            {props.afterIntro}
+          </div>
+        }
+      />
+    </div>
+  );
+}

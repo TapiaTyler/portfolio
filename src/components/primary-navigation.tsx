@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, type ReactNode } from "react";
 import type { Locale } from "@/lib/i18n/locales";
+import { useDismissibleDisclosure } from "./use-dismissible-disclosure";
 
 export function PrimaryNavigation({
   locale,
@@ -16,6 +17,7 @@ export function PrimaryNavigation({
 }) {
   const pathname = usePathname();
   const menu = useRef<HTMLDetailsElement>(null);
+  useDismissibleDisclosure(menu);
   const links = items.map(({ href, label }) => {
     const destination = `/${locale}${href}`;
     return (
