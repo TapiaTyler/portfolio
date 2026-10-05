@@ -30,22 +30,6 @@ export function EditorialHero({
           {content.link.label}
         </Link>
       </div>
-      <div
-        className="editorial-study"
-        aria-hidden="true"
-        data-motion-id="hero-visual"
-      >
-        <svg viewBox="0 0 800 500" fill="none" focusable="false">
-          <path d="M0 360H800M540 0V500M0 90H800" />
-          <circle cx="540" cy="250" r="180" />
-          <ellipse cx="540" cy="250" rx="80" ry="180" />
-          <path d="M360 250H720" />
-          <circle className="editorial-study__point" cx="540" cy="250" r="5" />
-        </svg>
-        <span className="editorial-study__ampersand">&amp;</span>
-        <span className="editorial-study__caption">Form &amp; Structure</span>
-        <span className="editorial-study__index">01 / A study in balance</span>
-      </div>
     </section>
   );
 }

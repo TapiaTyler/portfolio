@@ -39,21 +39,15 @@ test("Editorial keeps its hierarchy and locally served fonts across viewport siz
       `overflow at ${width}px`,
     ).toBe(true);
     if (width >= 1440) {
-      const boxes = await page
+      // A type-only cover keeps the hero compact so Selected Work follows it.
+      const hero = await page
         .locator(".editorial-hero")
-        .evaluate((element) => {
-          const title = element.querySelector("h1")!.getBoundingClientRect();
-          const visual = element
-            .querySelector(".editorial-study")!
-            .getBoundingClientRect();
-          return {
-            titleRight: title.right,
-            visualLeft: visual.left,
-            ratio: visual.width / visual.height,
-          };
-        });
-      expect(boxes.visualLeft).toBeGreaterThan(boxes.titleRight);
-      expect(boxes.ratio).toBeCloseTo(1.6, 1);
+        .evaluate((element) => ({
+          height: element.getBoundingClientRect().height,
+          visuals: element.querySelectorAll("svg, img").length,
+        }));
+      expect(hero.visuals).toBe(0);
+      expect(hero.height).toBeLessThan(700);
     }
     await page.screenshot({
       path: testInfo.outputPath(`editorial-${width}.png`),

@@ -129,7 +129,6 @@ test("theme changes animate matching geometry, retain focus and clean snapshot n
     );
     expect(record.error).toBeUndefined();
     expect(record.names).toContain("hero-narrative");
-    expect(record.names).toContain("hero-visual");
     expect(record.moves).toBe(true);
     await expect(
       page.getByRole("button", { name: label, exact: true }),

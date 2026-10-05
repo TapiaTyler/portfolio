@@ -94,3 +94,18 @@ Lab uses an honest empty catalogue until studies are reviewed. Contact has a gen
 statement opening and pending contact-method section, without unverified addresses.
 Continuation links retain the existing ink rule and hover movement. Mobile returns
 to the same semantic reading order in one column.
+
+## Publication redesign — 2026-10-06
+
+- Type-only cover: the decorative ampersand study is removed so Selected Work
+  follows the headline within the first screen.
+- Project features: a lead story spans the page; later features pair up as smaller
+  stacked pieces. Cards carry a one-line kicker (year · status · three primary
+  technologies); the full metadata table stays on the case study.
+- Screenshots are plates: paper mat, hairline, one 16:10 ratio on cards, and
+  numbered "Fig." captions in case studies.
+- Labels use letter-spaced Inter small caps instead of monospace.
+- Case studies open with a serif standfirst and a drop cap.
+- The accent is a spot colour only: drop cap, chapter numbers, link hover and focus.
+- The active presentation option is a filled ink pill; the footer has an ink rule
+  and the name in the display serif.

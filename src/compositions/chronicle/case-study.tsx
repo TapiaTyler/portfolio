@@ -51,47 +51,64 @@ function ChronicleBody(props: CaseStudyBodyProps) {
   return (
     <>
       {groupCaseStudyEvidence(content.blocks).map(
-        ({ owner, evidence }, index) => (
-          <div
-            key={owner.block.id}
-            className={`chronicle-chapter${evidence.length || (index === 0 && content.project.previewMediaId) ? " chronicle-chapter--evidence" : ""}`}
-          >
-            <div className="chronicle-chapter__narrative">
-              {render(owner)}
-              {index === 0 && (
-                <ProjectMeta
-                  project={content.project}
-                  exclude={[
-                    "Languages",
-                    "Frameworks & Libraries",
-                    "Tools & Platforms",
-                    "Capabilities",
-                  ]}
-                />
+        ({ owner, evidence }, index) => {
+          // The first chapter already shows the preview screenshot. Evidence that
+          // repeats it stays in the document (every section is kept) but is hidden
+          // in this composition, so the chapter shows only its other evidence.
+          const shown = evidence.filter(
+            ({ block }) =>
+              block.type !== "media" ||
+              block.mediaId !== content.project.previewMediaId,
+          );
+          return (
+            <div
+              key={owner.block.id}
+              className={`chronicle-chapter${shown.length || (index === 0 && content.project.previewMediaId) ? " chronicle-chapter--evidence" : ""}`}
+            >
+              <div className="chronicle-chapter__narrative">
+                {render(owner)}
+                {index === 0 && (
+                  <ProjectMeta
+                    project={content.project}
+                    exclude={[
+                      "Languages",
+                      "Frameworks & Libraries",
+                      "Tools & Platforms",
+                      "Capabilities",
+                    ]}
+                  />
+                )}
+              </div>
+              {(shown.length > 0 ||
+                (index === 0 && content.project.previewMediaId)) && (
+                <div className="chronicle-chapter__evidence">
+                  {index === 0 &&
+                    content.project.media
+                      .filter(
+                        (item) => item.id === content.project.previewMediaId,
+                      )
+                      .map((media) => (
+                        <MediaFrame
+                          key={media.id}
+                          media={media}
+                          locale={content.locale}
+                          assetUrl={assetUrl}
+                          loading="eager"
+                        />
+                      ))}
+                  {shown.map(render)}
+                </div>
+              )}
+              {shown.length < evidence.length && (
+                <div hidden>
+                  {evidence
+                    .filter((entry) => !shown.includes(entry))
+                    .map(render)}
+                </div>
               )}
             </div>
-            {(evidence.length > 0 ||
-              (index === 0 && content.project.previewMediaId)) && (
-              <div className="chronicle-chapter__evidence">
-                {index === 0 &&
-                  content.project.media
-                    .filter(
-                      (item) => item.id === content.project.previewMediaId,
-                    )
-                    .map((media) => (
-                      <MediaFrame
-                        key={media.id}
-                        media={media}
-                        locale={content.locale}
-                        assetUrl={assetUrl}
-                        loading="eager"
-                      />
-                    ))}
-                {evidence.map(render)}
-              </div>
-            )}
-          </div>
-        ),
+          );
+        },
       )}
     </>
   );

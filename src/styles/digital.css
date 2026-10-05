@@ -428,7 +428,8 @@
   }
   .case-study .media-gallery > [data-media-aspect="portrait"] {
     grid-column: span 5;
-    width: min(100%, 22rem);
+    width: fit-content;
+    max-width: 100%;
     justify-self: end;
   }
   .case-study-block .media-frame {
@@ -481,7 +482,15 @@
     border: 0;
     background: transparent;
     border-radius: 0;
+  } /* Portrait evidence hugs its capped image and centres in the layer. */
+  .digital-block-evidence
+    > .case-study-block
+    > .media-frame[data-media-aspect="portrait"] {
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
   }
+
   .case-study-navigation a {
     border-radius: 0.4rem;
     padding: 0.65rem 0.75rem;
@@ -549,7 +558,7 @@
       grid-column: 1 / -1;
     }
     .case-study .media-gallery > [data-media-aspect="portrait"] {
-      width: min(100%, 18rem);
+      justify-self: center;
     }
     .project-index,
     .capability-list,

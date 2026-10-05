@@ -530,7 +530,8 @@
     margin: 0;
   }
   .case-study .media-frame[data-media-aspect="portrait"] {
-    width: min(100%, 20rem);
+    width: fit-content;
+    max-width: 100%;
     justify-self: center;
   }
   .engineer-block-record .architecture-display {

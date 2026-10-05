@@ -250,6 +250,22 @@
   height: auto;
   filter: var(--image-filter);
 }
+/* Portrait captures (phone screens) are capped in height so a tall image never
+   leaves a long empty column beside it. The frame shrinks to the image, and its
+   caption wraps to that width instead of stretching the frame, so any mat or
+   border a theme draws hugs the image. */
+.case-study .media-frame[data-media-aspect="portrait"] {
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.case-study .media-frame[data-media-aspect="portrait"] :is(img, video) {
+  width: auto;
+  max-height: min(70vh, 34rem);
+}
+.case-study .media-frame figcaption {
+  contain: inline-size;
+}
 .media-frame figcaption,
 .code-snippet figcaption {
   margin-top: 0.7rem;
