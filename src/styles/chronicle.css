@@ -3004,6 +3004,81 @@
       margin-inline: calc(var(--chronicle-edge) + 64px);
     }
   }
+  /* First-visit coach mark on the selected card (selection.tsx). It sits above
+     the card target but lets presses through everywhere except its button. */
+  .chronicle-hint {
+    position: absolute;
+    z-index: 8;
+    /* Just inside the card's top-right corner (the card clips overflow), clear
+       of the title, image and topics. */
+    top: 10px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: max-content;
+    max-width: calc(100% - 36px);
+    padding: 4px 4px 4px 14px;
+    border: 1px solid #d6a14a;
+    border-radius: 999px;
+    background: #fffdfbf2;
+    box-shadow: 0 4px 16px #6a3fa033;
+    color: #242347;
+    font-size: 0.88rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: chronicle-hint-pulse 2.4s ease-in-out infinite;
+  }
+  .chronicle-hint p {
+    margin: 0;
+  }
+  .chronicle-hint strong {
+    color: #6931a0;
+  }
+  .chronicle-hint button {
+    pointer-events: auto;
+    flex: none;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(120deg, #7b5cff, #b04fb8);
+    color: #fff;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  /* Narrow cards: the title fills the right side, so sit over the screenshot. */
+  @media (max-width: 900px) {
+    .chronicle-hint {
+      top: 26px;
+      right: auto;
+      left: 22px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+      max-width: 118px;
+      padding: 10px;
+      border-radius: 14px;
+      white-space: normal;
+      text-align: center;
+      font-size: 0.82rem;
+    }
+  }
+  @keyframes chronicle-hint-pulse {
+    50% {
+      box-shadow:
+        0 0 0 6px #b98cf033,
+        0 4px 16px #6a3fa033;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chronicle-hint {
+      animation: none;
+    }
+  }
   /* Keep native scrolling and focus behavior, without visible scrollbar chrome. */
   * {
     scrollbar-width: none;

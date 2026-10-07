@@ -600,4 +600,171 @@
       margin-top: 0;
     }
   }
+  /* Ink marks (decorative, generated; docs/design-reference/editorial-assets/ink).
+     Used sparingly, one per place, never behind body text and never interactive:
+     the 鉄男 seal signs the hero landscape, droplets mark the contact close, a
+     brush stroke underlines the footer name and a seal ends each case study. */
+  .editorial-hero::after {
+    content: "";
+    position: absolute;
+    /* Signs the landscape, just below its horizon at the right. */
+    right: clamp(2rem, 7vw, 7rem);
+    bottom: 27%;
+    width: clamp(2.5rem, 3.4vw, 3.25rem);
+    aspect-ratio: 1;
+    background: url("/media/themes/editorial/ink-seal-tetsuo.webp") center /
+      contain no-repeat;
+    rotate: -6deg;
+    opacity: 0.88;
+    pointer-events: none;
+  }
+  .editorial-homepage .contact-closing {
+    position: relative;
+  }
+  .editorial-homepage .contact-closing::before {
+    content: "";
+    position: absolute;
+    top: clamp(-1.5rem, -2vw, -0.5rem);
+    right: 2%;
+    width: clamp(5rem, 9vw, 8rem);
+    aspect-ratio: 360 / 303;
+    background: url("/media/themes/editorial/ink-droplets.webp") center /
+      contain no-repeat;
+    rotate: 18deg;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  .site-footer__inner > span:first-child {
+    position: relative;
+    isolation: isolate;
+  }
+  .site-footer__inner > span:first-child::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -0.6rem;
+    right: -1.2rem;
+    bottom: -0.2rem;
+    height: 0.9rem;
+    background: url("/media/themes/editorial/ink-brush-stroke.webp") center /
+      100% 100% no-repeat;
+    opacity: 0.16;
+    pointer-events: none;
+  }
+  .case-study::after {
+    content: "";
+    display: block;
+    width: 2.75rem;
+    aspect-ratio: 1;
+    margin: clamp(3rem, 6vw, 5rem) auto 0;
+    background: url("/media/themes/editorial/ink-seal-mountain.webp") center /
+      contain no-repeat;
+    rotate: 3deg;
+    opacity: 0.85;
+  }
+  @media (max-width: 48rem) {
+    .editorial-hero::after,
+    .editorial-homepage .contact-closing::before {
+      content: none;
+    }
+  }
+  /* One ink mark per supporting page, each a different mark, all in the intro's
+     outer margin so they never sit behind text. */
+  .secondary-page-intro {
+    position: relative;
+  }
+  .secondary-page-intro::after {
+    position: absolute;
+    pointer-events: none;
+    background: center / contain no-repeat;
+  }
+  .secondary-page--work .secondary-page-intro::after {
+    content: "";
+    top: -1rem;
+    right: -1rem;
+    width: clamp(5rem, 9vw, 8rem);
+    aspect-ratio: 360 / 342;
+    background-image: url("/media/themes/editorial/ink-brush-flick.webp");
+    rotate: 24deg;
+    opacity: 0.18;
+  }
+  .secondary-page--about .secondary-page-intro::after {
+    content: "";
+    left: clamp(14rem, 22vw, 20rem);
+    top: 30%;
+    width: clamp(2.5rem, 3.2vw, 3rem);
+    aspect-ratio: 1;
+    background-image: url("/media/themes/editorial/ink-seal-tetsuo.webp");
+    rotate: -8deg;
+    opacity: 0.85;
+  }
+  .secondary-page--lab .secondary-page-intro::after {
+    content: "";
+    top: -3.5rem;
+    right: -2.5rem;
+    width: clamp(7rem, 11vw, 10rem);
+    aspect-ratio: 420 / 458;
+    background-image: url("/media/themes/editorial/ink-spatter.webp");
+    opacity: 0.2;
+  }
+  /* Contact: a sumi-e sweep under the lead, and the spatter (turned, smaller
+     than Lab's) in the gutter left of the main content, leading the eye into it
+     after the title. */
+  .secondary-page--contact .secondary-page-intro::after {
+    content: "";
+    right: 4%;
+    bottom: -1.5rem;
+    width: clamp(6rem, 10vw, 8.5rem);
+    aspect-ratio: 420 / 414;
+    background-image: url("/media/themes/editorial/ink-sweep.webp");
+    rotate: 12deg;
+    opacity: 0.2;
+  }
+  .secondary-page--contact .secondary-page-body {
+    position: relative;
+  }
+  .secondary-page--contact .secondary-page-body::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: calc(clamp(-6.5rem, -5.5vw, -2.5rem) - 20px);
+    translate: 0 -50%;
+    width: clamp(5rem, 8vw, 7rem);
+    aspect-ratio: 420 / 458;
+    background: url("/media/themes/editorial/ink-spatter.webp") center / contain
+      no-repeat;
+    rotate: 135deg;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  @media (max-width: 48rem) {
+    .secondary-page-intro::after,
+    .secondary-page--contact .secondary-page-body::before {
+      content: none;
+    }
+  }
+  /* Work: the sweep, smaller than Contact's, centred on the Project Collection
+     heading row. */
+  .secondary-page--work .secondary-page-section--collection {
+    position: relative;
+  }
+  .secondary-page--work .secondary-page-section--collection::before {
+    content: "";
+    position: absolute;
+    top: calc(-1rem + 65px);
+    left: 50%;
+    translate: calc(-50% - 280px) 0;
+    width: clamp(4.5rem, 7vw, 6rem);
+    aspect-ratio: 420 / 414;
+    background: url("/media/themes/editorial/ink-sweep.webp") center / contain
+      no-repeat;
+    rotate: -8deg;
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  @media (max-width: 48rem) {
+    .secondary-page--work .secondary-page-section--collection::before {
+      content: none;
+    }
+  }
 }

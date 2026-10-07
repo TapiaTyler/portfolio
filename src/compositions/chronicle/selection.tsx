@@ -4,10 +4,41 @@ import {
   useEffect,
   useRef,
   useState,
+  useSyncExternalStore,
   type CSSProperties,
   type ReactNode,
 } from "react";
 import { ChronicleAtmosphere } from "./atmosphere";
+
+const hintKey = "chronicle-hints-dismissed";
+const noSubscription = () => () => {};
+function storedDismissal() {
+  try {
+    return localStorage.getItem(hintKey) === "1";
+  } catch {
+    // Private mode or blocked storage: no hint rather than a sticky one.
+    return true;
+  }
+}
+
+/** First-visit hint, remembered once dismissed. The server never renders it. */
+function useFirstVisitHint() {
+  const stored = useSyncExternalStore(
+    noSubscription,
+    storedDismissal,
+    () => true,
+  );
+  const [dismissed, setDismissed] = useState(false);
+  const dismiss = () => {
+    setDismissed(true);
+    try {
+      localStorage.setItem(hintKey, "1");
+    } catch {
+      // Dismissal still applies for this page view.
+    }
+  };
+  return [!stored && !dismissed, dismiss] as const;
+}
 
 // Match programmatic selection to the native snap inset, preserving frame gutters.
 function cardScrollPosition(track: HTMLElement, card: HTMLElement) {
@@ -30,6 +61,7 @@ export function ChronicleSelection({
   // The project preview slides in from the side the selection moved toward.
   const [direction, setDirection] = useState(1);
   const track = useRef<HTMLDivElement>(null);
+  const [hint, dismissHint] = useFirstVisitHint();
   // Only a tap on a card arms it, and only a tap on the armed card opens it.
   // Swipes, dots and arrows move the selection but disarm, so a card that has
   // just slid into place never opens on a single tap.
@@ -188,6 +220,17 @@ export function ChronicleSelection({
             data-selected={selected === index}
           >
             {item.card}
+            {hint && selected === index && (
+              // Game-style coach mark; never blocks the card (see chronicle.css).
+              <div className="chronicle-hint" role="note">
+                <p>
+                  <strong>Tap to select</strong> · tap again to open
+                </p>
+                <button type="button" onClick={dismissHint}>
+                  Got it
+                </button>
+              </div>
+            )}
             {/* The whole card is the touch target, as in a game's selection
                 screen: a tap selects and arms the card, and tapping the armed
                 card again opens it. On the homepage the title also stays a direct
@@ -203,6 +246,7 @@ export function ChronicleSelection({
                 showPreview ? `chronicle-preview-${item.slug}` : undefined
               }
               onClick={(event) => {
+                if (hint) dismissHint();
                 if (armed.current !== index || selected !== index) {
                   choose(index);
                   armed.current = index;
