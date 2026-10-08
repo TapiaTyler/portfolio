@@ -1,3 +1,4 @@
+import { setInterfaceText } from "@/lib/i18n/dom-copy";
 export { setupDigitalMedia } from "./digital-gallery";
 
 export function setupDigitalPointerLabels() {
@@ -7,7 +8,7 @@ export function setupDigitalPointerLabels() {
   const label = document.createElement("span");
   label.className = "project-pointer-label";
   label.dataset.theme = "digital";
-  label.textContent = "Open";
+  setInterfaceText(label, "Open");
   label.setAttribute("aria-hidden", "true");
   label.hidden = true;
   document.body.append(label);

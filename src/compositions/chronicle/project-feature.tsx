@@ -1,8 +1,10 @@
+import { Text } from "@/components/localized-text";
+import { interfaceCopy } from "@/lib/i18n/messages";
 import Link from "next/link";
 import { projectStatusLabels } from "@/lib/content/status";
 import { ChronicleTopics } from "./topics";
-import type { ComponentProps } from "react";
-import type { ProjectFeature } from "@/components/semantic/project-feature";
+import { type ComponentProps } from "react";
+import { type ProjectFeature } from "@/components/semantic/project-feature";
 import { SectionHeading } from "@/components/semantic/section-heading";
 import { MediaFrame } from "@/components/semantic/media-frame";
 import { FallbackNotice } from "@/components/semantic/fallback-notice";
@@ -32,6 +34,10 @@ export function ChronicleProjectFeature({
           locale={content.locale}
           assetUrl={assetUrl}
           loading="eager"
+          // Card thumbnails follow the scenic hero in loading priority. Keep them
+          // eager so horizontal selection never waits for lazy-load proximity.
+          fetchPriority="low"
+          sizes="(max-width: 900px) and (orientation: portrait) 90vw, (max-height: 500px) 35vw, 18vw"
         />
       )}
       <div className="chronicle-project__record">
@@ -58,7 +64,10 @@ export function ChronicleProjectFeature({
           )}
         </SectionHeading>
         <p className="chronicle-status" lang="en">
-          {projectStatusLabels[content.project.status]}
+          <Text
+            value={interfaceCopy(projectStatusLabels[content.project.status])}
+            locale={content.locale}
+          />
         </p>
         {content.summary && (
           <p lang={content.summary.lang}>{content.summary.value}</p>
@@ -66,7 +75,7 @@ export function ChronicleProjectFeature({
         <FallbackNotice content={content} />
       </div>
       <div className="chronicle-project__topics">
-        <ChronicleTopics project={content.project} />
+        <ChronicleTopics locale={content.locale} project={content.project} />
       </div>
     </article>
   );

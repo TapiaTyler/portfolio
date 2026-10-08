@@ -1,5 +1,6 @@
-import type { ComponentProps } from "react";
-import type { CaseStudyIntro } from "@/components/semantic/case-study";
+import { UiText } from "@/components/ui-text";
+import { type ComponentProps } from "react";
+import { type CaseStudyIntro } from "@/components/semantic/case-study";
 import { SectionHeading } from "@/components/semantic/section-heading";
 import { ProjectLinks, ProjectMeta } from "@/components/semantic/project-meta";
 import { MediaFrame } from "@/components/semantic/media-frame";
@@ -10,7 +11,7 @@ export function DigitalCaseStudyIntro({
   level = 1,
   assetUrl,
 }: ComponentProps<typeof CaseStudyIntro>) {
-  const { project } = content;
+  const { project, locale } = content;
   const media = project.media.find(
     (media) => media.id === project.previewMediaId,
   );
@@ -22,7 +23,7 @@ export function DigitalCaseStudyIntro({
       data-status={project.status}
     >
       <p className="eyebrow" lang="en">
-        Project / {project.slug}
+        <UiText locale={locale} id="Project /" /> {project.slug}
       </p>
       <SectionHeading level={level}>
         <span lang={content.title.lang}>{content.title.value}</span>
@@ -34,6 +35,7 @@ export function DigitalCaseStudyIntro({
             locale={content.locale}
             assetUrl={assetUrl}
             loading="eager"
+            fetchPriority="high"
           />
         </div>
       )}
@@ -45,10 +47,14 @@ export function DigitalCaseStudyIntro({
           {content.description && (
             <p lang={content.description.lang}>{content.description.value}</p>
           )}
-          <ProjectLinks project={project} />
+          <ProjectLinks locale={content.locale} project={project} />
         </div>
         <CaseStudyOrientation content={content} />
-        <ProjectMeta project={project} exclude={["Role", "Status"]} />
+        <ProjectMeta
+          locale={content.locale}
+          project={project}
+          exclude={["Role", "Status"]}
+        />
       </div>
     </header>
   );

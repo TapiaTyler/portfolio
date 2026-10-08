@@ -1,12 +1,16 @@
+import { UiText } from "@/components/ui-text";
+import { Text } from "@/components/localized-text";
+
 import Link from "next/link";
-import type { HomepageProps } from "@/components/semantic/homepage";
 import {
+  type HomepageProps,
   HomeSectionHeader,
   CapabilityList,
   ProfilePreview,
   LabPreview,
   ContactClosing,
 } from "@/components/semantic/homepage";
+
 import { ProjectIndex } from "@/components/semantic/project-index";
 import { selectProjectContent } from "@/lib/i18n/project-content";
 import { EngineerHero } from "./hero";
@@ -29,12 +33,19 @@ export function EngineerHomepage({
           aria-labelledby="project-overview-heading"
         >
           <h2 id="project-overview-heading" className="engineer-panel-label">
-            Project Overview
+            <UiText locale={locale} id="Project Overview" />
           </h2>
           <div className="engineer-project-overview__body">
             <p className="engineer-index-count">
-              {projects.length} selected{" "}
-              {projects.length === 1 ? "project" : "projects"}
+              <UiText
+                locale={locale}
+                id={
+                  projects.length === 1
+                    ? "{count} selected project"
+                    : "{count} selected projects"
+                }
+                values={{ count: projects.length }}
+              />
             </p>
             {projects.length ? (
               <ul>
@@ -59,7 +70,9 @@ export function EngineerHomepage({
                 })}
               </ul>
             ) : (
-              <p className="empty-content">{content.work.emptyText}</p>
+              <p className="empty-content">
+                <Text value={content.work.emptyText} locale={locale} />
+              </p>
             )}
             <div className="engineer-route-study" aria-hidden="true">
               <span />
@@ -77,6 +90,7 @@ export function EngineerHomepage({
         aria-labelledby="selected-work-heading"
       >
         <HomeSectionHeader
+          locale={locale}
           title={content.work.title}
           id="selected-work-heading"
           href={`/${locale}/work`}
@@ -92,10 +106,12 @@ export function EngineerHomepage({
             assetUrl={assetUrl}
           />
         ) : (
-          <p className="empty-content">{content.work.emptyText}</p>
+          <p className="empty-content">
+            <Text value={content.work.emptyText} locale={locale} />
+          </p>
         )}
       </section>
-      <CapabilityList content={content.capabilities} />
+      <CapabilityList locale={locale} content={content.capabilities} />
       <div className="engineer-secondary-grid">
         <LabPreview content={content.lab} locale={locale} />
         <ProfilePreview content={content.about} locale={locale} />

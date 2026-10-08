@@ -1,4 +1,7 @@
 "use client";
+import { messageLanguage, message } from "@/lib/i18n/messages";
+import { type Locale } from "@/lib/i18n/locales";
+import { UiText } from "@/components/ui-text";
 
 import {
   useEffect,
@@ -52,8 +55,10 @@ function cardScrollPosition(track: HTMLElement, card: HTMLElement) {
 // Server-rendered semantic cards/evidence cross the boundary; content never selects a theme.
 export function ChronicleSelection({
   items,
+  locale = "en",
   showPreview = true,
 }: {
+  locale?: Locale;
   items: { slug: string; title: string; card: ReactNode; preview: ReactNode }[];
   showPreview?: boolean;
 }) {
@@ -117,12 +122,14 @@ export function ChronicleSelection({
       </noscript>
       <div
         className="chronicle-selection__controls"
-        aria-label="Project selection"
+        aria-label={message(locale, "Project selection")}
+        lang={messageLanguage(locale, "Project selection")}
         role="group"
       >
         <button
           type="button"
-          aria-label="Previous project"
+          aria-label={message(locale, "Previous project")}
+          lang={messageLanguage(locale, "Previous project")}
           onClick={() => choose(selected - 1)}
           disabled={selected === 0}
         >
@@ -141,13 +148,17 @@ export function ChronicleSelection({
         <div
           className="chronicle-selection__dots"
           role="group"
-          aria-label="Choose a project"
+          aria-label={message(locale, "Choose a project")}
+          lang={messageLanguage(locale, "Choose a project")}
         >
           {items.map((item, index) => (
             <button
               type="button"
               key={item.slug}
-              aria-label={`Select ${item.title}`}
+              aria-label={message(locale, "Select {title}", {
+                title: item.title,
+              })}
+              lang={messageLanguage(locale, "Select {title}")}
               aria-pressed={selected === index}
               onClick={() => choose(index)}
             >
@@ -157,7 +168,8 @@ export function ChronicleSelection({
         </div>
         <button
           type="button"
-          aria-label="Next project"
+          aria-label={message(locale, "Next project")}
+          lang={messageLanguage(locale, "Next project")}
           onClick={() => choose(selected + 1)}
           disabled={selected === items.length - 1}
         >
@@ -175,7 +187,8 @@ export function ChronicleSelection({
         className="chronicle-selection__track"
         ref={track}
         tabIndex={0}
-        aria-label="Project cards"
+        aria-label={message(locale, "Project cards")}
+        lang={messageLanguage(locale, "Project cards")}
         onKeyDown={(event) => {
           if (event.target !== event.currentTarget) return;
           if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
@@ -224,10 +237,13 @@ export function ChronicleSelection({
               // Game-style coach mark; never blocks the card (see chronicle.css).
               <div className="chronicle-hint" role="note">
                 <p>
-                  <strong>Tap to select</strong> · tap again to open
+                  <strong>
+                    <UiText locale={locale} id="Tap to select" />
+                  </strong>{" "}
+                  <UiText locale={locale} id="· tap again to open" />
                 </p>
                 <button type="button" onClick={dismissHint}>
-                  Got it
+                  <UiText locale={locale} id="Got it" />
                 </button>
               </div>
             )}
@@ -239,7 +255,9 @@ export function ChronicleSelection({
               type="button"
               className="chronicle-selection__card-target"
               aria-label={
-                showPreview ? `Preview ${item.title}` : `Select ${item.title}`
+                showPreview
+                  ? message(locale, "Preview {title}", { title: item.title })
+                  : message(locale, "Select {title}", { title: item.title })
               }
               aria-pressed={selected === index}
               aria-controls={
@@ -272,7 +290,8 @@ export function ChronicleSelection({
         <section
           style={{ "--swipe-dir": direction } as CSSProperties}
           className="chronicle-preview"
-          aria-label="Selected project preview"
+          aria-label={message(locale, "Selected project preview")}
+          lang={messageLanguage(locale, "Selected project preview")}
         >
           <ChronicleAtmosphere />
           {items.map((item, index) => (

@@ -1,4 +1,126 @@
 /* Content stays canonical; each mode extends its approved page grammar. */
+.contact-methods,
+.contact-documents {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 1.5rem;
+}
+.contact-methods {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.contact-methods > li,
+.contact-documents > li {
+  min-width: 0;
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+.contact-methods > li:first-child {
+  grid-column: 1 / -1;
+  border-top: 0;
+  padding-top: 0;
+}
+.contact-methods h3,
+.contact-documents h3 {
+  margin: 0 0 0.5rem;
+}
+.contact-method__profile {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.contact-method__profile:is(:hover, :focus-visible) {
+  color: var(--accent);
+}
+.contact-methods p,
+.contact-documents p {
+  margin: 0 0 0.75rem;
+  max-width: 55ch;
+  line-height: 1.6;
+}
+.contact-methods .contact-method__action {
+  overflow-wrap: anywhere;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  text-transform: none;
+  letter-spacing: normal;
+}
+.contact-copy {
+  margin-top: 0.25rem;
+}
+.contact-email-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.contact-email-actions .contact-method__action {
+  min-width: 0;
+  margin: 0;
+}
+.contact-copy__control {
+  position: relative;
+  flex: 0 0 44px;
+}
+.contact-copy__control button {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+}
+.contact-copy__control button:is(:hover, :focus-visible) {
+  color: var(--accent);
+}
+.contact-copy__tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.25rem);
+  left: 50%;
+  translate: -50% 0;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font: 0.75rem/1.4 var(--font-body);
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 2;
+}
+.contact-copy__control:is(:hover, :focus-within) .contact-copy__tooltip {
+  visibility: visible;
+}
+.contact-copy [role="status"] {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.contact-document__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.contact-document__files a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+@media (max-width: 600px) {
+  .contact-methods {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+}
 .secondary-page {
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
@@ -309,6 +431,12 @@
   }
   .secondary-page-body > :last-child p {
     max-width: 75ch;
+  }
+  @media (min-width: 901px) {
+    /* Resource lists pair together; they are not short closing prose. */
+    .secondary-page-body > :has(.contact-methods, .contact-documents) {
+      grid-column: span 6;
+    }
   }
   .secondary-page-section {
     margin: 0;

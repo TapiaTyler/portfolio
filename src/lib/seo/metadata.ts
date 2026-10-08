@@ -6,6 +6,7 @@ import { isLocale, type Locale } from "@/lib/i18n/locales";
 import type { ProjectContent } from "@/lib/i18n/project-content";
 import type { Project } from "@/lib/content/schema";
 import { readSiteConfig, type SiteConfig } from "./site";
+import { text, textLanguage } from "@/lib/i18n/copy";
 
 // Expand when shared interface/homepage translations have been authored and reviewed.
 export const siteContentLocales: readonly Locale[] = ["en"];
@@ -100,7 +101,9 @@ export async function mainPageMetadata(
       ? { title: "Portfolio", description: homepageContent.hero.description }
       : placeholderPages[page];
   return pageSeo({
-    ...content,
+    title: text(content.title, locale),
+    description: text(content.description, locale),
+    contentLocale: textLanguage(content.description, locale),
     locale,
     path: page === "home" ? "" : `/${page}`,
   });

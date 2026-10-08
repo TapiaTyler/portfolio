@@ -1,0 +1,95 @@
+{
+  "archivedAt": "2026-10-07T15:45:44.523Z",
+  "sourceRevision": "d883935",
+  "files": [
+    {
+      "file": "capture-manifest.json",
+      "sha256": "10ec3b4404e31e6ff71101ade57d5f4116154ebff805f75650ff813930f1e122"
+    },
+    {
+      "file": "chronicle-before-home.png",
+      "sha256": "9a900154bbe9227026f02ee278a08a14d91e6b2a5ad84408f509683449ca79a4"
+    },
+    {
+      "file": "chronicle-before-mobile.png",
+      "sha256": "c29400e0e4ef96358c02222d1d4ef1027277e5f7f2291e9aeb9967e66efe6898"
+    },
+    {
+      "file": "chronicle-case-study-landscape.png",
+      "sha256": "adda46964c3cdd657f9f4b27a9e89c0bdf19b03f270e53c941af01196fe83887"
+    },
+    {
+      "file": "chronicle-case-study.png",
+      "sha256": "4c203e9cf5dad70da1426af95c43012428449cf54df786b00f08823b6f8160b4"
+    },
+    {
+      "file": "chronicle-home.png",
+      "sha256": "73582c914b32fe1bd92bef909827a06962d0181b70e5dde4d2b9fbfc7ecff0ce"
+    },
+    {
+      "file": "chronicle-interactions.png",
+      "sha256": "d3d4da2b7e64df2a8e865ab7c4955a8f848d14365c4ab8e21b9518cedec9dd8e"
+    },
+    {
+      "file": "chronicle-interactions.webm",
+      "sha256": "beb2154b59a866ee54f730246c9848fdc62dda2a4f4e9897b7fc0454c1670311"
+    },
+    {
+      "file": "chronicle-landscape-home.png",
+      "sha256": "0506d30e1313bbbfc3dc0f0a65e0d2c436c830cb2112fdae41da21ca60743236"
+    },
+    {
+      "file": "chronicle-portrait-home.png",
+      "sha256": "c3e98e7355c7bf1c29969a1d2a88a97981e53e756fd3a0cf345e91a72ca2e8ea"
+    },
+    {
+      "file": "digital-gallery.png",
+      "sha256": "f0506e703b4097db18e0c4853f5555fdf9f4038c714fcf644d8c9cd07729f96e"
+    },
+    {
+      "file": "digital-home.png",
+      "sha256": "c154945f2fb125fbb69945f16dc916c6fa5fd3df08861a5a10363097a77a5c09"
+    },
+    {
+      "file": "digital-navigation.png",
+      "sha256": "9b744f17230c4698ec269ba8c340feb5eef5388b018ac0317e52dfe8fc2b6b25"
+    },
+    {
+      "file": "disclosure-interactions.png",
+      "sha256": "b1200572b54fa0b262565576b5716f6e18ff910b7405e4b20fcdf94d555dfae1"
+    },
+    {
+      "file": "disclosure-interactions.webm",
+      "sha256": "6cf22397671a15d0fedaabda0603cfffc24cd216e0fe06c8ba085776dfad4bc6"
+    },
+    {
+      "file": "editorial-home.png",
+      "sha256": "51ec0760b5e5c6d28a86e7c9010f64b9d619a2a5ce25f6dd0f16b2b1bcfb5b78"
+    },
+    {
+      "file": "engineer-home.png",
+      "sha256": "44bc7c5093656dee796599417541f0173938f68d5283a64a24393114f45b4039"
+    },
+    {
+      "file": "reconstruction-digital-gallery.png",
+      "sha256": "2ef61a5e3c778430b9aacc7707f3368422d3d4ca400bf5ab16817db18e316306"
+    },
+    {
+      "file": "reconstruction-digital-navigation.png",
+      "sha256": "56713a0c669a4cb3aa138a3b061c69e2ef54527355faf6deefe7c94646cf1cd8"
+    },
+    {
+      "file": "route-transitions.png",
+      "sha256": "aeb39bcd25d454c72252526b9f29a38509ac3f588aebfd6ccee6e77112539f5f"
+    },
+    {
+      "file": "route-transitions.webm",
+      "sha256": "22e5f253d7293375f26b91ab74f9280eb30306c05a664e02b969313607e94360"
+    },
+    {
+      "file": "theme-morphing.webm",
+      "sha256": "1541f883f0b68f42260f7d8ad299e1601dd5c9d0ff50fef2ce01c185fbced924"
+    }
+  ],
+  "note": "Unmodified public evidence before the ink-era refresh; original capture dates remain in capture-manifest.json."
+}

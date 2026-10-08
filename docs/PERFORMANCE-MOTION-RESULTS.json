@@ -1,0 +1,3063 @@
+{
+  "date": "2026-10-07",
+  "notes": [
+    "Local production; Lighthouse mobile simulated throttling; optimizer caches can be warm.",
+    "Baseline samples precede decorative-priority hints; matched-CSS control samples deliberately disable hints; final/candidate samples retain them.",
+    "Normal and reduced motion are explicit and verified in the measured document.",
+    "Interaction timings include automation overhead and are not field INP or compositor FPS.",
+    "A concurrent portrait-media pairing rule adds 116 bytes shared CSS; matched-CSS controls retain it to isolate priority changes.",
+    "The case-priority-before samples precede D046; case-panel samples add the panel hint only; case-font samples retain font and panel hints.",
+    "D047 image-size hints change full-reading responsive image transfers, not the initial Lighthouse image inventory. The reduced sample overlapped lint execution; do not attribute score movement to sizing."
+  ],
+  "samples": [
+    {
+      "label": "motion-normal-baseline",
+      "timestamp": "2026-10-07T21:17:29.830Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "editorial": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "editorial"
+          },
+          "scores": {
+            "performance": 93,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1662.924,
+          "lcpMs": 3097.616,
+          "tbtMs": 19.5,
+          "cls": 0.0000822705231358004,
+          "transfer": {
+            "Script": 169456,
+            "Stylesheet": 14920,
+            "Font": 95692,
+            "Image": 119852
+          },
+          "warnings": []
+        },
+        "engineer": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "engineer"
+          },
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1510.326,
+          "lcpMs": 2110.326,
+          "tbtMs": 16.5,
+          "cls": 0.03201397000757702,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14184,
+            "Font": 63292,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "digital": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "digital"
+          },
+          "scores": {
+            "performance": 94,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1514.6490000000001,
+          "lcpMs": 3016.7659999999996,
+          "tbtMs": 16,
+          "cls": 0.0004160751740341814,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14078,
+            "Font": 89260,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1211.602,
+          "lcpMs": 3744.204,
+          "tbtMs": 35.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26449,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "engineer",
+          "elapsedMs": 171,
+          "animationFinishedMs": 553,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "digital",
+          "elapsedMs": 90,
+          "animationFinishedMs": 790,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "chronicle",
+          "elapsedMs": 108,
+          "animationFinishedMs": 795,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "editorial",
+          "elapsedMs": 95,
+          "animationFinishedMs": 680,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "editorial",
+          "action": "about",
+          "contentReadyMs": 117,
+          "animationFinishedMs": 802,
+          "frameSamples": 28,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 2,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "editorial",
+          "action": "back",
+          "contentReadyMs": 10,
+          "animationFinishedMs": 701,
+          "frameSamples": 40,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "about",
+          "contentReadyMs": 88,
+          "animationFinishedMs": 387,
+          "frameSamples": 21,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "back",
+          "contentReadyMs": 8,
+          "animationFinishedMs": 314,
+          "frameSamples": 17,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "about",
+          "contentReadyMs": 86,
+          "animationFinishedMs": 850,
+          "frameSamples": 48,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "back",
+          "contentReadyMs": 10,
+          "animationFinishedMs": 781,
+          "frameSamples": 42,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 82,
+          "animationFinishedMs": 642,
+          "frameSamples": 24,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 583,
+          "frameSamples": 16,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "motion-reduce-baseline",
+      "timestamp": "2026-10-07T21:16:27.472Z",
+      "route": "/en",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "editorial": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "editorial"
+          },
+          "scores": {
+            "performance": 93,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1662.2759999999998,
+          "lcpMs": 3089.184,
+          "tbtMs": 15.5,
+          "cls": 0.0000822705231358004,
+          "transfer": {
+            "Script": 169456,
+            "Stylesheet": 14920,
+            "Font": 95692,
+            "Image": 119852
+          },
+          "warnings": []
+        },
+        "engineer": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "engineer"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1510.743,
+          "lcpMs": 2710.1620000000003,
+          "tbtMs": 14,
+          "cls": 0.03201397000757702,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14184,
+            "Font": 63292,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "digital": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "digital"
+          },
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1511.019,
+          "lcpMs": 2336.0190000000002,
+          "tbtMs": 16,
+          "cls": 0.0004160751740341814,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14078,
+            "Font": 89260,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1207.588,
+          "lcpMs": 3709.176,
+          "tbtMs": 21.999999999999773,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26449,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "engineer",
+          "elapsedMs": 151,
+          "animationFinishedMs": 155,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "digital",
+          "elapsedMs": 53,
+          "animationFinishedMs": 54,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "chronicle",
+          "elapsedMs": 74,
+          "animationFinishedMs": 75,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "editorial",
+          "elapsedMs": 60,
+          "animationFinishedMs": 61,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "editorial",
+          "action": "about",
+          "contentReadyMs": 85,
+          "animationFinishedMs": 95,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "editorial",
+          "action": "back",
+          "contentReadyMs": 8,
+          "animationFinishedMs": 9,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "about",
+          "contentReadyMs": 76,
+          "animationFinishedMs": 85,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "back",
+          "contentReadyMs": 11,
+          "animationFinishedMs": 12,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "about",
+          "contentReadyMs": 74,
+          "animationFinishedMs": 83,
+          "frameSamples": 4,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "back",
+          "contentReadyMs": 11,
+          "animationFinishedMs": 12,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 80,
+          "animationFinishedMs": 89,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 11,
+          "animationFinishedMs": 13,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "decor-priority-normal",
+      "timestamp": "2026-10-07T21:18:41.658Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1214.236,
+          "lcpMs": 3498.4719999999998,
+          "tbtMs": 22.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "chronicle",
+          "elapsedMs": 138,
+          "animationFinishedMs": 803,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 96,
+          "animationFinishedMs": 637,
+          "frameSamples": 32,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 598,
+          "frameSamples": 20,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "decor-priority-normal-repeat",
+      "timestamp": "2026-10-07T21:18:55.576Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1209.248,
+          "lcpMs": 3482.496,
+          "tbtMs": 19.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "chronicle",
+          "elapsedMs": 121,
+          "animationFinishedMs": 788,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 82,
+          "animationFinishedMs": 619,
+          "frameSamples": 34,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 594,
+          "frameSamples": 22,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "decor-priority-reduce",
+      "timestamp": "2026-10-07T21:19:09.274Z",
+      "route": "/en",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1210.342,
+          "lcpMs": 3488.684,
+          "tbtMs": 21.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "chronicle",
+          "elapsedMs": 87,
+          "animationFinishedMs": 88,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 74,
+          "animationFinishedMs": 83,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 12,
+          "animationFinishedMs": 13,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "decor-priority-project",
+      "timestamp": "2026-10-07T21:19:22.408Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 88,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1513.0004999999999,
+          "lcpMs": 3848.1672500000004,
+          "tbtMs": 16.5,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "decor-priority-work",
+      "timestamp": "2026-10-07T21:19:35.899Z",
+      "route": "/en/work",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1522.8135000000002,
+          "lcpMs": 3572.4179999999997,
+          "tbtMs": 21,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 265794
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "decor-priority-work-repeat",
+      "timestamp": "2026-10-07T21:22:30.910Z",
+      "route": "/en/work",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1522.434,
+          "lcpMs": 3570.912,
+          "tbtMs": 20.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 265794
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "motion-normal-final",
+      "timestamp": "2026-10-07T21:20:32.237Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "editorial": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "editorial"
+          },
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 911.8050000000001,
+          "lcpMs": 1886.8050000000003,
+          "tbtMs": 15,
+          "cls": 0.0000822705231358004,
+          "transfer": {
+            "Script": 169456,
+            "Stylesheet": 15036,
+            "Font": 95692,
+            "Image": 119852
+          },
+          "warnings": []
+        },
+        "engineer": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "engineer"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.594,
+          "lcpMs": 2704.396,
+          "tbtMs": 10.5,
+          "cls": 0.03201397000757702,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14300,
+            "Font": 63292,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "digital": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "digital"
+          },
+          "scores": {
+            "performance": 94,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1511.646,
+          "lcpMs": 3008.764,
+          "tbtMs": 13,
+          "cls": 0.0004160751740341814,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14194,
+            "Font": 89260,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1209.348,
+          "lcpMs": 3482.696,
+          "tbtMs": 19.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "engineer",
+          "elapsedMs": 170,
+          "animationFinishedMs": 553,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "digital",
+          "elapsedMs": 90,
+          "animationFinishedMs": 790,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "chronicle",
+          "elapsedMs": 109,
+          "animationFinishedMs": 786,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "editorial",
+          "elapsedMs": 79,
+          "animationFinishedMs": 661,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "editorial",
+          "action": "about",
+          "contentReadyMs": 81,
+          "animationFinishedMs": 766,
+          "frameSamples": 19,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 4,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "editorial",
+          "action": "back",
+          "contentReadyMs": 10,
+          "animationFinishedMs": 703,
+          "frameSamples": 30,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "about",
+          "contentReadyMs": 83,
+          "animationFinishedMs": 408,
+          "frameSamples": 20,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "back",
+          "contentReadyMs": 11,
+          "animationFinishedMs": 335,
+          "frameSamples": 15,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "about",
+          "contentReadyMs": 107,
+          "animationFinishedMs": 930,
+          "frameSamples": 40,
+          "maxFrameGapMs": 83,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "back",
+          "contentReadyMs": 12,
+          "animationFinishedMs": 821,
+          "frameSamples": 33,
+          "maxFrameGapMs": 50,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 94,
+          "animationFinishedMs": 649,
+          "frameSamples": 21,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 22,
+          "animationFinishedMs": 603,
+          "frameSamples": 16,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "motion-reduce-final",
+      "timestamp": "2026-10-07T21:21:13.145Z",
+      "route": "/en",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "editorial": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "editorial"
+          },
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1665.5384999999999,
+          "lcpMs": 2415.5385,
+          "tbtMs": 14.5,
+          "cls": 0.0000822705231358004,
+          "transfer": {
+            "Script": 169456,
+            "Stylesheet": 15036,
+            "Font": 95692,
+            "Image": 119852
+          },
+          "warnings": []
+        },
+        "engineer": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "engineer"
+          },
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1511.868,
+          "lcpMs": 2111.8680000000004,
+          "tbtMs": 13,
+          "cls": 0.03201397000757702,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14300,
+            "Font": 63292,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "digital": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "digital"
+          },
+          "scores": {
+            "performance": 94,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1510.7939999999999,
+          "lcpMs": 3008.196,
+          "tbtMs": 13,
+          "cls": 0.0004160751740341814,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14194,
+            "Font": 89260,
+            "Image": 46516
+          },
+          "warnings": []
+        },
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1207.168,
+          "lcpMs": 3473.3360000000002,
+          "tbtMs": 17,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "engineer",
+          "elapsedMs": 129,
+          "animationFinishedMs": 132,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "digital",
+          "elapsedMs": 56,
+          "animationFinishedMs": 58,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "chronicle",
+          "elapsedMs": 77,
+          "animationFinishedMs": 78,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        },
+        {
+          "to": "editorial",
+          "elapsedMs": 52,
+          "animationFinishedMs": 53,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "editorial",
+          "action": "about",
+          "contentReadyMs": 67,
+          "animationFinishedMs": 76,
+          "frameSamples": 3,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "editorial",
+          "action": "back",
+          "contentReadyMs": 7,
+          "animationFinishedMs": 8,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "about",
+          "contentReadyMs": 79,
+          "animationFinishedMs": 87,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "engineer",
+          "action": "back",
+          "contentReadyMs": 8,
+          "animationFinishedMs": 9,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "about",
+          "contentReadyMs": 72,
+          "animationFinishedMs": 81,
+          "frameSamples": 4,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "digital",
+          "action": "back",
+          "contentReadyMs": 11,
+          "animationFinishedMs": 12,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 75,
+          "animationFinishedMs": 84,
+          "frameSamples": 5,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 14,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "motion-reduce-portfolio",
+      "timestamp": "2026-10-07T21:21:55.760Z",
+      "route": "/en/work/portfolio",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "editorial": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "editorial"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1664.3490000000002,
+          "lcpMs": 2564.349,
+          "tbtMs": 15,
+          "cls": 0,
+          "transfer": {
+            "Script": 169456,
+            "Stylesheet": 15036,
+            "Font": 71732,
+            "Image": 67151
+          },
+          "warnings": []
+        },
+        "engineer": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "engineer"
+          },
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1660.8764999999999,
+          "lcpMs": 2410.8765000000003,
+          "tbtMs": 13,
+          "cls": 0.0008093837018613676,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14300,
+            "Font": 63292,
+            "Image": 12797
+          },
+          "warnings": []
+        },
+        "digital": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "digital"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1661.049,
+          "lcpMs": 2636.049,
+          "tbtMs": 13.5,
+          "cls": 0.0004392610855945342,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 14194,
+            "Font": 89260,
+            "Image": 25657
+          },
+          "warnings": []
+        },
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 88,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.7605,
+          "lcpMs": 3846.8872499999998,
+          "tbtMs": 16,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "decor-priority-control",
+      "timestamp": "2026-10-07T21:27:13.668Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1211.562,
+          "lcpMs": 3708.124,
+          "tbtMs": 17.5,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "chronicle",
+          "elapsedMs": 120,
+          "animationFinishedMs": 799,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 86,
+          "animationFinishedMs": 625,
+          "frameSamples": 24,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 12,
+          "animationFinishedMs": 601,
+          "frameSamples": 16,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 2,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "decor-priority-work-control",
+      "timestamp": "2026-10-07T21:27:27.939Z",
+      "route": "/en/work",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1514.9295,
+          "lcpMs": 3779.905999999999,
+          "tbtMs": 17.499999999999773,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 265794
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-priority-before-portfolio",
+      "timestamp": "2026-10-07T21:35:19.834Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 88,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.2295,
+          "lcpMs": 3843.26775,
+          "tbtMs": 14.5,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-priority-before-japan-travel-planner",
+      "timestamp": "2026-10-07T21:35:33.231Z",
+      "route": "/en/work/japan-travel-planner",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1513.4940000000001,
+          "lcpMs": 3553.992,
+          "tbtMs": 18,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 292259
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-priority-before-nihonest",
+      "timestamp": "2026-10-07T21:35:46.103Z",
+      "route": "/en/work/nihonest",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1514.103,
+          "lcpMs": 3709.1545,
+          "tbtMs": 19,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 270774
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-panel-after-portfolio",
+      "timestamp": "2026-10-07T21:38:42.561Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1513.452,
+          "lcpMs": 3773.9359999999997,
+          "tbtMs": 15.5,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-panel-after-portfolio-repeat",
+      "timestamp": "2026-10-07T21:39:22.189Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.6675,
+          "lcpMs": 3701.8899999999994,
+          "tbtMs": 17.5,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-panel-after-japan-travel-planner",
+      "timestamp": "2026-10-07T21:38:56.182Z",
+      "route": "/en/work/japan-travel-planner",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1516.5749999999998,
+          "lcpMs": 3633.3374999999996,
+          "tbtMs": 19.5,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 292259
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-panel-after-nihonest",
+      "timestamp": "2026-10-07T21:39:09.134Z",
+      "route": "/en/work/nihonest",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.531,
+          "lcpMs": 3701.7080000000005,
+          "tbtMs": 17.5,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 270774
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-panel-after-reduce",
+      "timestamp": "2026-10-07T21:39:35.592Z",
+      "route": "/en/work/portfolio",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1516.2705,
+          "lcpMs": 3780.694,
+          "tbtMs": 17,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-candidate",
+      "timestamp": "2026-10-07T21:40:00.905Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1208.62,
+          "lcpMs": 3774.085,
+          "tbtMs": 17,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-candidate-repeat",
+      "timestamp": "2026-10-07T21:40:14.470Z",
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1208.141,
+          "lcpMs": 3769.2467499999993,
+          "tbtMs": 15,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-final-japan-travel-planner",
+      "timestamp": "2026-10-07T21:41:09.404Z",
+      "route": "/en/work/japan-travel-planner",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1207.406,
+          "lcpMs": 3625.9605,
+          "tbtMs": 19,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 292259
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-final-nihonest",
+      "timestamp": "2026-10-07T21:41:22.371Z",
+      "route": "/en/work/nihonest",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1208.816,
+          "lcpMs": 3705.428,
+          "tbtMs": 20,
+          "cls": 0.001269572780394527,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 270774
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-final-reduce",
+      "timestamp": "2026-10-07T21:41:35.228Z",
+      "route": "/en/work/portfolio",
+      "motion": "reduce",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1207.983,
+          "lcpMs": 3769.9702500000003,
+          "tbtMs": 15.5,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "label": "case-font-home-guard",
+      "timestamp": "2026-10-07T21:49:30.655Z",
+      "route": "/en",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 91,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1210.5819999999999,
+          "lcpMs": 3498.1639999999998,
+          "tbtMs": 26,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 46216,
+            "Image": 228496
+          },
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "chronicle",
+          "elapsedMs": 138,
+          "animationFinishedMs": 804,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "chronicle",
+          "action": "about",
+          "contentReadyMs": 110,
+          "animationFinishedMs": 685,
+          "frameSamples": 30,
+          "maxFrameGapMs": 67,
+          "frameGapsOver50Ms": 1,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "chronicle",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 579,
+          "frameSamples": 20,
+          "maxFrameGapMs": 33,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ]
+    },
+    {
+      "label": "case-font-work-guard",
+      "timestamp": "2026-10-07T21:49:44.011Z",
+      "route": "/en/work",
+      "motion": "no-preference",
+      "browser": "153.0.8010.12",
+      "node": "v24.21.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1514.8125,
+          "lcpMs": 3561.75,
+          "tbtMs": 21,
+          "cls": 0,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 265794
+          },
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": []
+    },
+    {
+      "timestamp": "2026-10-08T03:18:52.827Z",
+      "label": "case-image-sizes-normal",
+      "selectedModes": [
+        "chronicle"
+      ],
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 89,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1218.32,
+          "lcpMs": 3691.6399999999994,
+          "tbtMs": 40.000000000000455,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "fonts": [
+            "/fonts/chronicle/cormorant-garamond-latin-500-normal.woff2",
+            "/fonts/chronicle/cormorant-garamond-latin-700-normal.woff2",
+            "/fonts/chronicle/cormorant-garamond-latin-600-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "1.2 s",
+              "score": 0.99
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "3.7 s",
+              "score": 0.58
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "130 ms",
+              "score": 0.89
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 180 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "4.1 s",
+              "score": 0.86
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 26 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 440 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "timestamp": "2026-10-08T03:21:47.363Z",
+      "label": "case-image-sizes-reduce",
+      "selectedModes": [
+        "chronicle"
+      ],
+      "route": "/en/work/portfolio",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "chronicle": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "chronicle"
+          },
+          "scores": {
+            "performance": 90,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1208.817,
+          "lcpMs": 3634.634,
+          "tbtMs": 21,
+          "cls": 0.001210863872681396,
+          "transfer": {
+            "Script": 169458,
+            "Stylesheet": 26565,
+            "Font": 69894,
+            "Image": 289019
+          },
+          "fonts": [
+            "/fonts/chronicle/cormorant-garamond-latin-500-normal.woff2",
+            "/fonts/chronicle/cormorant-garamond-latin-700-normal.woff2",
+            "/fonts/chronicle/cormorant-garamond-latin-600-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "1.2 s",
+              "score": 0.99
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "3.6 s",
+              "score": 0.6
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "90 ms",
+              "score": 0.97
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "4.1 s",
+              "score": 0.87
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 26 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 430 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    }
+  ],
+  "readingImageSizing": {
+    "date": "2026-10-07",
+    "conditions": "Same production build; Chromium; JavaScript disabled; deviceScaleFactor 2; prior-size control rewrites HTML sizes only; every visible case-study image scrolled into view and decoded. Totals are optimized project-image response bodies, excluding theme artwork and posters, not initial page transfer.",
+    "quality": "Encoding quality and sources unchanged; all selected widths cover displayed density or source resolution; source-size display caps preserved; native lazy loading unchanged.",
+    "comparisons": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "portfolio",
+        "candidate": false,
+        "imageBytes": 169709,
+        "images": [
+          {
+            "width": 314.732421875,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 844,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "portfolio",
+        "candidate": true,
+        "imageBytes": 137149,
+        "images": [
+          {
+            "width": 314.7335205078125,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 844,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 335,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "japan-travel-planner",
+        "candidate": false,
+        "imageBytes": 104885,
+        "images": [
+          {
+            "width": 316.0154724121094,
+            "sourceWidth": 1265,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 231.140625,
+            "sourceWidth": 534,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 311,
+            "sourceWidth": 1270,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "japan-travel-planner",
+        "candidate": true,
+        "imageBytes": 74846,
+        "images": [
+          {
+            "width": 316.0135803222656,
+            "sourceWidth": 1265,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 231.140625,
+            "sourceWidth": 534,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 311,
+            "sourceWidth": 1270,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "nihonest",
+        "candidate": false,
+        "imageBytes": 84764,
+        "images": [
+          {
+            "width": 314.732421875,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 124.484375,
+            "sourceWidth": 390,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 124.484375,
+            "sourceWidth": 390,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 311,
+            "sourceWidth": 1440,
+            "requested": 828,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "project": "nihonest",
+        "candidate": true,
+        "imageBytes": 71061,
+        "images": [
+          {
+            "width": 314.7335205078125,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 124.484375,
+            "sourceWidth": 390,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 124.484375,
+            "sourceWidth": 390,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 311,
+            "sourceWidth": 1440,
+            "requested": 750,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "portfolio",
+        "candidate": false,
+        "imageBytes": 347677,
+        "images": [
+          {
+            "width": 508.3975830078125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 844,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "portfolio",
+        "candidate": true,
+        "imageBytes": 262963,
+        "images": [
+          {
+            "width": 508.39508056640625,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 844,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 526.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "japan-travel-planner",
+        "candidate": false,
+        "imageBytes": 171688,
+        "images": [
+          {
+            "width": 510.4721984863281,
+            "sourceWidth": 1265,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 116.5625,
+            "sourceWidth": 534,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 502.375,
+            "sourceWidth": 1270,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "japan-travel-planner",
+        "candidate": true,
+        "imageBytes": 116255,
+        "images": [
+          {
+            "width": 510.46923828125,
+            "sourceWidth": 1265,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 116.5625,
+            "sourceWidth": 534,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 502.375,
+            "sourceWidth": 1270,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "nihonest",
+        "candidate": false,
+        "imageBytes": 153441,
+        "images": [
+          {
+            "width": 508.3975830078125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 123.875,
+            "sourceWidth": 390,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 123.875,
+            "sourceWidth": 390,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 502.375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "project": "nihonest",
+        "candidate": true,
+        "imageBytes": 106937,
+        "images": [
+          {
+            "width": 508.39508056640625,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 127.203125,
+            "sourceWidth": 390,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 127.203125,
+            "sourceWidth": 390,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 502.375,
+            "sourceWidth": 1440,
+            "requested": 1200,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "portfolio",
+        "candidate": false,
+        "imageBytes": 351630,
+        "images": [
+          {
+            "width": 494.8626708984375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 844,
+            "sourceWidth": 844,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "portfolio",
+        "candidate": true,
+        "imageBytes": 351630,
+        "images": [
+          {
+            "width": 494.8626708984375,
+            "sourceWidth": 1440,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 844,
+            "sourceWidth": 844,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          },
+          {
+            "width": 1097.03125,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 85vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "japan-travel-planner",
+        "candidate": false,
+        "imageBytes": 171328,
+        "images": [
+          {
+            "width": 496.88189697265625,
+            "sourceWidth": 1265,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 168.875,
+            "sourceWidth": 534,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 489,
+            "sourceWidth": 1270,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "japan-travel-planner",
+        "candidate": true,
+        "imageBytes": 122601,
+        "images": [
+          {
+            "width": 496.88189697265625,
+            "sourceWidth": 1265,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 170.171875,
+            "sourceWidth": 534,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 489,
+            "sourceWidth": 1270,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "nihonest",
+        "candidate": false,
+        "imageBytes": 158128,
+        "images": [
+          {
+            "width": 494.8626708984375,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 123.875,
+            "sourceWidth": 390,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 123.875,
+            "sourceWidth": 390,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          },
+          {
+            "width": 489,
+            "sourceWidth": 1440,
+            "requested": 3840,
+            "sizes": "(max-width: 768px) 100vw, 1200px"
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "project": "nihonest",
+        "candidate": true,
+        "imageBytes": 135239,
+        "images": [
+          {
+            "width": 494.8626708984375,
+            "sourceWidth": 1440,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 124.8125,
+            "sourceWidth": 390,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 124.8125,
+            "sourceWidth": 390,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          },
+          {
+            "width": 489,
+            "sourceWidth": 1440,
+            "requested": 1920,
+            "sizes": "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw, 42vw"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,3 +1,5 @@
+import { Text } from "@/components/localized-text";
+import { text } from "@/lib/i18n/copy";
 import Link from "next/link";
 import {
   CapabilityList,
@@ -28,6 +30,7 @@ export function DigitalHomepage({
         aria-labelledby="selected-work-heading"
       >
         <HomeSectionHeader
+          locale={locale}
           title={content.work.title}
           id="selected-work-heading"
           href={`/${locale}/work`}
@@ -43,7 +46,9 @@ export function DigitalHomepage({
             assetUrl={assetUrl}
           />
         ) : (
-          <p className="empty-content">{content.work.emptyText}</p>
+          <p className="empty-content">
+            <Text value={content.work.emptyText} locale={locale} />
+          </p>
         )}
       </section>
       <section
@@ -52,25 +57,33 @@ export function DigitalHomepage({
         aria-labelledby="about-heading"
       >
         <div>
-          <p className="eyebrow">{content.about.label}</p>
-          <h2 id="about-heading">{content.about.title}</h2>
+          <p className="eyebrow">
+            <Text value={content.about.label} locale={locale} />
+          </p>
+          <h2 id="about-heading">
+            <Text value={content.about.title} locale={locale} />
+          </h2>
           {content.about.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+            <p key={text(paragraph, locale)}>
+              <Text value={paragraph} locale={locale} />
+            </p>
           ))}
           <Link className="text-link" href={`/${locale}/about`}>
-            {content.about.linkLabel}
+            <Text value={content.about.linkLabel} locale={locale} />
           </Link>
         </div>
         <div className="digital-bridge__system">
           <DigitalVisual variant="bridge" />
           <ul>
             {content.capabilities.items.map((item) => (
-              <li key={item.title}>{item.title}</li>
+              <li key={text(item.title, locale)}>
+                <Text value={item.title} locale={locale} />
+              </li>
             ))}
           </ul>
         </div>
       </section>
-      <CapabilityList content={content.capabilities} />
+      <CapabilityList locale={locale} content={content.capabilities} />
       <LabPreview content={content.lab} locale={locale} />
       <ContactClosing content={content.contact} locale={locale} />
     </div>

@@ -89,8 +89,11 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: url("/media/themes/editorial/ink-landscape.webp") 100% 62% /
-      cover no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-landscape.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-landscape.webp") type("image/webp")
+      )
+      100% 62% / cover no-repeat;
     /* Multiply turns the art's own paper into the page's paper. */
     filter: brightness(1.04);
     mix-blend-mode: multiply;
@@ -102,7 +105,12 @@
   }
   @media (max-width: 62rem) {
     .editorial-hero::before {
-      background-image: url("/media/themes/editorial/ink-landscape-compact.webp");
+      background-image: image-set(
+        url("/media/themes/editorial/ink-landscape-compact.avif")
+          type("image/avif"),
+        url("/media/themes/editorial/ink-landscape-compact.webp")
+          type("image/webp")
+      );
       background-position: 85% 100%;
       opacity: 0.55;
     }
@@ -320,7 +328,7 @@
     counter-increment: plate;
   }
   .case-study-block .media-frame figcaption::before {
-    content: "Fig. " counter(plate) " — ";
+    content: attr(data-figure-prefix) " " counter(plate) " — ";
     font-weight: 600;
     color: var(--text-primary);
   }
@@ -612,8 +620,11 @@
     bottom: 27%;
     width: clamp(2.5rem, 3.4vw, 3.25rem);
     aspect-ratio: 1;
-    background: url("/media/themes/editorial/ink-seal-tetsuo.webp") center /
-      contain no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-seal-tetsuo.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-seal-tetsuo.webp") type("image/webp")
+      )
+      center / contain no-repeat;
     rotate: -6deg;
     opacity: 0.88;
     pointer-events: none;
@@ -628,8 +639,11 @@
     right: 2%;
     width: clamp(5rem, 9vw, 8rem);
     aspect-ratio: 360 / 303;
-    background: url("/media/themes/editorial/ink-droplets.webp") center /
-      contain no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-droplets.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-droplets.webp") type("image/webp")
+      )
+      center / contain no-repeat;
     rotate: 18deg;
     opacity: 0.22;
     pointer-events: none;
@@ -646,8 +660,11 @@
     right: -1.2rem;
     bottom: -0.2rem;
     height: 0.9rem;
-    background: url("/media/themes/editorial/ink-brush-stroke.webp") center /
-      100% 100% no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-brush-stroke.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-brush-stroke.webp") type("image/webp")
+      )
+      center / 100% 100% no-repeat;
     opacity: 0.16;
     pointer-events: none;
   }
@@ -657,8 +674,11 @@
     width: 2.75rem;
     aspect-ratio: 1;
     margin: clamp(3rem, 6vw, 5rem) auto 0;
-    background: url("/media/themes/editorial/ink-seal-mountain.webp") center /
-      contain no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-seal-mountain.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-seal-mountain.webp") type("image/webp")
+      )
+      center / contain no-repeat;
     rotate: 3deg;
     opacity: 0.85;
   }
@@ -684,7 +704,10 @@
     right: -1rem;
     width: clamp(5rem, 9vw, 8rem);
     aspect-ratio: 360 / 342;
-    background-image: url("/media/themes/editorial/ink-brush-flick.webp");
+    background-image: image-set(
+      url("/media/themes/editorial/ink-brush-flick.avif") type("image/avif"),
+      url("/media/themes/editorial/ink-brush-flick.webp") type("image/webp")
+    );
     rotate: 24deg;
     opacity: 0.18;
   }
@@ -694,7 +717,10 @@
     top: 30%;
     width: clamp(2.5rem, 3.2vw, 3rem);
     aspect-ratio: 1;
-    background-image: url("/media/themes/editorial/ink-seal-tetsuo.webp");
+    background-image: image-set(
+      url("/media/themes/editorial/ink-seal-tetsuo.avif") type("image/avif"),
+      url("/media/themes/editorial/ink-seal-tetsuo.webp") type("image/webp")
+    );
     rotate: -8deg;
     opacity: 0.85;
   }
@@ -704,7 +730,10 @@
     right: -2.5rem;
     width: clamp(7rem, 11vw, 10rem);
     aspect-ratio: 420 / 458;
-    background-image: url("/media/themes/editorial/ink-spatter.webp");
+    background-image: image-set(
+      url("/media/themes/editorial/ink-spatter.avif") type("image/avif"),
+      url("/media/themes/editorial/ink-spatter.webp") type("image/webp")
+    );
     opacity: 0.2;
   }
   /* Contact: a sumi-e sweep under the lead, and the spatter (turned, smaller
@@ -713,10 +742,13 @@
   .secondary-page--contact .secondary-page-intro::after {
     content: "";
     right: 4%;
-    bottom: -1.5rem;
+    bottom: calc(-1.5rem + 260px);
     width: clamp(6rem, 10vw, 8.5rem);
     aspect-ratio: 420 / 414;
-    background-image: url("/media/themes/editorial/ink-sweep.webp");
+    background-image: image-set(
+      url("/media/themes/editorial/ink-sweep.avif") type("image/avif"),
+      url("/media/themes/editorial/ink-sweep.webp") type("image/webp")
+    );
     rotate: 12deg;
     opacity: 0.2;
   }
@@ -726,13 +758,16 @@
   .secondary-page--contact .secondary-page-body::before {
     content: "";
     position: absolute;
-    top: 50%;
+    top: calc(50% - 200px);
     left: calc(clamp(-6.5rem, -5.5vw, -2.5rem) - 20px);
     translate: 0 -50%;
     width: clamp(5rem, 8vw, 7rem);
     aspect-ratio: 420 / 458;
-    background: url("/media/themes/editorial/ink-spatter.webp") center / contain
-      no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-spatter.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-spatter.webp") type("image/webp")
+      )
+      center / contain no-repeat;
     rotate: 135deg;
     opacity: 0.5;
     pointer-events: none;
@@ -756,8 +791,11 @@
     translate: calc(-50% - 280px) 0;
     width: clamp(4.5rem, 7vw, 6rem);
     aspect-ratio: 420 / 414;
-    background: url("/media/themes/editorial/ink-sweep.webp") center / contain
-      no-repeat;
+    background: image-set(
+        url("/media/themes/editorial/ink-sweep.avif") type("image/avif"),
+        url("/media/themes/editorial/ink-sweep.webp") type("image/webp")
+      )
+      center / contain no-repeat;
     rotate: -8deg;
     opacity: 0.2;
     pointer-events: none;

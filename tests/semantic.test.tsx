@@ -114,7 +114,7 @@ test("every block renders with semantic headings, native details and accessible 
       );
       assert.match(
         html,
-        /<summary lang="en">.*Read Implementation Details<\/summary>/,
+        /<summary lang="en">.*Read Implementation Details.*<\/summary>/,
       );
       assert.match(html, /connects to/);
       assert.match(html, /Input flows through validation to output/);

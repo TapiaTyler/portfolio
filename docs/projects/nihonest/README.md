@@ -1,4 +1,4 @@
-# Nihonest portfolio draft
+# Nihonest portfolio project
 
 - [Import review](IMPORT-REVIEW.md): supported claims, contribution confirmations,
   disclosure approval, and remaining review.
@@ -10,12 +10,14 @@
 
 Review at `/dev/projects/nihonest`; append `?locale=ja` for intentional English
 fallback. Full-shell review is `/preview/chronicle?project=nihonest` in the selected
-presentation mode. All review routes are development-only. The draft is excluded
-from public Work, featured inventories, direct project routes, sitemap, and structured data.
+presentation mode. These review routes are development-only. The current record
+is published and featured; its public English route is /en/work/nihonest, with the
+declared English fallback at /ja/work/nihonest.
 
-Nihonest remains in active development and has not yet been deployed. No live
-link has been invented. Its source-project review and release gates remain separate
-from this portfolio's import checks.
+Nihonest remains in active development. The current record includes the live link
+https://nihonest.vercel.app/ and declares private source. The dated discovery/import
+reports describe the earlier local import; application release gates remain separate
+from portfolio checks. Updated 2026-10-07; no live-site audit was performed here.
 
 ## Local screenshots
 

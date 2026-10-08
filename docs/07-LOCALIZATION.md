@@ -83,7 +83,7 @@ If a Japanese page has partial translation:
 - render available Japanese content;
 - indicate that detailed content is currently available in English;
 - optionally offer a clear link/switch;
-- keep navigation/page chrome Japanese.
+- use reviewed Japanese navigation/page chrome where available, with English fallback otherwise.
 
 The fallback should feel intentional.
 
@@ -152,7 +152,7 @@ Orthogonal axes:
 
 ```text
 locale = en | ja
-theme = editorial | engineer | digital
+theme = editorial | engineer | digital | chronicle
 ```
 
 Do not encode locale into theme IDs.
@@ -234,3 +234,31 @@ Test:
 ## Principle
 
 Localization is product architecture, not an afterthought or decorative motif.
+
+## Implemented source authoring (2026-10-08)
+
+Public page copy in `src/content/placeholder.ts`, `src/content/pages.ts` and
+`src/content/contact.ts` uses `{ en: "English source", ja?: "Reviewed Japanese" }`.
+Leave `ja` absent until reviewed copy exists. IDs, routes, addresses and destinations
+remain shared. Project records keep their existing per-locale schema and translation status.
+
+Interface text lives in `src/content/interface.ts`, including navigation, metadata,
+gallery/code controls, empty states and accessibility labels. Its stable keys identify
+messages; edit their `en`/`ja` values rather than renaming keys to change wording.
+Interpolated values such as `{title}` or `{count}` must occur in both translations.
+Technology names and other verified proper names can remain shared.
+
+Use `Text` for localized content and `UiText` for dictionary labels. Use `message`
+for attributes and progressive controls, with `messageLanguage` or `setInterfaceText`
+to mark the actual text language. Each field resolves independently: a translated
+heading does not turn its English description into Japanese. React text rendering
+and DOM `textContent` keep inserted values escaped.
+
+`npm run content:validate` checks nonempty English sources, optional nonempty Japanese
+fields and matching interpolation tokens. Unit tests cover partial translations and
+fallback language; browser tests cover both locale routes in every mode.
+
+This pass adds translation infrastructure, not Japanese drafts. The locale notice
+now explains that unavailable translations use English. Japanese SEO alternates and
+sitemap entries remain disabled until the corresponding content is reviewed; filling
+a few interface slots alone does not make a Japanese page ready for indexing.

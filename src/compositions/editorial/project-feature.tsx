@@ -1,6 +1,9 @@
+import { Text } from "@/components/localized-text";
+import { interfaceCopy } from "@/lib/i18n/messages";
+import { UiText } from "@/components/ui-text";
 import Link from "next/link";
-import type { ComponentProps } from "react";
-import type { ProjectFeature } from "@/components/semantic/project-feature";
+import { type ComponentProps } from "react";
+import { type ProjectFeature } from "@/components/semantic/project-feature";
 import { SectionHeading } from "@/components/semantic/section-heading";
 import { MediaFrame } from "@/components/semantic/media-frame";
 import { FallbackNotice } from "@/components/semantic/fallback-notice";
@@ -13,6 +16,7 @@ export function EditorialProjectFeature({
   level = 2,
   assetUrl,
 }: ComponentProps<typeof ProjectFeature>) {
+  const locale = content.locale;
   const media = content.project.media.find(
     (media) => media.id === content.project.previewMediaId,
   );
@@ -50,14 +54,19 @@ export function EditorialProjectFeature({
       )}
       <div className="editorial-project__narrative">
         <p className="editorial-project__kicker" lang="en">
-          {kicker.join(" · ")}
+          {kicker.map((item, index) => (
+            <span key={index}>
+              {index > 0 && " · "}
+              <Text value={interfaceCopy(item!)} locale={locale} />
+            </span>
+          ))}
         </p>
         {content.summary && (
           <p lang={content.summary.lang}>{content.summary.value}</p>
         )}
         <FallbackNotice content={content} />
         <Link className="text-link" href={href} lang="en">
-          Explore the Project
+          <UiText locale={locale} id="Explore the Project" />
         </Link>
       </div>
     </article>

@@ -1,4 +1,5 @@
 "use client";
+import { message, messageLanguage } from "@/lib/i18n/messages";
 
 import Link from "next/link";
 import {
@@ -10,19 +11,28 @@ import {
 } from "react";
 import { ChronicleAtmosphere } from "./atmosphere";
 import { useNavigationSelector } from "./use-navigation-selector";
+import { Text } from "@/components/localized-text";
+import { type CopyText } from "@/lib/i18n/copy";
+import { type Locale } from "@/lib/i18n/locales";
 
 export function ChronicleHomeTabs({
   sections,
-  label = "Portfolio overview",
-  railLabel = "Portfolio sections",
+  label,
+  railLabel,
+  labelLang,
+  railLabelLang,
+  locale = "en",
 }: {
   label?: string;
   railLabel?: string;
+  labelLang?: Locale;
+  railLabelLang?: Locale;
+  locale?: Locale;
   sections: {
     id: string;
-    label: string;
+    label: CopyText;
     content: ReactNode;
-    action?: { href: string; label: string };
+    action?: { href: string; label: CopyText };
   }[];
 }) {
   const [selected, setSelected] = useState(0);
@@ -38,7 +48,8 @@ export function ChronicleHomeTabs({
   return (
     <section
       className="chronicle-home-tabs"
-      aria-label={label}
+      aria-label={label ?? message(locale, "Portfolio overview")}
+      lang={labelLang ?? messageLanguage(locale, "Portfolio overview")}
       style={{ "--swipe-dir": direction } as CSSProperties}
     >
       <ChronicleAtmosphere />
@@ -48,7 +59,8 @@ export function ChronicleHomeTabs({
       <div
         className="chronicle-home-tabs__rail"
         role="tablist"
-        aria-label={railLabel}
+        aria-label={railLabel ?? message(locale, "Portfolio sections")}
+        lang={railLabelLang ?? messageLanguage(locale, "Portfolio sections")}
         aria-orientation="vertical"
         ref={tabs}
       >
@@ -80,7 +92,7 @@ export function ChronicleHomeTabs({
             }}
           >
             <span className="chronicle-chapter-symbol" aria-hidden="true" />
-            {section.label}
+            <Text value={section.label} locale={locale} />
           </button>
         ))}
       </div>
@@ -102,7 +114,7 @@ export function ChronicleHomeTabs({
               className="chronicle-action chronicle-home-tabs__action"
               href={section.action.href}
             >
-              {section.action.label}
+              <Text value={section.action.label} locale={locale} />
             </Link>
           )}
         </div>

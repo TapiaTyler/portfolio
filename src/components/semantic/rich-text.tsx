@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
-import type { RichText as RichTextData } from "@/lib/content/text";
-import type { LocalizedValue } from "@/lib/i18n/project-content";
+import { externalLinkAttributes } from "@/lib/external-links";
+import { type ReactNode } from "react";
+import { type RichText as RichTextData } from "@/lib/content/text";
+import { type LocalizedValue } from "@/lib/i18n/project-content";
 
 type Inline = Extract<
   RichTextData[number],
@@ -20,7 +21,7 @@ function InlineContent({
         ? `#${anchorPrefix}${inline.href.slice(1)}`
         : inline.href;
       return (
-        <a key={index} href={href}>
+        <a key={index} href={href} {...externalLinkAttributes(href)}>
           {inline.label}
         </a>
       );

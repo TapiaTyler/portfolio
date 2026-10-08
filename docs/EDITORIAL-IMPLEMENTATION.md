@@ -1,58 +1,53 @@
-# Editorial implementation — first design pass
+# Editorial implementation
 
-The production composition follows the approved publication grammar in
-`design-reference/EDITORIAL-REFERENCE.md` and `design-reference/editorial.html`.
-This pass establishes the visual system; final content and Tyler's visual approval
-remain pending.
+Updated 2026-10-08. The production composition extends the approved publication
+reference with the directed October 6 ink-landscape redesign. The original HTML
+records the baseline; current composition/CSS and the asset provenance below record
+later refinements. Final opening copy, translations and hosted verification remain open.
 
-## Reading orientation and chapters
+## Current composition
 
-The case-study opening adds a factual project brief, with ownership/review in a
-native disclosure and compact metadata beside the lead. Body type remains readable
-sans; display serif typography is reserved for the title and chapter headings.
-A quiet two-column chapter index precedes the narrative on desktop, complementing
-existing reading progress. It becomes a native disclosure on mobile. Anchors use
-canonical narrative sections; supporting media does not create unrelated chapters.
-Recurring Context/Decision/Tradeoffs labels use restrained mono typography beneath
-larger section headings. These are the 2026-10-03 reading refinements; final copy
-and populated-layout approval remain pending.
-
-## Implemented
-
-- A wide 5/7 hero with Cormorant Garamond display type, italic emphasis and
-  restrained Inter body/UI text.
-- A deliberate abstract typographic study in a 16:10 frame. It is decorative,
-  hidden from assistive technology, and carries no personal or project claims.
-- Hairline section divisions, three sparse capability columns, an asymmetric
-  narrative About section and a split contact closing.
-- Intentional empty Work/Lab sections until reviewed content exists. There are no
-  generated project entries, portraits, external prototype images or fabricated links.
-- A sticky paper header, destination-aware navigation, native mobile menu,
-  language pill and compact native presentation picker. Escape returns focus to
-  the corresponding disclosure; links and mode forms also work without JavaScript.
-- Project features with serif titles, 5/7 narrative/media balance, quiet metadata
-  and recomposition for no-image records. Title, media and narrative stay in the
-  same DOM order at every breakpoint; mobile presents media before body narrative.
-- Wide case-study introductions, narrow narrative blocks, quiet media captions,
-  shared decision/technical/architecture semantics and native expandable details.
-- Work, About, Lab, Contact and not-found shells inherit the same typography,
-  paper palette, gutters and editorial spacing. Their final content remains pending.
+- A headline-led cover with Cormorant Garamond display type, italic emphasis and
+  Inter body/UI text. The former framed ampersand study has been removed.
+- A generated sumi-e landscape multiplies into the paper background and fades at
+  its edges. A compact derivative serves narrower desktop/tablet layouts; phones
+  omit the landscape and hero seal to keep text clear.
+- A full-width lead project feature followed by smaller paired features. Compact
+  year/status/technology kickers precede the full metadata on case-study pages.
+- Screenshot plates with paper mats, hairlines and 16:10 card crops; case studies
+  use numbered figure captions, a serif standfirst and a drop cap. Portrait evidence
+  respects intrinsic size and the shared height cap.
+- Letter-spaced Inter labels, hairline divisions, narrative About content and a
+  split contact closing. Sparse ink marks extend the system across supporting pages.
+- A sticky paper header, moving text-width navigation marker, animated language
+  picker and compact native presentation control. Header/language routes use the
+  top-bound page turn; narrative routes use horizontal turns.
+- A desktop chapter index and native mobile disclosure, reading progress, unfolding
+  Engineering details and ordinary anchor destinations. Reduced motion remains static.
+- Work, About, Lab and Contact extend the publication grammar. Work contains real
+  published projects, About contains biography/skills/education, Lab is intentionally
+  empty and Contact offers approved email/profiles with reserved résumé/CV files.
 
 ## Content and composition boundary
 
-`src/content/placeholder.ts` holds provisional English homepage copy using the
-shared `HomepageContent` model. The areas-of-practice copy is draft language,
-not reviewed personal claims or a skills inventory. No Japanese translations
-have been authored.
+Homepage opening/practice copy remains in src/content/placeholder.ts. Page content
+lives in src/content/pages.ts; three published project records supply the shared
+case-study facts. No theme-specific appearance is stored in those records.
+Editorial specializes semantic composition surfaces while preserving the published
+case-study spine in [CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md).
+Development fixtures remain separate from the real public inventory.
 
-The composition registry now includes a Homepage surface. Editorial specializes
-Homepage, Hero, ProjectFeature and CaseStudyIntro while reusing shared semantic
-sections and block fallbacks. Engineer and Digital receive the same homepage
-content through their baseline renderers until their design passes.
+## Artwork and provenance
 
-The public project inventory stays empty. Development previews use the separate
-fixture registry and explicit preview destinations, not fabricated public routes.
-`/dev/compositions` compares project previews and full case studies across modes.
+[Editorial assets](design-reference/editorial-assets/README.md) records the
+user-supplied, ChatGPT-generated landscape and ink-mark sources. Optimized delivery
+files live under public/media/themes/editorial; they are decorative artwork, not
+product evidence. The Tetsuo seal signs the hero, droplets mark the homepage close,
+a brush stroke sits under the footer name and a mountain seal ends case studies.
+Work, About, Lab and Contact use distinct marks in their margins. Phone layouts
+omit larger margin decorations. Marks are noninteractive and avoid body text.
+Contact's title sweep and margin spatter move roughly 200px upward after the Contact pass,
+placing the sweep in the title's open area. Phone layouts continue to omit both.
 
 ## Fonts and CSS
 
@@ -80,8 +75,9 @@ homepage. Development fixtures were checked for unique anchors and horizontal
 overflow, and desktop/mobile screenshots were inspected.
 
 Automated accessibility checks are a regression guard, not a full WCAG audit.
-Final visual review, real imagery, populated project/Lab layouts, long final copy,
-Japanese typography and release accessibility/performance review remain open.
+Current populated screenshots, final opening/contact copy, Japanese typography
+and hosted accessibility/performance review remain open. Earlier checks below
+are historical verification, not a fresh audit of the October 6 artwork.
 Continue refining Editorial when real content or visual feedback warrants it.
 
 ## Secondary routes — 2026-10-03
@@ -97,8 +93,8 @@ to the same semantic reading order in one column.
 
 ## Publication redesign — 2026-10-06
 
-- Type-only cover: the decorative ampersand study is removed so Selected Work
-  follows the headline within the first screen.
+- Headline-led cover: the decorative ampersand study is removed; the ink landscape
+  blends into the paper instead of occupying a separate framed column.
 - Project features: a lead story spans the page; later features pair up as smaller
   stacked pieces. Cards carry a one-line kicker (year · status · three primary
   technologies); the full metadata table stays on the case study.
@@ -109,3 +105,8 @@ to the same semantic reading order in one column.
 - The accent is a spot colour only: drop cap, chapter numbers, link hover and focus.
 - The active presentation option is a filled ink pill; the footer has an ink rule
   and the name in the display serif.
+
+All nine ink artwork delivery variants now prefer AVIF with typed WebP fallback.
+The artwork positioning and composition are unchanged. The shared image optimizer
+also negotiates project screenshot and local video-poster formats. See
+[IMAGE-DELIVERY.md](IMAGE-DELIVERY.md) for regeneration and source preservation.

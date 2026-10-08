@@ -1,10 +1,14 @@
 "use client";
+import { messageLanguage, message } from "@/lib/i18n/messages";
+import { UiText } from "@/components/ui-text";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, type ReactNode } from "react";
-import type { Locale } from "@/lib/i18n/locales";
+import { type Locale } from "@/lib/i18n/locales";
 import { useDismissibleDisclosure } from "./use-dismissible-disclosure";
+import { Text } from "./localized-text";
+import { text, textLanguage, type CopyText } from "@/lib/i18n/copy";
 
 export function PrimaryNavigation({
   locale,
@@ -12,7 +16,7 @@ export function PrimaryNavigation({
   controls,
 }: {
   locale: Locale;
-  items: readonly { href: string; label: string }[];
+  items: readonly { href: string; label: CopyText }[];
   controls: ReactNode;
 }) {
   const pathname = usePathname();
@@ -24,7 +28,8 @@ export function PrimaryNavigation({
       <Link
         key={href}
         href={destination}
-        aria-label={label}
+        aria-label={text(label, locale)}
+        lang={textLanguage(label, locale)}
         aria-current={
           pathname === destination || pathname.startsWith(`${destination}/`)
             ? "page"
@@ -34,7 +39,9 @@ export function PrimaryNavigation({
         <span className="navigation-delimiter" aria-hidden="true">
           [
         </span>
-        <span className="site-nav__label">{label}</span>
+        <span className="site-nav__label">
+          <Text value={label} locale={locale} />
+        </span>
         <span className="navigation-delimiter" aria-hidden="true">
           ]
         </span>
@@ -43,7 +50,11 @@ export function PrimaryNavigation({
   });
   return (
     <>
-      <nav aria-label="Primary" className="site-nav site-nav--desktop">
+      <nav
+        aria-label={message(locale, "Primary")}
+        lang={messageLanguage(locale, "Primary")}
+        className="site-nav site-nav--desktop"
+      >
         {links}
       </nav>
       <details
@@ -56,8 +67,13 @@ export function PrimaryNavigation({
           }
         }}
       >
-        <summary aria-label="Menu">
-          <span className="mobile-navigation__label">Menu</span>
+        <summary
+          aria-label={message(locale, "Menu")}
+          lang={messageLanguage(locale, "Menu")}
+        >
+          <span className="mobile-navigation__label">
+            <UiText locale={locale} id="Menu" />
+          </span>
           <span className="mobile-navigation__icon" aria-hidden="true">
             <span />
             <span />
@@ -66,7 +82,8 @@ export function PrimaryNavigation({
         </summary>
         <div className="mobile-navigation__panel">
           <nav
-            aria-label="Primary"
+            aria-label={message(locale, "Primary")}
+            lang={messageLanguage(locale, "Primary")}
             className="site-nav"
             onClick={(event) => {
               if ((event.target as HTMLElement).closest("a") && menu.current)

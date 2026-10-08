@@ -3,10 +3,11 @@
 import { cookies } from "next/headers";
 import { isThemeId } from "./ids";
 import { themeCookieName, themeCookieOptions } from "./preference";
+import type { MessageId } from "@/lib/i18n/messages";
 
 export interface ThemeActionState {
-  error?: string;
-  message?: string;
+  error?: MessageId;
+  message?: MessageId;
 }
 
 export async function saveThemePreference(

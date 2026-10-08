@@ -1,5 +1,6 @@
-import type { ComponentProps } from "react";
-import type { CaseStudyIntro } from "@/components/semantic/case-study";
+import { UiText } from "@/components/ui-text";
+import { type ComponentProps } from "react";
+import { type CaseStudyIntro } from "@/components/semantic/case-study";
 import { SectionHeading } from "@/components/semantic/section-heading";
 import { ProjectMeta, ProjectLinks } from "@/components/semantic/project-meta";
 import { MediaFrame } from "@/components/semantic/media-frame";
@@ -10,6 +11,7 @@ export function EngineerCaseStudyIntro({
   level = 1,
   assetUrl,
 }: ComponentProps<typeof CaseStudyIntro>) {
+  const locale = content.locale;
   const media = content.project.media.find(
     (media) => media.id === content.project.previewMediaId,
   );
@@ -19,7 +21,8 @@ export function EngineerCaseStudyIntro({
       data-motion-id="case-study-intro"
     >
       <p className="engineer-panel-label" lang="en">
-        Project identity / {content.project.slug}
+        <UiText locale={locale} id="Project identity /" />{" "}
+        {content.project.slug}
       </p>
       <div className="engineer-case-study-intro__body">
         <SectionHeading level={level}>
@@ -33,9 +36,13 @@ export function EngineerCaseStudyIntro({
             {content.description && (
               <p lang={content.description.lang}>{content.description.value}</p>
             )}
-            <ProjectLinks project={content.project} />
+            <ProjectLinks locale={content.locale} project={content.project} />
           </div>
-          <ProjectMeta project={content.project} exclude={["Role", "Status"]} />
+          <ProjectMeta
+            locale={content.locale}
+            project={content.project}
+            exclude={["Role", "Status"]}
+          />
         </div>
         <CaseStudyOrientation content={content} />
         {media && (

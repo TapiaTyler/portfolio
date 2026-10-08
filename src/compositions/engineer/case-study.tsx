@@ -1,4 +1,12 @@
-import type { ComponentProps } from "react";
+import {
+  interfaceCopy as navigationCopy,
+  messageLanguage,
+  message,
+} from "@/lib/i18n/messages";
+
+import { UiText } from "@/components/ui-text";
+
+import { type ComponentProps } from "react";
 import { CaseStudy } from "@/components/semantic/case-study";
 import {
   resolveText,
@@ -10,6 +18,7 @@ import { EngineerCaseStudyBody } from "./case-study-body";
 
 export function EngineerCaseStudy(props: ComponentProps<typeof CaseStudy>) {
   const { content, anchorPrefix = "" } = props;
+  const locale = content.locale;
   const systemBlocks = content.blocks
     .filter(({ block }) =>
       ["architecture", "decision", "technical"].includes(block.type),
@@ -23,11 +32,16 @@ export function EngineerCaseStudy(props: ComponentProps<typeof CaseStudy>) {
     systemBlocks.length > 0 ? (
       <aside
         className="engineer-system-overview"
-        aria-label="System Overview"
-        lang="en"
+        aria-label={message(locale, "System Overview")}
+        lang={messageLanguage(locale, "System Overview")}
       >
-        <p className="engineer-panel-label">System Overview</p>
-        <nav aria-label="Technical sections">
+        <p className="engineer-panel-label">
+          <UiText locale={locale} id="System Overview" />
+        </p>
+        <nav
+          aria-label={message(locale, "Technical sections")}
+          lang={messageLanguage(locale, "Technical sections")}
+        >
           <ul>
             {systemBlocks.map(({ block, translation }) => {
               const diagram =
@@ -114,7 +128,7 @@ export function EngineerCaseStudy(props: ComponentProps<typeof CaseStudy>) {
         IntroRenderer={EngineerCaseStudyIntro}
         afterIntro={overview}
         BodyRenderer={EngineerCaseStudyBody}
-        navigationLabel="Section Directory"
+        navigationLabel={navigationCopy("Section Directory")}
         navigationDirectory={content.project.slug}
       />
     </div>

@@ -1,0 +1,863 @@
+{
+  "generator": "scripts/optimize-theme-images.mjs",
+  "images": [
+    {
+      "source": "/media/themes/editorial/ink-brush-flick.webp",
+      "avif": "/media/themes/editorial/ink-brush-flick.avif",
+      "width": 360,
+      "height": 342,
+      "hasAlpha": true,
+      "webpBytes": 26452,
+      "avifBytes": 15959,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-brush-stroke.webp",
+      "avif": "/media/themes/editorial/ink-brush-stroke.avif",
+      "width": 900,
+      "height": 122,
+      "hasAlpha": true,
+      "webpBytes": 49886,
+      "avifBytes": 28525,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-droplets.webp",
+      "avif": "/media/themes/editorial/ink-droplets.avif",
+      "width": 360,
+      "height": 303,
+      "hasAlpha": true,
+      "webpBytes": 29844,
+      "avifBytes": 20050,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-landscape-compact.webp",
+      "avif": "/media/themes/editorial/ink-landscape-compact.avif",
+      "width": 900,
+      "height": 563,
+      "hasAlpha": false,
+      "webpBytes": 10094,
+      "avifBytes": 5714,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-landscape.webp",
+      "avif": "/media/themes/editorial/ink-landscape.avif",
+      "width": 1600,
+      "height": 1001,
+      "hasAlpha": false,
+      "webpBytes": 25202,
+      "avifBytes": 14452,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-seal-mountain.webp",
+      "avif": "/media/themes/editorial/ink-seal-mountain.avif",
+      "width": 200,
+      "height": 199,
+      "hasAlpha": true,
+      "webpBytes": 21354,
+      "avifBytes": 12405,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-seal-tetsuo.webp",
+      "avif": "/media/themes/editorial/ink-seal-tetsuo.avif",
+      "width": 220,
+      "height": 216,
+      "hasAlpha": true,
+      "webpBytes": 27722,
+      "avifBytes": 17920,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-spatter.webp",
+      "avif": "/media/themes/editorial/ink-spatter.avif",
+      "width": 420,
+      "height": 458,
+      "hasAlpha": true,
+      "webpBytes": 16758,
+      "avifBytes": 9676,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/editorial/ink-sweep.webp",
+      "avif": "/media/themes/editorial/ink-sweep.avif",
+      "width": 420,
+      "height": 414,
+      "hasAlpha": true,
+      "webpBytes": 23202,
+      "avifBytes": 14366,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/card-crest-selected.webp",
+      "avif": "/media/themes/chronicle/card-crest-selected.avif",
+      "width": 160,
+      "height": 160,
+      "hasAlpha": true,
+      "webpBytes": 10994,
+      "avifBytes": 6118,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": false,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/card-crest.webp",
+      "avif": "/media/themes/chronicle/card-crest.avif",
+      "width": 160,
+      "height": 160,
+      "hasAlpha": true,
+      "webpBytes": 8722,
+      "avifBytes": 6211,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": false,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-divider-compact.webp",
+      "avif": "/media/themes/chronicle/chapter-divider-compact.avif",
+      "width": 720,
+      "height": 44,
+      "hasAlpha": true,
+      "webpBytes": 13910,
+      "avifBytes": 9237,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-divider.webp",
+      "avif": "/media/themes/chronicle/chapter-divider.avif",
+      "width": 1200,
+      "height": 73,
+      "hasAlpha": true,
+      "webpBytes": 36304,
+      "avifBytes": 18067,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-rail-cap-bottom.webp",
+      "avif": "/media/themes/chronicle/chapter-rail-cap-bottom.avif",
+      "width": 55,
+      "height": 160,
+      "hasAlpha": true,
+      "webpBytes": 3904,
+      "avifBytes": 2734,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-rail-cap-top.webp",
+      "avif": "/media/themes/chronicle/chapter-rail-cap-top.avif",
+      "width": 65,
+      "height": 192,
+      "hasAlpha": true,
+      "webpBytes": 6380,
+      "avifBytes": 4314,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-rail-marker.webp",
+      "avif": "/media/themes/chronicle/chapter-rail-marker.avif",
+      "width": 96,
+      "height": 96,
+      "hasAlpha": true,
+      "webpBytes": 4396,
+      "avifBytes": 3280,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-rail-segment.webp",
+      "avif": "/media/themes/chronicle/chapter-rail-segment.avif",
+      "width": 12,
+      "height": 262,
+      "hasAlpha": true,
+      "webpBytes": 1250,
+      "avifBytes": 800,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/chapter-rail.webp",
+      "avif": "/media/themes/chronicle/chapter-rail.avif",
+      "width": 109,
+      "height": 1200,
+      "hasAlpha": true,
+      "webpBytes": 60542,
+      "avifBytes": 32194,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": false,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/crystal-corner-compact.webp",
+      "avif": "/media/themes/chronicle/crystal-corner-compact.avif",
+      "width": 480,
+      "height": 471,
+      "hasAlpha": true,
+      "webpBytes": 61694,
+      "avifBytes": 34327,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/crystal-corner-mobile.webp",
+      "avif": "/media/themes/chronicle/crystal-corner-mobile.avif",
+      "width": 320,
+      "height": 314,
+      "hasAlpha": true,
+      "webpBytes": 29524,
+      "avifBytes": 18792,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/crystal-corner.webp",
+      "avif": "/media/themes/chronicle/crystal-corner.avif",
+      "width": 800,
+      "height": 785,
+      "hasAlpha": true,
+      "webpBytes": 173896,
+      "avifBytes": 80890,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/glass-button-active.webp",
+      "avif": "/media/themes/chronicle/glass-button-active.avif",
+      "width": 600,
+      "height": 150,
+      "hasAlpha": true,
+      "webpBytes": 21846,
+      "avifBytes": 11889,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/glass-button-hover.webp",
+      "avif": "/media/themes/chronicle/glass-button-hover.avif",
+      "width": 600,
+      "height": 150,
+      "hasAlpha": true,
+      "webpBytes": 20960,
+      "avifBytes": 11403,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/glass-button.webp",
+      "avif": "/media/themes/chronicle/glass-button.avif",
+      "width": 600,
+      "height": 150,
+      "hasAlpha": true,
+      "webpBytes": 20116,
+      "avifBytes": 10590,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/landscape-v2-compact.webp",
+      "avif": "/media/themes/chronicle/landscape-v2-compact.avif",
+      "width": 1440,
+      "height": 480,
+      "hasAlpha": false,
+      "webpBytes": 141082,
+      "avifBytes": 71337,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/landscape-v2.webp",
+      "avif": "/media/themes/chronicle/landscape-v2.avif",
+      "width": 1920,
+      "height": 640,
+      "hasAlpha": false,
+      "webpBytes": 297788,
+      "avifBytes": 120201,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/landscape.webp",
+      "avif": "/media/themes/chronicle/landscape.avif",
+      "width": 1920,
+      "height": 640,
+      "hasAlpha": false,
+      "webpBytes": 185708,
+      "avifBytes": 81324,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": false,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/panel-frame-compact.webp",
+      "avif": "/media/themes/chronicle/panel-frame-compact.avif",
+      "width": 720,
+      "height": 378,
+      "hasAlpha": true,
+      "webpBytes": 44386,
+      "avifBytes": 24326,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/panel-frame.webp",
+      "avif": "/media/themes/chronicle/panel-frame.avif",
+      "width": 1200,
+      "height": 630,
+      "hasAlpha": true,
+      "webpBytes": 125420,
+      "avifBytes": 53151,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/project-frame-active-compact.webp",
+      "avif": "/media/themes/chronicle/project-frame-active-compact.avif",
+      "width": 720,
+      "height": 409,
+      "hasAlpha": true,
+      "webpBytes": 69936,
+      "avifBytes": 34395,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/project-frame-active.webp",
+      "avif": "/media/themes/chronicle/project-frame-active.avif",
+      "width": 1200,
+      "height": 682,
+      "hasAlpha": true,
+      "webpBytes": 203452,
+      "avifBytes": 88399,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/project-frame-compact.webp",
+      "avif": "/media/themes/chronicle/project-frame-compact.avif",
+      "width": 720,
+      "height": 367,
+      "hasAlpha": true,
+      "webpBytes": 40354,
+      "avifBytes": 22499,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/project-frame.webp",
+      "avif": "/media/themes/chronicle/project-frame.avif",
+      "width": 1200,
+      "height": 611,
+      "hasAlpha": true,
+      "webpBytes": 109302,
+      "avifBytes": 49172,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/sakura-corner-compact.webp",
+      "avif": "/media/themes/chronicle/sakura-corner-compact.avif",
+      "width": 480,
+      "height": 364,
+      "hasAlpha": true,
+      "webpBytes": 77646,
+      "avifBytes": 44022,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/sakura-corner-mobile.webp",
+      "avif": "/media/themes/chronicle/sakura-corner-mobile.avif",
+      "width": 320,
+      "height": 242,
+      "hasAlpha": true,
+      "webpBytes": 37140,
+      "avifBytes": 23550,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/sakura-corner.webp",
+      "avif": "/media/themes/chronicle/sakura-corner.avif",
+      "width": 800,
+      "height": 606,
+      "hasAlpha": true,
+      "webpBytes": 219258,
+      "avifBytes": 108810,
+      "encoding": {
+        "quality": 65,
+        "chromaSubsampling": "4:4:4",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/themes/chronicle/scenic-portrait.webp",
+      "avif": "/media/themes/chronicle/scenic-portrait.avif",
+      "width": 780,
+      "height": 1040,
+      "hasAlpha": false,
+      "webpBytes": 97274,
+      "avifBytes": 58214,
+      "encoding": {
+        "quality": 50,
+        "chromaSubsampling": "4:2:0",
+        "effort": 6
+      },
+      "runtimeReference": true,
+      "delivery": "CSS image-set: AVIF first, WebP fallback"
+    },
+    {
+      "source": "/media/projects/japan-travel-planner/itinerary-desktop.png",
+      "width": 1265,
+      "height": 1179,
+      "sourceBytes": 93397,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/japan-travel-planner/itinerary-mobile-dark.png",
+      "width": 534,
+      "height": 1263,
+      "sourceBytes": 53835,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/japan-travel-planner/landing-desktop.png",
+      "width": 1259,
+      "height": 748,
+      "sourceBytes": 123584,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/japan-travel-planner/trip-library-japanese.png",
+      "width": 1270,
+      "height": 715,
+      "sourceBytes": 88005,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/nihonest/explore-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 59331,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/nihonest/home-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 86146,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/nihonest/journey-conditions-mobile.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 50102,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/nihonest/journey-mobile.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 39391,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/nihonest/local-guidance-desktop.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 106248,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-before-home.png",
+      "width": 1440,
+      "height": 900,
+      "sourceBytes": 745210,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-before-mobile.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 244276,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-case-study-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1139648,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-case-study-landscape-2026-10-07.png",
+      "width": 844,
+      "height": 390,
+      "sourceBytes": 222262,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-case-study-landscape.png",
+      "width": 844,
+      "height": 390,
+      "sourceBytes": 233767,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-case-study.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1145318,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-home-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1423750,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-home.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1380244,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-interactions-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1419290,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-interactions.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1376982,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-landscape-home-2026-10-07.png",
+      "width": 844,
+      "height": 390,
+      "sourceBytes": 312863,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-landscape-home.png",
+      "width": 844,
+      "height": 390,
+      "sourceBytes": 314545,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-portrait-home-2026-10-07.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 310962,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/chronicle-portrait-home.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 322747,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/digital-gallery.png",
+      "width": 1280,
+      "height": 1097,
+      "sourceBytes": 151193,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/digital-home-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 465252,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/digital-home.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 465810,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/digital-navigation.png",
+      "width": 1440,
+      "height": 150,
+      "sourceBytes": 29702,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/disclosure-interactions-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 201717,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/disclosure-interactions.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 57770,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/editorial-home-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 262671,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/editorial-home.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 104011,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/engineer-home-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 95832,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/engineer-home.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 125418,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/reconstruction-digital-gallery.png",
+      "width": 1280,
+      "height": 1098,
+      "sourceBytes": 79074,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/reconstruction-digital-navigation.png",
+      "width": 1440,
+      "height": 150,
+      "sourceBytes": 32523,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/route-transitions-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 264121,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/route-transitions.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 91976,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    },
+    {
+      "source": "/media/projects/portfolio/theme-morphing-2026-10-07.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 264257,
+      "delivery": "Next image optimizer: AVIF / WebP / original via Accept; retained evidence source"
+    }
+  ]
+}

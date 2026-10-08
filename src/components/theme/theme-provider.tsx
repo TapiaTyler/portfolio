@@ -9,7 +9,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { ThemeId } from "@/lib/theme/ids";
+import { type ThemeId } from "@/lib/theme/ids";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import {
   bindRouteNavigation,

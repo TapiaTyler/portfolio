@@ -1,3 +1,6 @@
+import { setInterfaceText } from "@/lib/i18n/dom-copy";
+import { message, messageLanguage, selectMessage } from "@/lib/i18n/messages";
+import { isLocale } from "@/lib/i18n/locales";
 interface GalleryItem {
   figure: HTMLElement;
   image: HTMLImageElement;
@@ -7,6 +10,8 @@ interface GalleryItem {
 
 /** Gallery navigation uses media identity; each selected image retains its page frame. */
 export function setupDigitalMedia() {
+  const pageLanguage = document.documentElement.lang;
+  const locale = isLocale(pageLanguage) ? pageLanguage : "en";
   if (
     typeof HTMLDialogElement === "undefined" ||
     !HTMLDialogElement.prototype.showModal
@@ -83,14 +88,15 @@ export function setupDigitalMedia() {
     const from = origin.image.getBoundingClientRect();
     const dialog = document.createElement("dialog");
     dialog.className = "media-viewer";
+    dialog.lang = selectMessage(locale, "Project image gallery").lang;
     dialog.dataset.theme =
       origin.figure.closest<HTMLElement>("[data-theme]")?.dataset.theme ??
       "digital";
-    dialog.setAttribute("aria-label", "Project image gallery");
+    dialog.setAttribute("aria-label", message(locale, "Project image gallery"));
     const closeButton = document.createElement("button");
     closeButton.type = "button";
     closeButton.className = "media-viewer__close";
-    closeButton.textContent = "Close Gallery";
+    setInterfaceText(closeButton, "Close Gallery");
     closeButton.autofocus = true;
     const stage = document.createElement("div");
     stage.className = "media-viewer__stage";
@@ -102,10 +108,10 @@ export function setupDigitalMedia() {
     navigation.className = "media-viewer__navigation";
     const previous = document.createElement("button");
     previous.type = "button";
-    previous.textContent = "Previous Image";
+    setInterfaceText(previous, "Previous Image");
     const next = document.createElement("button");
     next.type = "button";
-    next.textContent = "Next Image";
+    setInterfaceText(next, "Next Image");
     const counter = document.createElement("span");
     counter.setAttribute("role", "status");
     counter.setAttribute("aria-atomic", "true");
@@ -148,7 +154,11 @@ export function setupDigitalMedia() {
       const label = item.figure.querySelector<HTMLElement>("figcaption");
       caption.textContent = label?.textContent ?? item.image.alt;
       caption.lang = label?.lang || item.image.lang;
-      counter.textContent = `Image ${index + 1} of ${gallery.length}`;
+      counter.textContent = message(locale, "Image {current} of {count}", {
+        current: index + 1,
+        count: gallery.length,
+      });
+      counter.lang = messageLanguage(locale, "Image {current} of {count}");
       dialog.dataset.imageIndex = String(index);
       fit();
     }
@@ -326,8 +336,11 @@ export function setupDigitalMedia() {
     const trigger = document.createElement("button");
     trigger.type = "button";
     trigger.className = "media-view-trigger";
-    trigger.textContent = "View Image";
-    trigger.setAttribute("aria-label", `View Image: ${image.alt}`);
+    setInterfaceText(trigger, "View Image");
+    trigger.setAttribute(
+      "aria-label",
+      message(locale, "View Image: {title}", { title: image.alt }),
+    );
     figure.insertBefore(trigger, figure.querySelector("figcaption"));
     const item: GalleryItem = { figure, image, trigger, failed: false };
     items.push(item);

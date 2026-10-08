@@ -1,4 +1,6 @@
-import type { ComponentProps } from "react";
+import { interfaceCopy as navigationCopy } from "@/lib/i18n/messages";
+
+import { type ComponentProps } from "react";
 import {
   CaseStudy,
   type CaseStudyBodyProps,
@@ -22,7 +24,7 @@ export function DigitalCaseStudy(props: ComponentProps<typeof CaseStudy>) {
       {...props}
       IntroRenderer={DigitalCaseStudyIntro}
       BodyRenderer={DigitalCaseStudyBody}
-      navigationLabel="Explore Sections"
+      navigationLabel={navigationCopy("Explore Sections")}
     />
   );
 }

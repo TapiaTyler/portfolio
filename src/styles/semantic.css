@@ -350,3 +350,39 @@
   --rule: var(--border-subtle);
   --focus: var(--focus-ring);
 }
+
+/* Consecutive phone captures pair up side by side (Editorial, Digital, Chronicle)
+   instead of stacking into a long column. Each takes half the row; its frame
+   centres in that half and the image scales to fit. */
+:is([data-theme="editorial"], [data-theme="digital"], [data-theme="chronicle"])
+  .case-study-block:has(> .media-frame[data-media-aspect="portrait"]):is(
+    :has(+ .case-study-block > .media-frame[data-media-aspect="portrait"]),
+    .case-study-block:has(> .media-frame[data-media-aspect="portrait"])
+      + .case-study-block
+  ) {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(50% - 0.75rem);
+  max-width: none;
+  margin: 0;
+}
+:is([data-theme="editorial"], [data-theme="digital"], [data-theme="chronicle"])
+  .case-study-block:has(> .media-frame[data-media-aspect="portrait"]):has(
+    + .case-study-block > .media-frame[data-media-aspect="portrait"]
+  ) {
+  margin-right: 1.5rem;
+}
+/* Pull the pair together at the centre of the row. */
+:is([data-theme="editorial"], [data-theme="digital"], [data-theme="chronicle"])
+  .case-study-block:has(> .media-frame[data-media-aspect="portrait"]):has(
+    + .case-study-block > .media-frame[data-media-aspect="portrait"]
+  )
+  > .media-frame {
+  margin-inline: auto 0.75rem;
+}
+:is([data-theme="editorial"], [data-theme="digital"], [data-theme="chronicle"])
+  .case-study-block:has(> .media-frame[data-media-aspect="portrait"])
+  + .case-study-block
+  > .media-frame[data-media-aspect="portrait"] {
+  margin-inline: 0.75rem auto;
+}

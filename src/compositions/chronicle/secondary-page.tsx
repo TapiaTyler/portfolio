@@ -1,3 +1,7 @@
+import { messageLanguage, message } from "@/lib/i18n/messages";
+
+import { Text } from "@/components/localized-text";
+import { text } from "@/lib/i18n/copy";
 import Link from "next/link";
 import {
   SecondaryPageIntro,
@@ -20,7 +24,8 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
   const dock = (
     <nav
       className="secondary-page-related chronicle-screen__dock"
-      aria-label="Continue Exploring"
+      aria-label={message(locale, "Continue Exploring")}
+      lang={messageLanguage(locale, "Continue Exploring")}
       data-motion-id="page-related"
     >
       {content.related.map((item) => (
@@ -29,7 +34,7 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
           key={item.destination}
           href={`/${locale}${item.destination}`}
         >
-          {item.label}
+          <Text value={item.label} locale={locale} />
         </Link>
       ))}
     </nav>
@@ -37,7 +42,7 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
   const section = (
     entry: SecondaryPageProps["content"]["sections"][number],
   ) => (
-    <SecondaryPageSection key={entry.id} section={entry}>
+    <SecondaryPageSection locale={locale} key={entry.id} section={entry}>
       {entry.collection &&
         (props.projects?.length ? (
           content.id === "work" ? (
@@ -58,7 +63,9 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
             />
           )
         ) : (
-          <p className="empty-content">{entry.emptyText}</p>
+          <p className="empty-content">
+            <Text value={entry.emptyText} locale={locale} />
+          </p>
         ))}
     </SecondaryPageSection>
   );
@@ -67,7 +74,7 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
       className={`secondary-page secondary-page--${content.id} chronicle-secondary-page chronicle-screen`}
       lang="en"
     >
-      <SecondaryPageIntro content={content} tabIndex={0} />
+      <SecondaryPageIntro locale={locale} content={content} tabIndex={0} />
       {dock}
       {content.id === "work" ? (
         content.sections.map(section)
@@ -75,8 +82,15 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
         <div className="chronicle-screen__stage" data-motion-id="page-body">
           {content.sections.length > 1 ? (
             <ChronicleHomeTabs
-              label={`${content.title} sections`}
-              railLabel={`${content.title} topics`}
+              locale={locale}
+              labelLang={messageLanguage(locale, "{title} sections")}
+              railLabelLang={messageLanguage(locale, "{title} topics")}
+              label={message(locale, "{title} sections", {
+                title: text(content.title, locale),
+              })}
+              railLabel={message(locale, "{title} topics", {
+                title: text(content.title, locale),
+              })}
               sections={content.sections.map((entry) => ({
                 id: entry.id,
                 label: entry.title,

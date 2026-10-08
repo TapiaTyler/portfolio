@@ -1,9 +1,9 @@
-import type { Project } from "@/lib/content/schema";
-import type { ComponentProps, ComponentType } from "react";
-import type { Locale } from "@/lib/i18n/locales";
+import { type Project } from "@/lib/content/schema";
+import { type ComponentProps, type ComponentType } from "react";
+import { type Locale } from "@/lib/i18n/locales";
 import { selectProjectContent } from "@/lib/i18n/project-content";
 import { ProjectFeature } from "./project-feature";
-import type { HeadingLevel } from "./section-heading";
+import { type HeadingLevel } from "./section-heading";
 
 export function ProjectIndex({
   projects,

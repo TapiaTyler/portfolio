@@ -4,7 +4,7 @@ import {
   SecondaryPageSection,
   type SecondaryPageProps,
 } from "@/components/semantic/secondary-page";
-import type { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { DigitalProjectFeature } from "./project-feature";
 
 function Intro(props: ComponentProps<typeof SecondaryPageIntro>) {

@@ -248,7 +248,221 @@
         "browser Back (banner furls into card)"
       ],
       "note": "Unedited local recording with capture-only phase labels and no audio; not a benchmark."
+    },
+    {
+      "file": "editorial-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:01.221Z",
+      "route": "/en",
+      "mode": "editorial",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "engineer-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:02.785Z",
+      "route": "/en",
+      "mode": "engineer",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "digital-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:04.458Z",
+      "route": "/en",
+      "mode": "digital",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "chronicle-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:06.176Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "chronicle-landscape-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:07.717Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 844,
+      "height": 390,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "chronicle-portrait-home-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:09.267Z",
+      "route": "/en",
+      "mode": "chronicle",
+      "width": 390,
+      "height": 844,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "chronicle-case-study-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:11.086Z",
+      "route": "/en/work/portfolio",
+      "mode": "chronicle",
+      "width": 1440,
+      "height": 1000,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "chronicle-case-study-landscape-2026-10-07.png",
+      "provenance": "live",
+      "capturedAt": "2026-10-07T15:48:12.687Z",
+      "route": "/en/work/portfolio",
+      "mode": "chronicle",
+      "width": 844,
+      "height": 390,
+      "motion": "reduced for stable capture",
+      "contentState": "published Nihonest, Portfolio and Japan Travel Planner; current About and Editorial ink treatment",
+      "note": "Coach mark dismissed and Next development badge hidden for capture; product layout unchanged."
+    },
+    {
+      "file": "theme-morphing-2026-10-07.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-07T15:48:32.446Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial",
+        "engineer",
+        "digital",
+        "chronicle",
+        "editorial"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "theme-morphing-2026-10-07.png",
+      "provenance": "live poster",
+      "capturedAt": "2026-10-07T15:48:32.446Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial",
+        "engineer",
+        "digital",
+        "chronicle",
+        "editorial"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "chronicle-interactions-2026-10-07.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-07T15:48:47.895Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "Editorial to Chronicle",
+        "select and arm Japan Travel Planner",
+        "second tap opens banner",
+        "chapter navigation",
+        "crystal image opening",
+        "browser Back"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "chronicle-interactions-2026-10-07.png",
+      "provenance": "live poster",
+      "capturedAt": "2026-10-07T15:48:47.895Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "Editorial to Chronicle",
+        "select and arm Japan Travel Planner",
+        "second tap opens banner",
+        "chapter navigation",
+        "crystal image opening",
+        "browser Back"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "route-transitions-2026-10-07.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-07T15:49:40.988Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial header navigation and browser Back",
+        "engineer header navigation and browser Back",
+        "digital header navigation and browser Back",
+        "chronicle header navigation and browser Back"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "route-transitions-2026-10-07.png",
+      "provenance": "live poster",
+      "capturedAt": "2026-10-07T15:49:40.988Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial header navigation and browser Back",
+        "engineer header navigation and browser Back",
+        "digital header navigation and browser Back",
+        "chronicle header navigation and browser Back"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "disclosure-interactions-2026-10-07.webm",
+      "provenance": "live recording",
+      "capturedAt": "2026-10-07T15:52:20.596Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial Engineering details open and close",
+        "engineer Engineering details open and close",
+        "digital Engineering details open and close",
+        "chronicle Engineering details open and close"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
+    },
+    {
+      "file": "disclosure-interactions-2026-10-07.png",
+      "provenance": "live poster",
+      "capturedAt": "2026-10-07T15:52:20.596Z",
+      "width": 1440,
+      "height": 1000,
+      "sequence": [
+        "editorial Engineering details open and close",
+        "engineer Engineering details open and close",
+        "digital Engineering details open and close",
+        "chronicle Engineering details open and close"
+      ],
+      "note": "Unedited silent local recording; capture-only phase labels and hidden Next badge; not a benchmark."
     }
   ],
-  "updatedAt": "2026-10-03T13:32:24.630Z"
+  "updatedAt": "2026-10-07T15:52:20.628Z"
 }

@@ -1,19 +1,26 @@
 "use client";
+import { Text } from "@/components/localized-text";
+import { text, textLanguage, type CopyText } from "@/lib/i18n/copy";
+import { interfaceCopy, messageLanguage, message } from "@/lib/i18n/messages";
+
+import { type Locale } from "@/lib/i18n/locales";
 
 import { useEffect, useRef, useState } from "react";
-import type { caseStudySections } from "@/lib/content/case-study-sections";
+import { type caseStudySections } from "@/lib/content/case-study-sections";
 import { useDismissibleDisclosure } from "../use-dismissible-disclosure";
 
 export function CaseStudyNavigation({
   sections,
-  label = "On this page",
+  locale = "en",
+  label = interfaceCopy("On this page"),
   directoryRoot,
   labels,
 }: {
+  locale?: Locale;
   sections: ReturnType<typeof caseStudySections>;
-  label?: string;
+  label?: CopyText;
   directoryRoot?: string;
-  labels?: Record<string, string>;
+  labels?: Record<string, CopyText>;
 }) {
   const root = useRef<HTMLElement>(null);
   const mobileMenu = useRef<HTMLDetailsElement>(null);
@@ -86,7 +93,9 @@ export function CaseStudyNavigation({
             title={labels?.[id] ? title.value : undefined}
             // A composition's short label leads; the canonical heading keeps its meaning.
             aria-label={
-              labels?.[id] ? `${labels[id]}: ${title.value}` : undefined
+              labels?.[id]
+                ? `${text(labels[id], locale)}: ${title.value}`
+                : undefined
             }
             aria-current={current === id ? "location" : undefined}
             onClick={
@@ -127,8 +136,12 @@ export function CaseStudyNavigation({
                 <path d="M9 1v4h4M5 9h6M5 12h6" />
               </svg>
             )}
-            <span lang={labels?.[id] ? "en" : title.lang}>
-              {labels?.[id] ?? title.value}
+            <span
+              lang={
+                labels?.[id] ? textLanguage(labels[id], locale) : title.lang
+              }
+            >
+              {labels?.[id] ? text(labels[id], locale) : title.value}
             </span>
           </a>
         </li>
@@ -153,9 +166,12 @@ export function CaseStudyNavigation({
     >
       <nav
         className="case-study-navigation__desktop"
-        aria-label="Case study sections"
+        aria-label={message(locale, "Case study sections")}
+        lang={messageLanguage(locale, "Case study sections")}
       >
-        <p className="eyebrow">{label}</p>
+        <p className="eyebrow">
+          <Text value={label} locale={locale} />
+        </p>
         {directory}
         {links()}
       </nav>
@@ -170,15 +186,21 @@ export function CaseStudyNavigation({
         }}
       >
         <summary>
-          {label}
+          <Text value={label} locale={locale} />
           <span
-            lang={sections.find(({ id }) => id === current)?.title.lang ?? "en"}
+            lang={
+              sections.find(({ id }) => id === current)?.title.lang ??
+              messageLanguage(locale, "{count} sections")
+            }
           >
             {sections.find(({ id }) => id === current)?.title.value ??
-              `${sections.length} sections`}
+              message(locale, "{count} sections", { count: sections.length })}
           </span>
         </summary>
-        <nav aria-label="Case study sections">
+        <nav
+          aria-label={message(locale, "Case study sections")}
+          lang={messageLanguage(locale, "Case study sections")}
+        >
           {directory}
           {links(true)}
         </nav>

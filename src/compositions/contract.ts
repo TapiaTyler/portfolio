@@ -1,14 +1,14 @@
-import type { ComponentProps, ComponentType } from "react";
-import type { CaseStudyBlock as BlockData } from "@/lib/content/blocks";
-import type { Hero } from "@/components/semantic/hero";
-import type { SecondaryPageProps } from "@/components/semantic/secondary-page";
-import type { Homepage } from "@/components/semantic/homepage";
-import type { ProjectFeature } from "@/components/semantic/project-feature";
-import type {
-  CaseStudyIntro,
-  CaseStudy,
+import { type ComponentProps, type ComponentType } from "react";
+import { type CaseStudyBlock as BlockData } from "@/lib/content/blocks";
+import { type Hero } from "@/components/semantic/hero";
+import { type SecondaryPageProps } from "@/components/semantic/secondary-page";
+import { type Homepage } from "@/components/semantic/homepage";
+import { type ProjectFeature } from "@/components/semantic/project-feature";
+import {
+  type CaseStudyIntro,
+  type CaseStudy,
 } from "@/components/semantic/case-study";
-import type { CaseStudyBlock } from "@/components/semantic/case-study-block";
+import { type CaseStudyBlock } from "@/components/semantic/case-study-block";
 
 export type BlockRenderers = Partial<
   Record<

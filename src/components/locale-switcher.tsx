@@ -1,4 +1,5 @@
 "use client";
+import { messageLanguage, message } from "@/lib/i18n/messages";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -61,7 +62,8 @@ export function LocaleSwitcher({
 
   return (
     <nav
-      aria-label="Language"
+      aria-label={message(locale, "Language")}
+      lang={messageLanguage(locale, "Language")}
       className="locale-switcher"
       data-selected={locale}
     >

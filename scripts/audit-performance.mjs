@@ -2,6 +2,8 @@ import { createServer } from "node:http";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import lighthouse from "lighthouse";
+import { Audit } from "lighthouse/core/audits/audit.js";
+import BaseGatherer from "lighthouse/core/gather/base-gatherer.js";
 import { chromium } from "@playwright/test";
 
 // Keep this registry aligned with src/lib/theme/ids.ts. It is intentionally
@@ -14,13 +16,49 @@ const modeLabels = {
   chronicle: "Chronicle",
 };
 
+// Verify Lighthouse's measured document. This informational audit has zero
+// weight in the Performance score and does not alter the site's behavior.
+class MotionPreferenceGatherer extends BaseGatherer {
+  meta = { supportedModes: ["navigation"] };
+
+  getArtifact({ driver }) {
+    return driver.executionContext.evaluate(
+      () => ({
+        reducedMotion: matchMedia("(prefers-reduced-motion: reduce)").matches,
+        theme: document.documentElement.dataset.theme,
+      }),
+      { args: [], useIsolation: true },
+    );
+  }
+}
+
+class MotionPreferenceAudit extends Audit {
+  static get meta() {
+    return {
+      id: "portfolio-motion-preference",
+      title: "Measured portfolio motion preference",
+      description:
+        "Records the media query and active theme in the audited document.",
+      scoreDisplayMode: "informative",
+      requiredArtifacts: ["PortfolioMotionPreference"],
+    };
+  }
+
+  static audit(artifacts) {
+    return {
+      score: 1,
+      details: { type: "debugdata", ...artifacts.PortfolioMotionPreference },
+    };
+  }
+}
+
 async function main() {
   process.env.NODE_ENV = "production";
   const { default: next } = await import("next");
-  const label =
-    process.argv
-      .find((argument) => argument.startsWith("--label="))
-      ?.slice(8) ?? "current";
+  const labelArgument = process.argv.find((argument) =>
+    argument.startsWith("--label="),
+  );
+  let label = labelArgument?.slice(8) ?? "current";
   if (!/^[a-z0-9-]{1,64}$/.test(label))
     throw new Error(
       "Use a simple audit label containing lowercase letters, numbers and hyphens.",
@@ -41,6 +79,31 @@ async function main() {
     );
   if (new Set(modes).size !== modes.length)
     throw new Error("List each mode only once in --modes.");
+  const routeArguments = process.argv.filter((argument) =>
+    argument.startsWith("--route="),
+  );
+  if (routeArguments.length > 1) throw new Error("Specify --route only once.");
+  const route = routeArguments[0]?.slice("--route=".length) ?? "/en";
+  if (!/^\/(en|ja)(\/work(\/[a-z0-9-]+)?)?$/.test(route))
+    throw new Error(
+      "Choose a locale homepage, Work index or project route without query parameters.",
+    );
+  const motionArguments = process.argv.filter((argument) =>
+    argument.startsWith("--motion="),
+  );
+  if (motionArguments.length > 1)
+    throw new Error("Specify --motion only once.");
+  const motion =
+    motionArguments[0]?.slice("--motion=".length) ?? "no-preference";
+  if (!["reduce", "no-preference"].includes(motion))
+    throw new Error("Choose --motion=reduce or --motion=no-preference.");
+  if (!labelArgument && motion === "reduce") label = "current-reduced-motion";
+  // Browser-level switches also apply to the target Lighthouse creates. Page-only
+  // emulation on a separate Playwright tab would not set the audit's preference.
+  const motionFlag =
+    motion === "reduce"
+      ? "--force-prefers-reduced-motion"
+      : "--force-prefers-no-reduced-motion";
   const output = path.resolve(".cache/performance", label);
   await mkdir(output, { recursive: true });
   const app = next({ dev: false, hostname: "127.0.0.1", port: 3219 });
@@ -50,12 +113,13 @@ async function main() {
     timestamp: new Date().toISOString(),
     label,
     selectedModes: modes,
-    route: "/en",
+    route,
+    motion,
     node: process.version,
     platform: process.platform,
     lighthouse: "13.5.0",
     conditions:
-      "Lighthouse default mobile simulated throttling; local production server; placeholder content; indexing disabled unless configured",
+      "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
     modes: {},
     switches: [],
     routes: [],
@@ -77,25 +141,52 @@ async function main() {
       const debuggingPort = reservation.address().port;
       await new Promise((resolve) => reservation.close(resolve));
       const chrome = await chromium.launch({
-        args: [`--remote-debugging-port=${debuggingPort}`],
+        args: [`--remote-debugging-port=${debuggingPort}`, motionFlag],
       });
       try {
         summary.browser = chrome.version();
-        const result = await lighthouse(`${origin}/en`, {
-          port: debuggingPort,
-          output: ["json", "html"],
-          logLevel: "error",
-          onlyCategories: [
-            "performance",
-            "accessibility",
-            "best-practices",
-            "seo",
-          ],
-          extraHeaders: { Cookie: `portfolio-mode=${mode}` },
-        });
+        const result = await lighthouse(
+          `${origin}${route}`,
+          {
+            port: debuggingPort,
+            output: ["json", "html"],
+            logLevel: "error",
+            onlyCategories: [
+              "performance",
+              "accessibility",
+              "best-practices",
+              "seo",
+            ],
+            extraHeaders: { Cookie: `portfolio-mode=${mode}` },
+          },
+          {
+            extends: "lighthouse:default",
+            artifacts: [
+              {
+                id: "PortfolioMotionPreference",
+                gatherer: { instance: new MotionPreferenceGatherer() },
+              },
+            ],
+            audits: [MotionPreferenceAudit],
+            categories: {
+              performance: {
+                auditRefs: [{ id: "portfolio-motion-preference", weight: 0 }],
+              },
+            },
+          },
+        );
         if (!result || result.lhr.runtimeError)
           throw new Error(
             JSON.stringify(result?.lhr.runtimeError ?? "No Lighthouse result"),
+          );
+        const observed =
+          result.lhr.audits["portfolio-motion-preference"].details;
+        if (
+          observed.reducedMotion !== (motion === "reduce") ||
+          observed.theme !== mode
+        )
+          throw new Error(
+            `Unexpected audited state: ${JSON.stringify(observed)}`,
           );
         await writeFile(path.join(output, `${mode}.json`), result.report[0]);
         await writeFile(path.join(output, `${mode}.html`), result.report[1]);
@@ -107,6 +198,13 @@ async function main() {
           ]),
         );
         const resources = audits["network-requests"].details.items;
+        const document = resources.find(
+          (resource) => resource.resourceType === "Document",
+        );
+        if (document?.statusCode !== 200)
+          throw new Error(
+            `Audit route ${route} returned ${document?.statusCode ?? "no document"}.`,
+          );
         const transfer = Object.fromEntries(
           ["Script", "Stylesheet", "Font", "Image"].map((type) => [
             type,
@@ -116,6 +214,7 @@ async function main() {
           ]),
         );
         summary.modes[mode] = {
+          observed,
           scores,
           fcpMs: audits["first-contentful-paint"].numericValue,
           lcpMs: audits["largest-contentful-paint"].numericValue,
@@ -147,10 +246,21 @@ async function main() {
         await chrome.close();
       }
     }
-    const browser = await chromium.launch();
+    // Interaction diagnostics describe the homepage's shared header and About/Back
+    // path. Secondary-route audits measure loading only, rather than mislabel it.
+    if (route !== "/en") {
+      await writeFile(
+        path.join(output, "summary.json"),
+        JSON.stringify(summary, null, 2),
+      );
+      console.log(`Reports saved to ${output}`);
+      return;
+    }
+    const browser = await chromium.launch({ args: [motionFlag] });
     try {
       const context = await browser.newContext({
         viewport: { width: 390, height: 844 },
+        reducedMotion: motion,
       });
       const page = await context.newPage();
       await page.goto(`${origin}/en`);
@@ -206,6 +316,7 @@ async function main() {
       for (const mode of modes) {
         const routeContext = await browser.newContext({
           viewport: { width: 1440, height: 900 },
+          reducedMotion: motion,
         });
         await routeContext.addCookies([
           { name: "portfolio-mode", value: mode, url: origin },

@@ -8,17 +8,19 @@ Do not treat imagery as generic decoration.
 
 The same source media should be reusable across themes with different cropping/framing where practical.
 
+Production format and loading rules are recorded in
+[IMAGE-DELIVERY.md](IMAGE-DELIVERY.md). In particular, local raster video posters
+load near the reading viewport independently of native `preload="none"`, which
+controls playback data. Without JavaScript, video controls, captions and playback
+remain available; lazy local poster thumbnails are omitted.
+
 ## Illustrative media model
 
 ```ts
 interface ProjectMedia {
   id: string;
 
-  type:
-    | "image"
-    | "video"
-    | "animation"
-    | "diagram";
+  type: "image" | "video" | "animation" | "diagram";
 
   src: string;
   alt: string;
@@ -35,12 +37,7 @@ interface ProjectMedia {
   };
 
   purpose:
-    | "overview"
-    | "detail"
-    | "mobile"
-    | "architecture"
-    | "process"
-    | "result";
+    "overview" | "detail" | "mobile" | "architecture" | "process" | "result";
 }
 ```
 

@@ -120,8 +120,9 @@ and WebP encoding for delivery. Original generation prompt:
 
 ## Local review
 
-Select Chronicle in the header's Presentation control. The public inventory remains
-empty while both project records are drafts. To see the real projects in the selector:
+Select Chronicle in the header's Presentation control. The public inventory now
+contains Nihonest, Portfolio and Japan Travel Planner. Use /en and /en/work/[slug]
+for the actual published experience. For development comparison (including drafts):
 
 ```text
 /preview/chronicle
@@ -134,7 +135,8 @@ empty while both project records are drafts. To see the real projects in the sel
 
 These routes are development-only. Use the actual host/port printed by `npm run dev`.
 The `/preview/chronicle` routes use the full site shell, while `/dev` keeps its
-fixture and comparison tooling. The public draft slug routes still return 404.
+fixture and comparison tooling. These development routes return 404 in production;
+all three published project slugs have public routes.
 The review header's language links lead to the real locale roots rather than
 inventing a Japanese development-preview path.
 
@@ -441,3 +443,80 @@ Work, About, Lab and Contact now share one Chronicle screen grammar
   stage; longer content scrolls inside it.
 - Shared semantic sections, headings, anchors and content are unchanged; other modes
   are unaffected. Project-strip arrows and dots are now 44 × 44px.
+
+## Evidence and selection refinement — 2026-10-06
+
+The selected card has a first-visit hint explaining select-then-open; dismissal is
+remembered locally. Case-study evidence sizing is constrained to the reading panel.
+The preview screenshot is shown in the opening chapter and its repeated body media
+is hidden in this composition. Portrait evidence retains shared source/height caps.
+Morphing uses a clipped nested reading group where supported; otherwise contained
+text cross-fades in place. See [THEME-TRANSITIONS.md](THEME-TRANSITIONS.md).
+
+## Loading refinements — 2026-10-07
+
+Card and evidence frames use proportionally resized 720px derivatives at viewport
+widths up to 900px; desktop assets and displayed border widths are retained. Button
+hover and pressed artwork now loads through CSS on interaction instead of idle
+prefetching. The already loaded base artwork remains underneath each state so the
+button retains its frame on a slow connection. Card thumbnails remain eager for
+horizontal selection, with lower fetch priority than the scenic hero and responsive
+sizes that account for the cover crop in landscape. Semantic media components
+accept optional delivery hints; project content remains independent of presentation.
+
+Two final production audits measured Performance 85 and LCP 4.29s, compared with
+the populated 79 / 5.49s baseline. See [PERFORMANCE-REVIEW.md](PERFORMANCE-REVIEW.md)
+for the stages, conditions and remaining CSS investigation.
+
+The subsequent active-mode CSS pass and AVIF delivery pass retained the same
+composition. Seven decorative assets now prefer AVIF through typed CSS image-set
+with retained WebP alternatives; the portrait preload specifies only AVIF so it
+does not download both formats. Project screenshots use Next.js format negotiation.
+Two final four-mode audits measured Chronicle at 89 / 3.70–3.71s LCP. The asset
+manifest and generator preserve provenance, dimensions and transparency. See
+[artwork delivery](design-reference/chronicle-assets/README.md) for fallback details.
+
+The subsequent full-theme pass extends AVIF/WebP selection to all Chronicle
+artwork and every scenic preload. The same Cormorant Garamond font binaries now
+use conditional font faces, with weights 500/700 preloaded only for Chronicle.
+The all-theme inventory and regeneration workflow are in
+[IMAGE-DELIVERY.md](IMAGE-DELIVERY.md); no composition or motion changes were made.
+
+The subsequent case-study loading pass adds compact mobile outer panel frames and
+chapter separators. Their source slices scale proportionally while displayed
+border widths and layout stay unchanged. Shared lazy video posters now load when
+their videos enter the contained reading area. Portfolio's local mobile result
+improves from 81 / 4.98s LCP to 88 / 3.85s in two final runs; Travel Planner and
+Nihonest also reach 88 in focused checks. The ≥90 target remains open. See
+[PERFORMANCE-REVIEW.md](PERFORMANCE-REVIEW.md) for all routes and conditions.
+
+A subsequent surface-specific CSS experiment was rejected (D044). Keeping project
+grammar off Home/Work saved about 2 kB without improving their scores, while direct
+project loads gained an extra blocking stylesheet and later first paint. Chronicle
+therefore retains one complete grammar plus its header stylesheet, loaded through
+the existing active-mode boundary. Shared secondary-page rules also remain combined.
+The responsive cascade, frames, typography and transition timings are retained.
+
+The following priority pass (D045) lowers mobile header-crystal and collection-frame
+requests with typed, viewport-scoped preload hints, retaining high-priority scenery.
+No visual assets or animation timings change. Local Home reaches 91 in normal and
+reduced motion; Work repeats 90. Portfolio detail remains 88. The audit now records
+and verifies reduced motion independently, including switch/navigation completion.
+See the latest performance review and its preserved motion-result summaries.
+
+The case-study refinement (D046) discovers the existing 600-weight subheading font
+early at low priority, and lowers the visible mobile panel frame's priority.
+First paint improves to about 1.21s on all three projects. Portfolio repeats 89 in
+normal motion and measures 89 with reduced motion; Travel Planner measures 90 and
+Nihonest 89. Assets, typography and transfer remain unchanged. Chapter ornaments
+are not preloaded, preserving the ordinary native-loading inventory.
+
+The reading-image pass (D047) supplies responsive sizes for narrow evidence and
+full-width media blocks. Matched native 2× phone reading checks reduce optimized
+project-image response bytes by 16–32%, with sufficient display resolution and
+unchanged compression, native lazy loading and source-size caps. Desktop savings
+vary by project. Initial Lighthouse image transfer stays unchanged; the latest
+Portfolio samples are 89 normal / 90 reduced motion, with run variance. Preserve
+quality and responsive reading rather than tightening loading or compressing
+artwork further to chase marginal scores. See PERFORMANCE-REVIEW.md for controls,
+quality checks and measurement limits.

@@ -1,13 +1,15 @@
+import { Text } from "@/components/localized-text";
+import { type CopyText } from "@/lib/i18n/copy";
 import Link from "next/link";
-import type { Locale } from "@/lib/i18n/locales";
+import { type Locale } from "@/lib/i18n/locales";
 
 export interface HeroContent {
   name?: string;
-  label: string;
-  title: string;
-  emphasis?: string;
-  description: string;
-  link: { label: string; destination: string };
+  label: CopyText;
+  title: CopyText;
+  emphasis?: CopyText;
+  description: CopyText;
+  link: { label: CopyText; destination: string };
 }
 
 export function Hero({
@@ -19,22 +21,28 @@ export function Hero({
 }) {
   return (
     <section className="home-hero" lang="en" data-motion-id="hero-narrative">
-      <p className="eyebrow">{content.label}</p>
+      <p className="eyebrow">
+        <Text value={content.label} locale={locale} />
+      </p>
       <h1>
-        {content.title}
+        <Text value={content.title} locale={locale} />
         {content.emphasis && (
           <>
             <br />
-            <em>{content.emphasis}</em>
+            <em>
+              <Text value={content.emphasis} locale={locale} />
+            </em>
           </>
         )}
       </h1>
-      <p>{content.description}</p>
+      <p>
+        <Text value={content.description} locale={locale} />
+      </p>
       <Link
         className="text-link"
         href={`/${locale}${content.link.destination}`}
       >
-        {content.link.label}
+        <Text value={content.link.label} locale={locale} />
       </Link>
     </section>
   );

@@ -1,6 +1,7 @@
+import { UiText } from "@/components/ui-text";
 import Link from "next/link";
-import type { ComponentProps } from "react";
-import type { ProjectFeature } from "@/components/semantic/project-feature";
+import { type ComponentProps } from "react";
+import { type ProjectFeature } from "@/components/semantic/project-feature";
 import { SectionHeading } from "@/components/semantic/section-heading";
 import { ProjectMeta } from "@/components/semantic/project-meta";
 import { MediaFrame } from "@/components/semantic/media-frame";
@@ -12,7 +13,7 @@ export function DigitalProjectFeature({
   level = 2,
   assetUrl,
 }: ComponentProps<typeof ProjectFeature>) {
-  const { project } = content;
+  const { project, locale } = content;
   const media = project.media.find(
     (media) => media.id === project.previewMediaId,
   );
@@ -46,9 +47,9 @@ export function DigitalProjectFeature({
         <p lang={content.summary.lang}>{content.summary.value}</p>
       )}
       <FallbackNotice content={content} />
-      <ProjectMeta project={project} />
+      <ProjectMeta locale={content.locale} project={project} />
       <Link className="text-link" href={href} lang="en">
-        Explore the Project
+        <UiText locale={locale} id="Explore the Project" />
       </Link>
     </article>
   );

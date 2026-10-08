@@ -54,6 +54,27 @@ promise in its layout effect when the new server-selected theme is committed.
 New fonts settle before the final snapshot. The HttpOnly cookie remains the sole
 persistent preference; composition/content rendering remains on the server.
 
+Public locale layouts now render `ActiveThemeStyles` for the saved mode. Each
+mode has an independent SSR-enabled dynamic component that imports its existing
+scoped CSS (Chronicle includes its header stylesheet). Next/React stylesheet
+resources hold the destination update until its CSS is available, before the
+provider releases the morph commit. Loaded styles remain available for return
+switches; existing scope boundaries prevent cross-mode leakage. Shared tokens,
+semantic styles and motion remain initial resources. Development comparison
+layouts deliberately retain all mode styles for simultaneous fixtures.
+
+The surface-specific loading experiment in D044 was rejected on measured loading
+cost. Chronicle continues to load complete mode grammar rather than selecting an
+additional project stylesheet by pathname. Cold route rendering does not require
+a separate project-style request.
+
+Production tests delay a cold destination stylesheet by 700ms and compare its
+computed geometry/header styles at `ViewTransition.ready` with a JavaScript-disabled
+direct render. All four destinations passed, alongside immediate reduced-motion
+switches and native form navigation. This uses Next's
+[stylesheet and Suspense integration](https://nextjs.org/docs/app/getting-started/css),
+without a separate client preference store or manually timed stylesheet injection.
+
 `data-motion-id` is semantic presentation identity, not factual content. Projects
 derive it from their existing slug and narrative sections from their block ID.
 New project records automatically participate through the existing renderers.

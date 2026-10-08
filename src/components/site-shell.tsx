@@ -1,18 +1,27 @@
+import { messageLanguage, message } from "@/lib/i18n/messages";
+import { UiText } from "@/components/ui-text";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { navigation } from "@/content/placeholder";
-import type { Locale } from "@/lib/i18n/locales";
+import { type Locale } from "@/lib/i18n/locales";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeSwitcher } from "./theme/theme-switcher";
 import { themeOptions } from "@/registries/themes";
 import { PrimaryNavigation } from "./primary-navigation";
 import { identity } from "@/content/identity";
+import { externalLinkAttributes } from "@/lib/external-links";
 
 /** Icon-only profile links; each accessible name carries the destination. */
 function ProfileLinks() {
   return (
     <span className="site-profiles">
-      <a className="site-profile" href={identity.github} aria-label="GitHub">
+      <a
+        className="site-profile"
+        href={identity.github}
+        {...externalLinkAttributes(identity.github)}
+        aria-label="GitHub"
+      >
         <svg aria-hidden="true" viewBox="0 0 16 16" width="20" height="20">
           <path
             fill="currentColor"
@@ -23,6 +32,7 @@ function ProfileLinks() {
       <a
         className="site-profile"
         href={identity.linkedin}
+        {...externalLinkAttributes(identity.linkedin)}
         aria-label="LinkedIn"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19">
@@ -48,7 +58,7 @@ export function SiteShell({
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to Content
+        <UiText locale={locale} id="Skip to Content" />
       </a>
       <header className="site-header" data-theme-transition-scope>
         <div className="site-header__inner" data-motion-id="site-navigation">
@@ -67,26 +77,29 @@ export function SiteShell({
               <>
                 <ProfileLinks />
                 <LocaleSwitcher locale={locale} routePath={localeRoutePath} />
-                <ThemeSwitcher options={themeOptions} />
+                <ThemeSwitcher locale={locale} options={themeOptions} />
               </>
             }
           />
           <div className="site-controls site-controls--desktop">
             <ProfileLinks />
             <LocaleSwitcher locale={locale} routePath={localeRoutePath} />
-            <ThemeSwitcher options={themeOptions} />
+            <ThemeSwitcher locale={locale} options={themeOptions} />
           </div>
         </div>
       </header>
       {locale === "ja" && (
         <aside
           className="translation-notice"
-          aria-label="Translation status"
+          aria-label={message(locale, "Translation status")}
+          lang={messageLanguage(locale, "Translation status")}
           data-theme-transition-scope
         >
           <span data-motion-id="translation-status">
-            Japanese interface translations are being prepared. Navigation and
-            interface labels use English in this preview.
+            <UiText
+              locale={locale}
+              id="Some page and interface text is shown in English where Japanese translations are unavailable."
+            />
           </span>
         </aside>
       )}
@@ -97,14 +110,24 @@ export function SiteShell({
         <div className="site-footer__inner" data-motion-id="site-footer">
           <span>{identity.name}</span>
           <span className="site-footer__links">
-            <a className="site-footer__link" href={identity.github}>
+            <a
+              className="site-footer__link"
+              href={identity.github}
+              {...externalLinkAttributes(identity.github)}
+            >
               GitHub
             </a>
-            <a className="site-footer__link" href={identity.linkedin}>
+            <a
+              className="site-footer__link"
+              href={identity.linkedin}
+              {...externalLinkAttributes(identity.linkedin)}
+            >
               LinkedIn
             </a>
           </span>
-          <span>Portfolio Preview</span>
+          <span>
+            <UiText locale={locale} id="Portfolio Preview" />
+          </span>
         </div>
       </footer>
     </>

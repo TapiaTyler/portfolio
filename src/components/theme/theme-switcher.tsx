@@ -1,18 +1,25 @@
 "use client";
+import { interfaceCopy } from "@/lib/i18n/messages";
+import { Text } from "@/components/localized-text";
+
+import { type Locale } from "@/lib/i18n/locales";
+import { UiText } from "@/components/ui-text";
 
 import { startTransition, useActionState, useEffect, useRef } from "react";
 import {
   saveThemePreference,
   type ThemeActionState,
 } from "@/lib/theme/actions";
-import type { ThemeId } from "@/lib/theme/ids";
-import { isThemeId } from "@/lib/theme/ids";
+import { type ThemeId, isThemeId } from "@/lib/theme/ids";
+
 import { useTheme, useThemeTransition } from "./theme-provider";
 import { useDismissibleDisclosure } from "../use-dismissible-disclosure";
 
 export function ThemeSwitcher({
   options,
+  locale = "en",
 }: {
+  locale?: Locale;
   options: { id: ThemeId; label: string }[];
 }) {
   const theme = useTheme();
@@ -42,7 +49,9 @@ export function ThemeSwitcher({
       }}
     >
       <summary>
-        <span className="mode-picker__label">Presentation: </span>
+        <span className="mode-picker__label">
+          <UiText locale={locale} id="Presentation:" />
+        </span>
         <span>{options.find((option) => option.id === theme)?.label}</span>
         <svg
           className="mode-picker__chevron"
@@ -79,7 +88,9 @@ export function ThemeSwitcher({
         }}
       >
         <fieldset disabled={pending}>
-          <legend>Presentation</legend>
+          <legend>
+            <UiText locale={locale} id="Presentation" />
+          </legend>
           <div className="theme-switcher__options">
             {options.map(({ id, label }) => (
               <button
@@ -100,7 +111,16 @@ export function ThemeSwitcher({
           role="status"
           aria-live="polite"
         >
-          {pending ? "Changing presentation…" : (state.error ?? state.message)}
+          <Text
+            locale={locale}
+            value={
+              pending
+                ? interfaceCopy("Changing presentation…")
+                : state.error || state.message
+                  ? interfaceCopy(state.error ?? state.message!)
+                  : undefined
+            }
+          />
         </p>
       </form>
     </details>

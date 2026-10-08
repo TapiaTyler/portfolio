@@ -1,5 +1,6 @@
-import type { ProjectMedia } from "@/lib/content/schema";
-import type { Locale } from "@/lib/i18n/locales";
+import { message } from "@/lib/i18n/messages";
+import { type ProjectMedia } from "@/lib/content/schema";
+import { type Locale } from "@/lib/i18n/locales";
 import { resolveText, type LocalizedValue } from "@/lib/i18n/project-content";
 import { MediaAsset } from "./media-asset";
 
@@ -11,12 +12,16 @@ export function MediaFrame({
   caption,
   assetUrl = (source) => source,
   loading = "lazy",
+  sizes,
+  fetchPriority,
 }: {
   media: ProjectMedia;
   locale: Locale;
   caption?: LocalizedValue<string>;
   assetUrl?: AssetUrl;
   loading?: "lazy" | "eager";
+  sizes?: string;
+  fetchPriority?: "high" | "low" | "auto";
 }) {
   const alt = resolveText(media.alt, locale);
   const selectedCaption =
@@ -35,6 +40,7 @@ export function MediaFrame({
       }
     >
       <MediaAsset
+        locale={locale}
         key={src}
         type={media.type}
         src={src}
@@ -45,9 +51,14 @@ export function MediaFrame({
         focalPoint={media.focalPoint}
         poster={media.type === "video" ? assetUrl(media.poster) : undefined}
         loading={loading}
+        sizes={sizes}
+        fetchPriority={fetchPriority}
       />
       {selectedCaption && (
-        <figcaption lang={selectedCaption.lang}>
+        <figcaption
+          lang={selectedCaption.lang}
+          data-figure-prefix={message(locale, "Fig.")}
+        >
           {selectedCaption.value}
         </figcaption>
       )}

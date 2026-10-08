@@ -1,3 +1,5 @@
+import { documentLocale, setInterfaceText } from "@/lib/i18n/dom-copy";
+import { message } from "@/lib/i18n/messages";
 export function setupEngineerInteractions() {
   const disposers: (() => void)[] = [];
   const inEngineer = (element: Element) =>
@@ -43,8 +45,11 @@ export function setupEngineerInteractions() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "code-copy";
-    button.textContent = "Copy";
-    button.setAttribute("aria-label", "Copy code sample");
+    setInterfaceText(button, "Copy");
+    button.setAttribute(
+      "aria-label",
+      message(documentLocale(), "Copy code sample"),
+    );
     const status = document.createElement("span");
     status.className = "visually-hidden";
     status.setAttribute("role", "status");
@@ -56,20 +61,22 @@ export function setupEngineerInteractions() {
       try {
         await navigator.clipboard.writeText(code!.textContent ?? "");
         if (disposed) return;
-        button.textContent = "Copied";
+        setInterfaceText(button, "Copied");
         button.dataset.copyState = "copied";
-        status.textContent = "Code copied to clipboard.";
+        setInterfaceText(status, "Code copied to clipboard.");
       } catch {
         if (disposed) return;
-        button.textContent = "Copy Unavailable";
-        status.textContent =
-          "Clipboard unavailable. Select the code sample to copy it manually.";
+        setInterfaceText(button, "Copy Unavailable");
+        setInterfaceText(
+          status,
+          "Clipboard unavailable. Select the code sample to copy it manually.",
+        );
       } finally {
         if (!disposed) {
           button.disabled = false;
           clearTimeout(timer);
           timer = setTimeout(() => {
-            button.textContent = "Copy";
+            setInterfaceText(button, "Copy");
             delete button.dataset.copyState;
             status.textContent = "";
           }, 1800);
@@ -142,7 +149,9 @@ export function setupEngineerInteractions() {
       buttons.set(node, button);
       button.setAttribute(
         "aria-label",
-        `Inspect connections for ${button.textContent}`,
+        message(documentLocale(), "Inspect connections for {title}", {
+          title: button.textContent ?? "",
+        }),
       );
       button.setAttribute("aria-pressed", "false");
       function enter() {
@@ -161,15 +170,21 @@ export function setupEngineerInteractions() {
       function click() {
         pinned = pinned === node.dataset.nodeId ? null : node.dataset.nodeId!;
         paint(pinned ?? node.dataset.nodeId!);
-        status.textContent = pinned
-          ? `${button.textContent}: connected components and relationships highlighted.`
-          : "Connection selection cleared.";
+        if (pinned) {
+          setInterfaceText(
+            status,
+            "{title}: connected components and relationships highlighted.",
+            { title: button.textContent ?? "" },
+          );
+        } else {
+          setInterfaceText(status, "Connection selection cleared.");
+        }
       }
       function escape(event: KeyboardEvent) {
         if (event.key === "Escape") {
           pinned = null;
           paint(null);
-          status.textContent = "Connection selection cleared.";
+          setInterfaceText(status, "Connection selection cleared.");
         }
       }
       function blur() {

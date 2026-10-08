@@ -1,11 +1,11 @@
-import type { ComponentProps } from "react";
+import { type ComponentProps } from "react";
 import { getActiveTheme } from "@/lib/theme/server";
 import { resolveComposition } from "@/registries/compositions";
 import { Hero } from "./semantic/hero";
 import { ProjectIndex } from "./semantic/project-index";
 import { CaseStudy } from "./semantic/case-study";
 import { Homepage } from "./semantic/homepage";
-import type { SecondaryPageProps } from "./semantic/secondary-page";
+import { type SecondaryPageProps } from "./semantic/secondary-page";
 
 export async function ComposedSecondaryPage(props: SecondaryPageProps) {
   const theme = await getActiveTheme();

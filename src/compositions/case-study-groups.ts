@@ -1,4 +1,4 @@
-import type { SelectedBlock } from "@/lib/i18n/project-content";
+import { type SelectedBlock } from "@/lib/i18n/project-content";
 
 /** Group declared evidence without changing canonical order or block identities. */
 export function groupCaseStudyEvidence(blocks: SelectedBlock[]) {

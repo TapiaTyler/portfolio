@@ -1,6 +1,6 @@
-import type { CaseStudyBodyProps } from "@/components/semantic/case-study";
+import { type CaseStudyBodyProps } from "@/components/semantic/case-study";
 import { CaseStudyBlock } from "@/components/semantic/case-study-block";
-import type { SelectedBlock } from "@/lib/i18n/project-content";
+import { type SelectedBlock } from "@/lib/i18n/project-content";
 import { groupCaseStudyEvidence } from "./case-study-groups";
 
 /**
@@ -8,13 +8,16 @@ import { groupCaseStudyEvidence } from "./case-study-groups";
  * one, otherwise through the shared semantic fallback. Custom bodies use this
  * so the registry's `blockRenderers` slot stays meaningful.
  */
-export function blockRenderer({
-  content,
-  level,
-  anchorPrefix,
-  assetUrl,
-  blockRenderers,
-}: CaseStudyBodyProps) {
+export function blockRenderer(
+  {
+    content,
+    level,
+    anchorPrefix,
+    assetUrl,
+    blockRenderers,
+  }: CaseStudyBodyProps,
+  mediaSizes?: string,
+) {
   return function render(entry: SelectedBlock) {
     const Renderer = blockRenderers[entry.block.type] ?? CaseStudyBlock;
     return (
@@ -26,6 +29,7 @@ export function blockRenderer({
         level={level}
         anchorPrefix={anchorPrefix}
         assetUrl={assetUrl}
+        mediaSizes={mediaSizes}
       />
     );
   };

@@ -1,5 +1,8 @@
-import type { Diagram } from "@/lib/content/schema";
-import type { Locale } from "@/lib/i18n/locales";
+import { messageLanguage, message } from "@/lib/i18n/messages";
+import { UiText } from "@/components/ui-text";
+
+import { type Diagram } from "@/lib/content/schema";
+import { type Locale } from "@/lib/i18n/locales";
 import { resolveText } from "@/lib/i18n/project-content";
 
 export function ArchitectureDisplay({
@@ -18,7 +21,11 @@ export function ArchitectureDisplay({
     <figure className="architecture-display">
       <figcaption lang={title.lang}>{title.value}</figcaption>
       <p lang={summary.lang}>{summary.value}</p>
-      <ul className="diagram-nodes" aria-label="System components" lang="en">
+      <ul
+        className="diagram-nodes"
+        aria-label={message(locale, "System components")}
+        lang={messageLanguage(locale, "System components")}
+      >
         {diagram.nodes.map((node) => {
           const label = nodes.get(node.id)!;
           return (
@@ -31,8 +38,8 @@ export function ArchitectureDisplay({
       {diagram.edges.length > 0 && (
         <ul
           className="diagram-connections"
-          aria-label="Component relationships"
-          lang="en"
+          aria-label={message(locale, "Component relationships")}
+          lang={messageLanguage(locale, "Component relationships")}
         >
           {diagram.edges.map((edge, index) => {
             const from = nodes.get(edge.from)!;
@@ -48,7 +55,10 @@ export function ArchitectureDisplay({
               >
                 <span lang={from.lang}>{from.value}</span>
                 <span aria-hidden="true"> → </span>
-                <span className="visually-hidden"> connects to </span>
+                <span className="visually-hidden">
+                  {" "}
+                  <UiText locale={locale} id="connects to" />{" "}
+                </span>
                 <span lang={to.lang}>{to.value}</span>
                 {label && (
                   <>

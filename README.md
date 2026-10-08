@@ -28,33 +28,43 @@ See [theme morphing](docs/THEME-TRANSITIONS.md),
 
 ## Current status
 
-As of **October 3, 2026**:
-
-Chronicle has a reference refinement pass ready for visual review, with a landscape
-shell, connected project/chapter selection, ornate glass frames and native contained
-reading. Its earlier local mobile audit scored 91 Performance, 100 Accessibility and 100
-Best Practices. The subsequent homepage tab/dropdown correction has not been
-re-audited; deployed performance and final visual approval remain pending. See
-[Chronicle implementation](docs/CHRONICLE-IMPLEMENTATION.md). The two imported
-case studies were previously reviewed in the original three modes.
+As of **October 8, 2026**:
 
 - Home, Work, project detail, About, Lab and Contact have compositions for all four modes.
-- Two real English case studies are imported and reviewed across the original three themes.
-- Portfolio and Japan Travel Planner are published and featured in the current
-  registry. Nihonest is imported as a **draft, unfeatured** project for review.
+- Three English case studies are published and featured: Nihonest, Portfolio and
+  Japan Travel Planner, in that display order.
+- Editorial now uses an ink landscape, sparse brush/seal artwork, a lead-story
+  project layout, screenshot plates and publication typography.
+- Chronicle uses a landscape game-screen model with horizontal card selection,
+  chapter/tab rails, glass actions and native contained reading. A card tap selects;
+  a second tap opens. A dismissible first-visit hint explains the interaction.
+- Theme morphing preserves reading position and clips snapshots inside contained
+  reading panels, with a fallback when nested groups are unsupported.
+- About includes background, education, skills, languages and working approach.
+  GitHub and LinkedIn profiles are available in the header and footer. Final opening
+  copy remains open.
+- Contact offers email, LinkedIn and GitHub in all modes. English résumé, Japanese
+  résumé and Japanese CV entries reserve PDF/Word files for later delivery; see
+  [Contact authoring](docs/CONTACT-CONTENT.md).
 - English and Japanese routes exist. Incomplete Japanese content intentionally falls
-  back to English with a notice; portfolio translation remains pending.
-- Final biography, contact details and opening copy still require content review.
+  back to English with a notice. Page copy and a shared interface dictionary now
+  accept optional Japanese fields, with per-field language and validation; actual
+  Japanese translation remains pending. See [localization](docs/07-LOCALIZATION.md).
 - Vercel is the selected portfolio host. Release configuration is prepared;
-  deployment remains deferred and a public origin has not been selected.
+  portfolio deployment remains deferred and a public origin has not been selected.
+
+Existing performance reports describe earlier local builds. They do not establish
+acceptance of the current populated site or latest Editorial artwork. See
+[Chronicle implementation](docs/CHRONICLE-IMPLEMENTATION.md) and
+[performance review](docs/PERFORMANCE-REVIEW.md) for capture conditions.
 
 ### Imported projects
 
-| Project                           | Source-project state             | Case-study focus                                                                                          | Development preview                  |
-| --------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| **Portfolio presentation system** | Active local implementation      | Shared content, distinct compositions, theme morphing, navigation, microinteractions and design iteration | `/dev/projects/portfolio`            |
-| **Japan Travel Planner**          | Complete; deployed on Railway    | Full-stack planning workflow, reuse, localization, account/security boundaries and capstone evolution     | `/dev/projects/japan-travel-planner` |
-| **Nihonest**                      | Active development; not deployed | Source-linked discovery, route-aware journeys, canonical content, optional accounts and editorial tooling | `/dev/projects/nihonest`             |
+| Project                           | Source-project state                                 | Case-study focus                                                                                          | Development preview                  |
+| --------------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Portfolio presentation system** | Active local implementation                          | Shared content, distinct compositions, theme morphing, navigation, microinteractions and design iteration | `/dev/projects/portfolio`            |
+| **Japan Travel Planner**          | Complete; deployed on Railway                        | Full-stack planning workflow, reuse, localization, account/security boundaries and capstone evolution     | `/dev/projects/japan-travel-planner` |
+| **Nihonest**                      | Active development; Vercel live link, private source | Source-linked discovery, route-aware journeys, canonical content, optional accounts and editorial tooling | `/dev/projects/nihonest`             |
 
 Each uses one English narrative across the modes, with a neutral report voice and
 results describing what the project delivers. Their discovery and review records:
@@ -71,9 +81,8 @@ pending deployment.
 
 ### Project pipeline
 
-Nihonest has been imported as an active draft; its first deployment is still pending.
-The following is planning
-context, not published portfolio content or a delivery schedule:
+Nihonest is published and featured; its record includes a live Vercel link while
+the application remains in active development. The following is planning context, not published portfolio content or a delivery schedule:
 
 | Project                  | Current state                         | Import context                           |
 | ------------------------ | ------------------------------------- | ---------------------------------------- |
@@ -143,26 +152,26 @@ Use the running application rather than opening reference HTML as a local file.
 Public routes are `/en` or `/ja`, followed by `/work`, `/about`, `/lab`, `/contact`
 and `/work/[slug]` for published projects. Language links preserve the destination;
 the saved presentation cookie selects the server-rendered mode before paint.
-Portfolio and Japan Travel Planner have public project routes. Nihonest remains a
-draft and returns 404 on its public project routes.
+All three published projects have public routes under `/en/work/[slug]`; Japanese
+routes provide the declared English fallback.
 
 ### Development review tools
 
-| Route                                             | Purpose                                                    |
-| ------------------------------------------------- | ---------------------------------------------------------- |
-| `/dev/projects/portfolio`                         | Review the real portfolio draft in the selected mode       |
-| `/dev/projects/japan-travel-planner`              | Review the imported travel planner draft                   |
-| `/dev/projects/nihonest`                          | Review the active, undeployed Nihonest draft               |
-| `/dev/design-system`                              | Shared semantic fixtures, including sparse/no-image states |
-| `/dev/compositions`                               | Compare the same synthetic case study across all modes     |
-| `/dev/compositions?surface=homepage`              | Populated synthetic homepage and project-opening flow      |
-| `/dev/compositions?surface=work`                  | Populated synthetic Work index                             |
-| `/preview/chronicle`                              | Real draft homepage in the full site shell                 |
-| `/preview/chronicle?project=portfolio`            | Full-shell portfolio draft; select Chronicle in the header |
-| `/preview/chronicle?project=japan-travel-planner` | Full-shell travel planner draft                            |
-| `/preview/chronicle?project=nihonest`             | Full-shell Nihonest draft                                  |
+| Route                                             | Purpose                                                     |
+| ------------------------------------------------- | ----------------------------------------------------------- |
+| `/dev/projects/portfolio`                         | Review the real portfolio record in the selected mode       |
+| `/dev/projects/japan-travel-planner`              | Review the imported travel planner record                   |
+| `/dev/projects/nihonest`                          | Review the active Nihonest record                           |
+| `/dev/design-system`                              | Shared semantic fixtures, including sparse/no-image states  |
+| `/dev/compositions`                               | Compare the same synthetic case study across all modes      |
+| `/dev/compositions?surface=homepage`              | Populated synthetic homepage and project-opening flow       |
+| `/dev/compositions?surface=work`                  | Populated synthetic Work index                              |
+| `/preview/chronicle`                              | Real-project homepage in the full site shell                |
+| `/preview/chronicle?project=portfolio`            | Full-shell portfolio record; select Chronicle in the header |
+| `/preview/chronicle?project=japan-travel-planner` | Full-shell travel planner record                            |
+| `/preview/chronicle?project=nihonest`             | Full-shell Nihonest record                                  |
 
-Append `?locale=ja` to draft previews to inspect English fallback. Development
+Append `?locale=ja` to project previews to inspect English fallback. Development
 routes and fixture media return 404 in production. Files under `public/` are
 servable independently of project publication; draft status is not asset privacy.
 
@@ -209,25 +218,68 @@ production application locally.
 
 ```sh
 npm run audit:performance -- --label=current
+npm run audit:performance -- --label=portfolio-current --route=/en/work/portfolio
+npm run audit:performance -- --label=current-reduced --motion=reduce
 ```
 
-The latest two local mobile homepage audits measured Performance **95–98** for
-Editorial, **96–97** for Engineer and **95** for Digital; automated Accessibility
-and Best Practices were **100**. SEO remains **63** with indexing deliberately
-blocked. Raw reports are saved in ignored `.cache/performance/` directories.
+Earlier October 7 populated production audits (two runs) measured Performance
+**93–97** for Editorial, **96–99** for Engineer, **94–97** for Digital and **89** for
+Chronicle. Responsive artwork, loading priority and AVIF delivery reduced Chronicle
+image transfer by **63%** from the populated baseline. Its LCP fell from **5.49s**
+to **3.72–3.73s**; conditional font preloads bring first paint to **1.21s**.
+All theme raster artwork prefers AVIF with WebP format fallback; project images
+and local video posters use Next.js AVIF/WebP negotiation with original-source
+fallback. Source artwork and historical evidence remain intact. The full artwork
+set is about **50.3% smaller** as AVIF. See [image delivery](docs/IMAGE-DELIVERY.md)
+for the inventory, regeneration commands and fallback policy.
+Chronicle case-study images also use estimates matched to their reading columns.
+Matched 2× phone checks reduce project-image downloads during a full reading pass
+by **16–32%**, with compression quality and native lazy loading preserved. This is
+separate from initial Lighthouse transfer, which was unchanged in that pass.
+The subsequent case-study audit found offscreen video posters competing with
+initial reading resources. Lazy local posters now load near their videos, and
+Chronicle uses compact mobile outer frames/separators. Portfolio's two final
+project-page runs measured Editorial **96**, Engineer **94–99**, Digital **93–95**
+and Chronicle **88**; Chronicle LCP improved from **4.98s to 3.85s**. Work and all
+three case studies have route baselines in the performance review. Those results
+are separate from the homepage measurements above.
 
-These audits load a provisional homepage without published project media. They
-are not final populated/deployed acceptance, field Core Web Vitals, or proof of
-full WCAG conformance. See [PERFORMANCE-REVIEW.md](docs/PERFORMANCE-REVIEW.md) for
-conditions, interaction measurements, LCP findings and remaining checks.
+The latest priority pass keeps Chronicle's scenery high priority and lowers
+existing mobile frame/corner requests. Home now repeats **91** with LCP
+**3.48–3.50s** in normal motion and **91 / 3.47–3.49s** in reduced motion. Work
+repeats **90 / 3.57s**; Portfolio detail remains **88**. Image transfer and visual
+assets are unchanged. The audit accepts `--motion=no-preference` (default) or
+`--motion=reduce`, verifies the setting inside Lighthouse's measured document,
+and records matching interaction diagnostics. Final four-theme Home comparisons
+and reduced-motion Portfolio checks are preserved in
+[PERFORMANCE-MOTION-RESULTS.json](docs/PERFORMANCE-MOTION-RESULTS.json).
+
+The following case-study pass discovers Chronicle's unchanged 600-weight font
+early at low priority and lowers its mobile reading-panel frame priority. First
+paint improves from **1.51s to 1.21s** across all three projects, with unchanged
+font/image transfer. Portfolio repeats **89** in normal motion and measures **89**
+in reduced motion; Travel Planner measures **90** and Nihonest **89**. Home/Work
+retain **91/90**. The case-study target remains open.
+
+Automated Accessibility and Best Practices were **100** in every mode;
+SEO was **66** with indexing deliberately blocked. Chronicle's case studies still
+need further loading optimization to reach 90. The three other modes meet
+the score target, though Digital LCP and some Editorial/Engineer samples remain above 2.5s.
+
+These are local simulated homepage results, plus unthrottled theme-switch and
+Home/About/Back diagnostics. They are not deployed acceptance, field Core Web
+Vitals, or proof of full WCAG conformance. Raw reports are saved under the ignored
+.cache/performance directories. See [PERFORMANCE-REVIEW.md](docs/PERFORMANCE-REVIEW.md)
+for conditions, findings, the isolated switch-timing outlier and remaining checks.
 
 ## Content and publication workflow
 
 1. Run the [project-discovery prompt](docs/15-PROJECT-DISCOVERY-PROMPT.md) inside
    the source project. Reports and optional ZIPs are evidence, not approved copy.
 2. Review supported claims, ownership, media permissions and unresolved questions.
-3. Add one English project record, resolve registry vocabulary and import approved
-   assets with dimensions, captions, alt text and provenance.
+3. Apply the [case-study contract](docs/CASE-STUDY-CONTRACT.md): edit discovery into
+   the visible spine, one Engineering details disclosure and evidence-only docs.
+   Add one English record and approved assets with dimensions, captions, alt text and provenance.
 4. Validate and preview the record in every launch mode, including mobile, keyboard
    and reduced-motion behavior. Keep supporting media with its narrative owner.
 5. Review publication and homepage featuring separately; only published records
@@ -249,9 +301,10 @@ indexing through an inherited production flag, and Japanese fallback-only projec
 pages remain non-indexable. Rebuild/redeploy after changing those settings.
 See [SEO-INTEGRATION.md](docs/SEO-INTEGRATION.md).
 
-Remaining release work includes final biography/contact/hero copy, separate project
-publication and featuring decisions, translations where appropriate, public-origin
-configuration and populated deployed accessibility/performance/SEO checks.
+Remaining release work includes final contact/hero copy, current project-media review,
+translations where appropriate, public-origin configuration and populated deployed
+accessibility/performance/SEO checks. The three current projects are published and
+featured; those settings remain separate decisions for future imports.
 
 ## Documentation map
 

@@ -1,4 +1,4 @@
-import type { CompositionProfile } from "../contract";
+import { type CompositionProfile } from "../contract";
 import { EditorialSecondaryPage } from "./secondary-page";
 import { EditorialHero } from "./hero";
 import { EditorialHomepage } from "./homepage";

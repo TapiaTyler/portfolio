@@ -1,4 +1,11 @@
-import type { Project } from "@/lib/content/schema";
+import { externalLinkAttributes } from "@/lib/external-links";
+import { messageLanguage, interfaceCopy, message } from "@/lib/i18n/messages";
+import { Text } from "@/components/localized-text";
+
+import { type Locale } from "@/lib/i18n/locales";
+import { UiText } from "@/components/ui-text";
+
+import { type Project } from "@/lib/content/schema";
 import {
   technologies,
   technologyKindLabels,
@@ -9,8 +16,10 @@ import { projectStatusLabels } from "@/lib/content/status";
 
 export function ProjectMeta({
   project,
+  locale = "en",
   exclude = [],
 }: {
+  locale?: Locale;
   project: Project;
   exclude?: string[];
 }) {
@@ -46,15 +55,40 @@ export function ProjectMeta({
     <dl className="project-meta" lang="en">
       {visibleEntries.map(([label, value]) => (
         <div key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
+          <dt>
+            <Text value={interfaceCopy(label)} locale={locale} />
+          </dt>
+          <dd>
+            {label === "Capabilities" ? (
+              project.capabilityIds.map((id, index) => (
+                <span key={id}>
+                  {index > 0 && ", "}
+                  <Text
+                    value={interfaceCopy(capabilities[id].label)}
+                    locale={locale}
+                  />
+                </span>
+              ))
+            ) : (
+              <Text
+                value={value ? interfaceCopy(value) : undefined}
+                locale={locale}
+              />
+            )}
+          </dd>
         </div>
       ))}
     </dl>
   );
 }
 
-export function ProjectLinks({ project }: { project: Project }) {
+export function ProjectLinks({
+  project,
+  locale = "en",
+}: {
+  project: Project;
+  locale?: Locale;
+}) {
   const links = [
     { label: "Open Live Project", href: project.links?.live },
     { label: "View Source", href: project.links?.repository },
@@ -63,14 +97,20 @@ export function ProjectLinks({ project }: { project: Project }) {
   const privateSource = project.links?.repositoryVisibility === "private";
   if (!links.length && !privateSource) return null;
   return (
-    <nav className="project-links" aria-label="Project resources" lang="en">
+    <nav
+      className="project-links"
+      aria-label={message(locale, "Project resources")}
+      lang={messageLanguage(locale, "Project resources")}
+    >
       {links.map(({ href, label }) => (
-        <a key={label} href={href}>
-          {label}
+        <a key={label} href={href} {...externalLinkAttributes(href)}>
+          <Text value={interfaceCopy(label)} locale={locale} />
         </a>
       ))}
       {privateSource && (
-        <span className="project-links__note">Source private</span>
+        <span className="project-links__note">
+          <UiText locale={locale} id="Source private" />
+        </span>
       )}
     </nav>
   );

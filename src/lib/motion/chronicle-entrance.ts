@@ -31,27 +31,6 @@ function transitioning() {
   return Boolean(root.themeTransition || root.routeTransition);
 }
 
-// Glass-button state art is only needed on hover/press. Fetch it once the page has
-// loaded and the browser is idle, so it never competes with first paint.
-let stateArtRequested = false;
-function prefetchStateArt() {
-  if (stateArtRequested) return;
-  stateArtRequested = true;
-  const fetchArt = () => {
-    for (const name of ["glass-button-hover", "glass-button-active"]) {
-      const image = new Image();
-      image.decoding = "async";
-      image.src = `/media/themes/chronicle/${name}.webp`;
-    }
-  };
-  const whenIdle = () =>
-    "requestIdleCallback" in window
-      ? requestIdleCallback(fetchArt, { timeout: 3000 })
-      : setTimeout(fetchArt, 1500);
-  if (document.readyState === "complete") whenIdle();
-  else addEventListener("load", whenIdle, { once: true });
-}
-
 function inView(element: Element) {
   const rect = element.getBoundingClientRect();
   return rect.bottom > 0 && rect.top < innerHeight && rect.width > 0;
@@ -66,8 +45,8 @@ export function setupChronicleEntrance(
   skipVisible: boolean,
   enteredTheme = false,
 ) {
-  if (document.documentElement.dataset.theme === "chronicle")
-    prefetchStateArt();
+  // CSS loads glass-button hover/pressed artwork on interaction. Idle callbacks
+  // can run while high-priority images are still in flight on slower networks.
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const animations = new Set<Animation>();
   const cleanups: (() => void)[] = [];

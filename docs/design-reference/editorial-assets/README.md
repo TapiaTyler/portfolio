@@ -15,3 +15,11 @@ files `public/media/themes/editorial/ink-*.webp`. Placement is deliberately spar
 the 鉄男 (Tetsuo) seal signs the hero landscape, droplets mark the homepage contact
 close, a faint brush stroke underlines the footer name, and the mountain seal ends
 each case study. Supporting pages each carry one more mark in the intro margin: the brush flick on Work, the 鉄男 seal beside "About", the spatter on Lab and, on Contact, the sumi-e sweep (`ink-sweep`) under the lead plus a turned, smaller spatter in the gutter left of the main content.
+
+## AVIF delivery — 2026-10-07
+
+All nine delivery WebPs now have AVIF alternatives, selected through typed CSS
+image-set with retained WebP fallback. Dimensions, alpha presence, positioning and
+source PNGs remain unchanged. Regenerate with
+`node scripts/optimize-theme-images.mjs`; see `docs/IMAGE-DELIVERY-MANIFEST.json`
+and [image delivery](../../IMAGE-DELIVERY.md) for sizes/settings and verification.

@@ -56,12 +56,14 @@ removed at Tyler's request), `blossom.svg` (replaced by the crystal marker),
 The source PNGs and first delivery files remain preserved. The current layout
 requests proportionally resized WebP derivatives according to viewport width:
 
-| Artwork          | Up to 900px                             | Above 900px                              |
-| ---------------- | --------------------------------------- | ---------------------------------------- |
-| Scenic landscape | `landscape-v2-compact.webp`, 1440 × 480 | `landscape-v2.webp`, 1920 × 640          |
-| Scenic portrait  | `scenic-portrait.webp`, 780 × 1040¹     | `scenic-portrait.webp`¹                  |
-| Crystal corner   | `crystal-corner-mobile.webp`, 320 × 314 | `crystal-corner-compact.webp`, 480 × 471 |
-| Sakura corner    | `sakura-corner-mobile.webp`, 320 × 242  | `sakura-corner-compact.webp`, 480 × 364  |
+| Artwork                 | Up to 900px                                    | Above 900px                              |
+| ----------------------- | ---------------------------------------------- | ---------------------------------------- |
+| Scenic landscape        | `landscape-v2-compact.webp`, 1440 × 480        | `landscape-v2.webp`, 1920 × 640          |
+| Scenic portrait         | `scenic-portrait.webp`, 780 × 1040¹            | `scenic-portrait.webp`¹                  |
+| Crystal corner          | `crystal-corner-mobile.webp`, 320 × 314        | `crystal-corner-compact.webp`, 480 × 471 |
+| Sakura corner           | `sakura-corner-mobile.webp`, 320 × 242         | `sakura-corner-compact.webp`, 480 × 364  |
+| Project frame           | `project-frame-compact.webp`, 720 × 367        | `project-frame.webp`, 1200 × 611         |
+| Selected frame / picker | `project-frame-active-compact.webp`, 720 × 409 | `project-frame-active.webp`, 1200 × 682  |
 
 Sharp resized the existing delivery images and encoded these variants; it did
 not regenerate or change the artwork. The 480px corners use WebP quality 80;
@@ -74,3 +76,49 @@ Chronicle artwork.
 ¹ The portrait scene is used for portrait phones (≤ 900px wide) and for any short
 landscape viewport (height ≤ 500px); the landscape images cover the remaining sizes.
 Preload media queries in `theme-styles.tsx` mirror these conditions.
+
+The October 7 frame pass uses WebP quality 82 and alpha quality 92. Regenerate
+the two compact frames and their manifest entries with
+`node scripts/optimize-chronicle-frames.mjs`. It resizes the established delivery
+WebPs, preserving their crop and transparent padding. Compact CSS source slices
+are 60% of desktop slices for cards, case-study evidence and the theme picker;
+rendered border widths remain unchanged. Desktop delivery and source PNGs remain
+available. See `docs/PERFORMANCE-REVIEW.md` for the two production audit results.
+
+## AVIF delivery — 2026-10-07
+
+The initial pass gave seven established delivery assets AVIF alternatives: the portrait scene,
+mobile sakura/crystal corners, compact normal/selected frames, base glass button
+and top chapter-rail cap. Regenerate with `node scripts/optimize-chronicle-avif.mjs`.
+Dimensions, crop, frame slices and alpha presence are unchanged; the existing WebPs
+and original PNGs are retained. `formatDelivery` entries record bytes, encoder settings,
+source and fallback. Interface art uses quality 65 with 4:4:4 chroma to retain fine
+colored edges; the scenic image uses quality 50 with 4:2:0 chroma. Higher-quality
+portrait candidates were larger than the existing WebP and were rejected.
+
+CSS `image-set()` lists AVIF first and WebP second with MIME types. The browser
+selects a supported format, downloading one candidate. Only the AVIF portrait scene
+was preloaded with `type="image/avif"`; browsers without AVIF support skip that hint
+and discover the WebP through CSS. Preloading both formats would duplicate transfer
+in supporting browsers. This is a format-support fallback, not retry-on-404 behavior.
+See [MDN image-set](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/image/image-set)
+and [preload guidance](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/rel/preload).
+
+Project screenshots retain their semantic `next/image` component and original
+sources. `next.config.ts` negotiates AVIF, WebP, then the original format through
+the request's Accept header; this provides format fallback without a separate
+hand-maintained picture/srcset pipeline. Silent demonstration videos are unchanged.
+
+The full-theme pass now covers all 28 Chronicle WebP variants and all three
+viewport-specific scenic preloads, including interaction artwork and desktop
+corners/frames. Regenerate with `node scripts/optimize-theme-images.mjs`; the full
+inventory is `docs/IMAGE-DELIVERY-MANIFEST.json`. Local raster video posters also
+use the shared optimizer. See [image delivery](../../IMAGE-DELIVERY.md).
+
+The case-study performance pass adds 720px outer panel frames and chapter dividers
+for viewports up to 900px. Panel source slices scale to `96 108` (60% of `160 180`),
+with the same displayed 48px frame width. Divider display size is unchanged.
+AVIF panel delivery falls from 53,151 to 24,326 bytes; divider delivery falls from
+18,067 to 9,237 bytes. Desktop assets remain available. Regenerate via the frame
+script, then the general AVIF generator; provenance and delivery manifests include
+both responsive variants.

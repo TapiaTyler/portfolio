@@ -1,4 +1,6 @@
 "use client";
+import { messageLanguage, message } from "@/lib/i18n/messages";
+import { type Locale } from "@/lib/i18n/locales";
 
 import {
   useId,
@@ -11,10 +13,12 @@ import { useNavigationSelector } from "./use-navigation-selector";
 
 export function ChronicleProjectPreview({
   identity,
+  locale = "en",
   chapters,
   evidence,
   action,
 }: {
+  locale?: Locale;
   identity: ReactNode;
   chapters: { id: string; label: string; content: ReactNode }[];
   evidence?: ReactNode;
@@ -41,7 +45,8 @@ export function ChronicleProjectPreview({
       </noscript>
       <nav
         className="chronicle-preview__chapters"
-        aria-label="Project preview chapters"
+        aria-label={message(locale, "Project preview chapters")}
+        lang={messageLanguage(locale, "Project preview chapters")}
         ref={navigation}
       >
         <span className="chronicle-preview__selector" aria-hidden="true" />
@@ -63,7 +68,8 @@ export function ChronicleProjectPreview({
         className="chronicle-preview__copy"
         tabIndex={0}
         role="region"
-        aria-label="Selected project summary"
+        aria-label={message(locale, "Selected project summary")}
+        lang={messageLanguage(locale, "Selected project summary")}
       >
         <div className="chronicle-preview__identity">{identity}</div>
         {chapters.map((chapter, index) => (
@@ -73,7 +79,10 @@ export function ChronicleProjectPreview({
             hidden={selected !== index}
             className="chronicle-preview__narrative"
             role="region"
-            aria-label={`${chapter.label} preview`}
+            aria-label={message(locale, "{title} preview", {
+              title: chapter.label,
+            })}
+            lang={messageLanguage(locale, "{title} preview")}
           >
             {chapter.content}
           </div>

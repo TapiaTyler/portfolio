@@ -1,5 +1,6 @@
+import { UiText } from "@/components/ui-text";
 import Link from "next/link";
-import type { ProjectContent } from "@/lib/i18n/project-content";
+import { type ProjectContent } from "@/lib/i18n/project-content";
 import { MediaFrame, type AssetUrl } from "./media-frame";
 import { FallbackNotice } from "./fallback-notice";
 import { ProjectMeta } from "./project-meta";
@@ -16,7 +17,7 @@ export function ProjectFeature({
   level?: HeadingLevel;
   assetUrl?: AssetUrl;
 }) {
-  const { project } = content;
+  const { project, locale } = content;
   const media = project.media.find(
     (media) => media.id === project.previewMediaId,
   );
@@ -35,12 +36,13 @@ export function ProjectFeature({
         <p lang={content.summary.lang}>{content.summary.value}</p>
       )}
       <FallbackNotice content={content} />
-      <ProjectMeta project={project} />
+      <ProjectMeta locale={content.locale} project={project} />
       {media && (
         <MediaFrame media={media} locale={content.locale} assetUrl={assetUrl} />
       )}
       <Link className="text-link" href={href} lang="en">
-        Explore the project <span aria-hidden="true">→</span>
+        <UiText locale={locale} id="Explore the project" />
+        <span aria-hidden="true">→</span>
       </Link>
     </article>
   );

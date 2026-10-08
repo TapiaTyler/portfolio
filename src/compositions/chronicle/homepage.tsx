@@ -1,6 +1,14 @@
-import type { ReactNode } from "react";
-import type { HomepageProps } from "@/components/semantic/homepage";
-import { HomeSectionHeader } from "@/components/semantic/homepage";
+import { interfaceCopy } from "@/lib/i18n/messages";
+import { type CopyText, text } from "@/lib/i18n/copy";
+import { type Locale } from "@/lib/i18n/locales";
+import { Text } from "@/components/localized-text";
+
+import { type ReactNode } from "react";
+import {
+  type HomepageProps,
+  HomeSectionHeader,
+} from "@/components/semantic/homepage";
+
 import { ChronicleHero } from "./hero";
 import { ChronicleCollection } from "./collection";
 import { ChronicleHomeTabs } from "./home-tabs";
@@ -14,10 +22,12 @@ function ChronicleTabSection({
   label,
   heading,
   children,
+  locale,
 }: {
   id: string;
-  label: string;
-  heading: string;
+  label: CopyText;
+  heading: CopyText;
+  locale: Locale;
   children: ReactNode;
 }) {
   return (
@@ -26,8 +36,12 @@ function ChronicleTabSection({
       data-motion-id={id}
       aria-labelledby={`${id}-heading`}
     >
-      <p className="eyebrow">{label}</p>
-      <h2 id={`${id}-heading`}>{heading}</h2>
+      <p className="eyebrow">
+        <Text value={label} locale={locale} />
+      </p>
+      <h2 id={`${id}-heading`}>
+        <Text value={heading} locale={locale} />
+      </h2>
       {children}
     </section>
   );
@@ -41,7 +55,7 @@ export function ChronicleHomepage({
   assetUrl,
 }: HomepageProps) {
   const { about, capabilities, lab, contact } = content;
-  const aboutLabel = "About";
+  const aboutLabel = interfaceCopy("About");
   return (
     <div className="homepage chronicle-homepage" lang="en">
       <ChronicleHero content={content.hero} locale={locale} />
@@ -52,6 +66,7 @@ export function ChronicleHomepage({
         aria-labelledby="selected-work-heading"
       >
         <HomeSectionHeader
+          locale={locale}
           title={content.work.title}
           id="selected-work-heading"
           href={`/${locale}/work`}
@@ -66,22 +81,28 @@ export function ChronicleHomepage({
             showPreview={false}
           />
         ) : (
-          <p className="empty-content">{content.work.emptyText}</p>
+          <p className="empty-content">
+            <Text value={content.work.emptyText} locale={locale} />
+          </p>
         )}
       </section>
       <ChronicleHomeTabs
+        locale={locale}
         sections={[
           {
             id: "about",
             label: aboutLabel,
             content: (
               <ChronicleTabSection
+                locale={locale}
                 id="about"
                 label={aboutLabel}
                 heading={about.title}
               >
                 {about.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
+                  <p key={text(paragraph, locale)}>
+                    <Text value={paragraph} locale={locale} />
+                  </p>
                 ))}
               </ChronicleTabSection>
             ),
@@ -92,15 +113,20 @@ export function ChronicleHomepage({
             label: capabilities.title,
             content: (
               <ChronicleTabSection
+                locale={locale}
                 id="capabilities"
                 label={capabilities.title}
                 heading={capabilities.lead ?? capabilities.title}
               >
                 <div className="capability-list">
                   {capabilities.items.map((item) => (
-                    <div className="capability" key={item.title}>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
+                    <div className="capability" key={text(item.title, locale)}>
+                      <h3>
+                        <Text value={item.title} locale={locale} />
+                      </h3>
+                      <p>
+                        <Text value={item.description} locale={locale} />
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -112,11 +138,14 @@ export function ChronicleHomepage({
             label: lab.title,
             content: (
               <ChronicleTabSection
+                locale={locale}
                 id="lab"
                 label={lab.title}
                 heading={lab.description}
               >
-                <p className="empty-content">{lab.emptyText}</p>
+                <p className="empty-content">
+                  <Text value={lab.emptyText} locale={locale} />
+                </p>
               </ChronicleTabSection>
             ),
             action: { href: `/${locale}/lab`, label: lab.linkLabel },
@@ -126,11 +155,14 @@ export function ChronicleHomepage({
             label: contact.label,
             content: (
               <ChronicleTabSection
+                locale={locale}
                 id="contact"
                 label={contact.label}
                 heading={contact.title}
               >
-                <p>{contact.description}</p>
+                <p>
+                  <Text value={contact.description} locale={locale} />
+                </p>
               </ChronicleTabSection>
             ),
             action: { href: `/${locale}/contact`, label: contact.linkLabel },

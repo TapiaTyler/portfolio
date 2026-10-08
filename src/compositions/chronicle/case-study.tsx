@@ -1,4 +1,15 @@
-import type { ComponentProps } from "react";
+import { Text } from "@/components/localized-text";
+import {
+  interfaceCopy,
+  interfaceCopy as navigationCopy,
+  messageLanguage,
+  message,
+} from "@/lib/i18n/messages";
+
+import { type CopyText } from "@/lib/i18n/copy";
+import { UiText } from "@/components/ui-text";
+
+import { type ComponentProps } from "react";
 import { projectStatusLabels } from "@/lib/content/status";
 import { ChronicleTopics } from "./topics";
 import {
@@ -18,28 +29,33 @@ export function ChronicleCaseStudyIntro(
   props: ComponentProps<typeof CaseStudyIntro>,
 ) {
   const { content, level = 1 } = props;
+  const locale = content.locale;
   return (
     <div
       className="chronicle-dossier-banner"
       data-project-slug={content.project.slug}
       tabIndex={0}
       role="region"
-      aria-label="Project identity and topics"
+      aria-label={message(locale, "Project identity and topics")}
+      lang={messageLanguage(locale, "Project identity and topics")}
     >
       <header className="case-study-intro" data-motion-id="case-study-intro">
         <p className="eyebrow" lang="en">
-          Chronicle / Project
+          <UiText locale={locale} id="Chronicle / Project" />
         </p>
         <SectionHeading level={level}>
           <span lang={content.title.lang}>{content.title.value}</span>
         </SectionHeading>
         <p className="chronicle-status" lang="en">
-          {projectStatusLabels[content.project.status]}
+          <Text
+            value={interfaceCopy(projectStatusLabels[content.project.status])}
+            locale={content.locale}
+          />
         </p>
         {content.summary && (
           <p lang={content.summary.lang}>{content.summary.value}</p>
         )}
-        <ChronicleTopics project={content.project} />
+        <ChronicleTopics locale={locale} project={content.project} />
       </header>
     </div>
   );
@@ -47,7 +63,14 @@ export function ChronicleCaseStudyIntro(
 
 function ChronicleBody(props: CaseStudyBodyProps) {
   const { content, assetUrl } = props;
-  const render = blockRenderer(props);
+  const locale = content.locale;
+  // Conservative layout bounds preserve density on high-DPI displays without
+  // treating the desktop evidence column as a full-width 1200px image.
+  const narrowScreenSizes =
+    "(orientation: landscape) and (max-height: 500px) calc(69vw - 40px), (max-width: 900px) and (orientation: portrait) calc(100vw - 40px), (orientation: landscape) and (max-height: 650px) 85vw, (max-width: 900px) 100vw";
+  const evidenceSizes = `${narrowScreenSizes}, 42vw`;
+  const render = blockRenderer(props, `${narrowScreenSizes}, 85vw`);
+  const renderEvidence = blockRenderer(props, evidenceSizes);
   return (
     <>
       {groupCaseStudyEvidence(content.blocks).map(
@@ -69,6 +92,7 @@ function ChronicleBody(props: CaseStudyBodyProps) {
                 {render(owner)}
                 {index === 0 && (
                   <ProjectMeta
+                    locale={locale}
                     project={content.project}
                     exclude={[
                       "Languages",
@@ -91,19 +115,20 @@ function ChronicleBody(props: CaseStudyBodyProps) {
                         <MediaFrame
                           key={media.id}
                           media={media}
-                          locale={content.locale}
+                          locale={locale}
                           assetUrl={assetUrl}
                           loading="eager"
+                          sizes={evidenceSizes}
                         />
                       ))}
-                  {shown.map(render)}
+                  {shown.map(renderEvidence)}
                 </div>
               )}
               {shown.length < evidence.length && (
                 <div hidden>
                   {evidence
                     .filter((entry) => !shown.includes(entry))
-                    .map(render)}
+                    .map(renderEvidence)}
                 </div>
               )}
             </div>
@@ -115,7 +140,8 @@ function ChronicleBody(props: CaseStudyBodyProps) {
 }
 
 export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
-  const labels: Record<string, string> = {};
+  const locale = props.content.locale;
+  const labels: Record<string, CopyText> = {};
   const shortLabels = {
     // Short rail labels follow the case-study spine (CASE-STUDY-CONTRACT.md).
     problem: "Objective",
@@ -131,16 +157,37 @@ export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
       (entry) => entry.block.type === block.type,
     ).length;
     if (block.type in shortLabels && occurrences === 1)
-      labels[`${props.anchorPrefix ?? ""}${block.id}`] =
-        shortLabels[block.type as keyof typeof shortLabels];
+      labels[`${props.anchorPrefix ?? ""}${block.id}`] = interfaceCopy(
+        shortLabels[block.type as keyof typeof shortLabels],
+      );
   }
   return (
     <div className="chronicle-dossier">
+      {/* Case-study subheads use this existing weight. Discover it early without
+          making its font request compete with the scenic identity band. */}
+      <link
+        rel="preload"
+        as="font"
+        href="/fonts/chronicle/cormorant-garamond-latin-600-normal.woff2"
+        type="font/woff2"
+        crossOrigin="anonymous"
+        fetchPriority="low"
+      />
+      {/* The visible reading panel already draws this frame. Keep its decorative
+          request behind the scenic identity band on mobile viewports. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/media/themes/chronicle/panel-frame-compact.avif"
+        type="image/avif"
+        media="(max-width: 900px)"
+        fetchPriority="low"
+      />
       <CaseStudy
         {...props}
         IntroRenderer={ChronicleCaseStudyIntro}
         BodyRenderer={ChronicleBody}
-        navigationLabel="Chapter Archive"
+        navigationLabel={navigationCopy("Chapter Archive")}
         containedReading
         navigationLabels={labels}
         afterIntro={
@@ -148,7 +195,9 @@ export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
             className="chronicle-record-summary"
             data-motion-id="case-study-orientation"
           >
-            <summary>Project at a Glance</summary>
+            <summary>
+              <UiText locale={locale} id="Project at a Glance" />
+            </summary>
             <div className="chronicle-record-summary__content" tabIndex={0}>
               {props.content.description && (
                 <p lang={props.content.description.lang}>
@@ -157,10 +206,11 @@ export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
               )}
               <CaseStudyOrientation content={props.content} />
               <ProjectMeta
+                locale={locale}
                 project={props.content.project}
                 exclude={["Role", "Status"]}
               />
-              <ProjectLinks project={props.content.project} />
+              <ProjectLinks locale={locale} project={props.content.project} />
               {props.afterIntro}
             </div>
           </DismissibleDetails>

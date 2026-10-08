@@ -1,6 +1,8 @@
-import type { ProjectContent } from "@/lib/i18n/project-content";
-import type { ComponentProps, ComponentType, ReactNode } from "react";
-import type { BlockRenderers } from "@/compositions/contract";
+import { type CopyText } from "@/lib/i18n/copy";
+import { message } from "@/lib/i18n/messages";
+import { type ProjectContent } from "@/lib/i18n/project-content";
+import { type ComponentProps, type ComponentType, type ReactNode } from "react";
+import { type BlockRenderers } from "@/compositions/contract";
 import { CaseStudyBlock } from "./case-study-block";
 import { FallbackNotice } from "./fallback-notice";
 import { MediaFrame, type AssetUrl } from "./media-frame";
@@ -35,8 +37,12 @@ export function CaseStudyIntro({
         <p lang={content.description.lang}>{content.description.value}</p>
       )}
       <CaseStudyOrientation content={content} />
-      <ProjectMeta project={project} exclude={["Role", "Status"]} />
-      <ProjectLinks project={project} />
+      <ProjectMeta
+        locale={content.locale}
+        project={project}
+        exclude={["Role", "Status"]}
+      />
+      <ProjectLinks locale={content.locale} project={project} />
       {media && (
         <MediaFrame media={media} locale={content.locale} assetUrl={assetUrl} />
       )}
@@ -66,10 +72,10 @@ export function CaseStudy({
   blockRenderers?: BlockRenderers;
   afterIntro?: ReactNode;
   BodyRenderer?: ComponentType<CaseStudyBodyProps>;
-  navigationLabel?: string;
+  navigationLabel?: CopyText;
   navigationDirectory?: string;
   containedReading?: boolean;
-  navigationLabels?: Record<string, string>;
+  navigationLabels?: Record<string, CopyText>;
 }) {
   const blockLevel = Math.min(level + 1, 6) as HeadingLevel;
   const sections = caseStudySections(content, anchorPrefix);
@@ -85,6 +91,7 @@ export function CaseStudy({
       >
         {sections.length > 1 && (
           <CaseStudyNavigation
+            locale={content.locale}
             sections={sections}
             label={navigationLabel}
             directoryRoot={navigationDirectory}
@@ -95,7 +102,11 @@ export function CaseStudy({
           className="case-study-body"
           tabIndex={containedReading ? 0 : undefined}
           role={containedReading ? "region" : undefined}
-          aria-label={containedReading ? "Case study reading panel" : undefined}
+          aria-label={
+            containedReading
+              ? message(content.locale, "Case study reading panel")
+              : undefined
+          }
         >
           <BodyRenderer
             content={content}

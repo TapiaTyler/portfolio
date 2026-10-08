@@ -1,6 +1,9 @@
+import { UiText } from "@/components/ui-text";
+import { Text } from "@/components/localized-text";
+
 import Link from "next/link";
-import type { ComponentProps } from "react";
-import type { Hero } from "@/components/semantic/hero";
+import { type ComponentProps } from "react";
+import { type Hero } from "@/components/semantic/hero";
 
 export function EngineerHero({ content, locale }: ComponentProps<typeof Hero>) {
   return (
@@ -9,28 +12,40 @@ export function EngineerHero({ content, locale }: ComponentProps<typeof Hero>) {
       lang="en"
       data-motion-id="hero-narrative"
     >
-      <p className="engineer-panel-label">Profile / {content.label}</p>
+      <p className="engineer-panel-label">
+        <UiText locale={locale} id="Profile /" />{" "}
+        <Text value={content.label} locale={locale} />
+      </p>
       <div className="engineer-profile__body">
-        <h1>{content.name ?? content.title}</h1>
+        <h1>
+          {content.name ?? <Text value={content.title} locale={locale} />}
+        </h1>
         <dl className="engineer-profile__fields">
           {content.name && (
             <div>
-              <dt>Role</dt>
+              <dt>
+                <UiText locale={locale} id="Role" />
+              </dt>
               <dd>
-                {content.title} {content.emphasis}
+                <Text value={content.title} locale={locale} />{" "}
+                <Text value={content.emphasis} locale={locale} />
               </dd>
             </div>
           )}
           <div>
-            <dt>Introduction</dt>
-            <dd>{content.description}</dd>
+            <dt>
+              <UiText locale={locale} id="Introduction" />
+            </dt>
+            <dd>
+              <Text value={content.description} locale={locale} />
+            </dd>
           </div>
         </dl>
         <Link
           className="text-link"
           href={`/${locale}${content.link.destination}`}
         >
-          {content.link.label}
+          <Text value={content.link.label} locale={locale} />
         </Link>
       </div>
     </section>

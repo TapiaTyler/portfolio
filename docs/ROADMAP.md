@@ -1,6 +1,83 @@
 # Implementation progress
 
-Last updated: 2026-10-03.
+Last updated: 2026-10-08.
+
+## Current integration snapshot
+
+- [x] Publish and feature Nihonest, Portfolio and Japan Travel Planner. Nihonest has
+      a live Vercel link and private-source declaration; development remains active.
+- [x] Apply the published case-study contract (D040) to all three records and add
+      measurable contract tests.
+- [x] Populate About background, education, skills/languages and working approach;
+      add GitHub/LinkedIn links to the shared shell.
+- [x] Redesign Editorial with ink landscape/marks, lead-story features, screenshot
+      plates, small-cap labels, standfirsts and drop caps.
+- [x] Refine Chronicle evidence sizing, suppress the repeated preview screenshot,
+      and add a remembered first-visit card-selection hint.
+- [x] Clip morph snapshots inside contained reading panels with progressive fallback.
+- [x] Review Portfolio screenshots against the latest theme and content changes;
+      findings recorded in projects/portfolio/SCREENSHOT-REVIEW.md.
+- [x] Refresh current Portfolio captures/posters while preserving historical evidence:
+      eight stills, four silent recordings, dated URLs, matched posters and archived hashes.
+- [x] Implement Contact email/profiles in all four compositions, keyboard clipboard
+      feedback and reserved English résumé/Japanese résumé/Japanese CV PDF/Word entries.
+- [x] Add optional Japanese slots to public page copy and a shared interface dictionary;
+      preserve per-field fallback language and validate translation/interpolation fields.
+- [ ] Supply reviewed résumé/CV files, finalize homepage copy, selected translations
+      and portfolio origin.
+- [x] Repeat local populated performance audit in all four modes (two runs):
+      Editorial 97–99, Engineer 95, Digital 94, Chronicle 79; Accessibility/Best Practices 100.
+- [x] Optimize Chronicle card-frame delivery with responsive 720px derivatives;
+      two focused production audits improved Performance to 83–84 and LCP to
+      4.54–4.61s, reducing image transfer by 33% without changing frame geometry.
+- [x] Load Chronicle button state artwork on interaction, preserve its base frame
+      while loading, and prioritize the hero over responsive card thumbnails.
+      Two final audits: Performance 85, LCP 4.29s; image transfer 40% below baseline.
+- [x] Load only the active public mode's main CSS with SSR-enabled dynamic
+      components (D041); preserve all-theme development comparisons. Nineteen
+      production browser regressions passed, including delayed cold CSS at morph
+      readiness. Two four-mode audits: Editorial 97, Engineer 95–99, Digital 94,
+      Chronicle 86 / 4.22s LCP. Chronicle CSS transfer fell 19%.
+- [x] Add seven AVIF artwork derivatives with WebP format fallback and a single
+      typed hero preload; enable Next.js AVIF/WebP/original-source negotiation for
+      project images. Format/fallback tests and interaction checks passed. Two
+      four-mode audits: Editorial 93–97, Engineer 96–99, Digital 94, Chronicle 89;
+      Chronicle image transfer 62% below the populated baseline, LCP 3.70–3.71s.
+- [ ] Further optimize Chronicle case-study loading to reach Performance ≥90;
+      Home/Work now reach 91/90 locally. Font preloading is complete;
+      shared/page-specific CSS splitting was tested and rejected (D044).
+- [x] Extend AVIF delivery to all 35 theme raster variants and local video posters;
+      retain originals/WebP fallback and record the full image inventory. Verify
+      source dimensions, conditional font loading and desktop/mobile fallback.
+- [x] Preload unchanged Chronicle font weights 500/700 only in that mode; preserve
+      demand loading for 600 and cold theme-switch readiness.
+      Two final audits: Editorial 93–97, Engineer 96–99, Digital 94–97, Chronicle 89.
+      Chronicle first paint is 1.21s; LCP remains 3.72–3.73s. Thirty-two production
+      browser regressions passed; delivery policy is recorded in IMAGE-DELIVERY.md.
+- [ ] Verify the current populated release on hosting, including performance and SEO.
+- [x] Extend production performance tooling to Work and case-study routes; record
+      all four modes on Work and all three projects. Defer offscreen video posters,
+      prioritize Digital's opening media and compact Chronicle mobile panel/divider
+      assets. Portfolio's final two runs: Editorial 96, Engineer 94–99, Digital
+      93–95, Chronicle 88; 24 targeted production browser checks passed.
+- [x] Evaluate shared secondary-page and Chronicle project CSS splitting against
+      saved baselines. Reject both experiments: extra requests outweigh the small
+      Home/Work saving. Restore combined styles; preserve D041's active-mode loading.
+      See PERFORMANCE-REVIEW.md for measurements and remaining work.
+- [x] Lower Chronicle mobile header/card ornament priorities while keeping scenic
+      LCP high. Home reaches 91 across three normal/two reduced runs; Work reaches
+      90 twice. Preserve image bytes, artwork, WebP fallback and motion design.
+- [x] Add explicit verified normal/reduced-motion audit settings. Record four-theme
+      Home comparisons, reduced Portfolio loads and switch/About/Back diagnostics
+      in PERFORMANCE-REVIEW.md and PERFORMANCE-MOTION-RESULTS.json. Thirty-five
+      production browser checks passed. Chronicle case studies remain below 90.
+- [x] Refine Chronicle case-study font/panel discovery (D046). Preserve existing
+      bytes and native request inventories; first paint improves from 1.51s to
+      1.21s. Portfolio repeats 89 (also 89 reduced), Travel Planner 90, Nihonest 89.
+      Case-study ≥90 acceptance remains open; results are recorded separately.
+
+The dated passes and verification ledger below preserve historical conditions.
+Their draft inventories, screenshots and scores are not the current publication state.
 
 ## Chronicle — additional mode implementation
 
@@ -85,6 +162,9 @@ Last updated: 2026-10-03.
       assets per viewport and prioritize the active scenic background: final local
       scores 91 Performance / 100 Accessibility / 100 Best Practices.
 - [ ] Tyler's visual and interaction review against the Chronicle reference images.
+- [x] Size case-study evidence for its reading columns while preserving image
+      quality and native loading; matched 2× phone checks reduce project-image
+      reading downloads by 16–32%. See D047 and PERFORMANCE-REVIEW.md.
 - [x] Apply homepage review: remove the reference-only header logo/dividers and
       Explore more disclosure; restore a styled presentation dropdown and place
       About, practice areas, Lab and Contact in a persistent left tab rail below
@@ -195,10 +275,11 @@ A completed foundation does not mean final content or visual design is approved.
       and gallery reconstructions with provenance; add a guarded draft review route.
 - [x] Review the pilot's narrative, media and long-page composition in all modes.
       Tyler also approved Japan Travel Planner's presentation and report voice
-      across all three themes. Both records remain draft and unfeatured.
+      across the original three themes. Both records are now published and featured.
 - [x] Implement the first Work, About, Lab and Contact composition pass using the pilot's layout rules.
 - [x] Review the secondary-screen and mobile-menu composition pass with Tyler.
-- [ ] Review final content, then review publication and featuring.
+- [x] Publish and feature the three current case studies.
+- [ ] Review remaining homepage/contact copy and current media.
 
 - [x] Prepare Vercel configuration and a release runbook for the Next.js runtime.
 - [x] Select Vercel as the hosting provider.
@@ -207,12 +288,11 @@ A completed foundation does not mean final content or visual design is approved.
   and integrated into the portfolio. Local verification and project integration continue.
 - [ ] Repeat performance/SEO checks on the deployment with reviewed content.
 
-## Project pipeline — 2026-10-03
+## Project pipeline — 2026-10-07
 
-- Portfolio and Japan Travel Planner are imported and reviewed. Nihonest was
-  imported on October 5 as an active, undeployed draft, with confirmed contribution,
-  architecture/code evidence and approved local screenshots. Its narrative/media
-  review remains open. Publication and homepage featuring remain separate decisions.
+- Portfolio, Japan Travel Planner and Nihonest are published and featured. Nihonest
+  remains active, with a live Vercel link, private source, confirmed contribution,
+  architecture/code evidence and approved local screenshots.
 - Upwatch is in planning and will follow Nihonest. Hospitality Platform is also in
   planning. Neither has a GitHub repository or coding agent yet.
 - The root README now describes the implemented system, reviewed inventory,
@@ -328,14 +408,13 @@ A completed foundation does not mean final content or visual design is approved.
 
 ## Current limitations
 
-The portfolio pilot is the first real draft record; public project inventory stays
-empty pending content review. `/dev/projects/portfolio` permits review of the real
-draft. Synthetic fixtures remain separate, and drafts/fixtures stay outside public
-selectors and routes. See `projects/portfolio/README.md` for discovery and evidence.
-Japanese interface and narrative translations remain pending; the header includes
-the Japanese name explicitly approved by Tyler. All three modes have initial
-approved-reference implementations. Editorial's initial visual review is accepted;
-Engineer/Digital review and all modes' final content/layout refinement remain open.
+Three real records are published and featured. Development review routes still
+provide fixtures and full-shell comparison; drafts/fixtures stay outside public
+selectors. See projects/portfolio/README.md for capture and evidence guidance.
+Japanese interface and narrative translations remain pending. Four modes are
+implemented, including the latest Editorial ink treatment and Chronicle interaction
+refinements. Contact methods are implemented; remaining content work includes résumé/CV
+files, homepage copy, reviewed translations and current-media review.
 Portfolio routes render per request to select
 the saved composition before paint (see D029).
 CI is configured locally; a successful hosted CI run and deployment are not yet verified.
@@ -344,6 +423,13 @@ has not been configured; untranslated Japanese routes remain outside the sitemap
 and Japanese language alternates until relevant reviewed content exists.
 
 ## Verification history
+
+Contact/localization pass (2026-10-08): 58 unit tests, production build, source
+validation, lint and formatting passed. Eleven production browser checks cover
+Contact in both locales/four modes at desktop and phone sizes, native operation,
+clipboard feedback, automated accessibility scans and theme persistence. Three
+targeted preview checks preserve Engineer diagram/code controls and Digital galleries.
+Reviewed local screenshots; Contact files and actual Japanese translations remain pending.
 
 | Pass                                                       | Checks                                                                                                                                                                                                                                                                                                                                                                                                                            | Result                                                                                                                                                                                                                                                           |
 | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

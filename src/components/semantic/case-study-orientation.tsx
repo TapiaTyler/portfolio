@@ -1,5 +1,12 @@
-import type { ProjectContent } from "@/lib/i18n/project-content";
-import { resolveOptionalValue } from "@/lib/i18n/project-content";
+import { messageLanguage, interfaceCopy, message } from "@/lib/i18n/messages";
+import { Text } from "@/components/localized-text";
+
+import { UiText } from "@/components/ui-text";
+
+import {
+  type ProjectContent,
+  resolveOptionalValue,
+} from "@/lib/i18n/project-content";
 
 export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
   const { project, locale } = content;
@@ -19,39 +26,52 @@ export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
   return (
     <section
       className="case-study-orientation"
-      aria-label="Project at a Glance"
-      lang="en"
+      aria-label={message(locale, "Project at a Glance")}
+      lang={messageLanguage(locale, "Project at a Glance")}
     >
-      <p className="eyebrow">At a Glance</p>
+      <p className="eyebrow">
+        <UiText locale={locale} id="At a Glance" />
+      </p>
       <dl>
         {distinction && (
           <div className="case-study-orientation__approach">
-            <dt>Distinguishing Approach</dt>
+            <dt>
+              <UiText locale={locale} id="Distinguishing Approach" />
+            </dt>
             <dd lang={distinction.lang}>{distinction.value}</dd>
           </div>
         )}
         {project.roles.length > 0 && (
           <div className="case-study-orientation__role">
-            <dt>Role</dt>
+            <dt>
+              <UiText locale={locale} id="Role" />
+            </dt>
             <dd>{project.roles.join(" / ")}</dd>
           </div>
         )}
         {workflow && (
           <div className="case-study-orientation__workflow">
-            <dt>Implementation</dt>
+            <dt>
+              <UiText locale={locale} id="Implementation" />
+            </dt>
             <dd>
-              {
-                {
-                  manual: "Manually authored",
-                  "ai-assisted": "AI-assisted development",
-                  mixed: "Manual and AI-assisted development",
-                }[workflow]
-              }
+              <Text
+                locale={locale}
+                value={interfaceCopy(
+                  {
+                    manual: "Manually authored",
+                    "ai-assisted": "AI-assisted development",
+                    mixed: "Manual and AI-assisted development",
+                  }[workflow],
+                )}
+              />
             </dd>
           </div>
         )}
         <div className="case-study-orientation__state">
-          <dt>Current State</dt>
+          <dt>
+            <UiText locale={locale} id="Current State" />
+          </dt>
           <dd>
             <span className="case-study-status">{project.status}</span>
             {state && <p lang={state.lang}>{state.value}</p>}
@@ -60,7 +80,9 @@ export function CaseStudyOrientation({ content }: { content: ProjectContent }) {
       </dl>
       {project.contribution?.review && (
         <details className="case-study-contribution">
-          <summary>Ownership and Review</summary>
+          <summary>
+            <UiText locale={locale} id="Ownership and Review" />
+          </summary>
           <p>{project.contribution.review}</p>
           {project.contribution.testing && (
             <p>{project.contribution.testing}</p>

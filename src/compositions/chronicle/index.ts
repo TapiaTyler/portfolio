@@ -1,4 +1,4 @@
-import type { CompositionProfile } from "../contract";
+import { type CompositionProfile } from "../contract";
 import { ChronicleHero } from "./hero";
 import { ChronicleHomepage } from "./homepage";
 import { ChronicleProjectFeature } from "./project-feature";

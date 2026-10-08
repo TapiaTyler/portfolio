@@ -1,4 +1,4 @@
-import type { CaseStudyBodyProps } from "@/components/semantic/case-study";
+import { type CaseStudyBodyProps } from "@/components/semantic/case-study";
 import { GroupedCaseStudyBody } from "../grouped-body";
 
 export function EngineerCaseStudyBody(props: CaseStudyBodyProps) {

@@ -1,6 +1,9 @@
-import type { CaseStudyBlock } from "@/lib/content/blocks";
-import type { Project } from "@/lib/content/schema";
-import type { Locale } from "@/lib/i18n/locales";
+import { messageLanguage, message } from "@/lib/i18n/messages";
+
+import { UiText } from "@/components/ui-text";
+import { type CaseStudyBlock } from "@/lib/content/blocks";
+import { type Project } from "@/lib/content/schema";
+import { type Locale } from "@/lib/i18n/locales";
 import {
   resolveValue,
   resolveOptionalValue,
@@ -50,7 +53,7 @@ export function TechnicalDetail({
         <details open={block.defaultExpanded}>
           <summary lang="en">
             <span className="technical-detail__indicator" aria-hidden="true" />
-            Read Implementation Details
+            <UiText locale={locale} id="Read Implementation Details" />
           </summary>
           <div className="technical-detail__content">
             <div className="technical-detail__body">
@@ -65,9 +68,11 @@ export function TechnicalDetail({
                       {label?.value ?? snippet.language}
                     </figcaption>
                     <pre
-                      lang="en"
+                      lang={messageLanguage(locale, "Code sample ({language})")}
                       tabIndex={0}
-                      aria-label={`Code sample (${snippet.language})`}
+                      aria-label={message(locale, "Code sample ({language})", {
+                        language: snippet.language,
+                      })}
                     >
                       <code>{snippet.source}</code>
                     </pre>

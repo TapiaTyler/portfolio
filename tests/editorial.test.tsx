@@ -1,3 +1,4 @@
+import { text as copyText } from "../src/lib/i18n/copy";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -22,7 +23,7 @@ test("homepage content and navigation are available in every mode without fixtur
       homepageContent.lab.emptyText,
       homepageContent.contact.title,
     ])
-      assert.ok(html.includes(text));
+      assert.ok(html.includes(copyText(text, "ja")));
     for (const destination of ["work", "about", "lab", "contact"])
       assert.ok(html.includes(`href="/ja/${destination}"`));
     assert.doesNotMatch(html, /fixture-system|<img|mailto:/);

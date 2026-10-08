@@ -1,77 +1,60 @@
 # Content and publication review
 
-Prepared 2026-10-03. The theme compositions, secondary screens and mobile menu
-treatments have received positive visual feedback. Tyler has approved how both
-imported case studies look and read across all three themes. Biography, opening
-copy, contact details, translations and publication/featuring decisions remain open.
+Updated 2026-10-08 against the current typed records and implementation. Historical
+import reports retain the state at their capture date; this file tracks current work.
 
 ## Current source inventory
 
-| Area                 | Source                                       | Current state                                                                                                                             | Needed decision                                                        |
-| -------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Identity             | src/content/identity.ts                      | Confirmed English and Japanese name spelling                                                                                              | No additional identity claims inferred                                 |
-| Home                 | src/content/placeholder.ts                   | Provisional English introduction and practice descriptions                                                                                | Final opening statement and wording                                    |
-| About                | src/content/pages.ts                         | Confirmed name, provisional role/practice, pending background                                                                             | Short biography, experience and any credentials Tyler wants to include |
-| Contact              | src/content/pages.ts                         | Contact methods pending                                                                                                                   | Verified email and optional GitHub/LinkedIn/resume destinations        |
-| Work                 | Filtered project registry                    | Portfolio and Japan Travel Planner are published and featured                                                                             | Review project publication and homepage featuring separately           |
-| Lab                  | src/content/pages.ts                         | Intentional empty catalogue                                                                                                               | Reviewed study content, if any; it is fine to remain empty             |
-| Pilot                | src/content/projects/portfolio.ts            | Published English case study, real captures and labelled reconstructions                                                                  | Ongoing content maintenance                                            |
-| Japan Travel Planner | src/content/projects/japan-travel-planner.ts | Complete source application; published English case study with approved demo screenshots, diagrams, code and security section             | Optional further evidence                                              |
-| Nihonest             | src/content/projects/nihonest.ts             | Active, undeployed application; imported English draft with confirmed AI-assisted contribution, diagram, code and approved local captures | Narrative/media review, publication and featuring                      |
-| Japanese             | Route and field fallback infrastructure      | English fallback with notices; no new translations                                                                                        | Translation remains a later content pass                               |
-| Release              | docs/RELEASE-RUNBOOK.md                      | Vercel selected; local preparation                                                                                                        | Public origin and first hosted preview                                 |
+| Area                 | Source                                                       | Current state                                                                                         | Remaining work                                                        |
+| -------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Identity             | src/content/identity.ts                                      | Confirmed English/Japanese name; GitHub and LinkedIn profiles in header/footer                        | Maintain verified profile destinations                                |
+| Home                 | src/content/placeholder.ts                                   | Opening is provisional; About summary and career direction populated                                  | Final opening statement and practice wording                          |
+| About                | src/content/pages.ts                                         | Background, working approach, focus, skills/languages, education and current direction                | Further editorial review as needed                                    |
+| Contact              | src/content/contact.ts and src/content/pages.ts              | Approved email, LinkedIn and GitHub; three document entries with PDF/Word slots                       | Supply reviewed English résumé, Japanese résumé and Japanese CV files |
+| Work                 | Filtered project registry                                    | Nihonest, Portfolio and Japan Travel Planner published and featured, in that order                    | Maintain narrative and evidence                                       |
+| Lab                  | src/content/pages.ts                                         | Intentional empty catalogue                                                                           | Reviewed studies if available; may remain empty                       |
+| Portfolio            | src/content/projects/portfolio.ts                            | Published English case study with four-mode comparison and motion/iteration evidence                  | Screenshot currency after recent theme changes                        |
+| Japan Travel Planner | src/content/projects/japan-travel-planner.ts                 | Complete application; published case study; Railway live link                                         | Optional further evidence                                             |
+| Nihonest             | src/content/projects/nihonest.ts                             | Active; published case study; Vercel live link and private-source declaration                         | Keep development status and evidence current                          |
+| Japanese             | Page sources, interface dictionary and project locale fields | Page/UI Japanese slots, validation and per-field English fallback implemented; no new Japanese drafts | Review and translate selected content                                 |
+| Portfolio release    | docs/RELEASE-RUNBOOK.md                                      | Vercel prepared; deployment deferred; origin not selected                                             | Public origin, hosted preview and populated release checks            |
 
-## Pilot review record
+## Published case-study standard
 
-The narrative, media and long-page presentation have been reviewed across all
-three themes. The points below preserve the review criteria for future revisions.
+All three records follow [CASE-STUDY-CONTRACT.md](CASE-STUDY-CONTRACT.md) (D040):
+problem, what was built, key decisions, architecture, optional challenge, one grouped
+Engineering details disclosure and result. Section/media limits and the visible-word
+ceiling keep the main account scannable. Discovery remains exhaustive; its findings
+are edited into primary, supporting, evidence-only and do-not-publish material.
 
-Keep the current title, **One portfolio, several ways of reading it** (updated from
-"three ways" when Chronicle was added), and its focus on shared meaning, different
-compositions, continuity and iterative design judgment.
-The draft now includes the secondary-page content/composition separation and the
-directory/mobile-menu decisions alongside the existing motion evidence.
+Keep neutral report voice, factual results and explicit contribution ownership.
+Do not turn local checks into claims of full accessibility conformance, deployed
+performance gains or business outcomes. Preserve labels for synthetic fixtures,
+reconstructions and authentic historical screenshots.
 
-Review criteria for these chapters in all three modes:
+## Portfolio evidence review criteria
 
-1. Purpose and presentation pipeline: is the central design problem clear?
-2. Composition and morphing: does the story explain the distinct reading models
-   and the continuity between them without relying on implementation timings?
-3. Navigation and disclosures: do the recordings demonstrate the physical models
-   and make the decision process understandable?
-4. Navigation/gallery comparisons: are synthetic fixtures and reconstructed prior
-   states labelled clearly, without implying historical screenshots or real projects?
-5. Ownership and quality: does the account accurately distinguish Tyler's direction
-   and review from AI-assisted implementation and automated verification?
-6. Current state: does it clearly distinguish completed local implementation from
-   deployment, field performance, final copy and translation work still pending?
+The title is **One Portfolio, Several Ways of Reading It**. Its focus remains shared
+meaning, different compositions, continuity and iterative design judgment.
 
-The canonical draft contains detailed timings useful for technical review. A later
-editorial copy pass can shorten those passages or put them in optional technical
-detail if a further copy pass is requested. Do not silently turn local tests into claims
-of full accessibility conformance, deployed performance gains or business outcomes.
+1. Do the four-mode screenshots show comparable content and current compositions?
+2. Does morphing evidence demonstrate continuity without implying a benchmark?
+3. Do Chronicle comparisons distinguish the authentic first build from later states?
+4. Are supporting screenshots readable at their rendered size and in the gallery?
+5. Do captions describe what is shown, with provenance in the manifest?
+6. Does the account distinguish implementation from pending deployment and translations?
 
-## Publication decision record
+## Publication state
 
-Current records: Portfolio and Japan Travel Planner are `published` and featured.
-Nihonest remains `draft`, `featured: false` pending narrative/media review and an
-explicit publication/featuring decision. This import does not change the publication
-settings of the earlier projects.
-Publishing and featuring are separate decisions. An active, reviewed project may
-be published while the site continues to evolve; publication does not require
-invented outcome metrics or complete Japanese deep content.
+Portfolio, Japan Travel Planner and Nihonest are published and featured.
+An active application may have a published case study. Publishing a record does
+not mean the application is complete or the portfolio is deployed. Publication and
+homepage featuring remain separate decisions for future imports.
 
-When approval is given, record the approved revision, remaining content limitations
-and whether the pilot should appear on the homepage. Update the public narrative
-to remove development-only review wording where appropriate, then verify public
-project routes, mode compatibility, metadata, sitemap and image/video references.
+## Next content decisions
 
-## Information for the next content session
-
-- The biography and experience facts Tyler wants to publish.
-- Verified contact and resume URLs, and which should be visible.
-- Final hero/role wording and any revisions to the three practice descriptions.
-- Narrative/media review and publication/homepage-feature decisions for Nihonest.
-- The intended public domain or chosen permanent Vercel origin.
-
-Home/About/Contact copy remains intentionally provisional until these details are supplied.
+- Final homepage opening and practice descriptions.
+- Reviewed résumé/CV files for the reserved Contact entries (see CONTACT-CONTENT.md).
+- Currency and readability of Portfolio screenshots and recordings.
+- Selected Japanese translations.
+- Permanent portfolio origin and populated hosted release verification.

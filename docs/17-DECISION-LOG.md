@@ -450,3 +450,143 @@ review rather than for evaluators. Evaluators scan first; the spine makes every
 project quick to evaluate and comparable, while the disclosure keeps the depth. This
 narrows the per-project "narrative flexibility" of 03 for published work; drafts and
 discovery reports stay unconstrained.
+
+## D041 — Load public theme grammar by active mode
+
+**Decision, 2026-10-07:** Public locale layouts load the active mode's existing
+scoped styles through SSR-enabled dynamic style components. Shared semantic,
+token and motion styles remain initial resources. Development comparison layouts
+load every mode's grammar. Next/React stylesheet resources gate the destination
+render; no additional preference store or CSS generation pipeline is introduced.
+
+**Reason:** Loading all four mode grammars increased initial CSS transfer even
+though only one composition was visible. A server-only dynamic-import experiment
+still loaded every stylesheet and was rejected. Independent client component
+boundaries produced separate CSS delivery while retaining server-selected initial
+styles and native no-JavaScript rendering. Cold destination checks with a 700ms
+CSS delay verify styling before morph snapshot readiness. Measurements and limits
+are recorded in `PERFORMANCE-REVIEW.md`.
+
+## D042 — AVIF delivery and conditional Chronicle font discovery
+
+**Decision, 2026-10-07:** All theme raster artwork uses AVIF-first typed CSS
+image-set with retained WebP fallback. Shared project images and local raster
+video posters negotiate AVIF/WebP/original through Next's optimizer. Original
+sources and historical evidence remain intact; vectors and videos retain their
+native formats. The all-theme generator and delivery manifest record the policy.
+
+Chronicle's unchanged Cormorant Garamond files use conditional stylesheet font
+faces and server-selected preloads for weights 500/700; 600 loads on demand. Other
+modes do not preload Chronicle fonts. Public copies preserve the source license
+and hashes, regenerated from the installed font package.
+
+**Reason:** The first AVIF experiment reduced Chronicle transfer and LCP. Applying
+the same format policy to the remaining artwork avoids partial coverage without
+coupling project content to formats or themes. Conditional font preloads improve
+Chronicle font discovery without adding those downloads to other modes. Native
+format selection and cold morph readiness are regression-tested. Measurements,
+encoding limits and regeneration instructions are in `IMAGE-DELIVERY.md` and
+`PERFORMANCE-REVIEW.md`.
+
+## D043 — Defer offscreen local video posters
+
+**Decision, 2026-10-07:** Shared semantic media observes lazy local raster video
+posters through the viewport and any contained reading panels, attaching the
+optimized poster when the video approaches view. Native controls, dimensions,
+captions and `preload="none"` remain available from server rendering. Eager,
+external and vector posters retain immediate behavior. Without JavaScript, lazy
+local videos omit the thumbnail but remain playable; without IntersectionObserver,
+the hydrated client loads posters eagerly.
+
+**Reason:** The first case-study audit found all three Portfolio posters downloaded
+on initial load despite playback deferral, adding about 147 kB in every mode.
+Deferral avoids competing with initial reading resources and preserves intrinsic
+video geometry. All four mode reading areas and fallback paths are verified in
+`tests/browser/image-formats.spec.ts`; route measurements and limits are recorded
+in `PERFORMANCE-REVIEW.md`.
+
+## D044 — Retain combined shared and Chronicle surface styles
+
+**Decision, 2026-10-07:** Keep D041's active-mode boundary, the combined shared
+secondary-page stylesheet, and one complete Chronicle grammar. Reject the tested
+split of secondary-page mode scopes and the route-specific Chronicle project
+stylesheet. The experimental files and route selector were removed.
+
+**Reason:** Splitting shared scopes produced more stylesheet requests and higher
+transfer. Isolating Chronicle project grammar saved about 2 kB on Home/Work without
+improving their measured scores; project pages gained about 2 kB and a blocking
+request, with first paint about 150 ms later in two runs. Native rendering and cold
+snapshot readiness passed, but correctness alone did not justify the loading
+tradeoff. Reconsider only with a delivery strategy that improves measured route
+loading while preserving the cascade and development comparison fixtures. Results
+and report labels are recorded in `PERFORMANCE-REVIEW.md`.
+
+## D045 — Prioritize Chronicle scenery over existing mobile ornament
+
+**Decision, 2026-10-07:** Retain typed, viewport-limited low-priority AVIF preload
+hints for the mobile header crystal and collection frames actually displayed by
+the project count. Keep scenery high priority, artwork sources and CSS WebP fallback.
+Do not preload collection frames on project-detail/supporting screens. The hints
+belong to theme/composition delivery rather than factual project content.
+
+**Reason:** Network reports identified three high-priority decorative requests
+competing with the scenic LCP resource. The hints change those requests to Low
+without adding image transfers. Chronicle Home repeats 91 / 3.48–3.50s LCP in normal
+motion and 91 / 3.47–3.49s with reduced motion; Work repeats 90 / 3.57s. Project detail
+remains at 88. Measurements and scoped regression checks are in
+`PERFORMANCE-REVIEW.md`; reduced motion is independently verified inside the
+Lighthouse document and is not substituted for normal-motion acceptance.
+
+## D046 — Discover Chronicle case-study font early and lower panel priority
+
+**Decision, 2026-10-07:** Chronicle case-study composition hints its existing 600
+font weight at low priority and its visible compact panel frame at low priority
+below 901px. Home/Work retain their existing font policy; other modes are unchanged.
+The font binaries, typography, frames and motion timings remain intact. This refines
+D042's demand-loading rule for the case-study surface only.
+
+**Reason:** Case-study font 600 was discovered late at VeryHigh priority, while the
+panel frame also competed with the scenic banner. Font/panel hints preserve transfer
+and improve measured first paint from about 1.51s to 1.21s. Portfolio repeats 89 in
+normal motion and reaches 89 in reduced motion; the ≥90 case-study target remains
+open. Do not preload chapter-rail artwork: ordinary native loads may defer it.
+All three projects retain their original font/image request inventories in the
+native and hydrated comparisons. Results and limits are in `PERFORMANCE-REVIEW.md`.
+
+## D047 — Size Chronicle evidence for its reading columns
+
+**Decision, 2026-10-07:** Supply composition-owned responsive image size hints to
+Chronicle's case-study preview and supporting evidence, with a separate bound for
+full-width media blocks. Keep compression quality, sources, motion and native lazy
+loading unchanged. The semantic block renderer accepts an optional media size hint;
+project content remains independent of presentation.
+
+**Reason:** The generic 1200px estimate overstates narrow reading columns. Matched
+native 2×-density scrolling checks across the three projects reduce project-image
+body bytes by 16–29% on portrait phones and 24–32% on landscape phones. All selected
+variants cover displayed pixel density or the original source resolution. Desktop
+savings vary; Portfolio's reused full-width screenshot shows no saving. These are
+full-reading image comparisons, not total initial-page transfer reductions.
+
+Respect Tyler's quality and responsiveness constraint: no stricter image deferral
+or lower encoding quality for marginal score gains. Initial Lighthouse image bytes
+remain unchanged; normal/reduced Portfolio samples are 89/90, with ordinary run
+variance. Do not claim that this closes the normal-motion ≥90 target.
+
+## D048 — Localize site copy independently and share Contact resources
+
+**Decision, 2026-10-08:** Public page fields use required English and optional Japanese
+text, while common interface and accessibility messages use one typed dictionary.
+Resolve and mark each field's actual language independently, including progressive
+gallery, clipboard and diagram controls. Validate sources and interpolation tokens
+before builds. Keep project locale schemas and unpublished Japanese SEO policy intact.
+
+Contact methods and document entries are shared semantic data rendered by the existing
+four compositions. Approved email is primary, with verified professional profiles.
+Reserve English résumé, Japanese résumé and Japanese CV PDF/Word slots; emit native
+downloads only when reviewed files are supplied. No form service is introduced.
+
+**Reason:** Routing and project translations were ready, but page and interface strings
+had no Japanese slots. This closes that authoring gap without inventing translations
+or duplicating factual data per mode. Missing documents remain honest pending states.
+See `07-LOCALIZATION.md` and `CONTACT-CONTENT.md` for authoring and verification.

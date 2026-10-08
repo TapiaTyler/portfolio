@@ -1,6 +1,15 @@
-import type { ReactNode } from "react";
-import type { Project } from "@/lib/content/schema";
-import type { Locale } from "@/lib/i18n/locales";
+import {
+  messageLanguage,
+  interfaceCopy,
+  selectMessage,
+  type MessageId,
+  message,
+} from "@/lib/i18n/messages";
+import { Text } from "@/components/localized-text";
+
+import { type ReactNode } from "react";
+import { type Project } from "@/lib/content/schema";
+import { type Locale } from "@/lib/i18n/locales";
 import {
   resolveValue,
   resolveOptionalValue,
@@ -48,6 +57,7 @@ export function CaseStudyBlock({
   level = 2,
   anchorPrefix = "",
   assetUrl,
+  mediaSizes,
 }: {
   entry: SelectedBlock;
   project: Project;
@@ -55,6 +65,7 @@ export function CaseStudyBlock({
   level?: HeadingLevel;
   anchorPrefix?: string;
   assetUrl?: AssetUrl;
+  mediaSizes?: string;
 }) {
   const { block, translation } = entry;
   const id = `${anchorPrefix}${block.id}`;
@@ -64,7 +75,7 @@ export function CaseStudyBlock({
       {children}
     </BlockSection>
   );
-  const plainTitle = (title: string) => resolveValue(title, undefined, "en");
+  const plainTitle = (title: MessageId) => selectMessage(locale, title);
 
   switch (block.type) {
     case "intro": {
@@ -80,7 +91,9 @@ export function CaseStudyBlock({
       const translated =
         translation?.type === "problem" ? translation : undefined;
       return wrapper(
-        resolveValue(block.heading ?? "Problem", translated?.heading, locale),
+        block.heading
+          ? resolveValue(block.heading, translated?.heading, locale)
+          : selectMessage(locale, "Problem"),
         <RichText
           content={resolveValue(block.body, translated?.body, locale)}
           anchorPrefix={anchorPrefix}
@@ -92,7 +105,9 @@ export function CaseStudyBlock({
         translation?.type === "goals" ? translation : undefined;
       const items = resolveValue(block.items, translated?.items, locale);
       return wrapper(
-        resolveValue(block.heading ?? "Goals", translated?.heading, locale),
+        block.heading
+          ? resolveValue(block.heading, translated?.heading, locale)
+          : selectMessage(locale, "Goals"),
         <ul lang={items.lang}>
           {items.value.map((item, index) => (
             <li key={index}>{item}</li>
@@ -164,7 +179,7 @@ export function CaseStudyBlock({
           .map(({ label, value }) => (
             <div key={label}>
               <SectionHeading level={childLevel}>
-                <span lang="en">{label}</span>
+                <Text value={interfaceCopy(label)} locale={locale} />
               </SectionHeading>
               <RichText content={value!} anchorPrefix={anchorPrefix} />
             </div>
@@ -179,7 +194,7 @@ export function CaseStudyBlock({
         <section
           id={id}
           className="case-study-block"
-          aria-label="Project media"
+          aria-label={message(locale, "Project media")}
           aria-describedby={
             block.supportsBlockId
               ? `${anchorPrefix}${block.supportsBlockId}-heading`
@@ -188,7 +203,7 @@ export function CaseStudyBlock({
           data-motion-id={`block-${id}`}
           // Supporting evidence moves with its owner; it is never a reading anchor.
           data-motion-supporting={block.supportsBlockId ? "" : undefined}
-          lang="en"
+          lang={messageLanguage(locale, "Project media")}
         >
           <MediaFrame
             media={media}
@@ -199,6 +214,7 @@ export function CaseStudyBlock({
               locale,
             )}
             assetUrl={assetUrl}
+            sizes={mediaSizes}
           />
         </section>
       ) : null;
@@ -208,9 +224,9 @@ export function CaseStudyBlock({
         <section
           id={id}
           className="case-study-block"
-          aria-label="Project gallery"
+          aria-label={message(locale, "Project gallery")}
           data-motion-id={`block-${id}`}
-          lang="en"
+          lang={messageLanguage(locale, "Project gallery")}
         >
           <div className="media-gallery">
             {block.mediaIds.map((mediaId) => {
@@ -221,6 +237,7 @@ export function CaseStudyBlock({
                   media={media}
                   locale={locale}
                   assetUrl={assetUrl}
+                  sizes={mediaSizes}
                 />
               ) : null;
             })}
@@ -240,7 +257,9 @@ export function CaseStudyBlock({
         locale,
       );
       return wrapper(
-        resolveValue(block.title ?? "Architecture", translated?.title, locale),
+        block.title
+          ? resolveValue(block.title, translated?.title, locale)
+          : selectMessage(locale, "Architecture"),
         <>
           {diagram && <ArchitectureDisplay diagram={diagram} locale={locale} />}
           {explanation && (
@@ -277,7 +296,7 @@ export function CaseStudyBlock({
           .map(({ label, value }) => (
             <div key={label}>
               <SectionHeading level={childLevel}>
-                <span lang="en">{label}</span>
+                <Text value={interfaceCopy(label)} locale={locale} />
               </SectionHeading>
               <RichText content={value!} anchorPrefix={anchorPrefix} />
             </div>
