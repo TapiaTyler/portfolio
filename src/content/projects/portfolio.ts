@@ -12,6 +12,7 @@ const image = (
   caption: string,
   width = 1440,
   height = 1000,
+  label?: string,
 ) => ({
   id,
   type: "image" as const,
@@ -21,6 +22,7 @@ const image = (
   purpose: "process" as const,
   alt: { en: alt },
   caption: { en: caption },
+  ...(label ? { label: { en: label } } : {}),
 });
 
 /** Source-backed record; claims stay limited to what the repository and captures show. */
@@ -61,27 +63,48 @@ export const portfolioProject = {
   media: [
     image(
       "editorial-home",
-      "editorial-home-2026-10-07.png",
-      "Editorial homepage with an ink landscape, large serif headline and a lead project feature.",
-      "Editorial pairs an ink landscape and publication typography with a lead project story.",
+      "editorial-home-2026-10-08-refreshed.png",
+      "Editorial homepage with an ink landscape, large serif headline and publication-style navigation.",
+      "Editorial pairs an ink landscape with publication typography and generous whitespace.",
+      1440,
+      1000,
+      "Editorial",
     ),
     image(
       "engineer-home",
-      "engineer-home-2026-10-07.png",
+      "engineer-home-2026-10-08-refreshed.png",
       "Engineer homepage with a system-oriented introduction and structured technical panels.",
       "The same homepage facts in Engineer: system records, monospace metadata and denser grouping.",
+      1440,
+      1000,
+      "Engineer",
     ),
     image(
       "digital-home",
-      "digital-home-2026-10-07.png",
+      "digital-home-2026-10-08-refreshed.png",
       "Digital homepage with a spatial hero, atmospheric grid and cyan interface accents.",
       "The same homepage facts in Digital: spatial composition, layered surfaces and expressive responses.",
+      1440,
+      1000,
+      "Digital",
     ),
     image(
       "chronicle-home",
-      "chronicle-home-2026-10-07.png",
+      "chronicle-home-2026-10-08-refreshed.png",
       "Chronicle homepage on one landscape screen: scenic hero, a horizontal strip of framed project cards and a tab rail with the selected section.",
       "The same homepage facts in Chronicle: one landscape game screen with horizontal project selection and a tab rail.",
+      1440,
+      1000,
+      "Chronicle",
+    ),
+    image(
+      "product-home",
+      "product-home-2026-10-08-refreshed.png",
+      "Product homepage with a misty valley beside the introduction and a project list with a selected preview.",
+      "Product emphasizes project comparison, a selected preview and restrained feedback.",
+      1440,
+      1000,
+      "Product",
     ),
     image(
       "chronicle-before-home",
@@ -90,28 +113,6 @@ export const portfolioProject = {
       "Before: the first AI-assisted Chronicle build, captured October 3, with an empty project panel and conventional stacked disclosures.",
       1440,
       900,
-    ),
-    image(
-      "chronicle-landscape-home",
-      "chronicle-landscape-home-2026-10-07.png",
-      "Chronicle homepage on a landscape phone: identity in a left column beside one large project card, with dots and arrows above it.",
-      "Landscape phone: identity beside a horizontally selectable project strip, with dots and arrows above the cards.",
-      844,
-      390,
-    ),
-    image(
-      "chronicle-case-study",
-      "chronicle-case-study-2026-10-07.png",
-      "Chronicle case study: scenic project banner above a framed reading panel with a lit chapter rail on the left and evidence on the right.",
-      "Current case study: a chapter rail beside contained reading and supporting evidence in a screen-sized dossier.",
-    ),
-    image(
-      "chronicle-case-study-landscape",
-      "chronicle-case-study-landscape-2026-10-07.png",
-      "Chronicle case study on a landscape phone with title and chapter rail in a left column beside a full-height reading panel.",
-      "After, landscape phone: identity, Project at a Glance and the chapter rail share a column beside full-height reading.",
-      844,
-      390,
     ),
     {
       id: "chronicle-interactions",
@@ -131,31 +132,31 @@ export const portfolioProject = {
     {
       id: "theme-morphing",
       type: "video",
-      src: "/media/projects/portfolio/theme-morphing-2026-10-07.webm",
-      poster: "/media/projects/portfolio/theme-morphing-2026-10-07.png",
+      src: "/media/projects/portfolio/theme-morphing-2026-10-08.webm",
+      poster: "/media/projects/portfolio/theme-morphing-2026-10-08.png",
       width: 1440,
       height: 1000,
       purpose: "process",
       alt: {
-        en: "Local recording of Editorial changing to Engineer, Digital, Chronicle and back to Editorial, with matching modules moving and resizing.",
+        en: "Local recording of Product changing to Editorial, Engineer, Digital, Chronicle and back to Product, with matching modules moving and resizing.",
       },
       caption: {
-        en: "Live theme switching, recorded locally, including menu activation and server response time.",
+        en: "Product, Editorial, Engineer, Digital and Chronicle share one content source, with modules moving and resizing during theme changes. Silent local recording.",
       },
     },
     {
       id: "route-transitions",
       type: "video",
-      src: "/media/projects/portfolio/route-transitions-2026-10-07.webm",
-      poster: "/media/projects/portfolio/route-transitions-2026-10-07.png",
+      src: "/media/projects/portfolio/route-transitions-2026-10-08-refreshed.webm",
+      poster: "/media/projects/portfolio/route-transitions-2026-10-08-refreshed.png",
       width: 1440,
       height: 1000,
       purpose: "process",
       alt: {
-        en: "Header navigation to About and browser Back in Editorial, Engineer, Digital and Chronicle.",
+        en: "Header navigation to About and browser Back in Product, Editorial, Engineer, Digital and Chronicle.",
       },
       caption: {
-        en: "Header navigation and browser Back demonstrate page turns, record scans, spatial changes and chapter slides across four modes. Silent local recording.",
+        en: "Header navigation and browser Back across five modes: ordinary navigation, page turns, record scans, spatial changes and chapter slides. Silent local recording.",
       },
     },
   ],
@@ -172,7 +173,7 @@ export const portfolioProject = {
         {
           id: "composition",
           label: {
-            en: "Editorial / Engineer / Digital / Chronicle composition",
+            en: "Product / Editorial / Engineer / Digital / Chronicle composition",
           },
         },
         { id: "tokens", label: { en: "Theme tokens" } },
@@ -199,17 +200,17 @@ export const portfolioProject = {
   ],
   locale: {
     en: {
-      title: "One Portfolio, Several Ways of Reading It",
+      title: "One Portfolio, Five Perspectives",
       shortTitle: "Portfolio Presentation System",
       summary:
-        "A shared content system interpreted through Editorial, Engineer, Digital and Chronicle compositions, with visual systems and motion adapted to each mode.",
+        "A shared content system interpreted through Product, Editorial, Engineer, Digital and Chronicle compositions, with visual systems and motion adapted to each mode.",
       description:
         "A portfolio built around one content source and several ways of reading it. Shared semantic components support different compositions, visual systems and interactions without duplicating project narratives.",
       overview: {
         distinction:
           "One factual content source supports different compositions, with theme morphing, navigation transitions and interaction patterns tailored to each reading experience.",
         currentState:
-          "Editorial, Engineer, Digital and Chronicle are implemented and published. Final homepage copy, deployment, Japanese translations and deployed performance verification remain pending.",
+          "Five presentation modes are implemented, with Product as the default. Deployment, Japanese translations and deployed performance verification remain pending.",
       },
       blocks: [
         {
@@ -224,9 +225,9 @@ export const portfolioProject = {
         {
           id: "built",
           type: "intro",
-          heading: "Four complete ways to read one portfolio",
+          heading: "Five complete ways to read one portfolio",
           body: prose(
-            "Editorial, Engineer, Digital and Chronicle present the same projects, pages and case studies. Each mode has its own composition and navigation, while one typed content source supplies every fact, link and project.",
+            "Product, Editorial, Engineer, Digital and Chronicle present the same projects, pages and case studies. Each mode has its own composition and navigation, while one typed content source supplies every fact, link and project.",
             "Switching modes morphs the page in place, and each mode has its own page transitions and small responses. Motion is always an enhancement: links, forms and disclosures work without it.",
           ),
         },
@@ -234,12 +235,13 @@ export const portfolioProject = {
           id: "compositions",
           type: "gallery",
           mediaIds: [
+            "product-home",
             "editorial-home",
             "engineer-home",
             "digital-home",
             "chronicle-home",
           ],
-          relationship: "comparison",
+          relationship: "alternatives",
         },
         {
           id: "composition",
@@ -249,7 +251,7 @@ export const portfolioProject = {
             "A palette and font switch alone would leave the same hierarchy and project grid in place.",
           ),
           decision: prose(
-            "Editorial reads like a publication, with serif typography and narrative-led features. Engineer uses project records, metadata and a technical section overview. Digital uses spatial cards and layered media. Chronicle is a touch-first, landscape game screen with horizontal project selection.",
+            "Product emphasizes project comparison and decisions through a list and selected preview. Editorial reads like a publication, with serif typography and narrative-led features. Engineer uses project records, metadata and a technical section overview. Digital uses spatial cards and layered media. Chronicle is a touch-first, landscape game screen with horizontal project selection.",
           ),
           tradeoffs: prose(
             "Separate compositions need more responsive and accessibility review than a token-only switch; shared content and semantic components keep that maintainable.",
@@ -292,7 +294,7 @@ export const portfolioProject = {
             "The first, AI-assisted Chronicle build matched its reference images' palette and scenery but read as a conventional webpage: stacked boxed panels, collapsed sections and a vertical case study.",
           ),
           response: prose(
-            "Directed review rebuilt the composition rather than its colors: a screen-sized shell, a snapping horizontal project strip, contained case-study reading and dedicated landscape-phone layouts. Touch became the rule: 44px controls, whole cards as targets, and a first tap that selects while a second opens.",
+            "Directed review rebuilt the composition rather than its colors: a screen-sized shell, a snapping horizontal project strip, contained case-study reading and dedicated landscape-phone layouts. Generous touch targets and whole-card selection make browsing comfortable; a first tap selects a project and a second opens it.",
           ),
           result: prose(
             "The same project records now read as a game screen on desktop and phones, with content, URLs and native links unchanged.",
@@ -307,12 +309,7 @@ export const portfolioProject = {
         {
           id: "chronicle-iteration",
           type: "gallery",
-          mediaIds: [
-            "chronicle-before-home",
-            "chronicle-home",
-            "chronicle-landscape-home",
-            "chronicle-case-study",
-          ],
+          mediaIds: ["chronicle-before-home", "chronicle-home"],
           relationship: "comparison",
         },
         {
@@ -322,8 +319,8 @@ export const portfolioProject = {
           summary:
             "Theme-specific page transitions and microinteractions, reduced-motion behavior, the publication boundary, and how the system is verified.",
           body: prose(
-            "Theme morph geometry follows the destination: 560ms for Editorial, 360ms for Engineer, 680ms for Digital and 620ms for Chronicle, while text and surfaces swap in 180ms. A 1500ms capture timeout releases a slow snapshot; reduced motion, unsupported browsers and native forms switch immediately.",
-            "Each mode has its own navigation model. Editorial turns pages: horizontal turns follow chapter order and depth, and header links swing a top-bound page down from the front over 600ms. Engineer swaps records with a scan rule over 240ms. Digital expands a selected card into its detail view and contracts it on Back. Chronicle slides chapters by direction and unfolds an opened card into its case-study banner. Theme changes cancel route effects.",
+            "Theme morph geometry follows the destination: 280ms for Product, 560ms for Editorial, 360ms for Engineer, 680ms for Digital and 620ms for Chronicle, while text and surfaces swap in 180ms. A 1500ms capture timeout releases a slow snapshot; reduced motion, unsupported browsers and native forms switch immediately.",
+            "Each mode has its own navigation model. Product uses ordinary route navigation and restrained selection feedback. Editorial turns pages: horizontal turns follow chapter order and depth, and header links swing a top-bound page down from the front over 600ms. Engineer swaps records with a scan rule over 240ms. Digital expands a selected card into its detail view and contracts it on Back. Chronicle slides chapters by direction and unfolds an opened card into its case-study banner. Theme changes cancel route effects.",
             "Microinteractions follow the same split: Editorial disclosures fold from their top edge and reverse on closing, Engineer gives stepped feedback and inspectable diagrams, Digital uses pointer lighting and a carousel that expands from the selected image, and Chronicle deals cards, sweeps the selected frame with light and opens images through a crystal shape. Touch gets press feedback without mouse tracking, and reduced motion keeps every state legible without animation.",
             "Publication is a content boundary: drafts are validated but excluded from the public inventory, including direct slug lookup, and development previews read authoring records only behind an environment guard.",
             "Schema and unit tests, Playwright browser checks and automated accessibility scans cover the compositions, navigation and reduced-motion behavior. They do not establish full WCAG conformance or deployed performance. English is the source language; /en and /ja routes and field-level fallback exist, and Japanese translation is pending.",
@@ -340,8 +337,8 @@ export const portfolioProject = {
           id: "state",
           type: "result",
           body: prose(
-            "The same project content reads through four distinct compositions, connected by theme-switch morphing and extended by each mode's page transitions and small responses. Shared validation, publication controls and locale fallbacks let a new project join every mode without separate narratives.",
-            "The presentation system is implemented and published; final homepage copy, Japanese translations, deployment and performance acceptance are the next release steps.",
+            "The same project content reads through five distinct compositions, connected by theme-switch morphing and extended by each mode's navigation and small responses. Shared validation, publication controls and locale fallbacks let a new project join every mode without separate narratives.",
+            "The presentation system and English homepage copy are implemented. Japanese translations, deployment and deployed performance acceptance are the next release steps.",
           ),
         },
       ],

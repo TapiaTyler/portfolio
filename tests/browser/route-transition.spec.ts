@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({ context, baseURL }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
+});
+
 test("Engineer swaps records, scans its cyan rule and supports history and reduced motion", async ({
   page,
   context,

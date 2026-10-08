@@ -110,7 +110,8 @@ Before launch test:
 
 Test:
 
-- first visit defaults to Editorial;
+- first visit and invalid saved preferences default to Product;
+- desktop/mobile selector order is Product, Editorial, Engineer, Digital, Chronicle;
 - selecting Engineer persists;
 - reload preserves Engineer;
 - locale switch preserves Engineer;

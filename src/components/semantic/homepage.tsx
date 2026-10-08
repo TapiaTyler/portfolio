@@ -6,6 +6,8 @@ import { type Locale } from "@/lib/i18n/locales";
 import { type Project } from "@/lib/content/schema";
 import { Hero, type HeroContent } from "./hero";
 import { ProjectIndex } from "./project-index";
+import { ContactMethods } from "./contact-resources";
+import { contactMethods } from "@/content/contact";
 
 export interface HomepageContent {
   hero: HeroContent;
@@ -180,10 +182,20 @@ export function LabPreview({
 export function ContactClosing({
   content,
   locale,
+  actionAfterMethods = false,
 }: {
   content: HomepageContent["contact"];
   locale: Locale;
+  actionAfterMethods?: boolean;
 }) {
+  const action = (
+    <Link
+      className="text-link contact-closing__action"
+      href={`/${locale}/contact`}
+    >
+      <Text value={content.linkLabel} locale={locale} />
+    </Link>
+  );
   return (
     <section
       className="home-section contact-closing"
@@ -191,19 +203,19 @@ export function ContactClosing({
       aria-labelledby="contact-heading"
     >
       <div>
-        <p className="eyebrow">
-          <Text value={content.label} locale={locale} />
-        </p>
         <h2 id="contact-heading">
-          <Text value={content.title} locale={locale} />
+          <Text value={content.label} locale={locale} />
         </h2>
-        <Link className="text-link" href={`/${locale}/contact`}>
-          <Text value={content.linkLabel} locale={locale} />
-        </Link>
+        <p>
+          <Text value={content.title} locale={locale} />
+        </p>
+        <p>
+          <Text value={content.description} locale={locale} />
+        </p>
+        {!actionAfterMethods && action}
       </div>
-      <p>
-        <Text value={content.description} locale={locale} />
-      </p>
+      <ContactMethods methods={contactMethods} locale={locale} />
+      {actionAfterMethods && action}
     </section>
   );
 }

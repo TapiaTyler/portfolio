@@ -2,6 +2,18 @@ import type { LocalizedText } from "@/lib/i18n/copy";
 
 /** English source keys stay stable when wording is revised. Fill ja after review. */
 export const interfaceMessages = {
+  "Previous view": { en: "Previous view" },
+  "Next view": { en: "Next view" },
+  "Compare presentations": { en: "Compare presentations" },
+  "View {current} of {total}": { en: "View {current} of {total}" },
+  Product: { en: "Product" },
+  "Key decisions": { en: "Key decisions" },
+  Need: { en: "Need" },
+  Built: { en: "Built" },
+  "Focus areas": { en: "Focus areas" },
+  "Current state": { en: "Current state" },
+  Preview: { en: "Preview" },
+  "Selected project": { en: "Selected project" },
   Language: {
     en: "Language",
   },

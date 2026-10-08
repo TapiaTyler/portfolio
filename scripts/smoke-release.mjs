@@ -42,9 +42,9 @@ const server = spawn(
 server.stdout.pipe(log);
 server.stderr.pipe(log);
 const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-async function get(route, mode = "editorial") {
+async function get(route, mode) {
   return fetch(`${origin}${route}`, {
-    headers: { Cookie: `portfolio-mode=${mode}` },
+    headers: mode ? { Cookie: `portfolio-mode=${mode}` } : {},
     signal: AbortSignal.timeout(10_000),
   });
 }
@@ -67,9 +67,19 @@ try {
     await pause(250);
   }
   assert.ok(ready, "Production server did not become ready");
+  assert.ok(
+    (await (await get("/en")).text()).includes('data-theme="product"'),
+    "First visit defaults to Product",
+  );
   let home;
   let routeChecks = 0;
-  for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
+  for (const mode of [
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+  ]) {
     for (const route of [
       "/en",
       "/en/work",
@@ -103,7 +113,13 @@ try {
   for (const route of guardedRoutes) {
     assert.equal((await get(route)).status, 404, `Production guard ${route}`);
   }
-  for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
+  for (const mode of [
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+  ]) {
     for (const slug of ["nihonest", "portfolio", "japan-travel-planner"]) {
       assert.equal(
         (await get(`/en/work/${slug}`, mode)).status,

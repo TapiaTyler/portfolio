@@ -8,12 +8,19 @@ import { chromium } from "@playwright/test";
 
 // Keep this registry aligned with src/lib/theme/ids.ts. It is intentionally
 // local so the audit remains a plain Node script without a TypeScript loader.
-const registeredModes = ["editorial", "engineer", "digital", "chronicle"];
+const registeredModes = [
+  "product",
+  "editorial",
+  "engineer",
+  "digital",
+  "chronicle",
+];
 const modeLabels = {
   editorial: "Editorial",
   engineer: "Engineer",
   digital: "Digital",
   chronicle: "Chronicle",
+  product: "Product",
 };
 
 // Verify Lighthouse's measured document. This informational audit has zero
@@ -263,6 +270,10 @@ async function main() {
         reducedMotion: motion,
       });
       const page = await context.newPage();
+      // Use a fixed diagnostic starting point independent of the first-visit default.
+      await context.addCookies([
+        { name: "portfolio-mode", value: "editorial", url: origin },
+      ]);
       await page.goto(`${origin}/en`);
       await page.evaluate(() => document.fonts.ready);
       const switchSequence = modes.filter((mode) => mode !== "editorial");

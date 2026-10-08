@@ -1,4 +1,4 @@
-/** Provisional English sources with optional reviewed Japanese fields. */
+/** Shared English sources with optional reviewed Japanese fields. */
 import { interfaceMessages } from "./interface";
 import type { HomepageContent } from "@/components/semantic/homepage";
 import { identity } from "./identity";
@@ -8,7 +8,7 @@ export const homeHero = {
   title: { en: "Software Engineer" },
   emphasis: { en: "& Web Developer" },
   description: {
-    en: "This portfolio is being built. Project stories and final copy will be added after content review.",
+    en: "I design and build web applications, connecting clear interfaces with maintainable systems. Based in Hawaii, I'm preparing to continue my software engineering career in Japan.",
   },
   link: { label: { en: "Explore Work" }, destination: "/work" },
 };
@@ -68,7 +68,7 @@ export const homepageContent: HomepageContent = {
     linkLabel: { en: "Explore the Lab" },
   },
   contact: {
-    label: { en: "Start a Conversation" },
+    label: { en: "Contact" },
     title: {
       en: "Open to software engineering and web development roles in Japan.",
     },

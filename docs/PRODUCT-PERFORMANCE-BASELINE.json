@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-10-08T21:01:22.699Z",
+  "route": "/en",
+  "motion": "no-preference",
+  "node": "v24.21.0",
+  "lighthouse": "13.5.0",
+  "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+  "result": {
+    "observed": {
+      "type": "debugdata",
+      "reducedMotion": false,
+      "theme": "product"
+    },
+    "scores": {
+      "performance": 94,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 66
+    },
+    "fcpMs": 2117.6414999999997,
+    "lcpMs": 2717.6414999999997,
+    "tbtMs": 33,
+    "cls": 0.02107963541620156,
+    "transfer": {
+      "Script": 173851,
+      "Stylesheet": 14420,
+      "Font": 171532,
+      "Image": 36252
+    },
+    "fonts": [
+      "/fonts/product/source-serif-4-latin-normal.woff2",
+      "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+      "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+      "/fonts/product/ibm-plex-sans-latin-500-normal.woff2",
+      "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2"
+    ],
+    "findings": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "value": "2.1 s",
+        "score": 0.8
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "value": "2.7 s",
+        "score": 0.85
+      },
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "value": "2.1 s",
+        "score": 0.99
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "value": "120 ms",
+        "score": 0.93
+      },
+      {
+        "id": "server-response-time",
+        "title": "Initial server response time was short",
+        "value": "Root document took 120 ms",
+        "score": 1
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "value": "3.5 s",
+        "score": 0.92
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "value": "Est savings of 13 KiB",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "value": "Est savings of 1,350 ms",
+        "score": 0
+      }
+    ],
+    "warnings": []
+  },
+  "limits": "One initial Home sample before final secondary-page typography refinement; Work, case-study and reduced-motion performance remain unmeasured for Product. Preview indexing remains disabled. Route diagnostic timings are excluded."
+}

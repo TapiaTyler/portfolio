@@ -6,7 +6,11 @@ import {
   resolveThemePreference,
   themeCookieOptions,
 } from "../src/lib/theme/preference";
-import { themeRegistry, themeStyleSheet } from "../src/registries/themes";
+import {
+  themeOptions,
+  themeRegistry,
+  themeStyleSheet,
+} from "../src/registries/themes";
 import { resolveComposition } from "../src/registries/compositions";
 import { CaseStudy } from "../src/components/semantic/case-study";
 import { CaseStudyBlock } from "../src/components/semantic/case-study-block";
@@ -15,7 +19,7 @@ import { fixtureProjects } from "../src/content/fixtures/projects";
 import { projectSchema } from "../src/lib/content/schema";
 import { selectProjectContent } from "../src/lib/i18n/project-content";
 
-test("only registered modes are accepted and invalid saved preferences default to Editorial", () => {
+test("only registered modes are accepted and invalid saved preferences default to Product", () => {
   for (const id of themeIds) {
     assert.equal(isThemeId(id), true);
     assert.equal(resolveThemePreference(id), id);
@@ -24,7 +28,6 @@ test("only registered modes are accepted and invalid saved preferences default t
     undefined,
     null,
     "",
-    "product",
     "graphic",
     "ENGINEER",
     "<script>",
@@ -32,11 +35,23 @@ test("only registered modes are accepted and invalid saved preferences default t
     ["digital"],
   ]) {
     assert.equal(isThemeId(value), false);
-    assert.equal(resolveThemePreference(value), "editorial");
+    assert.equal(resolveThemePreference(value), "product");
   }
   assert.equal(themeCookieOptions.path, "/");
   assert.equal(themeCookieOptions.sameSite, "lax");
   assert.ok(themeCookieOptions.maxAge > 0);
+});
+
+test("presentation order and root token fallback match the Product default", () => {
+  const order = ["product", "editorial", "engineer", "digital", "chronicle"];
+  assert.deepEqual([...themeIds], order);
+  assert.deepEqual(
+    themeOptions.map(({ id }) => id),
+    order,
+  );
+  const css = themeStyleSheet();
+  assert.ok(css.includes(':root,[data-theme="product"]'));
+  assert.ok(!css.includes(':root,[data-theme="editorial"]'));
 });
 
 test("every mode satisfies the token contract and reduced motion overrides every scope", () => {

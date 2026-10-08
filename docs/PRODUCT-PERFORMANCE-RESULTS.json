@@ -1,0 +1,1215 @@
+{
+  "reviewDate": "2026-10-08",
+  "theme": "product",
+  "measurement": "One sequential local production Lighthouse mobile sample per route and motion preference; no overlapping build, lint, test, or audit work; browser contexts fresh, existing Next image cache retained.",
+  "scope": "Home, Work, and all three published case studies; normal and reduced motion verified inside each Lighthouse document.",
+  "baseline": "docs/PRODUCT-PERFORMANCE-BASELINE.json remains the historical first-pass sample before landscape and later refinements.",
+  "limitations": [
+    "Lab samples are not deployed or field Core Web Vitals.",
+    "Route/morph diagnostics use unthrottled local automation and include its overhead; RAF gaps are not GPU FPS or INP.",
+    "Single-run differences cannot be attributed to motion alone.",
+    "SEO remains 66 because preview indexing is intentionally disabled."
+  ],
+  "runs": [
+    {
+      "slug": "home",
+      "rawReportDirectory": ".cache/performance/product-refined-home-no-preference-2026-10-08",
+      "timestamp": "2026-10-08T22:11:52.208Z",
+      "label": "product-refined-home-no-preference-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1966.6860000000001,
+          "lcpMs": 2716.686,
+          "tbtMs": 18,
+          "cls": 0.001087850253380329,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 140891
+          },
+          "fonts": [
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.7 s",
+              "score": 0.85
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "90 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 140 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.9 s",
+              "score": 0.88
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,200 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "product",
+          "elapsedMs": 171,
+          "animationFinishedMs": 468,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "product",
+          "action": "about",
+          "contentReadyMs": 81,
+          "animationFinishedMs": 90,
+          "frameSamples": 4,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "product",
+          "action": "back",
+          "contentReadyMs": 12,
+          "animationFinishedMs": 13,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "home",
+      "rawReportDirectory": ".cache/performance/product-refined-home-reduce-2026-10-08",
+      "timestamp": "2026-10-08T22:12:05.141Z",
+      "label": "product-refined-home-reduce-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1061.017,
+          "lcpMs": 2731.5255,
+          "tbtMs": 20,
+          "cls": 0.001087850253380329,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 140891
+          },
+          "fonts": [
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2"
+          ],
+          "findings": [
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.7 s",
+              "score": 0.85
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "90 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 130 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.9 s",
+              "score": 0.88
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 28 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "lcp-discovery-insight",
+              "title": "LCP request discovery",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 300 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [
+        {
+          "to": "product",
+          "elapsedMs": 141,
+          "animationFinishedMs": 142,
+          "conditions": "local navigation; elapsedMs includes action, tree update and required fonts; animationFinishedMs also includes choreography; no artificial throttling"
+        }
+      ],
+      "routes": [
+        {
+          "mode": "product",
+          "action": "about",
+          "contentReadyMs": 74,
+          "animationFinishedMs": 83,
+          "frameSamples": 4,
+          "maxFrameGapMs": 17,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        },
+        {
+          "mode": "product",
+          "action": "back",
+          "contentReadyMs": 13,
+          "animationFinishedMs": 14,
+          "frameSamples": 0,
+          "maxFrameGapMs": 0,
+          "frameGapsOver50Ms": 0,
+          "longTaskCount": 0,
+          "maxLongTaskMs": 0,
+          "conditions": "1440x900; local production; no CPU/network throttling; includes automation overhead; RAF gaps are not compositor FPS or field INP"
+        }
+      ],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "work",
+      "rawReportDirectory": ".cache/performance/product-refined-work-no-preference-2026-10-08",
+      "timestamp": "2026-10-08T22:12:17.731Z",
+      "label": "product-refined-work-no-preference-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1965.1785,
+          "lcpMs": 2565.1785,
+          "tbtMs": 25,
+          "cls": 0.0346612518186441,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 111669
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.6 s",
+              "score": 0.88
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "100 ms",
+              "score": 0.96
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.7 s",
+              "score": 0.91
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,200 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "work",
+      "rawReportDirectory": ".cache/performance/product-refined-work-reduce-2026-10-08",
+      "timestamp": "2026-10-08T22:12:30.398Z",
+      "label": "product-refined-work-reduce-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1817.9955,
+          "lcpMs": 2492.9955,
+          "tbtMs": 18,
+          "cls": 0.0346612518186441,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 111669
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "1.8 s",
+              "score": 0.89
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.5 s",
+              "score": 0.9
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "90 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.6 s",
+              "score": 0.91
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,010 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "portfolio",
+      "rawReportDirectory": ".cache/performance/product-refined-portfolio-no-preference-2026-10-08",
+      "timestamp": "2026-10-08T22:12:43.074Z",
+      "label": "product-refined-portfolio-no-preference-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/portfolio",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1512.768,
+          "lcpMs": 2262.768,
+          "tbtMs": 15,
+          "cls": 0.031958556543458604,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 109232
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "1.5 s",
+              "score": 0.95
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.3 s",
+              "score": 0.94
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.99
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 130 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.1 s",
+              "score": 0.95
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 750 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "portfolio",
+      "rawReportDirectory": ".cache/performance/product-refined-portfolio-reduce-2026-10-08",
+      "timestamp": "2026-10-08T22:12:55.927Z",
+      "label": "product-refined-portfolio-reduce-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/portfolio",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1960.98,
+          "lcpMs": 2710.98,
+          "tbtMs": 15.5,
+          "cls": 0.031958556543458604,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 109228
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.7 s",
+              "score": 0.85
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.99
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.7 s",
+              "score": 0.9
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,060 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "japan-travel-planner",
+      "rawReportDirectory": ".cache/performance/product-refined-japan-travel-planner-no-preference-2026-10-08",
+      "timestamp": "2026-10-08T22:13:08.705Z",
+      "label": "product-refined-japan-travel-planner-no-preference-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/japan-travel-planner",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 93,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1812.696,
+          "lcpMs": 3092.58,
+          "tbtMs": 16,
+          "cls": 0.0004035133390239706,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 128178
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "1.8 s",
+              "score": 0.89
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "3.1 s",
+              "score": 0.75
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 130 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.7 s",
+              "score": 0.9
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 28 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,050 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "japan-travel-planner",
+      "rawReportDirectory": ".cache/performance/product-refined-japan-travel-planner-reduce-2026-10-08",
+      "timestamp": "2026-10-08T22:13:21.347Z",
+      "label": "product-refined-japan-travel-planner-reduce-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/japan-travel-planner",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 92,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1963.128,
+          "lcpMs": 3167.9399999999996,
+          "tbtMs": 16,
+          "cls": 0.0004035133390239706,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 128178
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "3.2 s",
+              "score": 0.73
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.7 s",
+              "score": 0.9
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 28 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "image-delivery-insight",
+              "title": "Improve image delivery",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,200 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "nihonest",
+      "rawReportDirectory": ".cache/performance/product-refined-nihonest-no-preference-2026-10-08",
+      "timestamp": "2026-10-08T22:13:33.924Z",
+      "label": "product-refined-nihonest-no-preference-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/nihonest",
+      "motion": "no-preference",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": false,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1962.864,
+          "lcpMs": 2637.864,
+          "tbtMs": 16.5,
+          "cls": 0.000422386550988035,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 93636
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "2.6 s",
+              "score": 0.87
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.6 s",
+              "score": 0.91
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0.5
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,210 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    },
+    {
+      "slug": "nihonest",
+      "rawReportDirectory": ".cache/performance/product-refined-nihonest-reduce-2026-10-08",
+      "timestamp": "2026-10-08T22:13:46.494Z",
+      "label": "product-refined-nihonest-reduce-2026-10-08",
+      "selectedModes": ["product"],
+      "route": "/en/work/nihonest",
+      "motion": "reduce",
+      "node": "v24.21.0",
+      "platform": "win32",
+      "lighthouse": "13.5.0",
+      "conditions": "Lighthouse default mobile simulated throttling; local production server; current typed content and published project inventory; indexing disabled unless configured",
+      "modes": {
+        "product": {
+          "observed": {
+            "type": "debugdata",
+            "reducedMotion": true,
+            "theme": "product"
+          },
+          "scores": {
+            "performance": 92,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 66
+          },
+          "fcpMs": 1962.396,
+          "lcpMs": 3168.33,
+          "tbtMs": 16.5,
+          "cls": 0.000422386550988035,
+          "transfer": {
+            "Script": 173993,
+            "Stylesheet": 15472,
+            "Font": 171532,
+            "Image": 93636
+          },
+          "fonts": [
+            "/fonts/product/ibm-plex-sans-latin-400-normal.woff2",
+            "/fonts/product/source-serif-4-latin-normal.woff2",
+            "/fonts/product/ibm-plex-sans-latin-600-normal.woff2",
+            "/_next/static/media/inter_latin_wght_normal-s.0gsaq8ukbf34m.woff2",
+            "/fonts/product/ibm-plex-sans-latin-500-normal.woff2"
+          ],
+          "findings": [
+            {
+              "id": "first-contentful-paint",
+              "title": "First Contentful Paint",
+              "value": "2.0 s",
+              "score": 0.85
+            },
+            {
+              "id": "largest-contentful-paint",
+              "title": "Largest Contentful Paint",
+              "value": "3.2 s",
+              "score": 0.73
+            },
+            {
+              "id": "speed-index",
+              "title": "Speed Index",
+              "value": "2.0 s",
+              "score": 0.99
+            },
+            {
+              "id": "max-potential-fid",
+              "title": "Max Potential First Input Delay",
+              "value": "80 ms",
+              "score": 0.98
+            },
+            {
+              "id": "server-response-time",
+              "title": "Initial server response time was short",
+              "value": "Root document took 120 ms",
+              "score": 1
+            },
+            {
+              "id": "interactive",
+              "title": "Time to Interactive",
+              "value": "3.6 s",
+              "score": 0.91
+            },
+            {
+              "id": "unused-javascript",
+              "title": "Reduce unused JavaScript",
+              "value": "Est savings of 28 KiB",
+              "score": 0
+            },
+            {
+              "id": "is-crawlable",
+              "title": "Page is blocked from indexing",
+              "score": 0
+            },
+            {
+              "id": "forced-reflow-insight",
+              "title": "Forced reflow",
+              "score": 0
+            },
+            {
+              "id": "legacy-javascript-insight",
+              "title": "Legacy JavaScript",
+              "value": "Est savings of 13 KiB",
+              "score": 0
+            },
+            {
+              "id": "network-dependency-tree-insight",
+              "title": "Network dependency tree",
+              "score": 0
+            },
+            {
+              "id": "render-blocking-insight",
+              "title": "Render-blocking requests",
+              "value": "Est savings of 1,200 ms",
+              "score": 0
+            }
+          ],
+          "warnings": []
+        }
+      },
+      "switches": [],
+      "routes": [],
+      "browser": "153.0.8010.12"
+    }
+  ]
+}

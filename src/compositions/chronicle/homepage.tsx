@@ -12,6 +12,8 @@ import {
 import { ChronicleHero } from "./hero";
 import { ChronicleCollection } from "./collection";
 import { ChronicleHomeTabs } from "./home-tabs";
+import { ContactMethods } from "@/components/semantic/contact-resources";
+import { contactMethods } from "@/content/contact";
 
 /**
  * Every tab panel shares one header grammar: the section name as an eyebrow,
@@ -36,9 +38,11 @@ function ChronicleTabSection({
       data-motion-id={id}
       aria-labelledby={`${id}-heading`}
     >
-      <p className="eyebrow">
-        <Text value={label} locale={locale} />
-      </p>
+      {id !== "contact" && (
+        <p className="eyebrow">
+          <Text value={label} locale={locale} />
+        </p>
+      )}
       <h2 id={`${id}-heading`}>
         <Text value={heading} locale={locale} />
       </h2>
@@ -158,11 +162,15 @@ export function ChronicleHomepage({
                 locale={locale}
                 id="contact"
                 label={contact.label}
-                heading={contact.title}
+                heading={contact.label}
               >
+                <p>
+                  <Text value={contact.title} locale={locale} />
+                </p>
                 <p>
                   <Text value={contact.description} locale={locale} />
                 </p>
+                <ContactMethods methods={contactMethods} locale={locale} />
               </ChronicleTabSection>
             ),
             action: { href: `/${locale}/contact`, label: contact.linkLabel },

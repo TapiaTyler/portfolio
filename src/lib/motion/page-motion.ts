@@ -3,6 +3,12 @@ import { setupMicrointeractions } from "./microinteractions";
 import { setupChronicleEntrance } from "./chronicle-entrance";
 
 export const motionProfiles = {
+  product: {
+    distance: 4,
+    duration: 200,
+    stagger: 20,
+    easing: "cubic-bezier(.2,.7,.2,1)",
+  },
   chronicle: {
     distance: 12,
     duration: 520,

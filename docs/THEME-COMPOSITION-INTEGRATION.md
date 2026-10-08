@@ -2,8 +2,9 @@
 
 ## Implemented boundary
 
-`src/lib/theme/ids.ts` defines the registered mode IDs (the three launch modes plus
-Chronicle) and the Editorial default.
+`src/lib/theme/ids.ts` defines the five registered mode IDs in selector order:
+Product, Editorial, Engineer, Digital, Chronicle. Product is the default (D050);
+valid saved choices take precedence. Root token fallbacks use the same default ID.
 `src/registries/themes.ts` maps each ID to a label, color scheme and typed token
 profile. Token categories cover typography, color, spacing, borders, radius,
 elevation, grid, imagery and motion. `ThemeStyles` emits the same stylesheet in

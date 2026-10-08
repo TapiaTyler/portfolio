@@ -119,7 +119,8 @@ Acceptance:
 
 ## Phase 6 — Editorial
 
-Editorial is first because it is the canonical/default experience.
+Editorial was implemented first as the original default experience. Product is now
+the first-visit default, approved in D050; this phase order records the original plan.
 
 Implement:
 

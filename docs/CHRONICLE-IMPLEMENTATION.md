@@ -1,5 +1,11 @@
 # Chronicle implementation
 
+Landscape collection refinement, 2026-10-08: project dots use adjacent 24 × 44px
+targets, with arrow controls retaining 44px targets. The Selected Work header
+reserves control space and omits its competing View All Work shortcut in this
+orientation; project-card navigation remains available. Verified heading clearance
+at 568, 667 and 844 pixels wide, and recaptured the 844 × 390 homepage.
+
 Initial implementation: 2026-10-03. Visual direction follows
 [the approved reference](design-reference/CHRONICLE-REFERENCE.md) and its homepage,
 project and mobile images. There is no source HTML prototype.
@@ -478,7 +484,10 @@ manifest and generator preserve provenance, dimensions and transparency. See
 
 The subsequent full-theme pass extends AVIF/WebP selection to all Chronicle
 artwork and every scenic preload. The same Cormorant Garamond font binaries now
-use conditional font faces, with weights 500/700 preloaded only for Chronicle.
+use conditional font faces, initially with weights 500/700 preloaded only for Chronicle.
+The 2026-10-08 refinement removes the explicit 500 hint after a reported unused
+preload warning; that face still loads on CSS demand. Heading 700 and the later
+case-study 600 hints remain in place.
 The all-theme inventory and regeneration workflow are in
 [IMAGE-DELIVERY.md](IMAGE-DELIVERY.md); no composition or motion changes were made.
 

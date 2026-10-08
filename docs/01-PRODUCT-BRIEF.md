@@ -10,7 +10,7 @@ The defining concept is not "a site with themes." It is:
 
 > **A shared semantic portfolio interpreted through multiple complete design and composition systems.**
 
-The site should remain excellent in its default Editorial mode even if a visitor never discovers the theme switcher.
+The site should remain excellent in its default Product mode even if a visitor never discovers the theme switcher.
 
 ## Primary purpose
 
@@ -116,7 +116,9 @@ It should not feel like:
 
 ## Default design direction
 
-The canonical/default mode is **Editorial**.
+The default mode is **Product**, approved on 2026-10-08 (D050). Presentation order:
+Product, Editorial, Engineer, Digital, Chronicle. Valid saved choices take precedence.
+The original Editorial direction below remains the visual grammar for that mode.
 
 Influences:
 

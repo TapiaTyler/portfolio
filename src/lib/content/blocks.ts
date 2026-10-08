@@ -54,7 +54,7 @@ export const caseStudyBlockSchema = z.discriminatedUnion("type", [
     type: z.literal("gallery"),
     mediaIds: z.array(idSchema).min(1),
     relationship: z
-      .enum(["sequence", "comparison", "details", "states"])
+      .enum(["sequence", "comparison", "alternatives", "details", "states"])
       .optional(),
   }),
   z.strictObject({

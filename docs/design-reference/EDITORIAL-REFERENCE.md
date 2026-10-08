@@ -4,7 +4,8 @@ Reference file: `editorial.html`
 
 ## Theme identity
 
-Editorial is the canonical/default portfolio experience.
+Editorial is the narrative-led portfolio experience. It was the original default;
+the owner selected Product as the default on 2026-10-08 (D050).
 
 The approved reference establishes a quiet, high-end editorial system with:
 

@@ -269,7 +269,7 @@ Production selector must switch the real composition/theme system.
 
 Requirements:
 
-- Editorial default;
+- Product default with valid saved selections preserved (D050);
 - persistence;
 - no severe flash/reflow;
 - keyboard accessibility;

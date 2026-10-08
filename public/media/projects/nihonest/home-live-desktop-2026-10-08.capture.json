@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-10-08T21:18:10.542Z",
+  "sourceUrl": "https://nihonest.vercel.app/",
+  "finalUrl": "https://nihonest.vercel.app/",
+  "file": "home-live-desktop-2026-10-08.png",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "deviceScaleFactor": 1,
+  "sha256": "751eec340e2f384083933e0649b6793f52f3f0cb5894268af8267ef277decb58",
+  "state": "Live English homepage in a fresh anonymous browser context; no account, personal data or saved preferences.",
+  "provenance": "Captured from the owner-supplied public deployment. No source code or rendered UI was altered. Reduced motion was requested for a stable still.",
+  "limitations": "A dated visual capture, not an application, content accuracy or performance audit. The deployment's source revision was not inferred."
+}

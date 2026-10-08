@@ -192,6 +192,7 @@ export function createRouteTransitionController() {
     cancel();
     if (from.pathname + from.search === to.pathname + to.search) return false;
     if (
+      theme === "product" ||
       !document.startViewTransition ||
       matchMedia("(prefers-reduced-motion: reduce)").matches ||
       document.querySelector(".motion-preview--reduced")

@@ -18,16 +18,15 @@ export function ThemeStyles({ theme }: { theme?: ThemeId } = {}) {
             media="(max-width: 900px)"
             fetchPriority="low"
           />
-          {[500, 700].map((weight) => (
-            <link
-              key={weight}
-              rel="preload"
-              as="font"
-              href={`/fonts/chronicle/cormorant-garamond-latin-${weight}-normal.woff2`}
-              type="font/woff2"
-              crossOrigin="anonymous"
-            />
-          ))}
+          {/* Only the heading face is hinted. Body text discovers weight 500
+              through CSS, avoiding an unused hint when its presentation changes. */}
+          <link
+            rel="preload"
+            as="font"
+            href="/fonts/chronicle/cormorant-garamond-latin-700-normal.woff2"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
           <link
             rel="preload"
             as="image"

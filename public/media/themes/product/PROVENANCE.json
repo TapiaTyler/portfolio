@@ -1,0 +1,60 @@
+{
+  "source": "docs/design-reference/product/assets/misty-sunrise-valley-source.png",
+  "originalFilename": "Misty Sunrise Valley with Railway and River.png",
+  "origin": "Generated with ChatGPT and supplied by the portfolio owner for Product on 2026-10-08.",
+  "usage": "Decorative landscape only; not a project screenshot, personal photograph, or verified location.",
+  "sourceSha256": "423e00e10e012e7b56c69717efa90f3ce5254a1242be505b40c675c991ef9746",
+  "width": 2172,
+  "height": 724,
+  "generator": "scripts/prepare-product-landscape.mjs",
+  "encoding": {
+    "avif": {
+      "quality": 65,
+      "chromaSubsampling": "4:4:4"
+    },
+    "webp": {
+      "quality": 86
+    },
+    "jpeg": {
+      "quality": 90
+    }
+  },
+  "delivery": "Hero picture: responsive AVIF first, WebP second, JPEG fallback; footer CSS image-set.",
+  "variants": [
+    {
+      "path": "public/media/themes/product/misty-valley-960.avif",
+      "width": 960,
+      "bytes": 28940
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-960.webp",
+      "width": 960,
+      "bytes": 42698
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-1600.avif",
+      "width": 1600,
+      "bytes": 70864
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-1600.webp",
+      "width": 1600,
+      "bytes": 104460
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-2172.avif",
+      "width": 2172,
+      "bytes": 112253
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-2172.webp",
+      "width": 2172,
+      "bytes": 166992
+    },
+    {
+      "path": "public/media/themes/product/misty-valley-1600.jpg",
+      "width": 1600,
+      "bytes": 139914
+    }
+  ]
+}

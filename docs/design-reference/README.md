@@ -15,6 +15,10 @@ the same production translation and content-source rules apply to these images.
 
 They are **design references, not production source code and not authoritative portfolio content**.
 
+Product is the authorized fifth mode. Its six handoff documents and five generated
+mockups live in [product/](product/README.md). The refined Decision Canvas homepage
+is primary; the original concept and mobile/detail explorations have lower precedence.
+
 ## What these references are authoritative for
 
 Treat the HTML files as high-priority references for:

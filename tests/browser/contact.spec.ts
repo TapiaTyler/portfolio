@@ -2,7 +2,13 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir } from "node:fs/promises";
 
-for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
+for (const mode of [
+  "editorial",
+  "engineer",
+  "digital",
+  "chronicle",
+  "product",
+]) {
   test(`${mode} Contact supports email, pending documents and both locale routes`, async ({
     page,
     context,
@@ -20,6 +26,8 @@ for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
       ]) {
         await page.setViewportSize(viewport);
         await page.goto(`/${locale}/contact`);
+        // Measure resting alignment rather than a link's pointer-hover transform.
+        await page.mouse.move(0, 0);
         await page.evaluate(() => document.fonts.ready);
         await page.waitForFunction(
           () =>
@@ -156,7 +164,13 @@ test("native Contact retains working links and all document states", async ({
   browser,
   baseURL,
 }) => {
-  for (const mode of ["editorial", "engineer", "digital", "chronicle"]) {
+  for (const mode of [
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+    "product",
+  ]) {
     const context = await browser.newContext({
       javaScriptEnabled: false,
       viewport: { width: 390, height: 844 },

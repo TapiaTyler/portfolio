@@ -1200,3 +1200,50 @@ Next: review the retained visuals and scrolling on a real phone and a deployed
 preview when deployment is authorized. Avoid further compression or loading-delay
 changes solely to raise Chronicle's score slightly; preserve its visual quality
 and responsive feel.
+
+### Product refined presentation — 2026-10-08
+
+Audited the current production build after the supplied landscape, microinteractions,
+Preview styling restoration, sticky header and Chronicle preload correction.
+Ten sequential Lighthouse 13.5.0 mobile audits cover Home, Work and all three
+published case studies. Each has normal and reduced motion, confirmed in the actual
+Lighthouse document. Browser contexts are fresh; the existing Next image cache is
+retained. No build, lint, test or competing audit ran during these measurements.
+
+| Product page | Performance normal / reduced | LCP normal / reduced | TBT normal / reduced | CLS both |
+| --- | --- | --- | --- | --- |
+| Home | 95 / 96 | 2.72s / 2.73s | 18ms / 20ms | 0.0011 |
+| Work | 95 / 96 | 2.57s / 2.49s | 25ms / 18ms | 0.0347 |
+| Portfolio | 98 / 95 | 2.26s / 2.71s | 15ms / 15.5ms | 0.0320 |
+| Japan Travel Planner | 93 / 92 | 3.09s / 3.17s | 16ms / 16ms | 0.0004 |
+| Nihonest | 95 / 92 | 2.64s / 3.17s | 16.5ms / 16.5ms | 0.0004 |
+
+Every sample meets the Performance ≥90 working target. Accessibility and Best
+Practices are 100 throughout; SEO is the intentional preview 66 because indexing
+is disabled. All ten reports have no Lighthouse run warnings. LCP still has room
+to improve, especially on Travel Planner; passing the overall score does not
+establish good field Core Web Vitals. These are single local samples, not repeated
+medians, and differences between motion modes cannot be assigned to motion alone.
+
+Home's prior first-pass sample was Performance 94 / LCP 2.72s / TBT 33ms /
+CLS 0.0211. The current normal sample is 95 / 2.72s / 18ms / 0.0011. Image transfer
+increased from 36,252 to 140,891 bytes with the landscape; this is not a controlled
+before/after comparison because other refinements also changed. The image remains
+AVIF-first at the approved quality; no visual-quality or loading-delay tradeoff
+was introduced during this audit pass.
+
+Local unthrottled Home interaction diagnostics: switching from Editorial into
+Product took 171ms to updated content and 468ms through the morph in normal motion,
+versus 141ms / 142ms reduced. About navigation took 81ms / 74ms to content and
+Back took 12ms / 13ms. No long tasks or RAF gaps over 50ms were observed in the
+short About/Back samples. These include automation overhead; Back recorded zero
+frame samples, so it provides no animation-frame evidence. They are not field INP
+or compositor FPS measurements.
+
+Tracked results and reproduction labels are in
+[PRODUCT-PERFORMANCE-RESULTS.json](PRODUCT-PERFORMANCE-RESULTS.json).
+Full HTML/JSON reports remain under ignored `.cache/performance/`, with labels
+`product-refined-{home,work,portfolio,japan-travel-planner,nihonest}-{no-preference,reduce}-2026-10-08`.
+The historical [PRODUCT-PERFORMANCE-BASELINE.json](PRODUCT-PERFORMANCE-BASELINE.json)
+is preserved. Next: verify Product on a real phone and, once deployment is
+authorized, measure the hosted build with the same quality and motion settings.

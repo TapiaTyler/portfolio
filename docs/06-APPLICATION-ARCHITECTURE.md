@@ -232,8 +232,8 @@ Benefits:
 
 Requirements:
 
-- default is Editorial;
-- persisted locally;
+- default is Product (D050);
+- persisted in a server-readable preference cookie; valid choices are preserved;
 - no account required;
 - optional URL style query;
 - avoid first-paint theme flash.

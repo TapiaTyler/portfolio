@@ -15,6 +15,8 @@ text. Geometry timing follows the destination mode:
 | Editorial   | 560 ms            | Restrained, settling ease  |
 | Engineer    | 360 ms            | Precise, quick response    |
 | Digital     | 680 ms            | More expressive continuity |
+| Chronicle   | 620 ms            | Luminous panel continuity  |
+| Product     | 280 ms            | Quiet, short settling ease |
 
 The content swap lasts 180 ms within the geometry animation. The selected
 composition is usable before the animation finishes; these durations are not
@@ -130,6 +132,9 @@ height changes between modes do not shift the reader. Supporting evidence
 while other modes place it below, which previously moved readers a whole section.
 Without a containing module, the nearest module keeps its distance from the reading
 line. Panel restores scroll instantly because reading panels use smooth scrolling.
+Document scroll positions round to device pixels: a narrative module within one
+pixel below the reading line still counts as current, with progress clamped to zero.
+This prevents repeated switches from selecting its enclosing group at the boundary.
 `tests/preview/chronicle-morphing.spec.ts` covers every surface and both directions.
 
 ## Contained reading and clipped modules — 2026-10-05

@@ -28,22 +28,11 @@ Theme composition decides how those facts and blocks are presented.
 
 ```ts
 type ProjectStatus =
-  | "active"
-  | "complete"
-  | "prototype"
-  | "planned"
-  | "archived";
+  "active" | "complete" | "prototype" | "planned" | "archived";
 
-type PublicationStatus =
-  | "draft"
-  | "published"
-  | "hidden";
+type PublicationStatus = "draft" | "published" | "hidden";
 
-type TranslationDepth =
-  | "none"
-  | "summary"
-  | "partial"
-  | "complete";
+type TranslationDepth = "none" | "summary" | "partial" | "complete";
 
 interface Project {
   slug: string;
@@ -190,7 +179,9 @@ Do not implement every type before needed.
 Bad:
 
 ```ts
-{ type: "left-image-right-text" }
+{
+  type: "left-image-right-text";
+}
 ```
 
 Better:
@@ -202,7 +193,9 @@ Better:
 Bad:
 
 ```ts
-{ type: "three-column-neon-panel" }
+{
+  type: "three-column-neon-panel";
+}
 ```
 
 Better:
@@ -293,9 +286,17 @@ interface MediaBlock {
 interface GalleryBlock {
   type: "gallery";
   mediaIds: string[];
-  relationship?: "sequence" | "comparison" | "details" | "states";
+  relationship?:
+    "sequence" | "comparison" | "alternatives" | "details" | "states";
 }
 ```
+
+Gallery relationship `alternatives` describes several versions of the same subject.
+The shared renderer offers one comparison stage with named selectors and previous/next
+controls; media can provide an optional localized `label`. Existing `comparison`
+galleries retain paired before/after evidence. Without JavaScript, alternatives remain
+a horizontally scrollable strip. There is no autoplay; captions and alt text stay
+attached to their images.
 
 ### Architecture
 
@@ -500,13 +501,9 @@ Use for:
 Prefer semantic blocks:
 
 ```mdx
-<Problem>
-  ...
-</Problem>
+<Problem>...</Problem>
 
-<Decision id="content-model">
-  ...
-</Decision>
+<Decision id="content-model">...</Decision>
 ```
 
 Avoid theme-specific classes in content.

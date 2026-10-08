@@ -84,8 +84,9 @@ review; initial Lighthouse image transfer did not change in this pass.
 ## Font discovery
 
 Chronicle retains the same Cormorant Garamond binaries and weights. Its conditional
-stylesheet declares local font faces, and its server-selected head preloads weights
-500 and 700. Case-study compositions also preload the unchanged 600 weight at low
+stylesheet declares local font faces, and its server-selected head preloads weight
+700. Weight 500 is discovered through CSS rather than explicitly preloaded, avoiding
+the reported unused-preload warning. Case-study compositions also preload the unchanged 600 weight at low
 priority; other Chronicle screens leave it demand-loaded. Other modes do not preload or request
 these files. Regenerate the public copies and license with
 `node scripts/sync-chronicle-fonts.mjs` after upgrading the source font package;

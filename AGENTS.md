@@ -12,19 +12,20 @@ The site is itself a major portfolio project.
 
 The key differentiator is a switchable presentation system where the exact same underlying project and case-study content can be reinterpreted by multiple complete visual/compositional modes.
 
-Launch modes:
+Registered modes in presentation order:
 
+- `product`
 - `editorial`
 - `engineer`
 - `digital`
+- `chronicle`
 
 Default mode:
 
-- `editorial`
+- `product`
 
 Future modes may include:
 
-- `product`
 - `graphic`
 
 Chronicle (`chronicle`) is an explicitly authorized additional mode as of
@@ -32,6 +33,12 @@ Chronicle (`chronicle`) is an explicitly authorized additional mode as of
 references, plus `docs/CHRONICLE-IMPLEMENTATION.md`. It has no reference HTML.
 
 Do not implement future modes unless explicitly asked.
+
+Product (`product`) is explicitly authorized as the fifth mode as of 2026-10-08.
+Use `docs/design-reference/product/` and `docs/PRODUCT-IMPLEMENTATION.md`.
+The refined Decision Canvas homepage governs visual direction; mobile/detail
+mockups are exploratory. Graphic remains unimplemented. Product is the default
+as explicitly approved on 2026-10-08 (D050); preserve valid saved preferences.
 
 ## 2. Central architecture
 

@@ -10,6 +10,7 @@ const styles = {
   engineer: dynamic(() => import("./styles/engineer")),
   digital: dynamic(() => import("./styles/digital")),
   chronicle: dynamic(() => import("./styles/chronicle")),
+  product: dynamic(() => import("./styles/product")),
 };
 export function ActiveThemeStyles({ theme }: { theme: ThemeId }) {
   const Styles = styles[theme];

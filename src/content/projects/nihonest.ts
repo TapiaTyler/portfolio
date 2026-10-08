@@ -74,8 +74,14 @@ export const nihonestProject = {
     testing:
       "Architecture checks across 677 production modules, TypeScript checking and 18 targeted tests pass. Browser-flow, database and performance testing are not yet part of the verification.",
   },
-  previewMediaId: "explore-desktop",
+  previewMediaId: "home-desktop",
   media: [
+    image(
+      "home-desktop",
+      "home-live-desktop-2026-10-08.png",
+      "Nihonest's English homepage with its introduction, Find my starting point action, optional personalization panel, and clarity, sources, and access principles.",
+      "The live homepage introduces public guidance and optional personalization. Captured October 8, 2026.",
+    ),
     image(
       "explore-desktop",
       "explore-desktop.png",

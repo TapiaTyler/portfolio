@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-10-08T23:16:16.166Z",
+  "route": "/en",
+  "width": 1440,
+  "height": 1000,
+  "sequence": [
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+    "product"
+  ],
+  "observations": [
+    {
+      "mode": "editorial",
+      "observedAt": "2026-10-08T23:16:01.771Z"
+    },
+    {
+      "mode": "engineer",
+      "observedAt": "2026-10-08T23:16:04.709Z"
+    },
+    {
+      "mode": "digital",
+      "observedAt": "2026-10-08T23:16:07.935Z"
+    },
+    {
+      "mode": "chronicle",
+      "observedAt": "2026-10-08T23:16:11.188Z"
+    },
+    {
+      "mode": "product",
+      "observedAt": "2026-10-08T23:16:14.035Z"
+    }
+  ],
+  "files": [
+    {
+      "file": "theme-morphing-2026-10-08.webm",
+      "bytes": 2187217,
+      "sha256": "d811abaf521b9ae795c79d8167176d0fd28b982c8730cd5736ee409af93014c2"
+    },
+    {
+      "file": "theme-morphing-2026-10-08.png",
+      "bytes": 714241,
+      "sha256": "7a9524dcd271d4096becf4b419d8d1d6004460ea45e65d38af7422f54e8e866b"
+    }
+  ],
+  "motion": "normal",
+  "note": "Unedited silent local recording with native theme controls and capture-only phase labels; coach mark dismissed and development badge hidden. Includes server response time and deliberate viewing pauses; not a benchmark."
+}

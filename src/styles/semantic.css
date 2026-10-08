@@ -1,4 +1,9 @@
 /* Shared semantic styling, with composition overrides in the scoped theme files. */
+@scope (:is([data-theme="product"], [data-theme="editorial"], [data-theme="digital"])) to ([data-theme]) {
+  [data-project-slug="portfolio"] .case-study-title__continuation {
+    display: block;
+  }
+}
 .case-study-orientation {
   margin-block: 1.5rem;
   min-width: 0;
@@ -275,6 +280,136 @@
 .media-gallery {
   display: grid;
   gap: 2rem;
+}
+.homepage [data-motion-id="contact"] .contact-methods {
+  width: min(100%, 44rem);
+  margin: 1rem auto 0;
+}
+.homepage
+  [data-motion-id="contact"]
+  .contact-methods
+  > li:first-child
+  > :is(h3, p) {
+  display: none;
+}
+.case-study .media-comparison {
+  min-width: 0;
+}
+@scope (:is([data-theme="digital"], [data-theme="chronicle"])) to ([data-theme]) {
+  .homepage [data-motion-id="contact"] .contact-methods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+  }
+  .homepage [data-motion-id="contact"] .contact-methods > li {
+    border: 0;
+    padding: 0;
+  }
+  .homepage [data-motion-id="contact"] .contact-methods :is(h3, .contact-copy) {
+    margin: 0;
+  }
+  .homepage [data-motion-id="contact"] .contact-methods p {
+    display: none;
+  }
+  .homepage [data-motion-id="contact"] .contact-method__action {
+    font-size: 1rem;
+    font-weight: 500;
+    background: transparent;
+    color: var(--text-primary);
+    border: 0;
+    padding: 0;
+  }
+}
+.case-study .media-comparison__controls {
+  display: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.case-study .media-comparison[data-enhanced] .media-comparison__controls {
+  display: flex;
+}
+.case-study .media-comparison__choices,
+.case-study .media-comparison__steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+.case-study .media-comparison button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.45rem 0.7rem;
+  font: inherit;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--rule);
+  cursor: pointer;
+}
+.case-study .media-comparison button:is(:hover, [aria-pressed="true"]) {
+  background: color-mix(in srgb, var(--text-primary) 9%, transparent);
+  border-color: currentColor;
+}
+.case-study .media-comparison button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.case-study .media-comparison__steps span {
+  padding-inline: 0.5rem;
+  font-size: 0.8rem;
+}
+.case-study .media-comparison__stage {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+.case-study .media-comparison__view {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.case-study .media-comparison__view[hidden] {
+  display: none;
+}
+.case-study .media-comparison[data-enhanced] .media-comparison__stage {
+  display: block;
+  overflow: visible;
+}
+.case-study .media-comparison .media-frame {
+  margin: 0;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+}
+.case-study .media-comparison .media-frame :is(img, video) {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(48vh, 30rem);
+  object-fit: contain;
+  margin-inline: auto;
+  justify-self: center;
+}
+.case-study .media-comparison .media-frame:has(> .media-view-trigger) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.case-study .media-comparison .media-frame > .media-view-trigger:not([hidden]) {
+  position: static;
+  display: block;
+  grid-area: 2 / 1;
+  margin: 0.5rem 0 0 auto;
+  color: var(--text-primary);
+  background-color: var(--surface-primary);
+  justify-self: end;
+}
+.case-study
+  .media-comparison
+  .media-frame:has(> .media-view-trigger)
+  > figcaption {
+  grid-area: 3 / 1;
 }
 .media-unavailable {
   border-block: 1px solid var(--rule);

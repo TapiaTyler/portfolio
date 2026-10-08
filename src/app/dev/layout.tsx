@@ -18,6 +18,7 @@ import "@/styles/microinteraction.css";
 import "@/styles/route-transition.css";
 import "@/styles/chronicle.css";
 import "@/styles/chronicle-header.css";
+import "@/styles/product.css";
 
 export const metadata: Metadata = {
   title: "Portfolio development preview",

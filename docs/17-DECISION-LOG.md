@@ -34,6 +34,8 @@ Treat these as locked defaults unless intentionally revisited.
 
 ## D005 — Editorial is default
 
+Superseded by D050 on 2026-10-08; retained below as the original decision.
+
 **Decision:** Editorial is the canonical/default experience.
 
 **Reason:** It must work for recruiters who never use the switcher.
@@ -480,6 +482,11 @@ faces and server-selected preloads for weights 500/700; 600 loads on demand. Oth
 modes do not preload Chronicle fonts. Public copies preserve the source license
 and hashes, regenerated from the installed font package.
 
+**Refinement, 2026-10-08:** Remove the explicit weight-500 preload after an
+unused-preload warning was reported. Its font face still loads through Chronicle
+CSS when rendered. Keep the heading weight-700 hint and the later case-study
+weight-600 hint (D046); font files and typography are unchanged.
+
 **Reason:** The first AVIF experiment reduced Chronicle transfer and LCP. Applying
 the same format policy to the remaining artwork avoids partial coverage without
 coupling project content to formats or themes. Conditional font preloads improve
@@ -590,3 +597,62 @@ downloads only when reviewed files are supplied. No form service is introduced.
 had no Japanese slots. This closes that authoring gap without inventing translations
 or duplicating factual data per mode. Missing documents remain honest pending states.
 See `07-LOCALIZATION.md` and `CONTACT-CONTENT.md` for authoring and verification.
+
+## D049 — Add Product as a fifth composition with ordinary route navigation
+
+**Decision, 2026-10-08:** Implement the owner-authorized Product mode from the
+Decision Canvas handoff in `design-reference/product/`. Preserve Editorial as
+default, existing project content and canonical routes. Desktop Home/Work use a
+flat project list with a separately selected preview; phone and no-JavaScript
+views retain ordinary direct project links. Selection does not alter history.
+
+Case studies group canonical decisions and pair supported evidence with their
+narrative, rather than borrowing Chronicle's contained chapter interface or
+Editorial's page turns. Product routes navigate normally. Theme changes retain
+shared semantic morphs, with a 280ms destination profile and reduced-motion fallback.
+Product typography uses local Source Serif 4 and IBM Plex Sans, loaded through
+the existing conditional mode stylesheet. Generated mockups remain documentation;
+authentic project images remain evidence. Missing scenic assets use the permitted
+text-only composition until isolated assets are supplied or created.
+
+**Reason:** The fifth mode should express project comparison and product decisions
+through organization and interaction while sharing the same underlying facts.
+Keeping preview selection separate from navigation preserves keyboard clarity,
+native links and usable phone layouts without a new routing/content framework.
+See `PRODUCT-IMPLEMENTATION.md` for this pass's limits and remaining visual review.
+
+## D050 — Product default and presentation order
+
+**Decision, 2026-10-08:** The owner approved Product, Editorial, Engineer, Digital,
+Chronicle as the selector order, with Product as the first-visit and invalid-preference
+default. This supersedes D005 and the default-preservation clause of D049, including
+older supplied design handoffs. Their visual/composition guidance still applies.
+
+Use `src/lib/theme/ids.ts` as the shared order/default source. Root CSS tokens follow
+that default rather than hardcoding Editorial. Valid preference cookies keep their
+existing selected mode; no migration or reset is performed. Server rendering and
+native no-JavaScript switching retain the same preference model and route identity.
+
+**Reason:** Product gives a clear first introduction through project comparison,
+case-study evidence and restrained navigation. Editorial provides the narrative
+alternative, followed by technical, spatial and game-inspired reading modes.
+All five remain equally available with unchanged factual content and URLs.
+
+**Verification:** 59 unit tests, production build, seven focused browser checks
+(first HTML, both locales, saved preferences, reduced motion, native mobile menus
+and repeated reading-position preservation) and release smoke checks pass.
+
+## D051 — Compact alternative-view evidence
+
+**Decision, 2026-10-08:** The owner requested a compact comparison of all five
+Portfolio theme screenshots while preserving Editorial as the project opening.
+Gallery relationship `alternatives` describes several versions of one subject;
+optional localized media labels identify them. The shared semantic renderer presents
+one bounded image stage, named selectors and previous/next controls in every mode.
+No autoplay; native horizontal scrolling provides the no-JavaScript fallback.
+Selecting evidence does not switch the site's active theme. Image viewers reveal
+the comparison view last inspected before measuring their closing destination.
+
+**Reason:** This preserves access to every presentation without a long screenshot
+stack or theme-specific content. Chronicle's challenge keeps its first/current home
+pair and interaction video; redundant phone and dossier views remain archived assets.

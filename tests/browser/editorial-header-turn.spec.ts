@@ -1,5 +1,11 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({ context, baseURL }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
+});
+
 test("Editorial header links and language flip from the top beneath the live header; theme selection cancels", async ({
   page,
 }) => {

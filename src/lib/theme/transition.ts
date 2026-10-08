@@ -175,7 +175,9 @@ function captureAnchor(): ReadingAnchor | undefined {
     .filter((element) => {
       if (element.hasAttribute("data-motion-supporting")) return false;
       const { top, bottom } = element.getBoundingClientRect();
-      return top <= threshold && bottom > threshold;
+      // Instant scroll positions round to device pixels. Treat a section within
+      // one pixel of the reading line as current rather than its enclosing group.
+      return top <= threshold + 1 && bottom > threshold;
     })
     .sort(
       (a, b) => b.getBoundingClientRect().top - a.getBoundingClientRect().top,
@@ -192,7 +194,7 @@ function captureAnchor(): ReadingAnchor | undefined {
   return {
     id: anchor.dataset.motionId!,
     offset: top - threshold,
-    progress: containing ? (threshold - top) / height : undefined,
+    progress: containing ? Math.max(0, (threshold - top) / height) : undefined,
   };
 }
 

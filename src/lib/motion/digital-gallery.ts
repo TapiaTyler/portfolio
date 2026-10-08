@@ -8,6 +8,16 @@ interface GalleryItem {
   failed: boolean;
 }
 
+function revealComparison(item: GalleryItem) {
+  item.figure
+    .closest(".media-comparison")
+    ?.dispatchEvent(
+      new CustomEvent("media-comparison-reveal", {
+        detail: item.figure.dataset.mediaId,
+      }),
+    );
+}
+
 /** Gallery navigation uses media identity; each selected image retains its page frame. */
 export function setupDigitalMedia() {
   const pageLanguage = document.documentElement.lang;
@@ -36,6 +46,7 @@ export function setupDigitalMedia() {
     viewer.dialog.remove();
     document.documentElement.style.overflow = viewer.overflow;
     if (restoreFocus && viewer.item.figure.isConnected) {
+      revealComparison(viewer.item);
       viewer.item.figure.scrollIntoView({
         block: "center",
         behavior: "instant",
@@ -234,6 +245,7 @@ export function setupDigitalMedia() {
         shut();
         return;
       }
+      revealComparison(viewer.item);
       viewer.item.figure.scrollIntoView({
         block: "center",
         behavior: "instant",

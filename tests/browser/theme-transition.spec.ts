@@ -111,7 +111,8 @@ test("theme changes animate matching geometry, retain focus and clean snapshot n
   for (const [index, mode, label] of [
     [0, "engineer", "Engineer"],
     [1, "digital", "Digital"],
-    [2, "editorial", "Editorial"],
+    [2, "product", "Product"],
+    [3, "editorial", "Editorial"],
   ] as const) {
     await select(page, label);
     await expect(page.locator("html")).toHaveAttribute("data-theme", mode);
@@ -238,7 +239,12 @@ test("slow server response releases snapshots without losing the requested mode"
 
 test("switching while reading keeps the corresponding section at the same viewport position", async ({
   page,
+  context,
+  baseURL,
 }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
   await observeTransitions(page);
   await page.goto("/en");
   await page.evaluate(() => document.fonts.ready);

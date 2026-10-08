@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/semantic/section-heading";
 import { ProjectLinks, ProjectMeta } from "@/components/semantic/project-meta";
 import { MediaFrame } from "@/components/semantic/media-frame";
 import { CaseStudyOrientation } from "@/components/semantic/case-study-orientation";
+import { CaseStudyTitle } from "@/components/semantic/case-study-title";
 
 export function DigitalCaseStudyIntro({
   content,
@@ -26,7 +27,7 @@ export function DigitalCaseStudyIntro({
         <UiText locale={locale} id="Project /" /> {project.slug}
       </p>
       <SectionHeading level={level}>
-        <span lang={content.title.lang}>{content.title.value}</span>
+        <CaseStudyTitle title={content.title} />
       </SectionHeading>
       {media && (
         <div className="digital-case-study-intro__media">

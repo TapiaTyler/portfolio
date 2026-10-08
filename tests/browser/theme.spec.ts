@@ -7,6 +7,62 @@ async function openPresentation(page: Page) {
   if (!open) await page.locator(".mode-picker:visible > summary").click();
 }
 
+test("first HTML uses Product by default and preserves every valid saved preference", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  for (const preference of [
+    undefined,
+    "invalid",
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+  ]) {
+    await context.clearCookies();
+    if (preference)
+      await context.addCookies([
+        { name: "portfolio-mode", value: preference, url: baseURL! },
+      ]);
+    const expected =
+      !preference || preference === "invalid" ? "product" : preference;
+    for (const locale of ["en", "ja"]) {
+      const response = await page.goto(`${baseURL}/${locale}`);
+      expect(await response!.text()).toContain(`data-theme="${expected}"`);
+      await expect(page.locator("html")).toHaveAttribute(
+        "data-theme",
+        expected,
+      );
+      await expect(page.locator("[data-composition]")).toHaveAttribute(
+        "data-composition",
+        expected,
+      );
+      await expect(
+        page.locator(".site-controls--desktop .theme-switcher button"),
+      ).toHaveText([
+        "Product",
+        "Editorial",
+        "Engineer",
+        "Digital",
+        "Chronicle",
+      ]);
+      await expect(
+        page.locator(".site-controls--mobile .theme-switcher button"),
+      ).toHaveText([
+        "Product",
+        "Editorial",
+        "Engineer",
+        "Digital",
+        "Chronicle",
+      ]);
+    }
+  }
+  await context.close();
+});
+
 test("switching persists across reload, routes and locales without hydration errors", async ({
   page,
   context,
@@ -17,11 +73,16 @@ test("switching persists across reload, routes and locales without hydration err
     if (message.type() === "error") errors.push(message.text());
   });
   await page.goto("/en");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "editorial");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "product");
+  await expect(
+    page.locator(".site-controls--desktop .theme-switcher button"),
+  ).toHaveText(["Product", "Editorial", "Engineer", "Digital", "Chronicle"]);
   for (const [id, label] of [
     ["engineer", "Engineer"],
     ["digital", "Digital"],
     ["editorial", "Editorial"],
+    ["chronicle", "Chronicle"],
+    ["product", "Product"],
   ]) {
     await openPresentation(page);
     await page.getByRole("button", { name: label, exact: true }).click();
@@ -105,17 +166,17 @@ test("invalid preference falls back and keyboard switching honors reduced motion
   ]);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/en");
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "editorial");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "product");
   await openPresentation(page);
   const engineer = page.getByRole("button", { name: "Engineer", exact: true });
   await engineer.evaluate((button: HTMLButtonElement) => {
     button.value = "unavailable";
   });
   await engineer.click();
-  await expect(page.getByRole("status")).toHaveText(
-    "Choose an available presentation mode.",
-  );
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "editorial");
+  await expect(
+    page.locator(".mode-picker:visible").getByRole("status"),
+  ).toHaveText("Choose an available presentation mode.");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "product");
   await engineer.evaluate((button: HTMLButtonElement) => {
     button.value = "engineer";
   });

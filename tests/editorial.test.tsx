@@ -26,7 +26,8 @@ test("homepage content and navigation are available in every mode without fixtur
       assert.ok(html.includes(copyText(text, "ja")));
     for (const destination of ["work", "about", "lab", "contact"])
       assert.ok(html.includes(`href="/ja/${destination}"`));
-    assert.doesNotMatch(html, /fixture-system|<img|mailto:/);
+    assert.doesNotMatch(html, /fixture-system|\/media\/fixtures\//);
+    assert.doesNotMatch(html, /class="[^"]*project-feature/);
     assert.equal((html.match(/<h1/g) ?? []).length, 1);
   }
 });

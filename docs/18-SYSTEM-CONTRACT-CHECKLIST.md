@@ -5,7 +5,7 @@ Use during implementation reviews.
 ## Product
 
 - [ ] Default experience works as a professional portfolio without theme switching.
-- [ ] Editorial is default.
+- [ ] Product is default; valid saved preferences retain their selected mode (D050).
 - [ ] Engineer is genuinely architecture/information-forward.
 - [ ] Digital is genuinely interaction/spatial-forward.
 - [ ] Project work remains the central focus.

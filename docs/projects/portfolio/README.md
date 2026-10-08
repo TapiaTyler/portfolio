@@ -2,14 +2,14 @@
 
 - [Discovery report](DISCOVERY.md): repository-backed source material, implemented/pending boundaries and evidence links.
 - [Iteration ledger](ITERATIONS.md): design feedback, rejected approaches and final interaction intent.
-- [Canonical English record](../../../src/content/projects/portfolio.ts): one published record interpreted by all four compositions; no Japanese narrative yet.
+- [Canonical English record](../../../src/content/projects/portfolio.ts): one published record interpreted by all five compositions; no Japanese narrative yet.
 - [Capture manifest](../../../public/media/projects/portfolio/capture-manifest.json): live images/video and explicitly labelled reconstruction provenance.
 
 Review locally at `/dev/projects/portfolio`. Use the theme picker to compare actual
 compositions and module morphing; `?locale=ja` reviews intentional English fallback.
 The development route returns 404 in production. The record is published and
 featured, with public routes /en/work/portfolio and /ja/work/portfolio (English
-fallback). Updated 2026-10-07.
+fallback). Updated 2026-10-08.
 
 To regenerate media while port 3218 is free:
 
@@ -63,7 +63,7 @@ everything else is captured live with reduced motion, plus one unedited recordin
 
 See [screenshot review](SCREENSHOT-REVIEW.md) for the current evidence inventory and refresh recommendations.
 
-## Current evidence refresh — 2026-10-07
+## Previous evidence refresh — 2026-10-07
 
 The active comparison/preview uses dated PNGs with the current ink Editorial design,
 three-project inventory and shared profile links. The Chronicle iteration gallery
@@ -86,3 +86,56 @@ stale optimized thumbnails, and the morphing poster is separate from the project
 preview. Previous scripts above describe older capture batches; they should not
 be used to regenerate the current set. See the preserved
 [evidence archive](evidence/pre-ink-refresh/README.md).
+
+## Current comparison and evidence edit — 2026-10-08
+
+The opening remains Editorial, contrasting with the Product default. Five fresh
+homepage screenshots share one bounded comparison stage, in the approved selector
+order. Named controls, previous/next buttons and arrow keys select the evidence
+without changing the site's theme. There is no autoplay; native horizontal scrolling
+keeps the whole comparison available without JavaScript. Digital/Chronicle image
+viewers return to the comparison image last inspected when closed.
+
+The Chronicle iteration gallery keeps only the authentic first-build/current-home
+pair, plus its existing interaction video. Extra phone and dossier screenshots are
+preserved as capture evidence but omitted from the published gallery. Landscape-phone
+headers use compact dots and reserve space for arrows, with clearance checked at
+568, 667 and 844 pixels wide.
+
+[Capture manifest](../../../public/media/projects/portfolio/presentations-2026-10-08-refreshed.capture.json)
+records dimensions, timestamps and hashes. To make a new batch against the running
+local server, choose a fresh stamp (existing files are protected):
+
+```sh
+node scripts/capture-portfolio-presentations.mjs http://localhost:3000 --stamp=2026-10-09
+```
+
+Update the record's media references after reviewing the resulting stills. The
+October 7 Chronicle recordings retain matching posters and their recorded sequences.
+Historical route and theme-switch recordings are preserved separately.
+
+## Five-mode recording and title — 2026-10-08
+
+The shared project title is now **One Portfolio, Five Perspectives**. Product,
+Editorial and Digital case-study headings place the second phrase on a new line;
+project-list titles retain natural wrapping. Editorial remains the opening screenshot.
+
+The current morphing video and matching Product poster are
+`theme-morphing-2026-10-08.webm` and `.png`. The unedited, silent 17.24-second recording
+visits Product → Editorial → Engineer → Digital → Chronicle → Product using native
+controls, normal motion and deliberate viewing pauses. Its `.capture.json` records
+the sequence, timestamps and file hashes; it is not a performance measurement.
+The prior four-mode video/poster remains unchanged.
+
+To capture a later version against an existing local server, choose a new stamp:
+
+```sh
+node scripts/capture-portfolio-theme-video.mjs http://localhost:3000 --stamp=2026-10-09
+```
+
+The current route demonstration is `route-transitions-2026-10-08-refreshed.webm`,
+with a matching Product poster and capture manifest. It shows header navigation
+to About and browser Back in Product, Editorial, Engineer, Digital and Chronicle.
+The silent 22.6-second recording uses ordinary Product navigation and each other
+mode's transition, with normal motion and native controls. Add `--routes` to the
+capture command to make a later route-navigation demonstration.

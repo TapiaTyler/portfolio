@@ -1,4 +1,8 @@
 /* Snapshot geometry moves independently of the live semantic DOM. */
+html[data-theme-transition-target="product"] {
+  --theme-transition-duration: 280ms;
+  --theme-transition-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 html[data-theme-transition-target="chronicle"] {
   --theme-transition-duration: 620ms;
   --theme-transition-ease: cubic-bezier(0.22, 1, 0.36, 1);

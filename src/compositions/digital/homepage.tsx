@@ -85,7 +85,11 @@ export function DigitalHomepage({
       </section>
       <CapabilityList locale={locale} content={content.capabilities} />
       <LabPreview content={content.lab} locale={locale} />
-      <ContactClosing content={content.contact} locale={locale} />
+      <ContactClosing
+        content={content.contact}
+        locale={locale}
+        actionAfterMethods
+      />
     </div>
   );
 }

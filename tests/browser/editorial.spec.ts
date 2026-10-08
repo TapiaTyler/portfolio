@@ -1,6 +1,12 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test.beforeEach(async ({ context, baseURL }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
+});
+
 test("Editorial keeps its hierarchy and locally served fonts across viewport sizes", async ({
   page,
 }, testInfo) => {

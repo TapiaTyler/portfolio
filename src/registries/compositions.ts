@@ -7,6 +7,7 @@ import { editorialComposition } from "@/compositions/editorial";
 import { engineerComposition } from "@/compositions/engineer";
 import { digitalComposition } from "@/compositions/digital";
 import { chronicleComposition } from "@/compositions/chronicle";
+import { productComposition } from "@/compositions/product";
 import type {
   CompositionProfile,
   PortfolioComposition,
@@ -18,6 +19,7 @@ export const compositionRegistry: Record<ThemeId, CompositionProfile> = {
   engineer: engineerComposition,
   digital: digitalComposition,
   chronicle: chronicleComposition,
+  product: productComposition,
 };
 
 export function resolveComposition(theme: ThemeId): PortfolioComposition {

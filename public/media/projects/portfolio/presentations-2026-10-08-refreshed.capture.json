@@ -1,0 +1,64 @@
+{
+  "entries": [
+    {
+      "file": "product-home-2026-10-08-refreshed.png",
+      "mode": "product",
+      "route": "/en",
+      "width": 1440,
+      "height": 1000,
+      "capturedAt": "2026-10-08T22:57:23.149Z",
+      "sha256": "55c174ec609818292e4f80d88878a9060c8a7052c5e73b52b05d4184562ae5c2",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    },
+    {
+      "file": "editorial-home-2026-10-08-refreshed.png",
+      "mode": "editorial",
+      "route": "/en",
+      "width": 1440,
+      "height": 1000,
+      "capturedAt": "2026-10-08T22:57:24.147Z",
+      "sha256": "4d60739c6bccb1e3a5873194dfdc006c681f6d43935b68681e6aa8c53a2c473b",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    },
+    {
+      "file": "engineer-home-2026-10-08-refreshed.png",
+      "mode": "engineer",
+      "route": "/en",
+      "width": 1440,
+      "height": 1000,
+      "capturedAt": "2026-10-08T22:57:25.118Z",
+      "sha256": "749611767e40c848f6a43398cc6ffe21d06db41812c98244f58f8c952bdb9239",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    },
+    {
+      "file": "digital-home-2026-10-08-refreshed.png",
+      "mode": "digital",
+      "route": "/en",
+      "width": 1440,
+      "height": 1000,
+      "capturedAt": "2026-10-08T22:57:26.222Z",
+      "sha256": "ddeef77bac4db97894b29aedca7e804051700412465624d5619f293ec6bb85bf",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    },
+    {
+      "file": "chronicle-home-2026-10-08-refreshed.png",
+      "mode": "chronicle",
+      "route": "/en",
+      "width": 1440,
+      "height": 1000,
+      "capturedAt": "2026-10-08T22:57:27.386Z",
+      "sha256": "35109ea4d7f10019259139c57fbdb3eba752e33a06feb41bc6a59b3c7cb6f11a",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    },
+    {
+      "file": "chronicle-landscape-home-2026-10-08-refreshed.png",
+      "mode": "chronicle",
+      "route": "/en",
+      "width": 844,
+      "height": 390,
+      "capturedAt": "2026-10-08T22:57:28.364Z",
+      "sha256": "2183b11f30350a7ae12edc3225055b8fe1107150c27a71addb2d3b998b416681",
+      "note": "Live local homepage, three published projects, reduced motion; no reconstructed layout."
+    }
+  ]
+}

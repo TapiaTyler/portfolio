@@ -22,6 +22,7 @@ const mediaFields = {
   src: assetSourceSchema,
   alt: localizedTextSchema,
   caption: localizedTextSchema.optional(),
+  label: localizedTextSchema.optional(),
   width: z.number().int().positive(),
   height: z.number().int().positive(),
   purpose: z.enum([

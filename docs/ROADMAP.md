@@ -4,6 +4,58 @@ Last updated: 2026-10-08.
 
 ## Current integration snapshot
 
+- [x] Simplify Digital/Chronicle homepage contact methods to inline links without
+      descriptions or separators; enlarge Digital's action and place it after the
+      links. Verify at 320, 390 and 1440px widths with no document overflow.
+
+- [x] Refresh the five-mode header-navigation/Back video with a matching Product
+      poster; extend Product's homepage Contact resources to every theme, including
+      Chronicle's Contact tab. Verify copy controls and profile links at desktop/phone widths.
+
+- [x] Rename the shared Portfolio project to One Portfolio, Five Perspectives;
+      break its case-study title after the comma in Product, Editorial and Digital.
+      Refresh the morphing video/poster for the five-mode order, returning to Product.
+      Preserve the prior recording and capture sequence/hash provenance.
+
+- [x] Keep Editorial as the Portfolio opening image; present five refreshed theme
+      screenshots in one comparison stage. Reduce Chronicle's challenge gallery to
+      its first/current home pair and retain the interaction recording. Fix landscape
+      heading clearance with compact dots and reserved control space.
+      Verify 59 unit tests, four focused browser checks, build and targeted lint;
+      inspect the comparison in every theme and on a phone.
+
+- [x] Adopt the approved order Product, Editorial, Engineer, Digital, Chronicle
+      and Product first-visit/invalid-preference default (D050). Preserve all valid
+      saved selections and align root token fallback with the configured default.
+      Verify 59 unit tests, seven focused production browser checks and the release
+      smoke matrix. Native mobile menus remain usable without JavaScript; reading
+      anchors tolerate device-pixel scroll rounding during repeated switches.
+
+- [x] Import the Product handoff and five renamed reference mockups; register the
+      authorized fifth mode, initially preserving Editorial as default (D049).
+- [x] Implement Product Home/Work list and desktop preview, vertical phone reading,
+      case-study decision/evidence grouping, and shared About/Lab/Contact surfaces.
+      Add conditional local serif/sans fonts, normal route navigation and shared morphs.
+- [x] Verify Product's first pass: 58 unit tests, eight targeted production browser
+      checks, 320–1440px overflow matrix and desktop/phone accessibility scans.
+      Build, lint and formatting pass. Initial mobile Home baseline: Performance 94,
+      Accessibility/Best Practices 100; preview indexing remains disabled. Preserve
+      first-pass Home/menu captures for future comparison.
+- [ ] Review Product's latest browser captures,
+      refine document-format pending states and finish visual/interaction acceptance.
+      See PRODUCT-IMPLEMENTATION.md; first implementation is not final approval.
+- [x] Integrate the owner-supplied Product landscape with responsive AVIF/WebP/JPEG
+      delivery and provenance; refine selection, button, disclosure and mobile-menu
+      feedback. Make temporary copy-to-check confirmation shared across all modes.
+- [x] Remeasure refined Product Home, Work and all three case studies in normal
+      and reduced motion: ten local mobile samples score Performance 92–98,
+      Accessibility/Best Practices 100, intentional preview SEO 66, with no run
+      warnings. Preserve exact metrics in PRODUCT-PERFORMANCE-RESULTS.json;
+      hosted/physical-device verification remains open.
+- [x] Pair related Product portrait evidence in decision/narrative groups and set
+      Nihonest's opening screenshot to a dated live-homepage capture. Preserve
+      historical local captures and the search-workflow evidence.
+
 - [x] Publish and feature Nihonest, Portfolio and Japan Travel Planner. Nihonest has
       a live Vercel link and private-source declaration; development remains active.
 - [x] Apply the published case-study contract (D040) to all three records and add
@@ -51,6 +103,8 @@ Last updated: 2026-10-08.
       source dimensions, conditional font loading and desktop/mobile fallback.
 - [x] Preload unchanged Chronicle font weights 500/700 only in that mode; preserve
       demand loading for 600 and cold theme-switch readiness.
+      Review refinement: weight 500 now loads through CSS after an unused-preload
+      warning; retain the heading 700 and case-study 600 hints (2026-10-08).
       Two final audits: Editorial 93–97, Engineer 96–99, Digital 94–97, Chronicle 89.
       Chronicle first paint is 1.21s; LCP remains 3.72–3.73s. Thirty-two production
       browser regressions passed; delivery policy is recorded in IMAGE-DELIVERY.md.

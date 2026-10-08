@@ -18,6 +18,8 @@ import {
 } from "@/lib/i18n/project-content";
 import { ArchitectureDisplay } from "./architecture-display";
 import { MediaFrame, type AssetUrl } from "./media-frame";
+import { MediaComparison } from "./media-comparison";
+import { resolveText } from "@/lib/i18n/project-content";
 import { RichText } from "./rich-text";
 import { SectionHeading, type HeadingLevel } from "./section-heading";
 import { TechnicalDetail } from "./technical-detail";
@@ -195,6 +197,7 @@ export function CaseStudyBlock({
           id={id}
           className="case-study-block"
           aria-label={message(locale, "Project media")}
+          role="group"
           aria-describedby={
             block.supportsBlockId
               ? `${anchorPrefix}${block.supportsBlockId}-heading`
@@ -225,23 +228,63 @@ export function CaseStudyBlock({
           id={id}
           className="case-study-block"
           aria-label={message(locale, "Project gallery")}
+          role="group"
           data-motion-id={`block-${id}`}
           lang={messageLanguage(locale, "Project gallery")}
         >
-          <div className="media-gallery">
-            {block.mediaIds.map((mediaId) => {
-              const media = project.media.find((media) => media.id === mediaId);
-              return media ? (
-                <MediaFrame
-                  key={mediaId}
-                  media={media}
-                  locale={locale}
-                  assetUrl={assetUrl}
-                  sizes={mediaSizes}
-                />
-              ) : null;
-            })}
-          </div>
+          {block.relationship === "alternatives" ? (
+            <MediaComparison
+              locale={locale}
+              items={block.mediaIds.flatMap((mediaId, index) => {
+                const media = project.media.find((item) => item.id === mediaId);
+                if (!media) return [];
+                const label = media.label
+                  ? resolveText(media.label, locale)
+                  : {
+                      value: message(locale, "View {current} of {total}", {
+                        current: index + 1,
+                        total: block.mediaIds.length,
+                      }),
+                      lang: messageLanguage(
+                        locale,
+                        "View {current} of {total}",
+                      ),
+                    };
+                return [
+                  {
+                    id: mediaId,
+                    label: label.value,
+                    lang: label.lang,
+                    content: (
+                      <MediaFrame
+                        media={media}
+                        locale={locale}
+                        assetUrl={assetUrl}
+                        sizes={mediaSizes}
+                      />
+                    ),
+                  },
+                ];
+              })}
+            />
+          ) : (
+            <div className="media-gallery">
+              {block.mediaIds.map((mediaId) => {
+                const media = project.media.find(
+                  (media) => media.id === mediaId,
+                );
+                return media ? (
+                  <MediaFrame
+                    key={mediaId}
+                    media={media}
+                    locale={locale}
+                    assetUrl={assetUrl}
+                    sizes={mediaSizes}
+                  />
+                ) : null;
+              })}
+            </div>
+          )}
         </section>
       );
     }

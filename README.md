@@ -1,8 +1,8 @@
 # Portfolio — Multiple Ways of Reading the Same Work
 
 A professional portfolio for Tyler Tetsuo Tapia, built as a project in its own
-right. One canonical content model is presented through four distinct reading
-experiences: Editorial, Engineer, Digital and the new Chronicle implementation.
+right. One canonical content model is presented through five distinct reading
+experiences: Product, Editorial, Engineer, Digital and Chronicle.
 
 The project separates facts and narrative from their composition, visual language
 and motion. Switching presentation changes hierarchy, density and interaction
@@ -10,17 +10,22 @@ while preserving the content, project URLs and essential navigation.
 
 ## Presentation modes
 
-| Mode                    | Reading model                                                              | Interaction character                                                                                 |
-| ----------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| **Editorial** (default) | Narrative, typography, imagery and controlled whitespace                   | Page turns, unfolding disclosures, quiet link/image responses and reading progress                    |
-| **Engineer**            | System records, architecture, implementation and decision detail           | Record-change scans, directory-style section navigation, code copying and diagram inspection          |
-| **Digital**             | Spatial composition, layered media and visual continuity                   | Card-to-project expansion, image-gallery expansion/contraction, pointer lighting and animated borders |
-| **Chronicle**           | Chapter-based discovery, horizontal project selection and a linked preview | Luminous selected frames, panel changes, scenic artwork and a chapter archive                         |
+| Mode                  | Reading model                                                                | Interaction character                                                                                 |
+| --------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Product** (default) | Project comparison, a selected desktop preview and evidence-led case studies | Quiet selection feedback, ordinary route navigation and short theme morphs                            |
+| **Editorial**         | Narrative, typography, imagery and controlled whitespace                     | Page turns, unfolding disclosures, quiet link/image responses and reading progress                    |
+| **Engineer**          | System records, architecture, implementation and decision detail             | Record-change scans, directory-style section navigation, code copying and diagram inspection          |
+| **Digital**           | Spatial composition, layered media and visual continuity                     | Card-to-project expansion, image-gallery expansion/contraction, pointer lighting and animated borders |
+| **Chronicle**         | Chapter-based discovery, horizontal project selection and a linked preview   | Luminous selected frames, panel changes, scenic artwork and a chapter archive                         |
 
 Theme switching morphs matching semantic modules between compositions, preserves
 reading position and handles interruption. Route effects also cover internal links,
 language changes and browser history. Keyboard, touch and reduced-motion behavior
 are part of the implementation; motion is an optional enhancement.
+
+The selector follows the table order. New visitors and invalid saved preferences
+use Product; valid saved selections retain their chosen mode across reloads,
+routes and locales. See D050 in [the decision log](docs/17-DECISION-LOG.md).
 
 See [theme morphing](docs/THEME-TRANSITIONS.md),
 [theme-specific interactions](docs/THEME-MOTION.md) and
@@ -30,7 +35,12 @@ See [theme morphing](docs/THEME-TRANSITIONS.md),
 
 As of **October 8, 2026**:
 
-- Home, Work, project detail, About, Lab and Contact have compositions for all four modes.
+- Home, Work, project detail, About, Lab and Contact have compositions for all five modes.
+- Product's first implementation follows the Decision Canvas references: a flat
+  desktop work list with a separate preview, normal vertical phone reading, and
+  narrative/evidence case-study columns. The supplied misty-valley scenery and
+  restrained interactions are implemented; final visual review remains open.
+  See [Product implementation](docs/PRODUCT-IMPLEMENTATION.md).
 - Three English case studies are published and featured: Nihonest, Portfolio and
   Japan Travel Planner, in that display order.
 - Editorial now uses an ink landscape, sparse brush/seal artwork, a lead-story
@@ -41,8 +51,8 @@ As of **October 8, 2026**:
 - Theme morphing preserves reading position and clips snapshots inside contained
   reading panels, with a fallback when nested groups are unsupported.
 - About includes background, education, skills, languages and working approach.
-  GitHub and LinkedIn profiles are available in the header and footer. Final opening
-  copy remains open.
+  GitHub and LinkedIn profiles are available in the header and footer. The shared
+  hero description introduces the work, Hawaii base and career direction in Japan.
 - Contact offers email, LinkedIn and GitHub in all modes. English résumé, Japanese
   résumé and Japanese CV entries reserve PDF/Word files for later delivery; see
   [Contact authoring](docs/CONTACT-CONTENT.md).
@@ -222,6 +232,13 @@ npm run audit:performance -- --label=portfolio-current --route=/en/work/portfoli
 npm run audit:performance -- --label=current-reduced --motion=reduce
 ```
 
+Product's October 8 audits cover Home, Work and all three published case studies
+in normal and reduced motion: **Performance 92–98**, **Accessibility 100**,
+**Best Practices 100**, and intentional preview **SEO 66**. Every sample confirms
+its motion preference and has no Lighthouse run warnings. LCP ranges from
+**2.26–3.17s**; these are single local production mobile samples, not field metrics.
+Exact results are in [Product performance results](docs/PRODUCT-PERFORMANCE-RESULTS.json).
+
 Earlier October 7 populated production audits (two runs) measured Performance
 **93–97** for Editorial, **96–99** for Engineer, **94–97** for Digital and **89** for
 Chronicle. Responsive artwork, loading priority and AVIF delivery reduced Chronicle
@@ -344,7 +361,9 @@ visual source material, not production React code or verified portfolio content.
 Preserve content, URLs, semantic reading logic and essential destinations across
 modes. Theme-specific composition must remain more than token changes. New block
 types need a shared semantic fallback; normal projects must not need theme edits.
-Future Product and Graphic modes remain outside V1 scope.
+Product was authorized as a fifth mode on October 8, 2026; its
+[handoff and mockups](docs/design-reference/product/README.md) are preserved in
+the reference library. Graphic remains unimplemented and outside the current scope.
 
 [ROADMAP.md](docs/ROADMAP.md) tracks completed integration and remaining review.
 The planned implementation sequence is retained separately in

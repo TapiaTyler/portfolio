@@ -1,0 +1,26 @@
+import type { ThemeTokens } from "../contract";
+
+export const productTokens = {
+  "surface-primary": "#f7f6f2",
+  "surface-secondary": "#eaefe8",
+  "text-primary": "#172332",
+  "text-muted": "#4e5661",
+  accent: "#304a35",
+  "status-planning": "#4e5661",
+  "border-subtle": "#d7d9d2",
+  "focus-ring": "#193e72",
+  "font-display": '"Product Serif", Georgia, serif',
+  "font-body": '"Product Sans", var(--font-interface, Arial), sans-serif',
+  "font-mono": '"Cascadia Code", Consolas, monospace',
+  "space-section": "clamp(2.5rem, 5vw, 4rem)",
+  "space-content": "1.5rem",
+  "radius-control": "3px",
+  "border-width": "1px",
+  "elevation-panel": "0 8px 24px rgb(23 35 50 / 6%)",
+  "grid-max-width": "82rem",
+  "grid-gap": "2rem",
+  "image-filter": "none",
+  "motion-fast": "140ms",
+  "motion-slow": "220ms",
+  "motion-ease": "cubic-bezier(.2,.7,.2,1)",
+} satisfies ThemeTokens;

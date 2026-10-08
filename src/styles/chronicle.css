@@ -1,5 +1,5 @@
-/* Public sources allow just the two above-fold weights to be preloaded when
-   Chronicle is active; the less common 600 weight remains demand-loaded. */
+/* The heading face is hinted only for Chronicle; body weight 500 loads through
+   CSS. Case studies separately hint their subheading weight 600. */
 @font-face {
   font-family: "Portfolio Chronicle";
   src: url("/fonts/chronicle/cormorant-garamond-latin-500-normal.woff2")
@@ -2334,6 +2334,9 @@
   .chronicle-homepage .chronicle-home-tabs .text-link {
     display: none;
   }
+  .chronicle-homepage .chronicle-home-tabs .contact-method__action {
+    display: inline-flex;
+  }
   .chronicle-home-tabs h2 {
     font-size: clamp(1.6rem, 2.2vw, 2.3rem);
     margin: 0 0 0.6rem;
@@ -2495,6 +2498,25 @@
     .chronicle-homepage .selected-work {
       grid-column: 2;
       grid-row: 1;
+    }
+    .chronicle-selection__dots {
+      margin-right: 0;
+    }
+    .chronicle-selection__dots button {
+      width: 24px;
+      min-width: 24px;
+      height: 44px;
+    }
+    .chronicle-homepage .selected-work .home-section-header {
+      right: 0;
+      padding-right: 190px;
+    }
+    .chronicle-homepage .selected-work .home-section-header h2 {
+      max-width: 100%;
+      line-height: 1.35;
+    }
+    .chronicle-homepage .selected-work .home-section-header .text-link {
+      display: none;
     }
     .chronicle-homepage .chronicle-selection__item {
       flex-basis: calc(100% - 52px);

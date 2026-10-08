@@ -154,7 +154,13 @@ test("every theme AVIF decodes at the retained source dimensions", async ({
   }
 });
 
-for (const theme of ["editorial", "engineer", "digital", "chronicle"]) {
+for (const theme of [
+  "editorial",
+  "engineer",
+  "digital",
+  "chronicle",
+  "product",
+]) {
   test(`${theme} only preloads Chronicle fonts when needed`, async ({
     browser,
     baseURL,
@@ -178,7 +184,10 @@ for (const theme of ["editorial", "engineer", "digital", "chronicle"]) {
       await page
         .locator('link[rel="preload"][as="font"][href*="/fonts/chronicle/"]')
         .count(),
-    ).toBe(theme === "chronicle" ? 2 : 0);
+    ).toBe(theme === "chronicle" ? 1 : 0);
+    await expect(
+      page.locator('link[rel="preload"][href*="cormorant-garamond-latin-500"]'),
+    ).toHaveCount(0);
     expect(fonts.length).toBe(theme === "chronicle" ? 2 : 0);
     expect(new Set(fonts).size).toBe(fonts.length);
     await context.close();

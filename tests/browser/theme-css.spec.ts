@@ -13,7 +13,13 @@ async function styleSignature(page: Page) {
   }));
 }
 
-for (const target of ["editorial", "engineer", "digital", "chronicle"]) {
+for (const target of [
+  "editorial",
+  "engineer",
+  "digital",
+  "chronicle",
+  "product",
+]) {
   test(`cold ${target} styles are ready before the morph snapshot`, async ({
     page,
     context,

@@ -1,0 +1,89 @@
+{
+  "capturedAt": "2026-10-08T23:26:58.515Z",
+  "route": "/en",
+  "width": 1440,
+  "height": 1000,
+  "sequence": [
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle"
+  ],
+  "observations": [
+    {
+      "mode": "product",
+      "action": "Header navigation",
+      "route": "/en/about",
+      "observedAt": "2026-10-08T23:26:39.662Z"
+    },
+    {
+      "mode": "product",
+      "action": "Browser Back",
+      "route": "/en",
+      "observedAt": "2026-10-08T23:26:41.091Z"
+    },
+    {
+      "mode": "editorial",
+      "action": "Header navigation",
+      "route": "/en/about",
+      "observedAt": "2026-10-08T23:26:43.994Z"
+    },
+    {
+      "mode": "editorial",
+      "action": "Browser Back",
+      "route": "/en",
+      "observedAt": "2026-10-08T23:26:45.426Z"
+    },
+    {
+      "mode": "engineer",
+      "action": "Header navigation",
+      "route": "/en/about",
+      "observedAt": "2026-10-08T23:26:48.092Z"
+    },
+    {
+      "mode": "engineer",
+      "action": "Browser Back",
+      "route": "/en",
+      "observedAt": "2026-10-08T23:26:49.531Z"
+    },
+    {
+      "mode": "digital",
+      "action": "Header navigation",
+      "route": "/en/about",
+      "observedAt": "2026-10-08T23:26:52.480Z"
+    },
+    {
+      "mode": "digital",
+      "action": "Browser Back",
+      "route": "/en",
+      "observedAt": "2026-10-08T23:26:53.916Z"
+    },
+    {
+      "mode": "chronicle",
+      "action": "Header navigation",
+      "route": "/en/about",
+      "observedAt": "2026-10-08T23:26:56.863Z"
+    },
+    {
+      "mode": "chronicle",
+      "action": "Browser Back",
+      "route": "/en",
+      "observedAt": "2026-10-08T23:26:58.296Z"
+    }
+  ],
+  "files": [
+    {
+      "file": "route-transitions-2026-10-08-refreshed.webm",
+      "bytes": 3186485,
+      "sha256": "726b6026b9df913fa0c33f2443a570fc635e240c8baa787ab8e5058dd2210a2d"
+    },
+    {
+      "file": "route-transitions-2026-10-08-refreshed.png",
+      "bytes": 714321,
+      "sha256": "603f7792b075f9029820a9d7642402f9d6a074a43b80bab833c980346bddf45f"
+    }
+  ],
+  "motion": "normal",
+  "note": "Unedited silent local recording with native theme controls and capture-only phase labels; coach mark dismissed and development badge hidden. Includes server response time and deliberate viewing pauses; not a benchmark."
+}

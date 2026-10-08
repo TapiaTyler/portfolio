@@ -1,9 +1,10 @@
-import { themeIds, type ThemeId } from "@/lib/theme/ids";
+import { defaultTheme, themeIds, type ThemeId } from "@/lib/theme/ids";
 import type { ThemeTokens } from "@/themes/contract";
 import { editorialTokens } from "@/themes/editorial/tokens";
 import { engineerTokens } from "@/themes/engineer/tokens";
 import { digitalTokens } from "@/themes/digital/tokens";
 import { chronicleTokens } from "@/themes/chronicle/tokens";
+import { productTokens } from "@/themes/product/tokens";
 
 interface ThemeDefinition {
   label: string;
@@ -24,6 +25,7 @@ export const themeRegistry = {
     colorScheme: "light",
     tokens: chronicleTokens,
   },
+  product: { label: "Product", colorScheme: "light", tokens: productTokens },
 } satisfies Record<ThemeId, ThemeDefinition>;
 
 // Only labels and IDs enter the switcher's client bundle; tokens stay on the server.
@@ -40,7 +42,7 @@ export function themeStyleSheet() {
         .map(([key, value]) => `--${key}:${value};`)
         .join("");
       const selector =
-        id === "editorial"
+        id === defaultTheme
           ? `:root,[data-theme="${id}"]`
           : `[data-theme="${id}"]`;
       return `${selector}{color-scheme:${colorScheme};${declarations}}`;

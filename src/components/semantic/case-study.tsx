@@ -9,6 +9,7 @@ import { MediaFrame, type AssetUrl } from "./media-frame";
 import { ProjectLinks, ProjectMeta } from "./project-meta";
 import { SectionHeading, type HeadingLevel } from "./section-heading";
 import { CaseStudyOrientation } from "./case-study-orientation";
+import { CaseStudyTitle } from "./case-study-title";
 import { CaseStudyNavigation } from "./case-study-navigation";
 import { caseStudySections } from "@/lib/content/case-study-sections";
 
@@ -26,9 +27,13 @@ export function CaseStudyIntro({
     (media) => media.id === project.previewMediaId,
   );
   return (
-    <header className="case-study-intro" data-motion-id="case-study-intro">
+    <header
+      className="case-study-intro"
+      data-motion-id="case-study-intro"
+      data-project-slug={project.slug}
+    >
       <SectionHeading level={level}>
-        <span lang={content.title.lang}>{content.title.value}</span>
+        <CaseStudyTitle title={content.title} />
       </SectionHeading>
       {content.summary && (
         <p lang={content.summary.lang}>{content.summary.value}</p>

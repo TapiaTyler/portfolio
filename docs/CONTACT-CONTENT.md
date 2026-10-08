@@ -2,7 +2,14 @@
 
 Updated 2026-10-08.
 
-The Contact page uses shared semantic resources in each of the four compositions.
+The Contact page uses shared semantic resources in all five compositions.
+Homepage Contact sections now reuse the same email, copy control, GitHub and LinkedIn
+resources, following Product's contact content while retaining each mode's layout.
+Chronicle keeps Contact in its selectable tab panel with a persistent contact-page
+action; its email link is exempt from the panel's rule hiding redundant text links.
+Digital and Chronicle homepage methods use an inline row without method descriptions
+or separators, wrapping when the phone/panel width requires it. Digital's enlarged
+Get in Touch action follows the method links in both visual and keyboard order.
 The approved primary method is `tapiatylert@gmail.com`, with a native email link and
 progressively enhanced copy icon beside the address. Its “Copy” tooltip appears on
 hover and keyboard focus; clipboard results are announced below the address.

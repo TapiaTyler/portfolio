@@ -1,5 +1,25 @@
 # Portfolio screenshot review
 
+## Current presentation — 2026-10-08
+
+- Editorial remains the opening image, with a refreshed ink-landscape capture and
+  finalized English hero copy, even though Product is now the site's default.
+- Five matched 1440 × 1000 home captures appear in one comparison stage: Product,
+  Editorial, Engineer, Digital and Chronicle. Named controls select one view; no
+  autoplay. A native scroll strip provides the no-JavaScript fallback.
+- Chronicle's challenge retains the original/current desktop pair and its motion
+  recording. Landscape-home and dossier stills no longer lengthen the gallery;
+  their historical capture files remain available.
+- A fresh 844 × 390 landscape-home capture records compact dots and reserved header
+  spacing. Heading/control clearance is checked at 568, 667 and 844 pixels wide.
+- Dated `*-2026-10-08-refreshed.png` URLs prevent stale optimized thumbnails.
+  Provenance is in `presentations-2026-10-08-refreshed.capture.json`.
+- Refreshed October 8 morphing and route-navigation videos cover all five modes,
+  with matching Product posters. Chronicle's October 7 video keeps its matching
+  poster and recorded sequence; historical route/morphing assets remain preserved.
+
+The sections below preserve the previous review and completion notes.
+
 Reviewed 2026-10-07 against the published record and current composition code at
 baseline d883935. This is an asset review, not a fresh runtime or accessibility audit.
 The findings below describe the pre-refresh set. A subsequent October 7 pass

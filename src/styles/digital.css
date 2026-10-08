@@ -339,6 +339,16 @@
   .contact-closing {
     text-align: center;
   }
+  .contact-closing > .contact-closing__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: min(100%, 15rem);
+    min-height: 56px;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
   .contact-closing h2 {
     max-width: 15ch;
     margin-inline: auto;
