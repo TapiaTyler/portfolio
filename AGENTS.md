@@ -160,7 +160,8 @@ Primary qualities:
 
 ## 3A. Approved design references
 
-Approved visual baselines for the three launch modes live in:
+Approved visual baselines for the original three modes live in the files below;
+Chronicle and Product have their own references (see §1). They live in:
 
 ```text
 docs/design-reference/
@@ -506,7 +507,6 @@ If adding a new normal project requires editing three theme-specific components,
 
 V1 should not be delayed by:
 
-- Product theme
 - Graphic theme
 - full Japanese translation of every deep case study
 - CMS
@@ -516,4 +516,4 @@ V1 should not be delayed by:
 - generalized framework work
 - WebGL for its own sake
 
-Prioritize a polished, deployable portfolio with the three launch modes.
+Prioritize a polished, deployable portfolio with the five registered modes.

@@ -528,3 +528,26 @@ Reviewed local screenshots; Contact files and actual Japanese translations remai
 | Japan Travel Planner draft import                          | Eight source files preserved; approved PNG provenance and complete source excerpt; two records/five fixtures validated; 38 unit tests, production build, three populated cross-theme previews with AA/320px checks, release smoke and screenshot review                                                                                                                                                                           | Complete source application, mixed implementation attribution, Railway live URL and dedicated security section; portfolio remains draft/unfeatured with English fallback. Focused follow-up prompt covers security evidence and optional historical comparisons. |
 | Case-study narrative voice and results                     | Content/reference validation, lint, formatting and six targeted cross-theme reading/project previews, including responsive media and AA checks                                                                                                                                                                                                                                                                                    | Both project narratives use neutral report voice; ownership keeps manual/AI-assisted distinctions. Travel Planner results describe the completed workflow, reuse, localization and deployment; import provenance remains in review docs.                         |
 | Travel Planner follow-up evidence integration              | Follow-up files/JSON and existing screenshot hashes reviewed; original capstone tag resolved; content validation and production build passed; three populated cross-theme previews with both diagrams, media ownership, 320px layout, AA scans and locale fallback passed; lint/formatting checked                                                                                                                                | Confirmed original `capstone-v1.0` at `23a4dd6`; security diagram/detail and separate quality evidence added. Source supplement records 25 backend tests, historical CI and anonymous public checks; result stays outcome-focused and publication remains draft. |
+
+## Visual review — 2026-10-10
+
+Desktop/phone review of Product Home, About, Contact and the Nihonest case study,
+plus Contact in Editorial and Chronicle. No document overflow at 1440 or 390px.
+Open items, roughly by priority:
+
+- [x] Placeholder labels removed: hero eyebrow is "Portfolio", the footer shows
+      the year, and the default page title is "Tyler Tetsuo Tapia | Portfolio".
+- [x] Contact no longer repeats its description under Email (the email entry has
+      no description; contact-method descriptions are now optional).
+- [x] Product About intro: the lead now precedes the description as a display-type
+      standfirst. Product Contact is unchanged.
+- [x] Product About narrow prose column kept deliberately (owner decision): long
+      prose reads better at that measure.
+- [x] Case-study architecture diagrams (all modes) now render each component once,
+      as a card listing its outgoing connections, styled per mode (D052).
+- [ ] Product Home Contact repeats a "Get in Touch" link above the contact details;
+      kept for now because the Contact page adds résumé/CV downloads. Revisit where
+      the documents live (Contact or About) once files exist.
+- [x] Editorial Contact ink splatter anchored beside "Start a Conversation".
+- [x] Product challenge screenshots load correctly (owner-verified; capture artifact).
+

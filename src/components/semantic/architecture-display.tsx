@@ -21,6 +21,9 @@ export function ArchitectureDisplay({
     <figure className="architecture-display">
       <figcaption lang={title.lang}>{title.value}</figcaption>
       <p lang={summary.lang}>{summary.value}</p>
+      {/* Each component appears once, as a card listing its outgoing connections;
+          the separate node and edge lists repeated every name. Data attributes
+          keep Engineer's connection inspector working. */}
       <ul
         className="diagram-nodes"
         aria-label={message(locale, "System components")}
@@ -28,49 +31,58 @@ export function ArchitectureDisplay({
       >
         {diagram.nodes.map((node) => {
           const label = nodes.get(node.id)!;
+          const outgoing = diagram.edges.filter(
+            (edge) => edge.from === node.id,
+          );
           return (
-            <li key={node.id} lang={label.lang} data-node-id={node.id}>
-              {label.value}
+            <li key={node.id} data-node-id={node.id}>
+              <span className="diagram-node__label" lang={label.lang}>
+                {label.value}
+              </span>
+              {outgoing.length > 0 && (
+                <ul
+                  className="diagram-connections"
+                  aria-label={message(locale, "Component relationships")}
+                  lang={messageLanguage(locale, "Component relationships")}
+                >
+                  {outgoing.map((edge, index) => {
+                    const to = nodes.get(edge.to)!;
+                    const relation = edge.label
+                      ? resolveText(edge.label, locale)
+                      : undefined;
+                    return (
+                      <li
+                        key={index}
+                        data-connection-from={edge.from}
+                        data-connection-to={edge.to}
+                      >
+                        <span aria-hidden="true">→ </span>
+                        <span className="visually-hidden">
+                          <UiText locale={locale} id="connects to" />{" "}
+                        </span>
+                        <span
+                          className="diagram-connection__target"
+                          lang={to.lang}
+                        >
+                          {to.value}
+                        </span>
+                        {relation && (
+                          <span
+                            className="diagram-connection__label"
+                            lang={relation.lang}
+                          >
+                            {relation.value}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </li>
           );
         })}
       </ul>
-      {diagram.edges.length > 0 && (
-        <ul
-          className="diagram-connections"
-          aria-label={message(locale, "Component relationships")}
-          lang={messageLanguage(locale, "Component relationships")}
-        >
-          {diagram.edges.map((edge, index) => {
-            const from = nodes.get(edge.from)!;
-            const to = nodes.get(edge.to)!;
-            const label = edge.label
-              ? resolveText(edge.label, locale)
-              : undefined;
-            return (
-              <li
-                key={index}
-                data-connection-from={edge.from}
-                data-connection-to={edge.to}
-              >
-                <span lang={from.lang}>{from.value}</span>
-                <span aria-hidden="true"> → </span>
-                <span className="visually-hidden">
-                  {" "}
-                  <UiText locale={locale} id="connects to" />{" "}
-                </span>
-                <span lang={to.lang}>{to.value}</span>
-                {label && (
-                  <>
-                    {" "}
-                    — <span lang={label.lang}>{label.value}</span>
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
     </figure>
   );
 }

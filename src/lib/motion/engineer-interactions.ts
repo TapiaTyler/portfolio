@@ -143,9 +143,14 @@ export function setupEngineerInteractions() {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "diagram-node";
-      const original = Array.from(node.childNodes);
+      // Only the label becomes the control; the node's connection list stays
+      // readable content beside it.
+      const label =
+        node.querySelector<HTMLElement>(":scope > .diagram-node__label") ??
+        node;
+      const original = Array.from(label.childNodes);
       button.append(...original);
-      node.append(button);
+      label.append(button);
       buttons.set(node, button);
       button.setAttribute(
         "aria-label",

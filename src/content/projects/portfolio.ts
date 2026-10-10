@@ -148,7 +148,8 @@ export const portfolioProject = {
       id: "route-transitions",
       type: "video",
       src: "/media/projects/portfolio/route-transitions-2026-10-08-refreshed.webm",
-      poster: "/media/projects/portfolio/route-transitions-2026-10-08-refreshed.png",
+      poster:
+        "/media/projects/portfolio/route-transitions-2026-10-08-refreshed.png",
       width: 1440,
       height: 1000,
       purpose: "process",

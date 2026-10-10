@@ -758,9 +758,8 @@
   .secondary-page--contact .secondary-page-body::before {
     content: "";
     position: absolute;
-    top: calc(50% - 200px);
+    top: 1.5rem;
     left: calc(clamp(-6.5rem, -5.5vw, -2.5rem) - 20px);
-    translate: 0 -50%;
     width: clamp(5rem, 8vw, 7rem);
     aspect-ratio: 420 / 458;
     background: image-set(
@@ -804,5 +803,22 @@
     .secondary-page--work .secondary-page-section--collection::before {
       content: none;
     }
+  }
+  /* Diagram cards as an index: hairline-topped entries, serif names. */
+  .diagram-nodes {
+    gap: 0 2rem;
+  }
+  .diagram-nodes > li {
+    border: 0;
+    border-top: 1px solid var(--border-subtle);
+    padding: 1rem 0 1.25rem;
+  }
+  .diagram-node__label {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+  .diagram-connections {
+    color: var(--text-muted);
   }
 }

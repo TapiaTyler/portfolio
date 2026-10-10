@@ -5,7 +5,7 @@ import { identity } from "./identity";
 export interface ContactMethod {
   id: string;
   title: LocalizedText;
-  description: LocalizedText;
+  description?: LocalizedText;
   href: string;
   address?: string;
 }
@@ -21,7 +21,6 @@ export const contactMethods: ContactMethod[] = [
   {
     id: "email",
     title: { en: "Email" },
-    description: { en: "For roles, projects, or questions about the work." },
     address: "tapiatylert@gmail.com",
     href: "mailto:tapiatylert@gmail.com",
   },

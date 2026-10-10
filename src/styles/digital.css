@@ -601,4 +601,13 @@
       transform: none;
     }
   }
+  /* Diagram cards as small rounded panels. */
+  .diagram-nodes > li {
+    border-color: var(--border-subtle);
+    border-radius: 0.75rem;
+    background: color-mix(in srgb, var(--surface-primary) 70%, transparent);
+  }
+  .diagram-connections > li > span[aria-hidden] {
+    color: var(--accent);
+  }
 }

@@ -656,3 +656,19 @@ the comparison view last inspected before measuring their closing destination.
 **Reason:** This preserves access to every presentation without a long screenshot
 stack or theme-specific content. Chronicle's challenge keeps its first/current home
 pair and interaction video; redundant phone and dossier views remain archived assets.
+
+## D052 — Architecture diagrams as component cards
+
+**Decision, 2026-10-10:** The shared `ArchitectureDisplay` renders each diagram node
+once, as a card holding its name and its outgoing connections (target plus optional
+relationship label), instead of a node list followed by a full edge list. Every mode
+styles the cards with its own grammar: Editorial hairline index entries, Engineer mono
+records, Digital rounded panels, Product flat bordered cards, Chronicle glass with a
+gold edge. `data-node-id` and `data-connection-from/to` are unchanged, so Engineer's
+connection inspector keeps working; it now wraps only the card's name in its button.
+
+**Reason:** The previous output repeated every component name (once as a pill, again
+in each arrow line) and read as raw fallback beside designed sections in all modes.
+Grouping by source halves the text and keeps the whole graph readable without a
+diagram library. Screen readers still hear "connects to" for each relationship.
+

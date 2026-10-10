@@ -9,13 +9,11 @@ interface GalleryItem {
 }
 
 function revealComparison(item: GalleryItem) {
-  item.figure
-    .closest(".media-comparison")
-    ?.dispatchEvent(
-      new CustomEvent("media-comparison-reveal", {
-        detail: item.figure.dataset.mediaId,
-      }),
-    );
+  item.figure.closest(".media-comparison")?.dispatchEvent(
+    new CustomEvent("media-comparison-reveal", {
+      detail: item.figure.dataset.mediaId,
+    }),
+  );
 }
 
 /** Gallery navigation uses media identity; each selected image retains its page frame. */

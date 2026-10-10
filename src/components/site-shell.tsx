@@ -125,9 +125,7 @@ export function SiteShell({
               LinkedIn
             </a>
           </span>
-          <span>
-            <UiText locale={locale} id="Portfolio Preview" />
-          </span>
+          <span>© {new Date().getFullYear()}</span>
         </div>
       </footer>
     </>

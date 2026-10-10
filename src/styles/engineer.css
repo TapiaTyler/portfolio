@@ -552,8 +552,8 @@
     font-size: 0.85rem;
   }
   .diagram-connections {
-    font-size: 0.85rem;
-    line-height: 1.9;
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
   .code-snippet pre {
     font-family: var(--font-mono);
@@ -739,5 +739,15 @@
     .case-study-block {
       scroll-margin-top: 10rem;
     }
+  }
+  /* Diagram cards read as records: mono names, accent arrows. */
+  .diagram-nodes > li {
+    border-color: var(--border-subtle);
+    background: var(--surface-primary);
+  }
+  .diagram-node__label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--focus-ring);
   }
 }

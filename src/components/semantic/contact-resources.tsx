@@ -29,9 +29,11 @@ export function ContactMethods({
               </a>
             )}
           </h3>
-          <p>
-            <Text value={method.description} locale={locale} />
-          </p>
+          {method.description && (
+            <p>
+              <Text value={method.description} locale={locale} />
+            </p>
+          )}
           {method.address && (
             <CopyEmail address={method.address} locale={locale} />
           )}

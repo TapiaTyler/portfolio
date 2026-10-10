@@ -4,7 +4,7 @@ import type { HomepageContent } from "@/components/semantic/homepage";
 import { identity } from "./identity";
 export const homeHero = {
   name: identity.name,
-  label: { en: "Portfolio Preview" },
+  label: { en: "Portfolio" },
   title: { en: "Software Engineer" },
   emphasis: { en: "& Web Developer" },
   description: {

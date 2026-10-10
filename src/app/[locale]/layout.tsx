@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: readSiteConfig().url,
   robots: { index: readSiteConfig().indexable, follow: true },
   title: {
-    default: `${identity.name} | Portfolio Preview`,
+    default: `${identity.name} | Portfolio`,
     template: `%s | ${identity.name}`,
   },
   description: `A preview of ${identity.name}'s portfolio website.`,

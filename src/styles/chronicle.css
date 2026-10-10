@@ -3299,6 +3299,22 @@
   *::-webkit-scrollbar {
     display: none;
   }
+  /* Diagram cards: soft glass with a gold edge, matching the reading panel. */
+  .diagram-nodes > li {
+    border-color: #d6a14a80;
+    background: #fffdfb99;
+  }
+  .diagram-nodes {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+  .chronicle-chapter .diagram-nodes li {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+  .chronicle-chapter .diagram-connections li {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
 }
 @keyframes chronicle-glitter {
   0%,
