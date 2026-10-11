@@ -35,25 +35,26 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(/#page-.*-heading$/);
       }
-      const scan = await new AxeBuilder({ page })
-        .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
-        .analyze();
-      expect(scan.violations).toEqual([]);
+      // Contact is scanned in every mode by tests/browser/contact.spec.ts.
+      if (route !== "contact") {
+        const scan = await new AxeBuilder({ page })
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+          .analyze();
+        expect(scan.violations).toEqual([]);
+      }
       for (const width of [1440, 390, 320]) {
         await page.setViewportSize({ width, height: 1000 });
-        await page.evaluate(() => {
+        // Wait for fonts and two frames of layout instead of a fixed sleep.
+        await page.evaluate(async () => {
           window.scrollTo(0, 0);
-          return document.fonts.ready;
+          await document.fonts.ready;
+          await new Promise((resolve) =>
+            requestAnimationFrame(() => requestAnimationFrame(resolve)),
+          );
         });
-        await page.waitForTimeout(400);
         expect(
           await page.evaluate(() => document.documentElement.scrollWidth),
         ).toBeLessThanOrEqual(width + 1);
-        if (width === 1440 || width === 390)
-          await page.screenshot({
-            path: `.cache/secondary-${theme}-${route}-${width}.png`,
-            fullPage: true,
-          });
       }
       await page.goto(`/ja/${route}`);
       await expect(page.locator(".translation-notice")).toBeVisible();
@@ -82,11 +83,11 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         )
         .toBeGreaterThan(0);
     }
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(600);
-    await page.screenshot({
-      path: `.cache/secondary-${theme}-work-populated.png`,
-      fullPage: true,
+    await page.evaluate(async () => {
+      window.scrollTo(0, 0);
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      );
     });
     await page.setViewportSize({ width: 320, height: 844 });
     expect(

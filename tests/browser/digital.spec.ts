@@ -9,7 +9,7 @@ test.beforeEach(async ({ context }) => {
 
 test("Digital renders a responsive spatial composition with local fonts and native mobile controls", async ({
   page,
-}, testInfo) => {
+}) => {
   await page.goto("/en");
   await page.evaluate(() => document.fonts.ready);
   await expect(page.locator(".digital-hero")).toBeVisible();
@@ -32,10 +32,6 @@ test("Digital renders a responsive spatial composition with local fonts and nati
       ),
       `overflow at ${width}`,
     ).toBe(true);
-    await page.screenshot({
-      path: testInfo.outputPath(`digital-${width}.png`),
-      fullPage: true,
-    });
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator(".mobile-navigation > summary").click();

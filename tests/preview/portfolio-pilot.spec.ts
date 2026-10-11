@@ -164,9 +164,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         .evaluate((element) =>
           element.scrollIntoView({ block: "start", behavior: "instant" }),
         );
-      await page.screenshot({
-        path: `.cache/portfolio-pilot-${theme}-${width}.png`,
-      });
       if (theme === "engineer") {
         if (width === 1440) {
           await expect(
@@ -180,22 +177,9 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
               .locator("#morphing-evidence .media-frame")
               .evaluate((element) => element.getBoundingClientRect().width),
           ).toBeLessThanOrEqual(768);
-          await study
-            .locator("#compositions")
-            .screenshot({ path: ".cache/pilot-engineer-comparison.png" });
         }
-        await study
-          .locator(".engineer-system-overview")
-          .screenshot({ path: `.cache/pilot-overview-${width}.png` });
-        await study
-          .locator(".engineer-block-record:has(> #continuity)")
-          .screenshot({ path: `.cache/pilot-engineer-evidence-${width}.png` });
       }
       if (theme === "digital") {
-        await study
-          .locator(".digital-block-layer")
-          .filter({ has: page.locator("#continuity") })
-          .screenshot({ path: `.cache/pilot-evidence-${width}.png` });
       }
     }
     const images = study.locator(".media-frame img:visible");
@@ -248,10 +232,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       .evaluate((element) =>
         element.scrollIntoView({ block: "start", behavior: "instant" }),
       );
-    await page.screenshot({
-      path: `.cache/portfolio-pilot-${theme}.png`,
-      fullPage: true,
-    });
     await page.goto("/dev/projects/portfolio?locale=ja");
     await expect(study).toContainText("English");
     await expect(

@@ -51,10 +51,6 @@ test("desktop selection changes a stable preview while project links navigate no
   await expect(panel.locator("h3")).toHaveText("Nihonest");
   await noOverflow(page);
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
-  await page.screenshot({
-    path: ".cache/product-review/home-desktop.png",
-    fullPage: true,
-  });
   await page.locator(".product-project h3 a").nth(2).click();
   await expect(page).toHaveURL(/\/en\/work\/japan-travel-planner$/);
   await expect(page.locator("html")).not.toHaveAttribute(
@@ -91,10 +87,6 @@ test("Product pages and case-study evidence fit desktop, tablet and narrow phone
           (await new AxeBuilder({ page }).analyze()).violations,
           `${width}: ${path}`,
         ).toEqual([]);
-        await page.screenshot({
-          path: `.cache/product-review/${path.replaceAll("/", "-").slice(1) || "home"}-${width}.png`,
-          fullPage: true,
-        });
       }
       if (path.startsWith("/work/")) {
         await expect(page.locator(".product-case-study")).toBeVisible();
@@ -166,10 +158,6 @@ test("mobile menu, reduced motion and native links preserve Product behavior", a
     .boundingBox();
   const presentation = await page.locator(".mode-picker:visible").boundingBox();
   expect(language!.y).toBeLessThan(presentation!.y);
-  await page.screenshot({
-    path: ".cache/product-review/menu-mobile.png",
-    fullPage: true,
-  });
   await page.locator(".mode-picker:visible > summary").click();
   await expect(
     page.locator('.mode-picker:visible button[value="product"]'),

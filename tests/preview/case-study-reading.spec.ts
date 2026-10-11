@@ -52,9 +52,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       "aria-current",
       "location",
     );
-    await page.screenshot({
-      path: `.cache/pilot-reading-${theme}-desktop.png`,
-    });
     await page.setViewportSize({ width: 390, height: 844 });
     const disclosure = study.locator(".case-study-navigation__mobile");
     await disclosure.locator("summary").scrollIntoViewIfNeeded();
@@ -70,7 +67,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     await expect(study.locator("#state")).toBeFocused();
     await disclosure.locator("summary").scrollIntoViewIfNeeded();
     await disclosure.locator("summary").click();
-    await page.screenshot({ path: `.cache/pilot-reading-${theme}-mobile.png` });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await disclosure.locator('a[href="#architecture"]').click();
     await expect(page).toHaveURL(/#architecture$/);

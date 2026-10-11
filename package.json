@@ -19,6 +19,7 @@
     "test": "tsx --test tests/*.test.ts tests/*.test.tsx",
     "test:browser": "playwright test",
     "test:preview": "playwright test --config playwright.preview.config.ts",
+    "build:preview": "node scripts/build-preview.mjs",
     "audit:performance": "node scripts/audit-performance.mjs"
   },
   "dependencies": {

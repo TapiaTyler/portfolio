@@ -60,7 +60,6 @@ test("Digital opens the selected fixture by expanding its card into the project 
         animation.currentTime = 300;
     }
   });
-  await page.screenshot({ path: ".cache/project-opening.png" });
   await page.evaluate(() => {
     for (const animation of document.getAnimations()) {
       if (animation.effect?.getComputedTiming().iterations !== Infinity)
@@ -78,7 +77,6 @@ test("Digital opens the selected fixture by expanding its card into the project 
         .evaluate((image) => (image as HTMLImageElement).naturalWidth),
     )
     .toBeGreaterThan(0);
-  await page.screenshot({ path: ".cache/project-open-final.png" });
   await page.goBack();
   await expect(page.locator("html")).toHaveAttribute(
     "data-route-transition",
@@ -222,7 +220,6 @@ test("Editorial uses staggered sheets without replaying content when opening a d
       animation.currentTime = 180;
     }),
   );
-  await page.screenshot({ path: ".cache/book-sheets.png" });
   await page.evaluate(() =>
     document.getAnimations().forEach((animation) => animation.finish()),
   );

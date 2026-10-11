@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { mkdir } from "node:fs/promises";
 
 for (const mode of [
   "editorial",
@@ -101,11 +100,6 @@ for (const mode of [
                 );
               }).length === 0,
           );
-          await mkdir(".cache/contact-review", { recursive: true });
-          await page.screenshot({
-            path: `.cache/contact-review/${mode}-${viewport.width}.png`,
-            fullPage: true,
-          });
         }
         const result = await new AxeBuilder({ page })
           .include("main")

@@ -31,7 +31,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(321);
-    await page.screenshot({ path: `.cache/mobile-menu-${theme}-open.png` });
     // Scan the settled menu; mid-fade link colours blend and read as low contrast.
     await page.evaluate(() =>
       Promise.all(
@@ -53,7 +52,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         line.evaluate((element) => getComputedStyle(element).transform),
       )
       .toBe(closed);
-    await page.screenshot({ path: `.cache/mobile-menu-${theme}-closed.png` });
     await page.emulateMedia({ reducedMotion: "reduce" });
     expect(
       await line.evaluate(

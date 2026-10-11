@@ -30,10 +30,6 @@ test("Chronicle selects project records and preserves theme preference", async (
   await expect(
     page.locator('.chronicle-selection__item[data-selected="true"]'),
   ).toContainText("Japan Travel Planner");
-  await page.screenshot({
-    path: ".cache/chronicle-home-desktop.png",
-    fullPage: true,
-  });
   expect(
     await page.evaluate(() => document.documentElement.scrollHeight),
   ).toBeLessThanOrEqual(720);
@@ -50,10 +46,6 @@ test("Chronicle selects project records and preserves theme preference", async (
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
-  await page.screenshot({
-    path: ".cache/chronicle-home-mobile.png",
-    fullPage: true,
-  });
   await page.goto("/en");
   await expect(page.locator(".chronicle-selection__item")).toHaveCount(3);
   await page.reload();
@@ -101,10 +93,6 @@ for (const slug of ["portfolio", "japan-travel-planner"]) {
       .analyze();
     expect(scan.violations).toEqual([]);
     await page.locator(".case-study-intro").scrollIntoViewIfNeeded();
-    await page.screenshot({
-      path: `.cache/chronicle-${slug}-desktop.png`,
-      fullPage: true,
-    });
     const imageTrigger = page
       .locator(".case-study .media-view-trigger")
       .first();
@@ -126,10 +114,6 @@ for (const slug of ["portfolio", "japan-travel-planner"]) {
         content: element.scrollHeight,
       }));
     expect(identity.content).toBeLessThanOrEqual(identity.visible);
-    await page.screenshot({
-      path: `.cache/chronicle-${slug}-mobile.png`,
-      fullPage: true,
-    });
   });
 }
 
@@ -179,7 +163,6 @@ test("Chronicle morphs on secondary pages and keeps mobile controls accessible",
           .map((animation) => animation.finished.catch(() => {})),
       ),
     );
-  await page.screenshot({ path: ".cache/chronicle-header-desktop.png" });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator(".mobile-navigation > summary").click();
   await expect(
@@ -197,7 +180,6 @@ test("Chronicle morphs on secondary pages and keeps mobile controls accessible",
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
   ).toBeLessThanOrEqual(390);
-  await page.screenshot({ path: ".cache/chronicle-header-mobile.png" });
 });
 
 test("Chronicle keeps discovery inside short and landscape viewports", async ({

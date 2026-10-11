@@ -55,7 +55,6 @@ for (const mode of ["editorial", "engineer", "digital"] as const) {
     await expect(
       slider.getByRole("link", { name: "JP", exact: true }),
     ).toHaveCSS("text-decoration-line", "none");
-    await page.screenshot({ path: `.cache/header-${mode}.png` });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await expect(indicator).toHaveCSS("transition-duration", "0s");
     await page.setViewportSize({ width: 390, height: 844 });
@@ -67,7 +66,6 @@ for (const mode of ["editorial", "engineer", "digital"] as const) {
       .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
       .analyze();
     expect(results.violations).toEqual([]);
-    await page.screenshot({ path: `.cache/header-${mode}-mobile.png` });
     await page.keyboard.press("Enter");
     await expect(page).toHaveURL(/\/en\/about$/);
     await page.locator(".mobile-navigation > summary").click();

@@ -155,9 +155,5 @@ test("Product landscape uses responsive sources and stays clear of mobile copy",
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth),
     ).toBeLessThanOrEqual(width + 1);
-    await page.screenshot({
-      path: `.cache/product-review/product-landscape-${width}.png`,
-      fullPage: true,
-    });
   }
 });

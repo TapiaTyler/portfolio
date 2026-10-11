@@ -102,7 +102,6 @@ for (const [mode, animation] of [
       expect(heights.middle).toBeGreaterThan(heights.closed + 30);
       expect(heights.middle).toBeLessThan(heights.open - 10);
       expect(heights.open).toBeGreaterThan(250);
-      await page.screenshot({ path: ".cache/editorial-disclosure-unfold.png" });
       await details.evaluate((element) =>
         element
           .getAnimations({ subtree: true })

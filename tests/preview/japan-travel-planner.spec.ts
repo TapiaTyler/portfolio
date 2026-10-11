@@ -118,7 +118,6 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       .analyze();
     expect(scan.violations).toEqual([]);
     await study.locator(".case-study-intro").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: `.cache/japan-travel-planner-${theme}.png` });
     await page.goto("/dev/projects/japan-travel-planner?locale=ja");
     await expect(page.locator(".case-study")).toContainText(
       "Japan Travel Planner",

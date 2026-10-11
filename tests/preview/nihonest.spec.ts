@@ -62,7 +62,6 @@ for (const theme of [
       .analyze();
     expect(scan.violations).toEqual([]);
     await study.locator(".case-study-intro").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: `.cache/nihonest-${theme}.png` });
     await page.goto("/dev/projects/nihonest?locale=ja");
     await expect(page.locator(".case-study")).toContainText("English");
     await expect(page.locator(".case-study #result-current")).toContainText(

@@ -1,6 +1,5 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { mkdir } from "node:fs/promises";
 
 test("Nihonest opens with its live homepage in every presentation", async ({
   page,
@@ -43,7 +42,6 @@ test("Product keeps related portrait evidence in one row without overflow", asyn
   await context.addCookies([
     { name: "portfolio-mode", value: "product", url: baseURL! },
   ]);
-  await mkdir(".cache/product-review", { recursive: true });
   for (const motion of ["no-preference", "reduce"] as const) {
     await page.emulateMedia({ reducedMotion: motion });
     for (const width of [1440, 390, 320]) {
@@ -90,15 +88,6 @@ test("Product keeps related portrait evidence in one row without overflow", asyn
       ).toBeLessThanOrEqual(width + 1);
       const scan = await new AxeBuilder({ page }).analyze();
       expect(scan.violations).toEqual([]);
-      if (motion === "reduce") {
-        await pair.screenshot({
-          path: `.cache/product-review/nihonest-portrait-pair-${width}.png`,
-        });
-        await page.screenshot({
-          path: `.cache/product-review/nihonest-paired-${width}.png`,
-          fullPage: true,
-        });
-      }
     }
   }
 });

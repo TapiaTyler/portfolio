@@ -202,7 +202,6 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
     .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
     .analyze();
   expect(results.violations).toEqual([]);
-  await page.screenshot({ path: ".cache/digital-media-viewer.png" });
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
   await expect(trigger).toBeFocused();
@@ -223,7 +222,6 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
   expect(imageBox.x).toBeGreaterThanOrEqual(box.x);
   expect(imageBox.x + imageBox.width).toBeLessThanOrEqual(box.x + box.width);
   expect(imageBox.width / imageBox.height).toBeCloseTo(800 / 500, 1);
-  await page.screenshot({ path: ".cache/digital-media-viewer-mobile.png" });
   await expect(dialog.getByRole("status")).toHaveText("Image 1 of 3");
   await page.keyboard.press("ArrowRight");
   await expect(dialog.getByRole("status")).toHaveText("Image 2 of 3");
@@ -238,22 +236,13 @@ test("Digital image viewer expands cached media, traps focus, contracts on Escap
       .locator("img")
       .evaluate((image) => (image as HTMLImageElement).src),
   );
-  await page.screenshot({ path: ".cache/digital-gallery-portrait.png" });
   await dialog.getByRole("button", { name: "Close Gallery" }).click();
   await expect(dialog).toHaveCount(0);
   await expect(
     portrait.getByRole("button", { name: /^View Image:/ }),
   ).toBeFocused();
   await expect(portrait).toBeInViewport();
-  await page.screenshot({
-    path: ".cache/digital-media-layout-mobile.png",
-    fullPage: true,
-  });
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.screenshot({
-    path: ".cache/digital-media-layout.png",
-    fullPage: true,
-  });
 });
 
 test("Digital gallery contracts into the last browsed frame and varies page image widths", async ({

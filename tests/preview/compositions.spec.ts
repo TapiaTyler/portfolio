@@ -94,7 +94,6 @@ test("project preview responses match each theme and simulated reduction cancels
           ),
         )
         .toContain("digital-border-trace");
-      await page.screenshot({ path: ".cache/digital-border-fixtures.png" });
       await page.emulateMedia({ reducedMotion: "reduce" });
       await expect
         .poll(() =>

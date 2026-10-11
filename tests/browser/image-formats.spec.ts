@@ -297,7 +297,8 @@ for (const { theme, width, height, stems, routePath = "/en" } of [
           artwork.push(r.url());
       });
       await page.goto(`${baseURL}${routePath}`);
-      await page.waitForTimeout(500);
+      // Artwork requests have settled once the network is idle.
+      await page.waitForLoadState("networkidle");
       const extension = fallback ? ".webp" : ".avif";
       for (const stem of stems) {
         expect(
@@ -317,9 +318,6 @@ for (const { theme, width, height, stems, routePath = "/en" } of [
           }, url),
         ).toBeTruthy();
       }
-      await page.screenshot({
-        path: `.cache/frame-candidates/format-${theme}-${fallback ? "webp" : "avif"}-${width}.png`,
-      });
       await context.close();
     });
   }
@@ -391,7 +389,8 @@ for (const theme of ["editorial", "engineer", "digital", "chronicle"]) {
     });
     await page.goto("/en/work/portfolio");
     await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(300);
+    // Any eager poster request would have been made before the network idles.
+    await page.waitForLoadState("networkidle");
     expect(posters).toEqual([]);
     const video = page.locator('[data-media-id="theme-morphing"] video');
     expect(await video.getAttribute("poster")).toBeNull();

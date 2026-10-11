@@ -95,9 +95,6 @@ test("Editorial header links and language flip from the top beneath the live hea
     expect(reveal.partial).toBeLessThan(1);
     expect(reveal.origin).toMatch(/ 0px$/);
     expect(reveal.duration).toBe(600);
-    await page.screenshot({
-      path: `.cache/editorial-header-top-flip-${selector === ".site-brand" ? "brand" : selector.includes("locale") ? "language" : "nav"}.png`,
-    });
     await page.evaluate(() =>
       document.getAnimations().forEach((animation) => animation.finish()),
     );

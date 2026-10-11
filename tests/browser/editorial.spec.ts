@@ -9,7 +9,7 @@ test.beforeEach(async ({ context, baseURL }) => {
 
 test("Editorial keeps its hierarchy and locally served fonts across viewport sizes", async ({
   page,
-}, testInfo) => {
+}) => {
   const fonts: string[] = [];
   page.on("request", (request) => {
     if (request.resourceType() === "font") fonts.push(request.url());
@@ -55,10 +55,6 @@ test("Editorial keeps its hierarchy and locally served fonts across viewport siz
       expect(hero.visuals).toBe(0);
       expect(hero.height).toBeLessThan(700);
     }
-    await page.screenshot({
-      path: testInfo.outputPath(`editorial-${width}.png`),
-      fullPage: true,
-    });
   }
 });
 

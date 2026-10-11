@@ -67,7 +67,6 @@ test("Engineer swaps records, scans its cyan rule and supports history and reduc
       animation.currentTime = 120;
     }),
   );
-  await page.screenshot({ path: ".cache/engineer-record-change.png" });
   await page.evaluate(() =>
     document.getAnimations().forEach((animation) => animation.finish()),
   );

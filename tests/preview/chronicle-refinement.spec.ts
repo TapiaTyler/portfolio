@@ -176,6 +176,17 @@ test("a deep chapter remains reachable after switching out of the contained read
   );
   await destination.click();
   await expect(destination).toHaveAttribute("aria-current", "location");
+  // Let the panel's smooth scroll arrive first; a mode switch interrupts it, and
+  // a reader cannot switch modes within the same frame as the chapter click.
+  await expect(page.locator("#chronicle")).toBeInViewport();
+  await page.waitForFunction(async () => {
+    const body = document.querySelector<HTMLElement>(".case-study-body")!;
+    const before = body.scrollTop;
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+    return body.scrollTop === before;
+  });
   await page.locator(".site-controls--desktop .mode-picker summary").click();
   await page
     .locator('.site-controls--desktop [data-theme-option="engineer"]')

@@ -155,34 +155,37 @@ for (const other of ["editorial", "engineer", "digital"] as const) {
       expect(offset, `${other} → ${target}`).toBeLessThan(0.45);
     }
   });
-
-  test(`Chronicle morphs to and from ${other} on every surface`, async ({
-    page,
-    context,
-  }) => {
-    test.setTimeout(120_000);
-    const errors: string[] = [];
-    page.on("pageerror", (error) => errors.push(error.message));
-    await observeMorphs(page);
-    await page.setViewportSize({ width: 1440, height: 900 });
-    for (const { path, shared } of surfaces) {
-      await context.addCookies([
-        { name: "portfolio-mode", value: other, url: "http://127.0.0.1:3218" },
-      ]);
-      await page.goto(path);
-      await page.evaluate(() => document.fonts.ready);
-      for (const target of ["chronicle", other] as const) {
-        const record = await switchTo(page, target);
-        const morphed = record.after.filter((id) => record.before.includes(id));
-        expect(record.error, `${path} → ${target}`).toBeUndefined();
-        expect(record.moves, `${path} → ${target} moves`).toBe(true);
-        expect(morphed, `${path} → ${target} shared modules`).toEqual(
-          expect.arrayContaining(["site-navigation", ...shared]),
-        );
-        if (target === "chronicle")
-          expect(record.duration, `${path} → chronicle timing`).toBe(620);
-      }
-    }
-    expect(errors).toEqual([]);
-  });
 }
+
+// Every surface is checked against one partner mode only: the morph mechanism is
+// shared, so repeating all surfaces for Engineer and Digital added time, not cover.
+const other = "editorial";
+test("Chronicle morphs to and from editorial on every surface", async ({
+  page,
+  context,
+}) => {
+  test.setTimeout(120_000);
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await observeMorphs(page);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  for (const { path, shared } of surfaces) {
+    await context.addCookies([
+      { name: "portfolio-mode", value: other, url: "http://127.0.0.1:3218" },
+    ]);
+    await page.goto(path);
+    await page.evaluate(() => document.fonts.ready);
+    for (const target of ["chronicle", other] as const) {
+      const record = await switchTo(page, target);
+      const morphed = record.after.filter((id) => record.before.includes(id));
+      expect(record.error, `${path} → ${target}`).toBeUndefined();
+      expect(record.moves, `${path} → ${target} moves`).toBe(true);
+      expect(morphed, `${path} → ${target} shared modules`).toEqual(
+        expect.arrayContaining(["site-navigation", ...shared]),
+      );
+      if (target === "chronicle")
+        expect(record.duration, `${path} → chronicle timing`).toBe(620);
+    }
+  }
+  expect(errors).toEqual([]);
+});

@@ -5,6 +5,7 @@ import { isLocale } from "@/lib/i18n/locales";
 import { selectProjectContent } from "@/lib/i18n/project-content";
 import { getActiveTheme } from "@/lib/theme/server";
 import { resolveComposition } from "@/registries/compositions";
+import { devToolsEnabled } from "@/lib/dev-tools";
 
 export default async function DraftProjectPage({
   params,
@@ -13,7 +14,7 @@ export default async function DraftProjectPage({
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ locale?: string }>;
 }) {
-  if (process.env.NODE_ENV !== "development") notFound();
+  if (!devToolsEnabled()) notFound();
   // Draft lookup is confined to this guarded preview; public selectors keep their gate.
   const { projectRecords } = await import("@/content/projects");
   const { slug } = await params;

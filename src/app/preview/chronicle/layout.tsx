@@ -18,6 +18,7 @@ import "@/styles/microinteraction.css";
 import "@/styles/route-transition.css";
 import "@/styles/chronicle.css";
 import "@/styles/chronicle-header.css";
+import { devToolsEnabled } from "@/lib/dev-tools";
 
 export const metadata: Metadata = {
   title: "Chronicle design review — development only",
@@ -29,7 +30,7 @@ export default async function ChronicleReviewLayout({
 }: {
   children: ReactNode;
 }) {
-  if (process.env.NODE_ENV !== "development") notFound();
+  if (!devToolsEnabled()) notFound();
   const theme = await getActiveTheme();
   return (
     <html lang="en" data-theme={theme} className={fontVariables}>

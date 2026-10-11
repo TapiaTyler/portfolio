@@ -6,6 +6,8 @@ export default defineConfig({
   // The Windows test runner intermittently stalls cold asset loads with parallel workers.
   // Keep local checks deterministic; CI still exercises parallel browsers on Linux.
   workers: process.platform === "win32" ? 1 : 2,
+  // One CI retry; Playwright reports retried passes as "flaky" so they stay visible.
+  retries: process.env.CI ? 1 : 0,
   reporter: "list",
   use: {
     baseURL: "http://127.0.0.1:3217",

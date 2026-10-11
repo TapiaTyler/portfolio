@@ -9,7 +9,7 @@ test.beforeEach(async ({ context }) => {
 
 test("Engineer renders a distinct responsive dossier using local fonts", async ({
   page,
-}, testInfo) => {
+}) => {
   const fonts: string[] = [];
   page.on("request", (request) => {
     if (request.resourceType() === "font") fonts.push(request.url());
@@ -66,10 +66,6 @@ test("Engineer renders a distinct responsive dossier using local fonts", async (
       expect(boxes.overviewLeft).toBeGreaterThanOrEqual(boxes.profileRight - 1);
       expect(boxes.ratio).toBeCloseTo(1, 1);
     }
-    await page.screenshot({
-      path: testInfo.outputPath(`engineer-${width}.png`),
-      fullPage: true,
-    });
   }
 });
 

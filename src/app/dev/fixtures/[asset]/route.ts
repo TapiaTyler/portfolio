@@ -1,12 +1,12 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { devToolsEnabled } from "@/lib/dev-tools";
 
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ asset: string }> },
 ) {
-  if (process.env.NODE_ENV !== "development")
-    return new Response("Not found", { status: 404 });
+  if (!devToolsEnabled()) return new Response("Not found", { status: 404 });
   const { asset } = await params;
   // This allowlist exposes only the known synthetic fixture, never arbitrary source paths.
   if (!["reference.svg", "wide.svg", "portrait.svg"].includes(asset))
