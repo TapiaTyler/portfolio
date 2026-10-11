@@ -4,8 +4,9 @@ export default defineConfig({
   testDir: "./tests/preview",
   // Separate artifacts from production checks so concurrent runs cannot delete traces.
   outputDir: ".cache/preview-test-results",
-  // Two workers on Linux CI; Windows keeps one (cold dev-server compiles stall).
-  workers: process.platform === "win32" ? 1 : 2,
+  // One worker for the same reason as playwright.config.ts: parallel cold asset
+  // loads against a single server stall.
+  workers: 1,
   // One CI retry; Playwright reports retried passes as "flaky" so they stay visible.
   retries: process.env.CI ? 1 : 0,
   timeout: 60_000,
