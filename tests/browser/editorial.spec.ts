@@ -32,7 +32,7 @@ test("Editorial keeps its hierarchy and locally served fonts across viewport siz
       "Selected Work",
       "Areas of Practice",
       "Lab & Explorations",
-      "Open to software engineering and web development roles in Japan.",
+      "Contact",
     ]) {
       await expect(
         page.getByRole("heading", { name, exact: true }),

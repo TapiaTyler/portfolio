@@ -125,7 +125,12 @@ test("Digital portal responds to a mouse, resets, and stops when reduced motion 
 
 test("keyboard feedback and native menu micro-interactions preserve focus and control dimensions", async ({
   page,
+  context,
+  baseURL,
 }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
   await page.goto("/en");
   const link = page.locator(".editorial-hero .text-link");
   await link.focus();
@@ -204,8 +209,20 @@ test("reduced-motion and touch visitors keep static content without pointer chor
 
 test("theme choreography cancels entry motion instead of stacking another entrance", async ({
   page,
+  context,
+  baseURL,
 }) => {
+  await context.addCookies([
+    { name: "portfolio-mode", value: "editorial", url: baseURL! },
+  ]);
   await page.goto("/en");
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        window.motionRecords.some((record) => record.id === "hero-narrative"),
+      ),
+    )
+    .toBe(true);
   await page.locator(".mode-picker:visible > summary").click();
   await page.getByRole("button", { name: "Digital", exact: true }).click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "digital");
