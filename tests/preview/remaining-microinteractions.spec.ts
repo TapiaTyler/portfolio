@@ -266,11 +266,18 @@ test("Digital gallery contracts into the last browsed frame and varies page imag
   await page.goto("/dev/compositions?surface=project&project=fixture-visual");
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = "auto";
+    return document.fonts.ready;
   });
   const frames = page.locator(".case-study .media-frame");
   const intro = frames.first();
-  await intro.getByRole("button", { name: /^View Image:/ }).click();
+  await intro
+    .locator("img")
+    .evaluate((image: HTMLImageElement) => image.decode());
+  const trigger = intro.getByRole("button", { name: /^View Image:/ });
+  await expect(trigger).toBeVisible();
+  await trigger.click();
   const dialog = page.getByRole("dialog", { name: "Project image gallery" });
+  await expect(dialog).toBeVisible();
   await dialog
     .locator("img")
     .evaluate((image) =>
@@ -283,6 +290,18 @@ test("Digital gallery contracts into the last browsed frame and varies page imag
     .evaluate((image) =>
       image.getAnimations().forEach((animation) => animation.finish()),
     );
+  // Capture the contraction when it is created, before a busy runner can miss it.
+  await page.evaluate(() => {
+    const animate = Element.prototype.animate;
+    Element.prototype.animate = function (frames, options) {
+      const animation = animate.call(this, frames, options);
+      const duration =
+        typeof options === "number" ? options : options?.duration;
+      if (this.matches(".media-viewer img") && duration === 360)
+        animation.pause();
+      return animation;
+    };
+  });
   await dialog.getByRole("button", { name: "Close Gallery" }).click();
   const closing = await dialog.locator("img").evaluate((image) => {
     const animation = image
