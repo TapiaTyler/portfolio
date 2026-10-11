@@ -38,6 +38,13 @@ jobs:
       - run: npm run test:release
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+      # Keep traces from failed tests; the runner is discarded with the job.
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-results
+          path: test-results/
+          retention-days: 7
 
   preview:
     name: Preview browser tests
@@ -54,3 +61,9 @@ jobs:
       - run: npm run test:preview
         env:
           PORTFOLIO_PREVIEW_BUILD: "1"
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-test-results
+          path: .cache/preview-test-results/
+          retention-days: 7
