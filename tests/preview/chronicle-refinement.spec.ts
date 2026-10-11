@@ -77,7 +77,7 @@ test("full-shell review selects homepage tabs and preserves project navigation",
     ["About", "/en/about"],
     ["Areas of Practice", null],
     ["Lab & Explorations", "/en/lab"],
-    ["Start a Conversation", "/en/contact"],
+    ["Contact", "/en/contact"],
   ] as const) {
     await overview.getByRole("tab", { name: label, exact: true }).click();
     const panel = overview.getByRole("tabpanel");
@@ -639,9 +639,7 @@ test("glass buttons swap to authored hover, focus and pressed art", async ({
     ".chronicle-home-tabs__panel:not([hidden]) .chronicle-action",
   );
   const art = () =>
-    action.evaluate((element) =>
-      getComputedStyle(element).backgroundImage.split("/").pop(),
-    );
+    action.evaluate((element) => getComputedStyle(element).backgroundImage);
   expect(await art()).toContain("glass-button.webp");
   await action.hover();
   expect(await art()).toContain("glass-button-hover.webp");

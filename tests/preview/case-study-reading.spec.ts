@@ -10,6 +10,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     ]);
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto("/dev/projects/portfolio");
+    await page.evaluate(() => document.fonts.ready);
     const study = page.locator(".case-study");
     const brief = study.getByRole("region", { name: "Project at a Glance" });
     await expect(brief).toContainText("AI-assisted development");
@@ -93,6 +94,13 @@ test("chapter links and the brief remain usable without JavaScript", async ({
     baseURL: "http://127.0.0.1:3218",
   });
   const page = await context.newPage();
+  await context.addCookies([
+    {
+      name: "portfolio-mode",
+      value: "editorial",
+      url: "http://127.0.0.1:3218",
+    },
+  ]);
   await page.goto("/dev/projects/portfolio");
   const disclosure = page.locator(".case-study-navigation__mobile");
   await disclosure.locator("summary").click();

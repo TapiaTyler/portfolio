@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 for (const theme of ["editorial", "engineer", "digital"] as const) {
-  test(`${theme} renders the real pilot draft with media, responsive layout and honest locale fallback`, async ({
+  test(`${theme} renders the Portfolio case study with media, responsive layout and honest locale fallback`, async ({
     page,
     context,
   }) => {
@@ -15,7 +15,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       const record = study.locator(".engineer-block-record:has(> #continuity)");
       await expect(record.locator("#morphing-evidence video")).toHaveCount(1);
       await expect(record.locator("figcaption")).toContainText(
-        "Live theme switching",
+        "modules moving and resizing during theme changes",
       );
       expect(
         await record.evaluate((element) => {
@@ -115,7 +115,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
         .filter({ has: page.locator("#continuity") });
       await expect(surface.locator("#morphing-evidence video")).toHaveCount(1);
       await expect(surface.locator("figcaption")).toContainText(
-        "Live theme switching",
+        "modules moving and resizing during theme changes",
       );
       expect(
         await surface
@@ -139,7 +139,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     }
     await expect(
       study.getByRole("heading", {
-        name: "One Portfolio, Several Ways of Reading It",
+        name: "One Portfolio, Five Perspectives",
         exact: true,
       }),
     ).toBeVisible();
@@ -148,7 +148,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
     );
     await study.locator("#engineering-details summary").click();
     await expect(study.locator("#engineering-details")).toContainText(
-      "560ms for Editorial, 360ms for Engineer, 680ms for Digital",
+      "280ms for Product, 560ms for Editorial, 360ms for Engineer, 680ms for Digital",
     );
     await expect(study.locator("#engineering-details")).toContainText(
       "a carousel that expands from the selected image",
@@ -169,19 +169,12 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       });
       if (theme === "engineer") {
         if (width === 1440) {
-          const comparison = study.locator("#compositions .media-frame");
-          const boxes = await comparison.evaluateAll((elements) =>
-            elements.map((element) => ({
-              top: element.getBoundingClientRect().top,
-              width: element.getBoundingClientRect().width,
-            })),
-          );
-          expect(boxes).toHaveLength(4);
-          expect(
-            Math.max(...boxes.map((box) => box.top)) -
-              Math.min(...boxes.map((box) => box.top)),
-          ).toBeLessThan(1);
-          expect(boxes.every((box) => box.width < 600)).toBe(true);
+          await expect(
+            study.locator("#compositions .media-comparison__choices button"),
+          ).toHaveCount(5);
+          await expect(
+            study.locator("#compositions .media-frame:visible"),
+          ).toHaveCount(1);
           expect(
             await study
               .locator("#morphing-evidence .media-frame")
@@ -205,7 +198,7 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
           .screenshot({ path: `.cache/pilot-evidence-${width}.png` });
       }
     }
-    const images = study.locator(".media-frame img");
+    const images = study.locator(".media-frame img:visible");
     for (const image of await images.all()) {
       await image.scrollIntoViewIfNeeded();
       await expect
@@ -267,9 +260,17 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
   });
 }
 
-test("real draft modules participate in theme morphing without duplicate names or content", async ({
+test("Portfolio modules participate in theme morphing without duplicate names or content", async ({
   page,
+  context,
 }) => {
+  await context.addCookies([
+    {
+      name: "portfolio-mode",
+      value: "editorial",
+      url: "http://127.0.0.1:3218",
+    },
+  ]);
   await page.addInitScript(() => {
     const start = document.startViewTransition.bind(document);
     document.startViewTransition = (update) => {

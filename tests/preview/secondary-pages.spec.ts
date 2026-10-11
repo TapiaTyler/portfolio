@@ -24,12 +24,10 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
       if (route === "about")
         await expect(article).toContainText("Western Governors University");
       if (route === "contact") {
-        await expect(article).toContainText(
-          "Verified contact links will be added here.",
-        );
-        await expect(article.locator('form, a[href^="mailto:"]')).toHaveCount(
-          0,
-        );
+        await expect(
+          article.locator('a[href="mailto:tapiatylert@gmail.com"]'),
+        ).toHaveCount(1);
+        await expect(article.locator("form")).toHaveCount(0);
       }
       if (theme === "engineer" && route === "about") {
         const link = article.locator(".secondary-page-index a").last();

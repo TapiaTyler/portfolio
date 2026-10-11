@@ -9,6 +9,10 @@ function chronicleAnimations(page: Page) {
       .getAnimations()
       // Only animations still playing; finished CSS fills linger in the list.
       .filter((animation) => animation.playState === "running")
+      .filter(
+        (animation) =>
+          animation.effect?.getComputedTiming().iterations !== Infinity,
+      )
       .map((animation) => {
         const effect = animation.effect as KeyframeEffect;
         const target = effect.target as HTMLElement | null;
@@ -86,9 +90,9 @@ test("lazy screenshots shimmer in their frames, then fade in", async ({
     .locator(".case-study-body .media-frame[data-chronicle-loading]")
     .last()
     .getAttribute("data-media-id");
-  const frame = page.locator(
-    `.case-study-body .media-frame[data-media-id="${mediaId}"]`,
-  );
+  const frame = page
+    .locator(`.case-study-body .media-frame[data-media-id="${mediaId}"]`)
+    .last();
   await expect(frame).toHaveAttribute("data-chronicle-loading");
   await page.route("**/_next/image**", async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 1200));

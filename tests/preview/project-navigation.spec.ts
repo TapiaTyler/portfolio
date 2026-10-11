@@ -142,7 +142,15 @@ test("Digital selected-project preview stays usable with reduced motion", async 
 
 test("Editorial uses staggered sheets without replaying content when opening a deeper project", async ({
   page,
+  context,
 }) => {
+  await context.addCookies([
+    {
+      name: "portfolio-mode",
+      value: "editorial",
+      url: "http://127.0.0.1:3218",
+    },
+  ]);
   await page.addInitScript(() => {
     const start = document.startViewTransition.bind(document);
     document.startViewTransition = (update) => {

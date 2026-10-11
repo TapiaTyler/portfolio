@@ -225,6 +225,7 @@ for (const mode of modes) {
         )
         .toBe(800);
       if (locale === "en") {
+        await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
         const result = await new AxeBuilder({ page })
           .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
           .analyze();

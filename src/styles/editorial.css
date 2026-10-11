@@ -736,6 +736,12 @@
     );
     opacity: 0.2;
   }
+  @media (max-width: 600px) {
+    .secondary-page--work .secondary-page-intro::after,
+    .secondary-page--lab .secondary-page-intro::after {
+      right: 0;
+    }
+  }
   /* Contact: a sumi-e sweep under the lead, and the spatter (turned, smaller
      than Lab's) in the gutter left of the main content, leading the eye into it
      after the title. */

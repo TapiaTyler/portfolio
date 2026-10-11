@@ -11,7 +11,7 @@ test.beforeEach(async ({ context }) => {
   ]);
 });
 
-test("Chronicle selects reviewed drafts without publishing them and preserves theme preference", async ({
+test("Chronicle selects project records and preserves theme preference", async ({
   page,
 }) => {
   await page.goto("/dev/compositions?surface=homepage&inventory=projects");
@@ -19,7 +19,7 @@ test("Chronicle selects reviewed drafts without publishing them and preserves th
   await expect(page.locator(".chronicle-selection__item")).toHaveCount(3);
   // Development review pages list records in file order, not by priority.
   await expect(page.locator(".chronicle-selection__item")).toContainText([
-    "One Portfolio, Several Ways of Reading It",
+    "One Portfolio, Five Perspectives",
     "Japan Travel Planner",
     "Nihonest",
   ]);
