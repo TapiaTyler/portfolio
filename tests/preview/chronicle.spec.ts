@@ -85,9 +85,9 @@ for (const slug of ["portfolio", "japan-travel-planner"]) {
     await expect
       .poll(() => sections.last().getAttribute("aria-current"))
       .toBe("location");
-    expect(
-      await reading.evaluate((element) => element.scrollTop),
-    ).toBeGreaterThan(0);
+    await expect
+      .poll(() => reading.evaluate((element) => element.scrollTop))
+      .toBeGreaterThan(0);
     expect(await page.evaluate(() => scrollY)).toBe(0);
     expect(
       await page.evaluate(() => document.documentElement.scrollHeight),

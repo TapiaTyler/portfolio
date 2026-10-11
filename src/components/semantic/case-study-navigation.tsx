@@ -37,6 +37,7 @@ export function CaseStudyNavigation({
       )
       .filter((element) => element !== undefined);
     let frame = 0;
+    let disposed = false;
     const update = () => {
       frame = 0;
       const panel = study.querySelector<HTMLElement>(".case-study-body");
@@ -61,12 +62,13 @@ export function CaseStudyNavigation({
       setCurrent(last?.id ?? null);
     };
     const schedule = () => {
-      if (!frame) frame = requestAnimationFrame(update);
+      if (!disposed && !frame) frame = requestAnimationFrame(update);
     };
     const observer = window.ResizeObserver
       ? new ResizeObserver(schedule)
       : null;
     observer?.observe(study);
+    targets.forEach((target) => observer?.observe(target));
     const panel = study.querySelector<HTMLElement>(".case-study-body");
     if (panel) observer?.observe(panel);
     study.addEventListener("scroll", schedule, {
@@ -74,13 +76,27 @@ export function CaseStudyNavigation({
       capture: true,
     });
     window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("hashchange", schedule);
+    // Anchor scrolling and entry animations can finish after the last resize or
+    // scroll sample. Reconcile the marker against the final reading position.
+    study.addEventListener("scrollend", schedule, true);
+    window.addEventListener("scrollend", schedule);
+    study.addEventListener("load", schedule, true);
+    study.addEventListener("animationend", schedule);
     window.addEventListener("resize", schedule);
+    void document.fonts.ready.then(schedule);
     update();
     return () => {
+      disposed = true;
       cancelAnimationFrame(frame);
       observer?.disconnect();
       study.removeEventListener("scroll", schedule, true);
       window.removeEventListener("scroll", schedule);
+      window.removeEventListener("hashchange", schedule);
+      study.removeEventListener("scrollend", schedule, true);
+      window.removeEventListener("scrollend", schedule);
+      study.removeEventListener("load", schedule, true);
+      study.removeEventListener("animationend", schedule);
       window.removeEventListener("resize", schedule);
     };
   }, [sections]);
@@ -98,29 +114,27 @@ export function CaseStudyNavigation({
                 : undefined
             }
             aria-current={current === id ? "location" : undefined}
-            onClick={
-              mobile
-                ? (event) => {
-                    if (
-                      event.defaultPrevented ||
-                      event.button !== 0 ||
-                      event.metaKey ||
-                      event.ctrlKey ||
-                      event.shiftKey ||
-                      event.altKey
-                    )
-                      return;
-                    const disclosure = event.currentTarget.closest("details");
-                    if (disclosure) disclosure.open = false;
-                    // Preserve the native hash and scroll; move focus out of the closed disclosure.
-                    requestAnimationFrame(() =>
-                      document
-                        .getElementById(id)
-                        ?.focus({ preventScroll: true }),
-                    );
-                  }
-                : undefined
-            }
+            onClick={(event) => {
+              if (
+                event.defaultPrevented ||
+                event.button !== 0 ||
+                event.metaKey ||
+                event.ctrlKey ||
+                event.shiftKey ||
+                event.altKey
+              )
+                return;
+              // A chosen chapter is active immediately, including when the
+              // browser delays its native smooth-scroll notifications.
+              setCurrent(id);
+              if (!mobile) return;
+              const disclosure = event.currentTarget.closest("details");
+              if (disclosure) disclosure.open = false;
+              // Preserve the native hash and scroll; move focus out of the closed disclosure.
+              requestAnimationFrame(() =>
+                document.getElementById(id)?.focus({ preventScroll: true }),
+              );
+            }}
           >
             <span className="case-study-navigation__number" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}

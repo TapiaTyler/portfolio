@@ -85,6 +85,48 @@ for (const theme of ["editorial", "engineer", "digital"] as const) {
   });
 }
 
+test("chapter selection reconciles when native scroll notifications are delayed", async ({
+  page,
+  context,
+}) => {
+  await context.addCookies([
+    {
+      name: "portfolio-mode",
+      value: "editorial",
+      url: "http://127.0.0.1:3218",
+    },
+  ]);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/dev/projects/portfolio");
+  await expect(page.locator("html")).toHaveAttribute("data-motion-enhanced");
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+    // Model a missed scroll sample without altering the native anchor or marker.
+    window.addEventListener(
+      "scroll",
+      (event) => event.stopImmediatePropagation(),
+      { capture: true },
+    );
+  });
+  const nav = page.locator(".case-study-navigation__desktop");
+  await nav.locator('a[href="#continuity"]').click();
+  await expect(page).toHaveURL(/#continuity$/);
+  await expect(nav.locator('a[href="#continuity"]')).toHaveAttribute(
+    "aria-current",
+    "location",
+  );
+  await page
+    .locator("#chronicle")
+    .evaluate((element) => element.scrollIntoView({ behavior: "instant" }));
+  await expect(nav.locator('a[href="#chronicle"]')).toHaveAttribute(
+    "aria-current",
+    "location",
+  );
+});
+
 test("chapter links and the brief remain usable without JavaScript", async ({
   browser,
 }) => {
