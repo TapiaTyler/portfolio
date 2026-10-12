@@ -83,14 +83,11 @@ preview content, preserves unique anchors and does not modify the saved theme.
 
 Unit tests validate mode IDs, token coverage, reduced-motion overrides, fixture
 compatibility across every mode/locale and specialized-block fallback behavior.
-Playwright checks actual production switching, cookie persistence, route/locale
-navigation, invalid preference/action values, keyboard use, reduced motion,
-first HTML without JavaScript, native form submission and production preview gates.
-The separate `npm run test:preview` suite starts an isolated development build on
-port 3218. It checks populated homepages in all modes/locales, comparison scope
-isolation, multiple image ratios, failed-media descriptions and reduced motion.
-It runs after production browser checks in CI; neither test server uses the user's
-normal development server or build lock.
+Playwright checks the production build: switching, cookie persistence, invalid
+preference values, keyboard use, first HTML without JavaScript, production preview
+gates, and the presentation contract for every mode, page and locale (see
+docs/12-TESTING-AND-QUALITY.md). Development previews such as `/dev/compositions`
+are for manual comparison and are not part of the automated suite.
 
 When specializing a profile, keep all facts and required content, preserve URLs
 and accessible reading logic, and keep the content-compatibility assertions passing.

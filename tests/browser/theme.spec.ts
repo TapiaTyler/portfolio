@@ -30,7 +30,9 @@ test("first HTML uses Product by default and preserves every valid saved prefere
     const expected =
       !preference || preference === "invalid" ? "product" : preference;
     for (const locale of ["en", "ja"]) {
-      const response = await page.goto(`${baseURL}/${locale}`);
+      const response = await page.goto(`${baseURL}/${locale}`, {
+        waitUntil: "domcontentloaded",
+      });
       expect(await response!.text()).toContain(`data-theme="${expected}"`);
       await expect(page.locator("html")).toHaveAttribute(
         "data-theme",

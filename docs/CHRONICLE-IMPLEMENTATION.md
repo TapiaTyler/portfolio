@@ -380,7 +380,7 @@ was removed (the hero still states it).
 
 Reduced motion shows the finished state (static shimmer, no fades). Theme switches and
 route transitions skip on-screen entrances; keyboard focus finishes any entrance it
-lands in. `tests/preview/chronicle-entrance.spec.ts` covers all of this.
+lands in.
 
 ## Signature interactions — 2026-10-04 (microinteractions group 2)
 
@@ -398,7 +398,7 @@ lands in. `tests/preview/chronicle-entrance.spec.ts` covers all of this.
 - **Crystal image opening:** View Image grows a diamond clip from the image centre with
   the shared expand motion; closing reverses it.
 
-Reduced motion keeps all of these static. `tests/preview/chronicle-signature.spec.ts`.
+Reduced motion keeps all of these static.
 
 **Card touch targets (2026-10-04):** the whole card is the touch target on every
 surface; there is no separate selector button on the card. A tap selects and arms
@@ -428,7 +428,7 @@ selector was removed because it covered card content.
   paint. Without view transitions it would have to be static (reduced motion), so it
   was not built.
 
-Reduced motion keeps all of these static. `tests/preview/chronicle-signature.spec.ts`.
+Reduced motion keeps all of these static.
 
 ## Dismissible menus and touch fixes — 2026-10-04
 

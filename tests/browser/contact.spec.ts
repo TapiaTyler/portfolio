@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
 
 for (const mode of [
   "editorial",
@@ -24,20 +23,9 @@ for (const mode of [
         { width: 390, height: 844 },
       ]) {
         await page.setViewportSize(viewport);
-        await page.goto(`/${locale}/contact`);
-        // Measure resting alignment rather than a link's pointer-hover transform.
-        await page.mouse.move(0, 0);
-        await page.evaluate(() => document.fonts.ready);
-        await page.waitForFunction(
-          () =>
-            document
-              .getAnimations()
-              .filter(
-                (animation) =>
-                  animation.playState === "running" &&
-                  animation.effect?.getComputedTiming().iterations !== Infinity,
-              ).length === 0,
-        );
+        await page.goto(`/${locale}/contact`, {
+          waitUntil: "domcontentloaded",
+        });
         await expect(
           page.getByRole("heading", { name: "Contact", exact: true }),
         ).toBeVisible();
@@ -59,53 +47,12 @@ for (const mode of [
         await expect(
           page.getByRole("link", { name: "tapiatylert@gmail.com" }),
         ).not.toHaveAttribute("target", "_blank");
-        const copy = page.getByRole("button", { name: "Copy email address" });
-        await expect(copy.locator("svg")).toBeVisible();
-        await expect(copy).toHaveText("");
-        const address = await page
-          .getByRole("link", { name: "tapiatylert@gmail.com" })
-          .boundingBox();
-        const icon = await copy.boundingBox();
-        expect(icon!.x).toBeGreaterThanOrEqual(address!.x + address!.width - 1);
-        expect(
-          Math.abs(
-            icon!.y + icon!.height / 2 - address!.y - address!.height / 2,
-          ),
-        ).toBeLessThan(2);
-        await copy.focus();
-        await expect(page.getByRole("tooltip")).toBeVisible();
-        await expect(page.getByRole("tooltip")).toHaveText("Copy");
-        await copy.evaluate((button: HTMLButtonElement) => button.blur());
-        await expect(page.getByRole("tooltip")).toBeHidden();
-        expect(
-          await page.evaluate(
-            () => document.documentElement.scrollWidth <= window.innerWidth + 1,
-          ),
-        ).toBe(true);
         if (locale === "ja") {
           await expect(page.locator(".translation-notice")).toContainText(
             "where Japanese translations are unavailable",
           );
           await expect(page.locator("h1 span")).toHaveAttribute("lang", "en");
         }
-        if (locale === "en") {
-          // Capture the settled composition rather than an entrance-animation frame.
-          await page.waitForFunction(
-            () =>
-              document.getAnimations().filter((animation) => {
-                const timing = animation.effect?.getComputedTiming();
-                return (
-                  animation.playState === "running" &&
-                  timing?.iterations !== Infinity
-                );
-              }).length === 0,
-          );
-        }
-        const result = await new AxeBuilder({ page })
-          .include("main")
-          .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
-          .analyze();
-        expect(result.violations).toEqual([]);
         if (mode === "chronicle") {
           const documents = page.getByRole("tab", { name: "Résumés & CV" });
           await documents.focus();

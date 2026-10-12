@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 
-# Three parallel jobs: wall time is the slowest job rather than the sum of all steps.
+# Two parallel jobs: wall time is the slower job rather than the sum of all steps.
 jobs:
   checks:
     name: Lint, unit, format, typecheck
@@ -44,26 +44,4 @@ jobs:
         with:
           name: browser-test-results
           path: test-results/
-          retention-days: 7
-
-  preview:
-    name: Preview browser tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm run build:preview
-      - run: npx playwright install --with-deps chromium
-      - run: npm run test:preview
-        env:
-          PORTFOLIO_PREVIEW_BUILD: "1"
-      - if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: preview-test-results
-          path: .cache/preview-test-results/
           retention-days: 7

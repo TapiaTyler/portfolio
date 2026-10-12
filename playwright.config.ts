@@ -3,9 +3,8 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/browser",
   fullyParallel: true,
-  // Parallel workers stall cold asset loads against one `next start` server: once a
-  // page's media stalls, every later load of that page times out (seen on Windows
-  // and on Linux CI). CI runs this suite beside the preview suite instead.
+  // One worker against one `next start` server keeps cold asset loads predictable;
+  // the suite is small enough that parallelism buys little.
   workers: 1,
   // One CI retry; Playwright reports retried passes as "flaky" so they stay visible.
   retries: process.env.CI ? 1 : 0,

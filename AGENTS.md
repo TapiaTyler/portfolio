@@ -468,12 +468,15 @@ Important categories:
 - semantic component behavior
 - accessibility
 - theme compatibility
-- visual regression
 - theme persistence
 - no-flash initialization
 - reduced-motion behavior
 
 Every published project should be testable against all launch themes.
+
+Tests assert the presentation contract, never appearance or animation timing
+(D053). Visual layout and motion are reviewed by eye. Do not add screenshot
+baselines or position/timing assertions; see `docs/12-TESTING-AND-QUALITY.md`.
 
 ## 15. Documentation expectations
 

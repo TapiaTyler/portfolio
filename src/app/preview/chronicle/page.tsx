@@ -5,7 +5,6 @@ import { projectSchema } from "@/lib/content/schema";
 import { selectProjectContent } from "@/lib/i18n/project-content";
 import { getActiveTheme } from "@/lib/theme/server";
 import { resolveComposition } from "@/registries/compositions";
-import { devToolsEnabled } from "@/lib/dev-tools";
 
 // Review real drafts in the actual site shell without changing public selectors.
 export default async function ChronicleReviewPage({
@@ -13,7 +12,7 @@ export default async function ChronicleReviewPage({
 }: {
   searchParams: Promise<{ project?: string; surface?: string }>;
 }) {
-  if (!devToolsEnabled()) notFound();
+  if (process.env.NODE_ENV !== "development") notFound();
   const { projectRecords } = await import("@/content/projects");
   const projects = projectRecords.map((record) => projectSchema.parse(record));
   const { project: slug, surface } = await searchParams;

@@ -10,7 +10,6 @@ import { getActiveTheme } from "@/lib/theme/server";
 import { homepageContent } from "@/content/placeholder";
 import { pageContent } from "@/content/pages";
 import { projectSchema } from "@/lib/content/schema";
-import { devToolsEnabled } from "@/lib/dev-tools";
 
 export default async function CompositionsPage({
   searchParams,
@@ -23,7 +22,7 @@ export default async function CompositionsPage({
     inventory?: string;
   }>;
 }) {
-  if (!devToolsEnabled()) notFound();
+  if (process.env.NODE_ENV !== "development") notFound();
   const { fixtureProjects } = await import("@/content/fixtures/projects");
   const query = await searchParams;
   const locale = query.locale ?? "en";

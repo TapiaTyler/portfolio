@@ -55,10 +55,9 @@ npm test
 npm run build
 npm run test:release
 npm run test:browser
-npm run test:preview
 ```
 
-Do not run a build concurrently with preview tests or captures. The release smoke
+Do not run a build concurrently with captures. The release smoke
 command owns port 3220 and checks the production build across three cookie-selected
 themes, public routes, production 404 guards, static JavaScript, public PNG media,
 noindex robots and an empty preview sitemap. It stops its own server afterward and

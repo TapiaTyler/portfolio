@@ -14,6 +14,36 @@ Testing should protect the portfolio's unusual parts:
 
 Do not overbuild testing infrastructure before the product exists.
 
+## Testing approach (current)
+
+Automated tests guard the presentation contract, not the presentation. A mode may
+change layout, typography and motion freely; it may never change content, routes,
+accessibility or the no-JavaScript path (AGENTS.md §4). Tests therefore assert
+those invariants and nothing about appearance, so design adjustments do not
+require rewriting tests.
+
+What runs, and what each layer protects:
+
+| Layer         | Command                          | Protects                                                                                                                                                                                                                                        |
+| ------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Unit          | `npm test`                       | Content schema, case-study contract, media references, locale fallback, theme registry, semantic components                                                                                                                                     |
+| Release smoke | `npm run test:release`           | Production build: every mode serves every route, dev and preview routes return 404, drafts never leak, noindex/sitemap behavior                                                                                                                 |
+| Contract      | `tests/browser/contract.spec.ts` | Every mode lists the same projects; every page in both locales returns 200 with one `h1`, the right `lang` and theme, no axe WCAG 2.2 AA violations and no runtime errors under reduced motion; pages and primary links work without JavaScript |
+| Theme         | `tests/browser/theme.spec.ts`    | Default mode, saved preference in the first HTML (no flash), invalid preferences, switching persistence, keyboard switching, production guards                                                                                                  |
+| SEO           | `tests/browser/seo.spec.ts`      | One canonical identity across modes and locales                                                                                                                                                                                                 |
+| Contact       | `tests/browser/contact.spec.ts`  | Email link, copy fallback, external-link attributes, pending documents, Japanese fallback                                                                                                                                                       |
+
+What is deliberately not automated: visual layout (overlap, spacing, alignment),
+animation timing and motion feel. These are reviewed by eye in every mode at phone,
+landscape-phone and desktop widths before release (§17). An earlier suite of about
+170 browser tests pinned specific positions and animation timings; it broke on
+harmless design changes, was flaky in CI and still missed the visual problems
+found in review, so it was replaced (D053).
+
+When adding a project, page or mode, no test edits should be needed: the contract
+spec discovers projects from the Work page and modes from the theme registry. Add a
+test only for a new invariant or a regression in behavior that cannot be seen.
+
 ## 1. Schema/content validation
 
 Validate:
@@ -157,37 +187,14 @@ Look for:
 
 ## 11. Visual regression
 
-Protect major surfaces:
-
-```text
-home
-work
-flagship case study
-about
-```
-
-across:
-
-```text
-editorial
-engineer
-digital
-```
-
-and key mobile/desktop widths.
-
-Do not snapshot every pixel of every experiment if maintenance becomes excessive.
+Not automated (D053). Screenshot baselines would need refreshing on every design
+adjustment. Visual review happens by eye per §17.
 
 ## 12. Motion/reduced motion
 
-Test:
-
-- page transition;
-- theme transition;
-- Digital project interaction;
-- reduced-motion variant;
-- offscreen animation behavior;
-- keyboard focus during motion.
+The contract spec runs every page under reduced motion and fails on runtime
+errors; theme.spec checks keyboard switching with reduced motion. Animation timing
+and feel are reviewed by eye.
 
 ## 13. Performance
 
@@ -227,18 +234,14 @@ Check:
 
 ## 16. CI
 
-Reasonable baseline:
+Two parallel GitHub Actions jobs:
 
 ```text
-install
-typecheck
-lint
-schema/content validate
-unit/component tests
-build
+checks:      lint, unit tests, format check, typecheck
+production:  build (validates content), release smoke, Playwright browser suite
 ```
 
-Add end-to-end, accessibility, and visual checks as implementation matures.
+Failed browser runs upload their Playwright traces as an artifact for seven days.
 
 ## 17. Manual quality review
 

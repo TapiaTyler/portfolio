@@ -672,3 +672,19 @@ in each arrow line) and read as raw fallback beside designed sections in all mod
 Grouping by source halves the text and keeps the whole graph readable without a
 diagram library. Screen readers still hear "connects to" for each relationship.
 
+## D053 — Contract tests instead of presentation tests
+
+**Decision, 2026-10-12:** The owner approved replacing about 170 browser and preview
+tests with a small contract suite. Automated tests now assert only the presentation
+invariants (same projects in every mode; every page and locale returns 200 with one
+`h1`, correct `lang` and theme, no axe WCAG 2.2 AA violations or runtime errors under
+reduced motion; usable without JavaScript), plus theme persistence, production
+guards, SEO identity and Contact behavior. Per-theme layout, animation-timing and
+image-pipeline specs, the development-build preview suite and its CI job were
+removed. Visual regression is deliberately not automated.
+
+**Reason:** The removed tests pinned specific positions and timings, so harmless
+design adjustments required rewriting them; they were frequently flaky in CI; and
+they still missed the visual problems (such as overlapping text) found by review.
+Visual quality is reviewed by eye per docs/12-TESTING-AND-QUALITY.md §17.
+

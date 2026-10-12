@@ -5,14 +5,13 @@ import { ProjectFeature } from "@/components/semantic/project-feature";
 import { isLocale } from "@/lib/i18n/locales";
 import { selectProjectContent } from "@/lib/i18n/project-content";
 import { createProjectRegistry } from "@/lib/content/registry";
-import { devToolsEnabled } from "@/lib/dev-tools";
 
 export default async function DesignSystemPage({
   searchParams,
 }: {
   searchParams: Promise<{ locale?: string; project?: string }>;
 }) {
-  if (!devToolsEnabled()) notFound();
+  if (process.env.NODE_ENV !== "development") notFound();
   const { fixtureProjects } = await import("@/content/fixtures/projects");
   const query = await searchParams;
   const locale = query.locale ?? "en";

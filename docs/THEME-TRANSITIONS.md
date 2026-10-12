@@ -135,7 +135,6 @@ line. Panel restores scroll instantly because reading panels use smooth scrollin
 Document scroll positions round to device pixels: a narrative module within one
 pixel below the reading line still counts as current, with progress clamped to zero.
 This prevents repeated switches from selecting its enclosing group at the boundary.
-`tests/preview/chronicle-morphing.spec.ts` covers every surface and both directions.
 
 ## Contained reading and clipped modules — 2026-10-05
 
