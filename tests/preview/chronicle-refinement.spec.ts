@@ -325,7 +325,9 @@ test("project controls sit above cards and lower panels protect their content", 
       await expect(
         page.locator(".chronicle-selection__card-target"),
       ).toHaveCount(3);
-      await page.locator(".chronicle-selection__dots button").nth(1).click();
+      await page
+        .getByRole("button", { name: "Next project", exact: true })
+        .click();
       await expect(
         page.locator(".chronicle-preview__panel:not([hidden])"),
       ).toContainText("Japan Travel Planner");

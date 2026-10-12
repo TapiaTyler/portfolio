@@ -247,7 +247,7 @@
   }
   .editorial-project__kicker {
     margin: 0 0 1rem;
-    font-size: 0.68rem;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -464,7 +464,7 @@
   }
   .case-study-block > div > :is(h3, h4, h5, h6) {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.875rem;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -593,7 +593,7 @@
   .editorial-case-study-intro .case-study-orientation h2,
   .editorial-case-study-intro .case-study-orientation h3 {
     font-family: var(--font-body);
-    font-size: 0.66rem;
+    font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;

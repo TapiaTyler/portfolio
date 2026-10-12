@@ -130,6 +130,38 @@ test("Chronicle landscape collection controls leave the heading clear", async ({
       .click();
     await expect(dots.nth(1)).toHaveAttribute("aria-pressed", "true");
   }
+  for (const width of [320, 390, 400, 401]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const route of ["/en", "/en/work"]) {
+      await page.goto(route);
+      await page.evaluate(() => document.fonts.ready);
+      const dots = page.locator(".chronicle-selection__dots");
+      if (width <= 400) await expect(dots).toBeHidden();
+      else await expect(dots).toBeVisible();
+      const clearance = await page.evaluate(() => {
+        const heading = document.querySelector(
+          ".selected-work .home-section-header h2, .chronicle-secondary-page > .secondary-page-section--collection > h2",
+        )!;
+        const range = document.createRange();
+        range.selectNodeContents(heading);
+        return (
+          document
+            .querySelector(".chronicle-selection__controls")!
+            .getBoundingClientRect().left - range.getBoundingClientRect().right
+        );
+      });
+      expect(clearance).toBeGreaterThanOrEqual(0);
+      await page
+        .getByRole("button", { name: "Next project", exact: true })
+        .click();
+      await expect(
+        page.locator('.chronicle-selection__dots button[aria-pressed="true"]'),
+      ).toHaveAttribute(
+        "aria-label",
+        "Select One Portfolio, Five Perspectives",
+      );
+    }
+  }
 });
 
 test("Image viewer returns to the comparison view last inspected", async ({

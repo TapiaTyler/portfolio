@@ -1,5 +1,13 @@
 # Product — first implementation
 
+## Metadata and supporting type refinement — 2026-10-12
+
+Home and Work project rows now prioritize title, status, summary and evidence.
+Capability lists remain in the shared project records and case studies, rather
+than repeating in each row and the selected preview. The preview retains Need,
+Built and Current state. Meaningful supporting labels use at least 14px, while
+phone project summaries and homepage supporting prose use 16px.
+
 Implemented: 2026-10-08. Visual approval remains pending.
 
 ## Reference and scope

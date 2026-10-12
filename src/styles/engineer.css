@@ -392,11 +392,11 @@
   .project-meta > div {
     padding-block: 0.6rem;
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    font-size: 0.78rem;
+    font-size: 0.875rem;
   }
   .project-meta dt {
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.875rem;
   }
   .page-intro {
     max-width: none;
@@ -730,8 +730,14 @@
       padding: 1.25rem;
     }
     .project-meta > div {
-      grid-template-columns: minmax(0, 5.5rem) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 6.5rem) minmax(0, 1fr);
       gap: 0.75rem;
+    }
+    .engineer-project__dossier > p,
+    .capability p,
+    .lab-preview > p,
+    .profile-preview p {
+      font-size: 1rem;
     }
     .engineer-block-record .case-study-block {
       padding: 1rem;

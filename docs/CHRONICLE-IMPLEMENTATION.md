@@ -1,5 +1,16 @@
 # Chronicle implementation
 
+Narrow collection controls, 2026-10-12: project dots are hidden at widths of
+400px and below so Home and Work headings have room beside the arrow controls.
+Previous/next arrows, native swipe selection and the accessible selection status
+remain available. Wider and landscape phone layouts retain the dots.
+
+Supporting type refinement, 2026-10-12: collection and banner metadata uses 14px
+on desktop and portrait phones, with a compact 13px treatment on landscape
+phones. Chapter metadata labels use 13px with tighter tracking; evidence captions
+use 14px. Portrait project summaries use 16px. The landscape-first game screen,
+contained panels, card sizes, rails and select-then-confirm behavior are preserved.
+
 Landscape collection refinement, 2026-10-08: project dots use adjacent 24 × 44px
 targets, with arrow controls retaining 44px targets. The Selected Work header
 reserves control space and omits its competing View All Work shortcut in this

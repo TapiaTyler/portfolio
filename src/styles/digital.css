@@ -245,7 +245,7 @@
   .digital-project .digital-badge {
     color: var(--project-accent);
     border-color: var(--project-accent);
-    font-size: 0.65rem;
+    font-size: 0.875rem;
     flex-shrink: 0;
   }
   .digital-project :is(h2, h3) {
@@ -261,7 +261,7 @@
     font-size: 0.9rem;
   }
   .digital-project .project-meta {
-    font-size: 0.7rem;
+    font-size: 0.875rem;
     font-family: var(--font-mono);
     margin-block: 1.25rem;
   }
@@ -561,6 +561,11 @@
     }
   }
   @media (max-width: 44rem) {
+    .digital-project p,
+    .capability p,
+    .profile-preview p {
+      font-size: 1rem;
+    }
     .digital-case-study-intro:has(.digital-case-study-intro__media) {
       grid-template-columns: minmax(0, 1fr);
     }

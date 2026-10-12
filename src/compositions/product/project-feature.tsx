@@ -6,7 +6,6 @@ import { SectionHeading } from "@/components/semantic/section-heading";
 import { Text } from "@/components/localized-text";
 import { interfaceCopy } from "@/lib/i18n/messages";
 import { projectStatusLabels } from "@/lib/content/status";
-import { capabilities } from "@/registries/capabilities";
 
 export function ProductProjectFeature({
   content,
@@ -39,18 +38,6 @@ export function ProductProjectFeature({
         </p>
         {content.summary && (
           <p lang={content.summary.lang}>{content.summary.value}</p>
-        )}
-        {project.capabilityIds.length > 0 && (
-          <ul className="product-project__focus">
-            {project.capabilityIds.map((id) => (
-              <li key={id}>
-                <Text
-                  value={interfaceCopy(capabilities[id].label)}
-                  locale={locale}
-                />
-              </li>
-            ))}
-          </ul>
         )}
       </div>
       {media && (

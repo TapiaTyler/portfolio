@@ -710,7 +710,7 @@
     margin: 0;
     padding-top: 0.55rem;
     border-top: 1px solid #c5914966;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
     line-height: 1.35;
   }
   .chronicle-project .project-meta > div {
@@ -1507,8 +1507,8 @@
   .chronicle-chapter__narrative > .project-meta dt {
     color: #946137;
     font-weight: 400;
-    font-size: 0.7rem;
-    letter-spacing: 0.13em;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   .chronicle-chapter__narrative > .project-meta dd {
@@ -1535,7 +1535,7 @@
     rotate: 1deg;
   }
   .chronicle-chapter .media-frame figcaption {
-    font-size: 0.82rem;
+    font-size: 0.875rem;
     line-height: 1.35;
     color: #62536a;
   }
@@ -1979,10 +1979,10 @@
       font-size: 1.45rem;
     }
     .chronicle-project p {
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
     .chronicle-project .project-meta {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
     }
     .chronicle-preview {
       padding: 20px 32px 14px;
@@ -2071,7 +2071,7 @@
       font-size: 0.93rem;
     }
     .chronicle-dossier-banner .project-meta {
-      font-size: 0.75rem;
+      font-size: 0.875rem;
     }
     .chronicle-dossier .case-study-reading-layout {
       margin: 8px 10px 10px;
@@ -2173,6 +2173,11 @@
     .chronicle-secondary-page > .secondary-page-section--collection > h2 {
       padding-inline: 22px;
       font-size: 0.85rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .chronicle-selection__dots {
+      display: none;
     }
   }
   @media (max-height: 650px) and (orientation: landscape) {
@@ -2537,7 +2542,7 @@
       font-size: 0.86rem;
     }
     .chronicle-project .project-meta {
-      font-size: 0.72rem;
+      font-size: 0.8125rem;
     }
     .chronicle-home-tabs {
       grid-column: 1 / -1;
@@ -2606,7 +2611,7 @@
       font-size: 0.85rem;
     }
     .chronicle-dossier-banner .project-meta {
-      font-size: 0.72rem;
+      font-size: 0.8125rem;
     }
     .chronicle-record-summary {
       grid-column: 1;

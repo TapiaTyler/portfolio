@@ -12,7 +12,6 @@ import { Text } from "@/components/localized-text";
 import { UiText } from "@/components/ui-text";
 import { interfaceCopy } from "@/lib/i18n/messages";
 import { projectStatusLabels } from "@/lib/content/status";
-import { capabilities } from "@/registries/capabilities";
 import { ProductProjectFeature } from "./project-feature";
 import { ProductSelection } from "./selection";
 
@@ -104,24 +103,6 @@ export function ProductCollection({
                     </dt>
                     <dd lang={content.description.lang}>
                       {content.description.value}
-                    </dd>
-                  </div>
-                )}
-                {project.capabilityIds.length > 0 && (
-                  <div>
-                    <dt>
-                      <UiText locale={locale} id="Focus areas" />
-                    </dt>
-                    <dd>
-                      {project.capabilityIds.map((id, index) => (
-                        <span key={id}>
-                          {index > 0 && ", "}
-                          <Text
-                            value={interfaceCopy(capabilities[id].label)}
-                            locale={locale}
-                          />
-                        </span>
-                      ))}
                     </dd>
                   </div>
                 )}
