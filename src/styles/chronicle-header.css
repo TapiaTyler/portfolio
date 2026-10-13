@@ -652,4 +652,15 @@
       transition-duration: 0.01ms;
     }
   }
+
+  /* Portrait phones: 44px language targets and a legible Japanese name. */
+  @media (max-width: 900px) and (orientation: portrait) {
+    .locale-switcher a {
+      min-height: 44px;
+    }
+
+    .site-brand__japanese {
+      font-size: 0.7rem;
+    }
+  }
 }

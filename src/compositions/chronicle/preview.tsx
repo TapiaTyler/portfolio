@@ -3,13 +3,18 @@ import { messageLanguage, message } from "@/lib/i18n/messages";
 import { type Locale } from "@/lib/i18n/locales";
 
 import {
+  useEffect,
   useId,
   useRef,
   useState,
   type CSSProperties,
   type ReactNode,
 } from "react";
-import { useNavigationSelector } from "./use-navigation-selector";
+import {
+  centreInStrip,
+  useHorizontalStrip,
+  useNavigationSelector,
+} from "./use-navigation-selector";
 
 export function ChronicleProjectPreview({
   identity,
@@ -27,13 +32,39 @@ export function ChronicleProjectPreview({
   const [selected, setSelected] = useState(0);
   // Chapters slide in from the direction of travel along the chapter rail.
   const [direction, setDirection] = useState(1);
+  const prefix = useId();
+  const navigation = useRef<HTMLElement>(null);
+  const copy = useRef<HTMLDivElement>(null);
+  const chosen = useRef(false);
+  const horizontal = useHorizontalStrip();
   const select = (next: number) => {
     setDirection(next >= selected ? 1 : -1);
     setSelected(next);
+    chosen.current = true;
+    const button = navigation.current?.querySelectorAll("button")[next];
+    if (horizontal && navigation.current && button)
+      centreInStrip(navigation.current, button);
   };
-  const prefix = useId();
-  const navigation = useRef<HTMLElement>(null);
   useNavigationSelector(navigation, selected, chapters.length);
+  // In the portrait strip layout the identity fills most of the short copy
+  // area, so a chosen chapter would barely show. Bring its text to the top of
+  // the copy area, as a tab panel opens at its start on About.
+  useEffect(() => {
+    if (!chosen.current || !horizontal) return;
+    chosen.current = false;
+    const area = copy.current;
+    const chapter = area?.querySelector<HTMLElement>(
+      ".chronicle-preview__narrative:not([hidden])",
+    );
+    if (!area || !chapter) return;
+    area.scrollTo({
+      top:
+        area.scrollTop +
+        chapter.getBoundingClientRect().top -
+        area.getBoundingClientRect().top,
+      behavior: "instant",
+    });
+  }, [selected, horizontal]);
   // No-script overrides must outrank scoped CSS; its initial preview stays static.
   return (
     <div
@@ -66,6 +97,7 @@ export function ChronicleProjectPreview({
       {/* Only the copy column scrolls, so it is the single keyboard stop here. */}
       <div
         className="chronicle-preview__copy"
+        ref={copy}
         tabIndex={0}
         role="region"
         aria-label={message(locale, "Selected project summary")}

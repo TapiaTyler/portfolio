@@ -1,5 +1,71 @@
 # Chronicle implementation
 
+Touch hover states, 2026-10-12: touch screens keep `:hover` after a tap, which left
+the last pressed control lifted and sparkling and kept a gold glow on a card the
+strip had moved away from. Hover lift, glow, glass hover art and glitter now apply
+only under `(hover: hover) and (pointer: fine)`; keyboard focus keeps them on every
+device. Touch gets press feedback instead: glass buttons keep their pressed art and
+gleam, project arrows sink on `:active`, and glitter flashes in for the press and
+fades out on release. Footer links gain an invisible 44px hit area that adds no
+footer height; in Chronicle, `main` paints above it, so it never takes taps from
+the stage.
+
+Portrait phones, 2026-10-12: portrait uses the same one-screen snaps as
+landscape phones. Each page opens on its scenic intro with the scroll-down button;
+Home is hero, Selected Work and tabs; Work is intro, cards and preview; About, Lab
+and Contact are intro and stage. Case studies are an identity screen (banner,
+topics and Project at a Glance) followed by a full-screen reading panel, which
+replaces a 148-274px reading strip under the banner. Tab rails (Home, About,
+Contact) become horizontal strips above a full-width panel, so reading text runs
+35-45 characters per line instead of about 20 beside a rail; arrow keys work in
+both directions, and `aria-orientation` follows the layout (`home-tabs.tsx`).
+Strip markers sit clear of their labels. Choosing a tab or Work preview chapter
+centres it in its strip, and a Work chapter brings its text to the top of the
+copy area (shared helpers in `use-navigation-selector.ts`). Home's card screen takes Work's
+treatment: the Selected Work heading row is visually hidden (still announced),
+arrows and dots overlay the cards, and topic lists lose the default list indent,
+so a card's topics stay inside its frame down to 375 × 667.
+Sections holding corner art clip it sideways (`overflow-x: clip`), because its
+28px bleed had become sideways scroll in `main` that shifted whole screens; Work's
+preview keeps at least 200px for its copy (identity and chapter text scroll
+together, uncapped) and lets the screenshot stack give way on short screens, so
+it never outgrows its snap. Before/after captures are in
+`docs/projects/portfolio/evidence/chronicle-phone-screens/`. Portrait also raises language links,
+Project at a Glance, Explore Work and the footer to 44px, extends card-title tap
+areas, and enlarges the Japanese name and orientation labels.
+
+Landscape-phone screens and desktop drag, 2026-10-12: every page on landscape
+phones is a stack of one-screen snaps that swipe mandatorily, with the scenic intro
+as the first screen: Home (hero, Selected Work, tabs), About, Lab and Contact
+(intro, stage), and Work (intro, cards, project preview). Work's cards and preview
+are screens of the page scroller, not a nested one, and its arrows and dots overlay
+the card screen instead of a heading row that stayed pinned over the preview. A
+round scroll-down button in each hero's bottom-right corner
+(`compositions/chronicle/next-screen.tsx`) shows that more follows and moves one
+screen down. The related-link dock is hidden there, because beside the identity it
+read as the page's only actions; the header menu reaches every page. On desktop
+the dock sits in the hero's bottom-right corner. Text in the home and page tabs
+carries a soft white halo, and rail labels a soft white cloud, so they stay
+readable over the corner sakura without hiding it. Following a link opens the next page at its top (`theme-provider.tsx`
+resets the shared `<main>` scroll; back and forward keep their position). Mouse
+users can drag the project strip (`selection.tsx`). A press does not start a text
+selection or native image/link drag, a click is a press that moves under 8px, and
+pauses mid-drag never re-select. Cards past the strip's furthest scroll share
+its end: a release there keeps the current card, and pulling another 40px past
+the end steps one card, so a drag never skips to the last project. Snapping
+pauses during the drag, the release settles on a card, and the click ending a drag
+never selects or opens one. A header screen indicator was tried and removed.
+
+Small landscape phones, 2026-10-12: up to 900px wide (iPhone SE 667 × 375 through
+iPhone 14 844 × 390), the hero-beside-strip home screen left cards about 300px wide.
+Their copy overflowed by up to 160px beneath the whole-card target, which no touch,
+wheel or keyboard input could reach. The home page there becomes three one-screen
+snaps: hero (scenery visible on the right), Selected Work at full width with a
+next-card peek, then the tab rail. Each still fits exactly between the header and
+footer. Wider landscape phones (932 × 430) keep the side-by-side screen. The home
+tabs' corner art is anchored to the section bottom, because its downward bleed had
+added 20px of scroll and left the last screen short of its snap.
+
 Narrow collection controls, 2026-10-12: project dots are hidden at widths of
 400px and below so Home and Work headings have room beside the arrow controls.
 Previous/next arrows, native swipe selection and the accessible selection status

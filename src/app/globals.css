@@ -489,7 +489,18 @@ main {
   gap: 1.25rem;
 }
 .site-footer__link {
+  position: relative;
   color: inherit;
+}
+/* 44px touch target without growing compact footers (Chronicle's is 24px).
+   The 0.625rem side bleed meets, but never overlaps, the neighbour across the
+   1.25rem gap. */
+.site-footer__link::after {
+  content: "";
+  position: absolute;
+  inset: 50% -0.625rem auto;
+  height: 44px;
+  translate: 0 -50%;
 }
 /* "Source private" sits among project links but is plain text, not a control. */
 .project-links__note {

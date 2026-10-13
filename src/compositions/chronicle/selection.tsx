@@ -9,6 +9,7 @@ import {
   useState,
   useSyncExternalStore,
   type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
 import { ChronicleAtmosphere } from "./atmosphere";
@@ -75,6 +76,59 @@ export function ChronicleSelection({
   // scroll's end must not re-pick a card. Only a user's own swipe selects by
   // position. The timer releases the guard if no scroll end ever arrives.
   const steering = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Where that steering scroll will land. Only a scroll end at this position
+  // releases the guard; a stray end (such as the tail of a drag) does not.
+  const steeringTarget = useRef(0);
+  // Mouse drag (desktop): touch already swipes natively. Snapping pauses while
+  // the strip follows the pointer, then the release settles on a card.
+  const drag = useRef<{
+    id: number;
+    x: number;
+    left: number;
+    moved: boolean;
+  } | null>(null);
+  const endDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const state = drag.current;
+    const element = event.currentTarget;
+    if (!state || state.id !== event.pointerId) return;
+    drag.current = null;
+    delete element.dataset.dragging;
+    if (!state.moved) return;
+    // The click that ends a drag must not select or open the card under it.
+    const swallow = (click: MouseEvent) => {
+      click.preventDefault();
+      click.stopPropagation();
+    };
+    element.addEventListener("click", swallow, { capture: true, once: true });
+    setTimeout(() => element.removeEventListener("click", swallow, true));
+    // onScrollEnd restores snapping once the settle scroll lands; this covers a
+    // release already resting on a card, where no scroll follows.
+    setTimeout(() => {
+      if (!drag.current?.moved) element.style.scrollSnapType = "";
+    }, 1000);
+    // Positions are capped at the furthest scroll, so cards that share the end of
+    // the strip tie; a tie keeps the current card, then prefers the earlier one.
+    const furthest = Math.max(0, element.scrollWidth - element.clientWidth);
+    let index = Array.from(element.children)
+      .map((card, position) => ({
+        position,
+        distance: Math.abs(
+          Math.min(cardScrollPosition(element, card as HTMLElement), furthest) -
+            element.scrollLeft,
+        ),
+      }))
+      .sort(
+        (first, second) =>
+          first.distance - second.distance ||
+          Number(second.position === selected) -
+            Number(first.position === selected),
+      )[0].position;
+    // A deliberate drag that does not reach another card still moves one card
+    // its way. Pointer travel counts, so a pull past the strip's end still works.
+    const pulled = state.x - event.clientX;
+    if (index === selected && Math.abs(pulled) > 40) index += Math.sign(pulled);
+    choose(Math.max(0, Math.min(items.length - 1, index)));
+  };
   useEffect(() => {
     const element = track.current;
     if (!element || !window.ResizeObserver) return;
@@ -99,9 +153,16 @@ export function ChronicleSelection({
     setSelected(index);
     const card = track.current?.children[index] as HTMLElement | undefined;
     if (card && track.current) {
-      const left = cardScrollPosition(track.current, card);
+      // Later cards can sit past the strip's furthest scroll; aim for where the
+      // strip can actually stop, or the guard would wait for a scroll that never
+      // comes and the end-of-strip rule would pick the last card instead.
+      const left = Math.min(
+        cardScrollPosition(track.current, card),
+        Math.max(0, track.current.scrollWidth - track.current.clientWidth),
+      );
       if (Math.abs(track.current.scrollLeft - left) > 2) {
         if (steering.current) clearTimeout(steering.current);
+        steeringTarget.current = left;
         steering.current = setTimeout(() => (steering.current = null), 1500);
       }
       track.current.scrollTo({
@@ -196,9 +257,47 @@ export function ChronicleSelection({
             choose(selected + (event.key === "ArrowRight" ? 1 : -1));
           }
         }}
+        onPointerDown={(event) => {
+          if (event.pointerType !== "mouse" || event.button !== 0) return;
+          // Stop the press starting a text selection or a native image/link drag;
+          // either would take the pointer away from the strip. A press without
+          // movement still clicks, so selection by click is unchanged.
+          event.preventDefault();
+          drag.current = {
+            id: event.pointerId,
+            x: event.clientX,
+            left: event.currentTarget.scrollLeft,
+            moved: false,
+          };
+        }}
+        onPointerMove={(event) => {
+          const state = drag.current;
+          if (!state || state.id !== event.pointerId) return;
+          const distance = event.clientX - state.x;
+          if (!state.moved) {
+            if (Math.abs(distance) < 8) return;
+            state.moved = true;
+            try {
+              event.currentTarget.setPointerCapture(event.pointerId);
+            } catch {
+              // The pointer is already gone; the drag simply ends on release.
+            }
+            event.currentTarget.dataset.dragging = "";
+            event.currentTarget.style.scrollSnapType = "none";
+          }
+          event.currentTarget.scrollLeft = state.left - distance;
+        }}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onDragStart={(event) => event.preventDefault()}
         onScrollEnd={(event) => {
           const element = event.currentTarget;
+          // Pauses mid-drag are not selections; the release decides.
+          if (drag.current?.moved) return;
+          if (element.style.scrollSnapType) element.style.scrollSnapType = "";
           if (steering.current) {
+            if (Math.abs(element.scrollLeft - steeringTarget.current) > 2)
+              return;
             clearTimeout(steering.current);
             steering.current = null;
             return;

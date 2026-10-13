@@ -4,6 +4,7 @@ import Link from "next/link";
 import { type ComponentProps } from "react";
 import { type Hero } from "@/components/semantic/hero";
 import { identity } from "@/content/identity";
+import { ChronicleNextScreen } from "./next-screen";
 
 export function ChronicleHero({
   content,
@@ -46,6 +47,7 @@ export function ChronicleHero({
         data-motion-id="hero-visual"
         aria-hidden="true"
       />
+      <ChronicleNextScreen locale={locale} />
     </section>
   );
 }

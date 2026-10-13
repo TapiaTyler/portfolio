@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type RefObject } from "react";
+import { useEffect, useSyncExternalStore, type RefObject } from "react";
 import { measureChronicleNavigation } from "@/lib/motion/chronicle-navigation";
 
 /** Measure the controls, including wrapped labels and horizontally scrolled rails. */
@@ -34,4 +34,31 @@ export function useNavigationSelector(
       observer.disconnect();
     };
   }, [navigation, selected, count]);
+}
+
+// Portrait phones lay chapter and tab rails out as horizontal strips (chronicle.css).
+const stripQuery = "(max-width: 900px) and (orientation: portrait)";
+function subscribeStrip(change: () => void) {
+  const query = matchMedia(stripQuery);
+  query.addEventListener("change", change);
+  return () => query.removeEventListener("change", change);
+}
+
+/** Whether rails currently render as horizontal strips. */
+export function useHorizontalStrip() {
+  return useSyncExternalStore(
+    subscribeStrip,
+    () => matchMedia(stripQuery).matches,
+    () => false,
+  );
+}
+
+/** Centre a chosen control within a horizontal strip. */
+export function centreInStrip(strip: HTMLElement, control: HTMLElement) {
+  strip.scrollTo({
+    left: control.offsetLeft - (strip.clientWidth - control.offsetWidth) / 2,
+    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "instant"
+      : "smooth",
+  });
 }

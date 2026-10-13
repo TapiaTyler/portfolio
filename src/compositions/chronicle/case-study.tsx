@@ -12,6 +12,7 @@ import { UiText } from "@/components/ui-text";
 import { type ComponentProps } from "react";
 import { projectStatusLabels } from "@/lib/content/status";
 import { ChronicleTopics } from "./topics";
+import { ChronicleNextScreen } from "./next-screen";
 import {
   CaseStudy,
   CaseStudyIntro,
@@ -57,6 +58,7 @@ export function ChronicleCaseStudyIntro(
         )}
         <ChronicleTopics locale={locale} project={content.project} />
       </header>
+      <ChronicleNextScreen locale={locale} />
     </div>
   );
 }

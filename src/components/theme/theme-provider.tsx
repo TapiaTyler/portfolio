@@ -39,6 +39,24 @@ export function ThemeProvider({
   const query = useSearchParams().toString();
   const previousTheme = useRef(theme);
   useLayoutEffect(() => routes.connect(), [routes]);
+  // A forward navigation opens a page at its top. Window scroll is handled by the
+  // router, but Chronicle's landscape-phone screens scroll inside the shared
+  // <main>, which outlives the route and would otherwise open the next page
+  // part-way down. Back/forward and in-page anchors keep their position.
+  const popped = useRef(false);
+  useEffect(() => {
+    const pop = () => (popped.current = true);
+    addEventListener("popstate", pop);
+    return () => removeEventListener("popstate", pop);
+  }, []);
+  useLayoutEffect(() => {
+    if (popped.current) {
+      popped.current = false;
+      return;
+    }
+    if (location.hash) return;
+    document.querySelector("main")?.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
   useEffect(() => {
     const enteredTheme = previousTheme.current !== theme;
     const skipVisible = enteredTheme || routes.running;

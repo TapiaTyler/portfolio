@@ -141,6 +141,9 @@ export const interfaceMessages = {
   "Project cards": {
     en: "Project cards",
   },
+  "Next screen": {
+    en: "Next screen",
+  },
   "Tap to select": {
     en: "Tap to select",
   },

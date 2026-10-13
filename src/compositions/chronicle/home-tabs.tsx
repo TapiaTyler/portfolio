@@ -10,7 +10,11 @@ import {
   type ReactNode,
 } from "react";
 import { ChronicleAtmosphere } from "./atmosphere";
-import { useNavigationSelector } from "./use-navigation-selector";
+import {
+  centreInStrip,
+  useHorizontalStrip,
+  useNavigationSelector,
+} from "./use-navigation-selector";
 import { Text } from "@/components/localized-text";
 import { type CopyText } from "@/lib/i18n/copy";
 import { type Locale } from "@/lib/i18n/locales";
@@ -38,12 +42,17 @@ export function ChronicleHomeTabs({
   const [selected, setSelected] = useState(0);
   // Panels slide in from the direction of travel along the rail.
   const [direction, setDirection] = useState(1);
+  const prefix = useId();
+  const tabs = useRef<HTMLDivElement>(null);
+  const horizontal = useHorizontalStrip();
   const select = (next: number) => {
     setDirection(next >= selected ? 1 : -1);
     setSelected(next);
+    // In the horizontal strip, bring the chosen tab fully into view.
+    const rail = tabs.current;
+    const button = rail?.querySelectorAll<HTMLButtonElement>("button")[next];
+    if (horizontal && rail && button) centreInStrip(rail, button);
   };
-  const prefix = useId();
-  const tabs = useRef<HTMLDivElement>(null);
   useNavigationSelector(tabs, selected, sections.length);
   return (
     <section
@@ -61,7 +70,7 @@ export function ChronicleHomeTabs({
         role="tablist"
         aria-label={railLabel ?? message(locale, "Portfolio sections")}
         lang={railLabelLang ?? messageLanguage(locale, "Portfolio sections")}
-        aria-orientation="vertical"
+        aria-orientation={horizontal ? "horizontal" : "vertical"}
         ref={tabs}
       >
         <span className="chronicle-home-tabs__selector" aria-hidden="true" />
@@ -77,9 +86,9 @@ export function ChronicleHomeTabs({
             onClick={() => select(index)}
             onKeyDown={(event) => {
               let next = index;
-              if (event.key === "ArrowDown")
+              if (event.key === "ArrowDown" || event.key === "ArrowRight")
                 next = (index + 1) % sections.length;
-              else if (event.key === "ArrowUp")
+              else if (event.key === "ArrowUp" || event.key === "ArrowLeft")
                 next = (index - 1 + sections.length) % sections.length;
               else if (event.key === "Home") next = 0;
               else if (event.key === "End") next = sections.length - 1;

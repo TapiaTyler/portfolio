@@ -12,6 +12,7 @@ import { ProjectIndex } from "@/components/semantic/project-index";
 import { ChronicleCollection } from "./collection";
 import { ChronicleProjectFeature } from "./project-feature";
 import { ChronicleHomeTabs } from "./home-tabs";
+import { ChronicleNextScreen } from "./next-screen";
 
 /**
  * Supporting pages are game screens: the scenic page identity, an action dock of
@@ -75,6 +76,7 @@ export function ChronicleSecondaryPage(props: SecondaryPageProps) {
       lang="en"
     >
       <SecondaryPageIntro locale={locale} content={content} tabIndex={0} />
+      <ChronicleNextScreen locale={locale} />
       {dock}
       {content.id === "work" ? (
         content.sections.map(section)

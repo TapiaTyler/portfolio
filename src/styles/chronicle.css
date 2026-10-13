@@ -383,11 +383,22 @@
       box-shadow 180ms,
       translate 180ms;
   }
-  .chronicle-selection__controls > button:hover:not(:disabled) {
-    translate: 0 -1px;
+  @media (hover: hover) and (pointer: fine) {
+    .chronicle-selection__controls > button:hover:not(:disabled) {
+      translate: 0 -1px;
+      box-shadow:
+        0 0 12px #dda96670,
+        inset 0 0 0 1px #d6a14a;
+    }
+  }
+  /* Arrows had only hover feedback, so touch presses felt dead once hover was
+     gated. The press sinks quickly and springs back at the base 180ms. */
+  .chronicle-selection__controls > button:active:not(:disabled) {
+    translate: 0 1px;
     box-shadow:
       0 0 12px #dda96670,
       inset 0 0 0 1px #d6a14a;
+    transition-duration: 90ms;
   }
   .chronicle-selection button:disabled {
     opacity: 0.38;
@@ -501,12 +512,21 @@
     outline: 2px solid #873ce6;
     outline-offset: -8px;
   }
+  /* Hover glow is mouse-only: a tap would otherwise leave it on a card the strip
+     has since moved away from, where it reads as the selection. */
   .chronicle-selection__item:has(
-    .chronicle-selection__card-target:is(:hover, :focus-visible)
+    .chronicle-selection__card-target:focus-visible
   ) {
     box-shadow:
       0 0 18px #d6aa4870,
       inset 0 0 0 1px #d6aa48;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .chronicle-selection__item:has(.chronicle-selection__card-target:hover) {
+      box-shadow:
+        0 0 18px #d6aa4870,
+        inset 0 0 0 1px #d6aa48;
+    }
   }
   .chronicle-project {
     min-height: 0;
@@ -602,6 +622,12 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
+  }
+  /* Corner art bleeds 28px past its section's sides. Trim that sideways at the
+     section (the upward overlap is kept), or inside main's scroller it becomes
+     sideways scroll that shifts the whole screen on phones. */
+  :has(> .chronicle-atmosphere) {
+    overflow-x: clip;
   }
   .chronicle-atmosphere__corner {
     position: absolute;
@@ -1016,9 +1042,16 @@
       translate 220ms;
   }
   .chronicle-action:hover {
-    translate: 0 -2px;
-    filter: drop-shadow(0 0 12px #d5a150);
     text-decoration: none;
+  }
+  /* Touch screens keep :hover after a tap, which would leave the last pressed
+     control lifted and sparkling. Hover states are mouse-only; touch gets the
+     press response (:active art, gleam and a glitter pop) instead. */
+  @media (hover: hover) and (pointer: fine) {
+    .chronicle-action:hover {
+      translate: 0 -2px;
+      filter: drop-shadow(0 0 12px #d5a150);
+    }
   }
   [data-chronicle-glitter]::before {
     display: none;
@@ -1031,8 +1064,18 @@
     opacity: 0;
     transition: opacity 250ms;
   }
-  :is(:hover, :focus-visible) > .chronicle-glitter {
+  :focus-visible > .chronicle-glitter {
     opacity: 1;
+  }
+  /* A press flashes the sparkle in quickly; release fades it at the base pace. */
+  :active > .chronicle-glitter {
+    opacity: 1;
+    transition-duration: 80ms;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :hover > .chronicle-glitter {
+      opacity: 1;
+    }
   }
   .chronicle-glitter__spark {
     position: absolute;
@@ -1054,8 +1097,13 @@
       ease-in-out infinite;
     animation-play-state: paused;
   }
-  :is(:hover, :focus-visible) > .chronicle-glitter .chronicle-glitter__spark {
+  :is(:focus-visible, :active) > .chronicle-glitter .chronicle-glitter__spark {
     animation-play-state: running;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :hover > .chronicle-glitter .chronicle-glitter__spark {
+      animation-play-state: running;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .chronicle-glitter {
@@ -1107,7 +1155,18 @@
         .mode-picker > summary,
         .locale-switcher a,
         .media-view-trigger
-      ):is(:hover, :focus-visible)::before {
+      ):is(:focus-visible, :active)::before {
+      animation: chronicle-glitter 1100ms ease-in-out infinite;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+    :is(
+        .chronicle-action,
+        .chronicle-selection__controls > button:not(:disabled),
+        .mode-picker > summary,
+        .locale-switcher a,
+        .media-view-trigger
+      ):hover::before {
       animation: chronicle-glitter 1100ms ease-in-out infinite;
     }
   }
@@ -1118,7 +1177,18 @@
         .mode-picker > summary,
         .locale-switcher a,
         .media-view-trigger
-      ):is(:hover, :focus-visible)::before {
+      ):is(:focus-visible, :active)::before {
+      opacity: 0.75;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) and (hover: hover) and (pointer: fine) {
+    :is(
+        .chronicle-action,
+        .chronicle-selection__controls > button:not(:disabled),
+        .mode-picker > summary,
+        .locale-switcher a,
+        .media-view-trigger
+      ):hover::before {
       opacity: 0.75;
     }
   }
@@ -1556,7 +1626,7 @@
   }
   /* Keep the loaded base beneath interaction art, so a first hover/press on a
      slow connection still has its frame while the authored state downloads. */
-  :is(.chronicle-action, .media-view-trigger):is(:hover, :focus-visible) {
+  :is(.chronicle-action, .media-view-trigger):focus-visible {
     background-image:
       image-set(
         url("/media/themes/chronicle/glass-button-hover.avif")
@@ -1568,6 +1638,21 @@
         url("/media/themes/chronicle/glass-button.avif") type("image/avif"),
         url("/media/themes/chronicle/glass-button.webp") type("image/webp")
       );
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :is(.chronicle-action, .media-view-trigger):hover {
+      background-image:
+        image-set(
+          url("/media/themes/chronicle/glass-button-hover.avif")
+            type("image/avif"),
+          url("/media/themes/chronicle/glass-button-hover.webp")
+            type("image/webp")
+        ),
+        image-set(
+          url("/media/themes/chronicle/glass-button.avif") type("image/avif"),
+          url("/media/themes/chronicle/glass-button.webp") type("image/webp")
+        );
+    }
   }
   :is(.chronicle-action, .media-view-trigger):active {
     background-image:
@@ -2459,6 +2544,11 @@
       container-type: size;
       scroll-snap-type: y proximity;
     }
+    /* Home screens are exactly one screen tall, so a swipe always lands on a
+       whole screen, as in a game menu. */
+    main:has(.chronicle-homepage) {
+      scroll-snap-type: y mandatory;
+    }
     main > [data-composition]:has(> .chronicle-homepage),
     .chronicle-review-stage:has(> .chronicle-homepage) {
       flex: none;
@@ -2552,6 +2642,11 @@
       grid-template-columns: minmax(150px, 22%) minmax(0, 1fr);
       gap: 18px;
       scroll-snap-align: start;
+    }
+    /* main scrolls here, so the corners' downward bleed would add scroll space
+       and leave the last screen sitting short of its snap. */
+    .chronicle-home-tabs .chronicle-atmosphere__corner {
+      bottom: 0;
     }
     .chronicle-home-tabs__rail button {
       min-height: 44px;
@@ -2703,7 +2798,7 @@
        arrow row visible when the card screen is the snap target. */
     .chronicle-secondary-page .chronicle-selection {
       grid-template-rows: 100% calc(100% + 56px);
-      scroll-snap-type: y proximity;
+      scroll-snap-type: y mandatory;
       scroll-padding-top: 56px;
     }
     .chronicle-secondary-page .chronicle-selection__track {
@@ -2743,6 +2838,57 @@
     }
     .chronicle-secondary-page .chronicle-selection__item {
       flex-basis: calc(100% - 52px);
+    }
+  }
+  /* Landscape phones up to 900px wide (iPhone SE to iPhone 14): beside the hero,
+     cards are too narrow for their copy and clip it under the whole-card target.
+     Hero, Selected Work and the tab rail become three one-screen snaps instead,
+     so cards span the width and still peek the next card. */
+  @media (orientation: landscape) and (max-height: 500px) and (max-width: 900px) {
+    .chronicle-homepage {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 100cqb 100cqb 100cqb;
+    }
+    .chronicle-hero {
+      padding-inline: 32px;
+      border-right: 0;
+      border-bottom: 1px solid #d9b679;
+    }
+    .chronicle-hero::before {
+      background: linear-gradient(90deg, #fffdfbf0, #fffdfbb8 50%, #fffdfb1f);
+    }
+    .chronicle-hero__narrative {
+      max-width: 60%;
+    }
+    .chronicle-hero__name {
+      font-size: 2.3rem;
+    }
+    .chronicle-hero h1 {
+      font-size: 1.2rem;
+    }
+    .chronicle-hero__narrative > p:not(.eyebrow, .chronicle-hero__name) {
+      font-size: 0.95rem;
+    }
+    .chronicle-homepage .selected-work {
+      grid-column: 1;
+      grid-row: 2;
+      scroll-snap-align: start;
+    }
+    /* Drop the list's default indent so topics align with their rule and wrap
+       one line sooner. */
+    .chronicle-project .chronicle-topics {
+      padding-inline-start: 0;
+    }
+    /* Trim only vertical rhythm; side padding still clears the frame ornament. */
+    .chronicle-project {
+      padding-block: 12px 14px;
+      row-gap: 6px;
+    }
+    .chronicle-project__topics {
+      padding-bottom: 4px;
+    }
+    .chronicle-home-tabs {
+      grid-row: 3;
     }
   }
   /* Chapter rails: authored finials and a tiled gold segment ride on the measured
@@ -3011,15 +3157,16 @@
     grid-column: 1;
     grid-row: 1;
   }
+  /* Related destinations sit in the hero's bottom-right corner on desktop. */
   .chronicle-screen__dock {
     grid-column: 1;
     grid-row: 1;
-    align-self: start;
+    align-self: end;
     justify-self: end;
     z-index: 2;
     display: flex;
     gap: 12px;
-    margin: 18px clamp(1.5rem, 3vw, 3rem) 0 0;
+    margin: 0 clamp(1.5rem, 3vw, 3rem) 18px 0;
     padding: 0;
     border-top: 0;
   }
@@ -3319,6 +3466,493 @@
   .chronicle-chapter .diagram-connections li {
     font-size: 0.85rem;
     line-height: 1.35;
+  }
+  /* Next-screen button (next-screen.tsx). Only landscape phones stack the page
+     into one-screen snaps, so it is shown only there. */
+  .chronicle-next-screen {
+    display: none;
+  }
+  /* Text over the corner sakura keeps the flowers but gains a soft white halo,
+     so rail labels and copy hold their contrast wherever a petal sits behind. */
+  /* Rail labels are short and sit over the densest petals, where a glyph halo
+     alone leaves gaps, so each also gets a soft white cloud behind it. */
+  .chronicle-home-tabs__rail
+    button:not(:hover, [aria-selected="true"], :focus-visible) {
+    background: radial-gradient(
+      farthest-side at 50% 50%,
+      #fffdfbeb 45%,
+      #fffdfb00 100%
+    );
+  }
+  .chronicle-home-tabs__rail,
+  .chronicle-home-tabs__content {
+    text-shadow:
+      0 0 1px #fffdfb,
+      0 0 3px #fffdfb,
+      0 0 6px #fffdfb,
+      0 0 10px #fffdfb,
+      0 0 16px #fffdfb,
+      0 0 24px #fffdfb;
+  }
+
+  /* Phones in either orientation are stacks of one-screen snaps. */
+  @media (orientation: landscape) and (max-height: 500px),
+    (max-width: 900px) and (orientation: portrait) {
+    .chronicle-next-screen {
+      position: absolute;
+      right: 18px;
+      bottom: 14px;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border: 1px solid #ffffffd9;
+      border-radius: 50%;
+      color: #926622;
+      background: linear-gradient(130deg, #ffffffe0, #f5eaf2d6);
+      box-shadow:
+        0 2px 6px #73558838,
+        inset 0 0 0 1px #d6a14a80;
+      transition:
+        translate 180ms,
+        box-shadow 180ms;
+    }
+    .chronicle-next-screen:active {
+      translate: 0 2px;
+      transition-duration: 90ms;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .chronicle-next-screen:hover {
+        box-shadow:
+          0 0 12px #dda96670,
+          inset 0 0 0 1px #d6a14a;
+      }
+    }
+    /* Two gentle nudges once the page settles, so the button is noticed. */
+    @media (prefers-reduced-motion: no-preference) {
+      .chronicle-next-screen svg {
+        animation: chronicle-next-nudge 900ms ease-in-out 1.2s 2;
+      }
+    }
+
+    /* Supporting pages follow the home page: the scenic intro is the first
+       screen and the stage follows as whole screens. The related-link dock is
+       hidden here; beside the identity it read as the page's only actions, and
+       the header menu still reaches every page. */
+    main:has(.chronicle-secondary-page) {
+      scroll-snap-type: y mandatory;
+    }
+    main > :has(> .chronicle-secondary-page) {
+      flex: none;
+    }
+    .chronicle-secondary-page.chronicle-screen {
+      height: auto;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 100cqb 100cqb;
+    }
+    .chronicle-screen__dock {
+      display: none;
+    }
+    .chronicle-secondary-page.chronicle-screen > .secondary-page-intro {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      max-height: none;
+      padding: 14px 32px;
+      border-right: 0;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+    .chronicle-secondary-page.chronicle-screen > .secondary-page-intro::before {
+      background: linear-gradient(90deg, #fffdfbf0, #fffdfbb8 50%, #fffdfb1f);
+    }
+    .chronicle-secondary-page.chronicle-screen
+      > .secondary-page-intro
+      :is(.secondary-page-intro__identity, .secondary-page-intro__lead) {
+      max-width: 60%;
+    }
+    .chronicle-secondary-page.chronicle-screen > .secondary-page-intro h1 {
+      font-size: 2.3rem;
+    }
+    .chronicle-secondary-page > .chronicle-next-screen {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: end;
+      justify-self: end;
+      margin: 0 18px 14px 0;
+    }
+    .chronicle-secondary-page > .chronicle-screen__stage {
+      grid-column: 1;
+      grid-row: 2;
+      min-height: 0;
+      scroll-snap-align: start;
+    }
+    .chronicle-secondary-page
+      > .chronicle-screen__stage
+      > .chronicle-home-tabs {
+      height: 100%;
+    }
+
+    /* Work: cards and project preview are the second and third screens of the
+       page scroller, not a nested one, so one swipe rhythm runs top to bottom.
+       Arrows and dots overlay the card screen instead of a heading row that
+       stayed pinned while the preview scrolled under it. */
+    .chronicle-secondary-page.secondary-page--work.chronicle-screen {
+      grid-template-rows: 100cqb auto;
+    }
+    .chronicle-secondary-page.secondary-page--work
+      > .secondary-page-section--collection {
+      grid-column: 1;
+      grid-row: 2;
+      display: block;
+      overflow: visible;
+    }
+    .secondary-page--work > .secondary-page-section--collection > h2 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .chronicle-secondary-page.secondary-page--work .chronicle-selection {
+      position: relative;
+      height: auto;
+      padding-top: 0;
+      overflow: visible;
+      grid-template-rows: 100cqb 100cqb;
+      row-gap: 0;
+      scroll-snap-type: none;
+    }
+    .chronicle-secondary-page.secondary-page--work .chronicle-selection__track {
+      padding-block: 10px 26px;
+      scroll-margin-top: 0;
+      scroll-snap-align: start;
+    }
+    .chronicle-secondary-page.secondary-page--work .chronicle-preview {
+      padding-top: 12px;
+      scroll-margin-top: 0;
+      scroll-snap-align: start;
+    }
+    .chronicle-secondary-page.secondary-page--work
+      .chronicle-selection__controls {
+      inset: 0 0 auto;
+      height: 100cqb;
+      display: block;
+      pointer-events: none;
+    }
+    .secondary-page--work .chronicle-selection__controls > button,
+    .secondary-page--work .chronicle-selection__dots {
+      position: absolute;
+      pointer-events: auto;
+    }
+    .secondary-page--work
+      .chronicle-selection__controls
+      > button:first-of-type {
+      top: calc(50% - 30px);
+      left: 6px;
+    }
+    .secondary-page--work .chronicle-selection__controls > button:last-of-type {
+      top: calc(50% - 30px);
+      right: 6px;
+    }
+    .secondary-page--work .chronicle-selection__dots {
+      bottom: -8px;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes chronicle-next-nudge {
+    50% {
+      translate: 0 3px;
+    }
+  }
+  /* Desktop mouse drag on project strips (selection.tsx). */
+  @media (hover: hover) and (pointer: fine) {
+    .chronicle-selection__track {
+      cursor: grab;
+    }
+    .chronicle-selection__track[data-dragging] {
+      cursor: grabbing;
+      user-select: none;
+    }
+    .chronicle-selection__track[data-dragging] * {
+      cursor: grabbing;
+    }
+  }
+  /* Landscape phones keep the case study's identity column, which is not a
+     screen of its own, so it has no next-screen button. */
+  @media (orientation: landscape) and (max-height: 500px) {
+    .chronicle-dossier-banner .chronicle-next-screen {
+      display: none;
+    }
+  }
+
+  /* Portrait phones, 2026-10-12: the same one-screen snaps as landscape phones.
+     Each page opens on its scenic intro; content follows as full screens that
+     scroll inside when they must. Tab rails turn into horizontal strips, so
+     reading text keeps the full width instead of a narrow column beside them. */
+  @media (max-width: 900px) and (orientation: portrait) {
+    main {
+      container-type: size;
+      scroll-snap-type: y mandatory;
+    }
+    main > :has(.chronicle-homepage, .chronicle-dossier) {
+      flex: none;
+    }
+
+    /* Home: hero, Selected Work and the tabs are one screen each. */
+    .chronicle-homepage {
+      min-height: 0;
+      grid-template-rows: 100cqb 100cqb 100cqb;
+    }
+    .chronicle-hero {
+      position: relative;
+      min-height: 0;
+      align-content: center;
+      scroll-snap-align: start;
+    }
+    .chronicle-hero__narrative > p:not(.eyebrow, .chronicle-hero__name) {
+      max-width: 30ch;
+    }
+    .chronicle-hero .text-link {
+      min-height: 44px;
+    }
+    .chronicle-homepage .selected-work {
+      display: grid;
+      min-height: 0;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+    .chronicle-homepage .chronicle-selection {
+      height: 100%;
+      min-height: 0;
+      grid-template-rows: minmax(0, 1fr);
+    }
+    .chronicle-homepage .chronicle-selection__track {
+      height: 100%;
+      min-height: 0;
+      padding-block: 10px 26px;
+    }
+    /* Drop the list's default indent so topics align with the card text. */
+    .chronicle-project .chronicle-topics {
+      padding-inline-start: 0;
+    }
+    /* As on Work: the heading row's height goes to the cards. The heading stays
+       for assistive technology; arrows and dots overlay the card screen. */
+    .chronicle-homepage .selected-work {
+      grid-template-rows: minmax(0, 1fr);
+    }
+    .chronicle-homepage .selected-work .home-section-header {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .chronicle-homepage .chronicle-selection {
+      position: relative;
+    }
+    .chronicle-homepage .chronicle-selection__controls {
+      inset: 0 0 auto;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button,
+    .chronicle-homepage .chronicle-selection__dots {
+      position: absolute;
+      pointer-events: auto;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button:first-of-type {
+      top: calc(50% - 30px);
+      left: 6px;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button:last-of-type {
+      top: calc(50% - 30px);
+      right: 6px;
+    }
+    .chronicle-homepage .chronicle-selection__dots {
+      bottom: -8px;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%);
+    }
+
+    /* Tabs: the rail becomes a horizontal strip above a full-width panel. */
+    .chronicle-home-tabs {
+      height: 100cqb;
+      min-height: 0;
+      padding: 12px 20px 16px;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 12px;
+      scroll-snap-align: start;
+    }
+    .chronicle-home-tabs__rail {
+      flex-direction: row;
+      padding: 0;
+      border-right: 0;
+      border-bottom: 1px solid #d6a14a70;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+    }
+    .chronicle-home-tabs__rail::-webkit-scrollbar {
+      display: none;
+    }
+    .chronicle-home-tabs__rail::before {
+      display: none;
+    }
+    .chronicle-home-tabs__rail button {
+      flex: none;
+      min-height: 44px;
+      padding: 8px 12px 8px 34px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+    /* Both marker sizes centre on the same point and clear the label. */
+    .chronicle-home-tabs__rail .chronicle-chapter-symbol {
+      left: 10px;
+    }
+    .chronicle-home-tabs__rail
+      button[aria-selected="true"]
+      .chronicle-chapter-symbol {
+      left: 3px;
+    }
+    .chronicle-preview__chapters button {
+      padding-left: 34px;
+    }
+    .chronicle-preview__chapters .chronicle-chapter-symbol {
+      left: 10px;
+    }
+    .chronicle-preview__chapters
+      button[aria-pressed="true"]
+      .chronicle-chapter-symbol {
+      left: 3px;
+    }
+    .chronicle-home-tabs__selector {
+      right: auto;
+      border-bottom: 3px solid #e94b98;
+    }
+    .chronicle-home-tabs__panel {
+      --swipe-x: calc(var(--swipe-dir, 1) * 22px);
+      --swipe-y: 0px;
+    }
+    .chronicle-home-tabs p {
+      font-size: 1rem;
+    }
+    /* main scrolls, so the corners' downward bleed would add scroll space below
+       the last screen (as on landscape phones). */
+    .chronicle-home-tabs .chronicle-atmosphere__corner {
+      bottom: 0;
+    }
+
+    /* Supporting pages: the intro uses the full width. */
+    .chronicle-secondary-page.chronicle-screen > .secondary-page-intro {
+      padding: 24px 28px;
+    }
+    .chronicle-secondary-page.chronicle-screen
+      > .secondary-page-intro
+      :is(.secondary-page-intro__identity, .secondary-page-intro__lead) {
+      max-width: 100%;
+    }
+    .chronicle-secondary-page.chronicle-screen > .secondary-page-intro h1 {
+      font-size: clamp(2.2rem, 9vw, 2.8rem);
+    }
+    .chronicle-secondary-page > .chronicle-screen__stage {
+      min-height: 0;
+    }
+    /* Work's preview screen: on short phones the copy row (which scrolls
+       inside) gives way first, so the screen never outgrows its snap. */
+    .secondary-page--work .chronicle-preview__composition {
+      grid-template-rows: 44px minmax(200px, 1fr) minmax(0, 210px) 62px;
+    }
+    /* The identity's height cap assumed a taller copy row; uncapped, identity
+       and chapter text scroll together instead of overlapping. */
+    .secondary-page--work .chronicle-preview__identity {
+      flex: none;
+      max-height: none;
+    }
+    .chronicle-screen__panel {
+      padding-block: 1.1rem;
+    }
+
+    /* Case study: identity screen (banner and Project at a Glance), then a
+       full-screen reading panel, instead of a reading strip under the banner. */
+    .chronicle-dossier {
+      display: block;
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+    }
+    .chronicle-dossier .case-study {
+      display: grid;
+      height: 200cqb;
+      min-height: 0;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto minmax(0, 1fr) auto 100cqb;
+      scroll-snap-align: start;
+    }
+    .chronicle-dossier .content-notice {
+      grid-row: 1;
+    }
+    .chronicle-dossier-banner {
+      position: relative;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      overflow: hidden;
+    }
+    .chronicle-dossier .chronicle-record-summary {
+      grid-row: 3;
+    }
+    .chronicle-record-summary > summary {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+    }
+    .chronicle-dossier .case-study-reading-layout {
+      grid-row: 4;
+      height: 100cqb;
+      min-height: 0;
+      margin: 0;
+      padding: 12px 14px;
+      scroll-snap-align: start;
+    }
+
+    /* Targets and small text. */
+    .site-footer__inner {
+      min-height: 44px;
+    }
+    .case-study-orientation dt {
+      font-size: 0.78rem;
+    }
+  }
+  @media (max-width: 900px) and (orientation: portrait) {
+    /* Card titles open the project directly; extend their tap area to 44px
+       without moving the card text. */
+    .chronicle-selection--cards .chronicle-project h3 a {
+      position: relative;
+    }
+    .chronicle-selection--cards .chronicle-project h3 a::after {
+      content: "";
+      position: absolute;
+      inset: -8px -4px;
+    }
   }
 }
 @keyframes chronicle-glitter {
