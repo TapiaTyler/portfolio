@@ -262,3 +262,29 @@ This pass adds translation infrastructure, not Japanese drafts. The locale notic
 now explains that unavailable translations use English. Japanese SEO alternates and
 sitemap entries remain disabled until the corresponding content is reviewed; filling
 a few interface slots alone does not make a Japanese page ready for indexing.
+
+## Japanese interface and page copy (2026-10-14)
+
+`src/content/interface.ts`, `placeholder.ts`, `pages.ts` and `contact.ts` now carry
+AI-drafted Japanese (natural professional register, です/ます). It is awaiting native
+review, as the workflow above requires; the interface file header records this.
+Technology names, file formats, GitHub/LinkedIn, "Web" and "JLPT N2" stay shared and
+render as English. Project records are unchanged (`translationStatus` still `none`),
+so case studies, card summaries and the site-wide notice continue to fall back to
+English with an explanation. Japanese indexing (hreflang alternates, sitemap entries)
+remains disabled until the copy is reviewed.
+
+Navigation terms follow common Japanese developer-portfolio usage: Work → 制作実績,
+About → プロフィール (the page covers background, education and skills, not only
+a self-introduction), Contact → お問い合わせ, Lab → ラボ. Japanese text wraps at
+phrase boundaries (`:lang(ja) { word-break: auto-phrase }` in `globals.css`; browsers
+without support keep normal breaking).
+
+## Japanese case studies (2026-10-14)
+
+All three published projects declare `translationStatus.ja: "complete"` (AI-drafted,
+awaiting native review; see `docs/TRANSLATION-GUIDE.md`). The site-wide translation
+notice has been removed. Per-project fallback notices still appear automatically
+for any future project below `complete`. Japanese indexing remains disabled until
+the Japanese copy is reviewed.
+

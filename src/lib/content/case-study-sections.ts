@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/lib/i18n/messages";
 import { resolveValue, type ProjectContent } from "@/lib/i18n/project-content";
 
 export function caseStudySections(content: ProjectContent, anchorPrefix = "") {
@@ -27,14 +28,15 @@ export function caseStudySections(content: ProjectContent, anchorPrefix = "") {
       technical: "Technical Details",
       result: "Result",
     };
+    // Untitled blocks take their label from the interface copy, so a Japanese
+    // case study does not list English section names.
+    const label = interfaceCopy(defaults[block.type]);
     return [
       {
         id: `${anchorPrefix}${block.id}`,
-        title: resolveValue(
-          title ?? defaults[block.type],
-          translated,
-          content.locale,
-        ),
+        title: title
+          ? resolveValue(title, translated, content.locale)
+          : resolveValue(label.en, label.ja, content.locale),
       },
     ];
   });

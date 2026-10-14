@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "content:validate": "tsx scripts/validate-content.ts",
+    "translation:report": "tsx scripts/translation-report.ts",
     "prebuild": "npm run content:validate",
     "build": "next build",
     "test:release": "node scripts/smoke-release.mjs",

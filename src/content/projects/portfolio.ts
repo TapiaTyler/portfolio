@@ -1,4 +1,5 @@
 import type { ProjectInput } from "@/lib/content/schema";
+import { portfolioJapanese } from "./portfolio.ja";
 
 const prose = (...paragraphs: string[]) =>
   paragraphs.map((text) => ({
@@ -8,8 +9,8 @@ const prose = (...paragraphs: string[]) =>
 const image = (
   id: string,
   file: string,
-  alt: string,
-  caption: string,
+  alt: { en: string; ja: string },
+  caption: { en: string; ja: string },
   width = 1440,
   height = 1000,
   label?: string,
@@ -20,8 +21,8 @@ const image = (
   width,
   height,
   purpose: "process" as const,
-  alt: { en: alt },
-  caption: { en: caption },
+  alt,
+  caption,
   ...(label ? { label: { en: label } } : {}),
 });
 
@@ -48,7 +49,7 @@ export const portfolioProject = {
   ],
   publication: { status: "published", featured: true, priority: 1 },
   links: { repository: "https://github.com/TapiaTyler/portfolio" },
-  translationStatus: { ja: "none" },
+  translationStatus: { ja: "complete" },
   contribution: {
     productDirection: "primary",
     architecture: "primary",
@@ -64,8 +65,14 @@ export const portfolioProject = {
     image(
       "editorial-home",
       "editorial-home-2026-10-08-refreshed.png",
-      "Editorial homepage with an ink landscape, large serif headline and publication-style navigation.",
-      "Editorial pairs an ink landscape with publication typography and generous whitespace.",
+      {
+        en: "Editorial homepage with an ink landscape, large serif headline and publication-style navigation.",
+        ja: "水墨画の風景、大きなセリフ体の見出し、出版物風のナビゲーションを備えたEditorialのホームページ。",
+      },
+      {
+        en: "Editorial pairs an ink landscape with publication typography and generous whitespace.",
+        ja: "Editorialは、水墨画の風景に出版物のようなタイポグラフィとたっぷりとした余白を組み合わせています。",
+      },
       1440,
       1000,
       "Editorial",
@@ -73,8 +80,14 @@ export const portfolioProject = {
     image(
       "engineer-home",
       "engineer-home-2026-10-08-refreshed.png",
-      "Engineer homepage with a system-oriented introduction and structured technical panels.",
-      "The same homepage facts in Engineer: system records, monospace metadata and denser grouping.",
+      {
+        en: "Engineer homepage with a system-oriented introduction and structured technical panels.",
+        ja: "システム志向の紹介文と、構造化された技術パネルを備えたEngineerのホームページ。",
+      },
+      {
+        en: "The same homepage facts in Engineer: system records, monospace metadata and denser grouping.",
+        ja: "同じホームページの内容をEngineerで表示。システムのレコード、等幅フォントのメタデータ、より密度の高いグループ分け。",
+      },
       1440,
       1000,
       "Engineer",
@@ -82,8 +95,14 @@ export const portfolioProject = {
     image(
       "digital-home",
       "digital-home-2026-10-08-refreshed.png",
-      "Digital homepage with a spatial hero, atmospheric grid and cyan interface accents.",
-      "The same homepage facts in Digital: spatial composition, layered surfaces and expressive responses.",
+      {
+        en: "Digital homepage with a spatial hero, atmospheric grid and cyan interface accents.",
+        ja: "空間的なヒーロー、雰囲気のあるグリッド、シアンのアクセントを備えたDigitalのホームページ。",
+      },
+      {
+        en: "The same homepage facts in Digital: spatial composition, layered surfaces and expressive responses.",
+        ja: "同じホームページの内容をDigitalで表示。空間的なコンポジション、重なり合う面、表情豊かな反応。",
+      },
       1440,
       1000,
       "Digital",
@@ -91,8 +110,14 @@ export const portfolioProject = {
     image(
       "chronicle-home",
       "chronicle-home-2026-10-08-refreshed.png",
-      "Chronicle homepage on one landscape screen: scenic hero, a horizontal strip of framed project cards and a tab rail with the selected section.",
-      "The same homepage facts in Chronicle: one landscape game screen with horizontal project selection and a tab rail.",
+      {
+        en: "Chronicle homepage on one landscape screen: scenic hero, a horizontal strip of framed project cards and a tab rail with the selected section.",
+        ja: "ひとつの横長画面に収めたChronicleのホームページ。風景のヒーロー、枠付きのプロジェクトカードが横に並ぶストリップ、選択中のセクションを示すタブレール。",
+      },
+      {
+        en: "The same homepage facts in Chronicle: one landscape game screen with horizontal project selection and a tab rail.",
+        ja: "同じホームページの内容をChronicleで表示。横方向にプロジェクトを選ぶ、タブレール付きの横長のゲーム画面。",
+      },
       1440,
       1000,
       "Chronicle",
@@ -100,8 +125,14 @@ export const portfolioProject = {
     image(
       "product-home",
       "product-home-2026-10-08-refreshed.png",
-      "Product homepage with a misty valley beside the introduction and a project list with a selected preview.",
-      "Product emphasizes project comparison, a selected preview and restrained feedback.",
+      {
+        en: "Product homepage with a misty valley beside the introduction and a project list with a selected preview.",
+        ja: "紹介文の横に霧の谷を配し、プロジェクトの一覧と選択中のプレビューを備えたProductのホームページ。",
+      },
+      {
+        en: "Product emphasizes project comparison, a selected preview and restrained feedback.",
+        ja: "Productは、プロジェクトの比較、選択中のプレビュー、控えめなフィードバックを重視しています。",
+      },
       1440,
       1000,
       "Product",
@@ -109,8 +140,14 @@ export const portfolioProject = {
     image(
       "chronicle-before-home",
       "chronicle-before-home.png",
-      "First Chronicle homepage: a scenic hero, an empty boxed Selected Work panel and a row of four collapsed sections, with the mode picker as a row of buttons.",
-      "Before: the first AI-assisted Chronicle build, captured October 3, with an empty project panel and conventional stacked disclosures.",
+      {
+        en: "First Chronicle homepage: a scenic hero, an empty boxed Selected Work panel and a row of four collapsed sections, with the mode picker as a row of buttons.",
+        ja: "最初のChronicleのホームページ。風景のヒーロー、空の枠付き「Selected Work」パネル、折りたたまれた4つのセクションの列、ボタンを並べたモード選択。",
+      },
+      {
+        en: "Before: the first AI-assisted Chronicle build, captured October 3, with an empty project panel and conventional stacked disclosures.",
+        ja: "変更前：10月3日に撮影した、AI支援による最初のChronicle。プロジェクトのパネルは空で、従来型の開閉式の要素が縦に積まれています。",
+      },
       1440,
       900,
     ),
@@ -124,9 +161,11 @@ export const portfolioProject = {
       purpose: "process" as const,
       alt: {
         en: "Editorial morphing into Chronicle, then a project card selected with one tap and opened with a second, unfolding into its case-study banner; a chapter link, an image opening through a crystal shape, and browser Back folding the banner into its card.",
+        ja: "EditorialがChronicleへモーフィングし、1回目のタップでプロジェクトカードを選び、2回目で開くとケーススタディのバナーに展開します。続いて章のリンク、クリスタル型から開く画像、ブラウザの「戻る」でバナーがカードへ折りたたまれる様子。",
       },
       caption: {
         en: "Theme morphing, two-tap project opening, chapter selection, crystal image viewing and browser Back. Silent local demonstration; not a benchmark.",
+        ja: "テーマのモーフィング、2回のタップでのプロジェクトの表示、章の選択、クリスタル型の画像表示、ブラウザの「戻る」。音声なしのローカルでのデモで、ベンチマークではありません。",
       },
     },
     {
@@ -139,9 +178,11 @@ export const portfolioProject = {
       purpose: "process",
       alt: {
         en: "Local recording of Product changing to Editorial, Engineer, Digital, Chronicle and back to Product, with matching modules moving and resizing.",
+        ja: "ProductからEditorial、Engineer、Digital、Chronicleへ切り替わり、Productに戻るまでを、対応するモジュールが移動・リサイズする様子とともにローカルで録画したもの。",
       },
       caption: {
         en: "Product, Editorial, Engineer, Digital and Chronicle share one content source, with modules moving and resizing during theme changes. Silent local recording.",
+        ja: "Product、Editorial、Engineer、Digital、Chronicleはひとつのコンテンツソースを共有し、テーマの切り替え中にモジュールが移動・リサイズします。音声なしのローカル録画。",
       },
     },
     {
@@ -155,30 +196,55 @@ export const portfolioProject = {
       purpose: "process",
       alt: {
         en: "Header navigation to About and browser Back in Product, Editorial, Engineer, Digital and Chronicle.",
+        ja: "Product、Editorial、Engineer、Digital、Chronicleでの、ヘッダーからAboutへの移動とブラウザの「戻る」。",
       },
       caption: {
         en: "Header navigation and browser Back across five modes: ordinary navigation, page turns, record scans, spatial changes and chapter slides. Silent local recording.",
+        ja: "5つのモードでのヘッダーからの移動とブラウザの「戻る」。通常の画面遷移、ページめくり、レコードのスキャン、空間的な変化、章のスライド。音声なしのローカル録画。",
       },
     },
   ],
   diagrams: [
     {
       id: "presentation-pipeline",
-      title: { en: "One content source, several reading experiences" },
+      title: {
+        en: "One content source, several reading experiences",
+        ja: "ひとつのコンテンツソース、複数の読み方",
+      },
       accessibleSummary: {
         en: "Typed content is validated and localized, then shared semantic components supply meaning. A selected composition organizes it, theme tokens supply visual primitives, and progressive motion adds continuity without changing the facts.",
+        ja: "型付きのコンテンツを検証・ローカライズし、共有のセマンティックコンポーネントが意味を与えます。選択したコンポジションがそれを構成し、テーマトークンが視覚の基本要素を与え、段階的なモーションが事実を変えずに連続性を加えます。",
       },
       nodes: [
-        { id: "content", label: { en: "Typed content and locale selection" } },
-        { id: "semantics", label: { en: "Shared semantic components" } },
+        {
+          id: "content",
+          label: {
+            en: "Typed content and locale selection",
+            ja: "型付きコンテンツとロケールの選択",
+          },
+        },
+        {
+          id: "semantics",
+          label: {
+            en: "Shared semantic components",
+            ja: "共有のセマンティックコンポーネント",
+          },
+        },
         {
           id: "composition",
           label: {
             en: "Product / Editorial / Engineer / Digital / Chronicle composition",
+            ja: "Product / Editorial / Engineer / Digital / Chronicleのコンポジション",
           },
         },
-        { id: "tokens", label: { en: "Theme tokens" } },
-        { id: "motion", label: { en: "Progressive interaction and motion" } },
+        { id: "tokens", label: { en: "Theme tokens", ja: "テーマトークン" } },
+        {
+          id: "motion",
+          label: {
+            en: "Progressive interaction and motion",
+            ja: "段階的なインタラクションとモーション",
+          },
+        },
       ],
       edges: [
         { from: "content", to: "semantics" },
@@ -192,7 +258,10 @@ export const portfolioProject = {
     {
       id: "public-lookup",
       language: "typescript",
-      title: { en: "Public lookup uses the filtered inventory" },
+      title: {
+        en: "Public lookup uses the filtered inventory",
+        ja: "公開用の参照は絞り込み済みの一覧を使う",
+      },
       source: `getProject: (slug: string): Project | undefined => {
   const project = published.find((project) => project.slug === slug);
   return project ? structuredClone(project) : undefined;
@@ -211,7 +280,7 @@ export const portfolioProject = {
         distinction:
           "One factual content source supports different compositions, with theme morphing, navigation transitions and interaction patterns tailored to each reading experience.",
         currentState:
-          "Five presentation modes are implemented, with Product as the default. Deployment, Japanese translations and deployed performance verification remain pending.",
+          "Five presentation modes are implemented, with Product as the default. Japanese copy is AI-drafted and awaiting native review; deployment and deployed performance verification remain pending.",
       },
       blocks: [
         {
@@ -324,7 +393,7 @@ export const portfolioProject = {
             "Each mode has its own navigation model. Product uses ordinary route navigation and restrained selection feedback. Editorial turns pages: horizontal turns follow chapter order and depth, and header links swing a top-bound page down from the front over 600ms. Engineer swaps records with a scan rule over 240ms. Digital expands a selected card into its detail view and contracts it on Back. Chronicle slides chapters by direction and unfolds an opened card into its case-study banner. Theme changes cancel route effects.",
             "Microinteractions follow the same split: Editorial disclosures fold from their top edge and reverse on closing, Engineer gives stepped feedback and inspectable diagrams, Digital uses pointer lighting and a carousel that expands from the selected image, and Chronicle deals cards, sweeps the selected frame with light and opens images through a crystal shape. Touch gets press feedback without mouse tracking, and reduced motion keeps every state legible without animation.",
             "Publication is a content boundary: drafts are validated but excluded from the public inventory, including direct slug lookup, and development previews read authoring records only behind an environment guard.",
-            "Schema and unit tests, Playwright browser checks and automated accessibility scans cover the compositions, navigation and reduced-motion behavior. They do not establish full WCAG conformance or deployed performance. English is the source language; /en and /ja routes and field-level fallback exist, and Japanese translation is pending.",
+            "Schema and unit tests, Playwright browser checks and automated accessibility scans cover the compositions, navigation and reduced-motion behavior. They do not establish full WCAG conformance or deployed performance. English is the source language; /ja routes carry an AI-drafted Japanese translation awaiting native review, with field-level fallback to English.",
           ),
           codeSnippetIds: ["public-lookup"],
         },
@@ -339,10 +408,11 @@ export const portfolioProject = {
           type: "result",
           body: prose(
             "The same project content reads through five distinct compositions, connected by theme-switch morphing and extended by each mode's navigation and small responses. Shared validation, publication controls and locale fallbacks let a new project join every mode without separate narratives.",
-            "The presentation system and English homepage copy are implemented. Japanese translations, deployment and deployed performance acceptance are the next release steps.",
+            "The presentation system and English and Japanese copy are implemented. Native review of the Japanese, deployment and deployed performance acceptance are the next release steps.",
           ),
         },
       ],
     },
+    ja: portfolioJapanese,
   },
 } satisfies ProjectInput;

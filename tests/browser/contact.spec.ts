@@ -27,7 +27,10 @@ for (const mode of [
           waitUntil: "domcontentloaded",
         });
         await expect(
-          page.getByRole("heading", { name: "Contact", exact: true }),
+          page.getByRole("heading", {
+            name: locale === "ja" ? "お問い合わせ" : "Contact",
+            exact: true,
+          }),
         ).toBeVisible();
         await expect(
           page.getByRole("link", { name: "tapiatylert@gmail.com" }),
@@ -48,13 +51,14 @@ for (const mode of [
           page.getByRole("link", { name: "tapiatylert@gmail.com" }),
         ).not.toHaveAttribute("target", "_blank");
         if (locale === "ja") {
-          await expect(page.locator(".translation-notice")).toContainText(
-            "where Japanese translations are unavailable",
-          );
-          await expect(page.locator("h1 span")).toHaveAttribute("lang", "en");
+          // Every published case study is translated, so no site-wide notice.
+          await expect(page.locator(".translation-notice")).toHaveCount(0);
+          await expect(page.locator("h1 span")).toHaveAttribute("lang", "ja");
         }
         if (mode === "chronicle") {
-          const documents = page.getByRole("tab", { name: "Résumés & CV" });
+          const documents = page.getByRole("tab", {
+            name: locale === "ja" ? "履歴書・職務経歴書" : "Résumés & CV",
+          });
           await documents.focus();
           await page.keyboard.press("Enter");
           await expect(documents).toHaveAttribute("aria-selected", "true");

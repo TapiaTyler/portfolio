@@ -63,6 +63,18 @@ export function selectProjectContent(project: Project, locale: Locale) {
     title: resolveValue(en.title, ja?.title, locale),
     summary: resolveOptionalValue(en.summary, ja?.summary, locale),
     description: resolveOptionalValue(en.description, ja?.description, locale),
+    type: resolveValue(project.type, ja?.type, locale),
+    roles: resolveValue(project.roles, ja?.roles, locale),
+    review: resolveOptionalValue(
+      project.contribution?.review,
+      ja?.contribution?.review,
+      locale,
+    ),
+    testing: resolveOptionalValue(
+      project.contribution?.testing,
+      ja?.contribution?.testing,
+      locale,
+    ),
     blocks,
   };
 }

@@ -17,6 +17,12 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Japanese wraps at phrase boundaries (where supported) instead of mid-word,
+   e.g. never splitting デベロッパー; other browsers keep normal breaking. */
+:lang(ja) {
+  word-break: auto-phrase;
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -175,15 +181,6 @@ a {
 
 .locale-switcher a[aria-current="page"] {
   border-bottom: 2px solid currentColor;
-}
-
-.translation-notice {
-  padding: 0.7rem 1.25rem;
-  background: var(--surface-secondary);
-  border-bottom: 1px solid var(--rule);
-  color: var(--muted);
-  font-size: 0.82rem;
-  text-align: center;
 }
 
 main {

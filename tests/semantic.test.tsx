@@ -5,6 +5,7 @@ import { fixtureProjects } from "../src/content/fixtures/projects";
 import { projectSchema } from "../src/lib/content/schema";
 import type { RichText as RichTextData } from "../src/lib/content/text";
 import { selectProjectContent } from "../src/lib/i18n/project-content";
+import { message } from "../src/lib/i18n/messages";
 import { CaseStudy } from "../src/components/semantic/case-study";
 import { ProjectFeature } from "../src/components/semantic/project-feature";
 import { RichText } from "../src/components/semantic/rich-text";
@@ -54,7 +55,14 @@ test("locale selection preserves English sections and resolves partial fields in
   assert.match(html, /lang="ja">Synthetic translated title/);
   assert.match(html, /lang="ja"><p><span>Synthetic translated decision/);
   assert.match(html, /lang="en"><p><span>English rationale retained/);
-  assert.match(html, /translation is incomplete/i);
+  assert.ok(
+    html.includes(
+      message(
+        "ja",
+        "This project's Japanese translation is incomplete. Untranslated sections are shown in English.",
+      ),
+    ),
+  );
   assert.equal(
     selectProjectContent(project, "en").title.value,
     system.locale.en.title,
@@ -65,7 +73,14 @@ test("none, summary and complete translation states have intentional fallbacks",
   const none = selectProjectContent(system, "ja");
   assert.equal(none.title.lang, "en");
   assert.equal(none.translationDepth, "none");
-  assert.match(renderToStaticMarkup(<CaseStudy content={none} />), /English/);
+  assert.ok(
+    renderToStaticMarkup(<CaseStudy content={none} />).includes(
+      message(
+        "ja",
+        "This project's Japanese translation is not available yet. Showing English content.",
+      ),
+    ),
+  );
   const summary = projectSchema.parse({
     ...system,
     translationStatus: { ja: "summary" },
@@ -189,4 +204,68 @@ test("video retains native controls, a poster and no automatic playback", () => 
   assert.match(html, /poster="\/poster.svg"/);
   assert.match(html, /aria-label="English video description"/);
   assert.doesNotMatch(html, /autoPlay|autoplay/);
+});
+
+test("project type, roles and contribution translate with their own language", () => {
+  const base = {
+    ...system,
+    roles: ["Synthetic role"],
+    contribution: { review: "Synthetic review", testing: "Synthetic testing" },
+    translationStatus: { ja: "partial" as const },
+  };
+  const project = projectSchema.parse({
+    ...base,
+    locale: {
+      en: system.locale.en,
+      ja: {
+        title: "合成タイトル",
+        summary: "合成の概要",
+        type: ["開発用フィクスチャ"],
+        roles: ["合成の役割"],
+        contribution: { review: "合成のレビュー" },
+      },
+    },
+  });
+  const content = selectProjectContent(project, "ja");
+  assert.deepEqual(content.roles, {
+    value: ["合成の役割"],
+    lang: "ja",
+    isFallback: false,
+  });
+  assert.equal(content.review?.lang, "ja");
+  // Missing Japanese keeps the English source and marks it as English.
+  assert.deepEqual(content.testing, {
+    value: "Synthetic testing",
+    lang: "en",
+    isFallback: true,
+  });
+  const html = renderToStaticMarkup(<CaseStudy content={content} />);
+  assert.match(html, /lang="ja">開発用フィクスチャ/);
+  assert.match(html, /lang="ja">合成の役割/);
+  assert.equal(
+    selectProjectContent(project, "en").roles.value[0],
+    "Synthetic role",
+  );
+
+  // Translated lists mirror the English items, and complete requires them.
+  assert.throws(() =>
+    projectSchema.parse({
+      ...base,
+      locale: {
+        en: system.locale.en,
+        ja: { title: "合成", summary: "合成", roles: ["一", "二"] },
+      },
+    }),
+  );
+  const complete = projectSchema.safeParse({
+    ...base,
+    translationStatus: { ja: "complete" },
+    locale: { en: system.locale.en, ja: { title: "合成", blocks: [] } },
+  });
+  assert.equal(complete.success, false);
+  assert.ok(
+    complete.error?.issues.some(
+      (issue) => issue.path.join(".") === "locale.ja.roles",
+    ),
+  );
 });

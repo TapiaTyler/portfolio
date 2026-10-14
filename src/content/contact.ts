@@ -20,20 +20,26 @@ export interface ContactDocument {
 export const contactMethods: ContactMethod[] = [
   {
     id: "email",
-    title: { en: "Email" },
+    title: { en: "Email", ja: "メール" },
     address: "tapiatylert@gmail.com",
     href: "mailto:tapiatylert@gmail.com",
   },
   {
     id: "github",
     title: { en: "GitHub" },
-    description: { en: "Repositories and implementation work." },
+    description: {
+      en: "Repositories and implementation work.",
+      ja: "リポジトリと実装の記録。",
+    },
     href: identity.github,
   },
   {
     id: "linkedin",
     title: { en: "LinkedIn" },
-    description: { en: "Professional background and connections." },
+    description: {
+      en: "Professional background and connections.",
+      ja: "職歴とネットワーク。",
+    },
     href: identity.linkedin,
   },
 ];
@@ -41,7 +47,7 @@ export const contactMethods: ContactMethod[] = [
 export const contactDocuments: ContactDocument[] = [
   {
     id: "resume-en",
-    title: { en: "English Résumé" },
+    title: { en: "English Résumé", ja: "英文履歴書" },
     language: "en",
     files: {
       pdf: "/documents/contact/Tyler_Tetsuo_Tapia_Resume_EN.pdf",

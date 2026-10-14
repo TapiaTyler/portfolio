@@ -75,6 +75,17 @@ const localizedProjectSchema = z.strictObject({
     })
     .optional(),
   blocks: z.array(caseStudyBlockSchema).default([]),
+  // Japanese wording for the project's top-level English type, roles and
+  // contribution notes. English keeps these on the project itself; a translation
+  // lists the same items in the same order.
+  type: z.array(textSchema).optional(),
+  roles: z.array(textSchema).optional(),
+  contribution: z
+    .strictObject({
+      review: textSchema.optional(),
+      testing: textSchema.optional(),
+    })
+    .optional(),
 });
 
 const ownershipSchema = z.enum(["primary", "shared", "supporting"]);
@@ -260,6 +271,14 @@ export const projectSchema = z
       });
     }
 
+    for (const field of ["type", "roles", "contribution"] as const) {
+      if (project.locale.en[field] !== undefined)
+        issue(
+          ["locale", "en", field],
+          "English type, roles and contribution belong on the project itself",
+        );
+    }
+
     const ja = project.locale.ja;
     const depth = project.translationStatus.ja;
     if (depth === "none" && ja)
@@ -273,6 +292,21 @@ export const projectSchema = z
         "Translation status requires Japanese text",
       );
     if (!ja) return;
+    for (const field of ["type", "roles"] as const) {
+      const translated = ja[field];
+      if (translated && translated.length !== project[field].length)
+        issue(
+          ["locale", "ja", field],
+          `Translated ${field} must list the same ${project[field].length} items`,
+        );
+    }
+    for (const field of ["review", "testing"] as const) {
+      if (ja.contribution?.[field] && !project.contribution?.[field])
+        issue(
+          ["locale", "ja", "contribution", field],
+          "Translated contribution text has no English source",
+        );
+    }
     if (depth === "summary" && (!ja.summary || ja.blocks.length > 0)) {
       issue(
         ["locale", "ja"],
@@ -350,6 +384,20 @@ export const projectSchema = z
             );
         }
       });
+      for (const field of ["type", "roles"] as const) {
+        if (project[field].length && !ja[field])
+          issue(
+            ["locale", "ja", field],
+            "Complete translation is missing text",
+          );
+      }
+      for (const field of ["review", "testing"] as const) {
+        if (project.contribution?.[field] && !ja.contribution?.[field])
+          issue(
+            ["locale", "ja", "contribution", field],
+            "Complete translation is missing text",
+          );
+      }
       for (const field of ["summary", "description", "shortTitle"] as const) {
         if (project.locale.en[field] && !ja[field])
           issue(

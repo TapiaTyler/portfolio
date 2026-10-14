@@ -1,579 +1,388 @@
 import type { LocalizedText } from "@/lib/i18n/copy";
 
-/** English source keys stay stable when wording is revised. Fill ja after review. */
+/**
+ * English source keys stay stable when wording is revised. Japanese values are
+ * AI-drafted (2026-10-14) and awaiting native review; technology names and file
+ * formats stay shared and render as English.
+ */
 export const interfaceMessages = {
-  "Previous view": { en: "Previous view" },
-  "Next view": { en: "Next view" },
-  "Compare presentations": { en: "Compare presentations" },
-  "View {current} of {total}": { en: "View {current} of {total}" },
-  Product: { en: "Product" },
-  "Key decisions": { en: "Key decisions" },
-  Need: { en: "Need" },
-  Built: { en: "Built" },
-  "Focus areas": { en: "Focus areas" },
-  "Current state": { en: "Current state" },
-  Preview: { en: "Preview" },
-  "Selected project": { en: "Selected project" },
-  Language: {
-    en: "Language",
+  "Previous view": { en: "Previous view", ja: "前の表示" },
+  "Next view": { en: "Next view", ja: "次の表示" },
+  "Compare presentations": {
+    en: "Compare presentations",
+    ja: "表示モードを比較",
   },
-  Primary: {
-    en: "Primary",
+  "View {current} of {total}": {
+    en: "View {current} of {total}",
+    ja: "表示 {current}/{total}",
   },
-  Menu: {
-    en: "Menu",
-  },
-  "System components": {
-    en: "System components",
-  },
+  Product: { en: "Product", ja: "プロダクト" },
+  "Key decisions": { en: "Key decisions", ja: "主な判断" },
+  Need: { en: "Need", ja: "課題" },
+  Built: { en: "Built", ja: "制作内容" },
+  "Focus areas": { en: "Focus areas", ja: "注力分野" },
+  "Current state": { en: "Current state", ja: "現在の状況" },
+  Preview: { en: "Preview", ja: "プレビュー" },
+  "Selected project": { en: "Selected project", ja: "選択中のプロジェクト" },
+  Language: { en: "Language", ja: "言語" },
+  Primary: { en: "Primary", ja: "メイン" },
+  Menu: { en: "Menu", ja: "メニュー" },
+  "System components": { en: "System components", ja: "システムの構成要素" },
   "Component relationships": {
     en: "Component relationships",
+    ja: "構成要素の関係",
   },
-  "connects to": {
-    en: "connects to",
-  },
-  "Project media": {
-    en: "Project media",
-  },
-  "Project gallery": {
-    en: "Project gallery",
-  },
+  "connects to": { en: "connects to", ja: "接続先：" },
+  "Project media": { en: "Project media", ja: "プロジェクトのメディア" },
+  "Project gallery": { en: "Project gallery", ja: "プロジェクトギャラリー" },
   "Case study sections": {
     en: "Case study sections",
+    ja: "ケーススタディの各セクション",
   },
-  "Project at a Glance": {
-    en: "Project at a Glance",
-  },
-  "At a Glance": {
-    en: "At a Glance",
-  },
+  "Project at a Glance": { en: "Project at a Glance", ja: "プロジェクト概要" },
+  "At a Glance": { en: "At a Glance", ja: "概要" },
   "Distinguishing Approach": {
     en: "Distinguishing Approach",
+    ja: "特徴的なアプローチ",
   },
-  Role: {
-    en: "Role",
-  },
-  Implementation: {
-    en: "Implementation",
-  },
-  "Current State": {
-    en: "Current State",
-  },
+  Role: { en: "Role", ja: "役割" },
+  Implementation: { en: "Implementation", ja: "実装" },
+  "Current State": { en: "Current State", ja: "現在の状況" },
   "Ownership and Review": {
     en: "Ownership and Review",
+    ja: "担当範囲とレビュー",
   },
   "Project translation status": {
     en: "Project translation status",
+    ja: "プロジェクトの翻訳状況",
   },
   "Media is unavailable.": {
     en: "Media is unavailable.",
+    ja: "メディアを表示できません。",
   },
-  "Open the Video": {
-    en: "Open the Video",
-  },
+  "Open the Video": { en: "Open the Video", ja: "動画を開く" },
   "Explore the project": {
     en: "Explore the project",
+    ja: "プロジェクトを見る",
   },
   "Project resources": {
     en: "Project resources",
+    ja: "プロジェクトの関連リンク",
   },
-  "Source private": {
-    en: "Source private",
-  },
-  "Portfolio /": {
-    en: "Portfolio /",
-  },
-  "Continue Exploring": {
-    en: "Continue Exploring",
-  },
+  "Source private": { en: "Source private", ja: "ソース非公開" },
+  "Portfolio /": { en: "Portfolio /", ja: "ポートフォリオ /" },
+  "Continue Exploring": { en: "Continue Exploring", ja: "ほかのページも見る" },
   "Read Implementation Details": {
     en: "Read Implementation Details",
+    ja: "実装の詳細を読む",
   },
-  "Skip to Content": {
-    en: "Skip to Content",
-  },
-  "Translation status": {
-    en: "Translation status",
-  },
+  "Skip to Content": { en: "Skip to Content", ja: "本文へスキップ" },
   "Japanese interface translations are being prepared. Navigation and interface labels use English in this preview.":
     {
       en: "Japanese interface translations are being prepared. Navigation and interface labels use English in this preview.",
+      ja: "日本語のインターフェース翻訳は準備中です。このプレビューでは、ナビゲーションとインターフェースのラベルを英語で表示しています。",
     },
   "Portfolio Preview": {
     en: "Portfolio Preview",
+    ja: "ポートフォリオのプレビュー",
   },
-  "Presentation:": {
-    en: "Presentation:",
-  },
-  Presentation: {
-    en: "Presentation",
-  },
+  "Presentation:": { en: "Presentation:", ja: "表示モード：" },
+  Presentation: { en: "Presentation", ja: "表示モード" },
   "Project identity and topics": {
     en: "Project identity and topics",
+    ja: "プロジェクトの概要とトピック",
   },
   "Chronicle / Project": {
     en: "Chronicle / Project",
+    ja: "Chronicle / プロジェクト",
   },
-  Project: {
-    en: "Project",
-  },
-  "View Details": {
-    en: "View Details",
-  },
+  Project: { en: "Project", ja: "プロジェクト" },
+  "View Details": { en: "View Details", ja: "詳細を見る" },
   "Project preview chapters": {
     en: "Project preview chapters",
+    ja: "プロジェクトプレビューの章",
   },
   "Selected project summary": {
     en: "Selected project summary",
+    ja: "選択中のプロジェクトの概要",
   },
-  "Project selection": {
-    en: "Project selection",
-  },
-  "Previous project": {
-    en: "Previous project",
-  },
-  "Choose a project": {
-    en: "Choose a project",
-  },
-  "Next project": {
-    en: "Next project",
-  },
-  "Project cards": {
-    en: "Project cards",
-  },
-  "Next screen": {
-    en: "Next screen",
-  },
-  "Tap to select": {
-    en: "Tap to select",
-  },
+  "Project selection": { en: "Project selection", ja: "プロジェクトの選択" },
+  "Previous project": { en: "Previous project", ja: "前のプロジェクト" },
+  "Choose a project": { en: "Choose a project", ja: "プロジェクトを選ぶ" },
+  "Next project": { en: "Next project", ja: "次のプロジェクト" },
+  "Project cards": { en: "Project cards", ja: "プロジェクトカード" },
+  "Next screen": { en: "Next screen", ja: "次の画面へ" },
+  "Tap to select": { en: "Tap to select", ja: "タップで選択" },
   "· tap again to open": {
     en: "· tap again to open",
+    ja: "・もう一度タップで開く",
   },
-  "Got it": {
-    en: "Got it",
-  },
+  "Got it": { en: "Got it", ja: "OK" },
   "Selected project preview": {
     en: "Selected project preview",
+    ja: "選択中のプロジェクトのプレビュー",
   },
-  Topics: {
-    en: "Topics",
-  },
-  "Project /": {
-    en: "Project /",
-  },
+  Topics: { en: "Topics", ja: "トピック" },
+  "Project /": { en: "Project /", ja: "プロジェクト /" },
   "Explore the Project": {
     en: "Explore the Project",
+    ja: "プロジェクトを見る",
   },
-  "Project identity /": {
-    en: "Project identity /",
-  },
-  "System Overview": {
-    en: "System Overview",
-  },
-  "Technical sections": {
-    en: "Technical sections",
-  },
-  "Profile /": {
-    en: "Profile /",
-  },
-  Introduction: {
-    en: "Introduction",
-  },
-  "Project Overview": {
-    en: "Project Overview",
-  },
-  selected: {
-    en: "selected",
-  },
-  "Page sections": {
-    en: "Page sections",
-  },
-  "Record Index": {
-    en: "Record Index",
-  },
-  "Explore project": {
-    en: "Explore project",
-  },
-  "Read case study": {
-    en: "Read case study",
-  },
-  Work: {
-    en: "Work",
-  },
-  About: {
-    en: "About",
-  },
-  Lab: {
-    en: "Lab",
-  },
-  Contact: {
-    en: "Contact",
-  },
+  "Project identity /": { en: "Project identity /", ja: "プロジェクト情報 /" },
+  "System Overview": { en: "System Overview", ja: "システム概要" },
+  "Technical sections": { en: "Technical sections", ja: "技術セクション" },
+  "Profile /": { en: "Profile /", ja: "プロフィール /" },
+  Introduction: { en: "Introduction", ja: "はじめに" },
+  "Technical Details": { en: "Technical Details", ja: "技術的な詳細" },
+  "Project Overview": { en: "Project Overview", ja: "プロジェクト概要" },
+  selected: { en: "selected", ja: "選択中" },
+  "Page sections": { en: "Page sections", ja: "ページ内のセクション" },
+  "Record Index": { en: "Record Index", ja: "記録一覧" },
+  "Explore project": { en: "Explore project", ja: "プロジェクトを見る" },
+  "Read case study": { en: "Read case study", ja: "ケーススタディを読む" },
+  Work: { en: "Work", ja: "制作実績" },
+  About: { en: "About", ja: "プロフィール" },
+  Lab: { en: "Lab", ja: "ラボ" },
+  Contact: { en: "Contact", ja: "お問い合わせ" },
   "Changing presentation…": {
     en: "Changing presentation…",
+    ja: "表示モードを切り替えています…",
   },
   "Choose an available presentation mode.": {
     en: "Choose an available presentation mode.",
+    ja: "利用可能な表示モードを選択してください。",
   },
   "Presentation mode saved.": {
     en: "Presentation mode saved.",
+    ja: "表示モードを保存しました。",
   },
-  "On this page": {
-    en: "On this page",
-  },
-  Chapters: {
-    en: "Chapters",
-  },
-  "Explore Sections": {
-    en: "Explore Sections",
-  },
-  "Section Directory": {
-    en: "Section Directory",
-  },
-  "Chapter Archive": {
-    en: "Chapter Archive",
-  },
-  Overview: {
-    en: "Overview",
-  },
-  Objective: {
-    en: "Objective",
-  },
-  Outcome: {
-    en: "Outcome",
-  },
-  "Engineering Details": {
-    en: "Engineering Details",
-  },
-  Approach: {
-    en: "Approach",
-  },
-  Screenshots: {
-    en: "Screenshots",
-  },
+  "On this page": { en: "On this page", ja: "このページの内容" },
+  Chapters: { en: "Chapters", ja: "章" },
+  "Explore Sections": { en: "Explore Sections", ja: "セクションを見る" },
+  "Section Directory": { en: "Section Directory", ja: "セクション一覧" },
+  "Chapter Archive": { en: "Chapter Archive", ja: "章の一覧" },
+  Overview: { en: "Overview", ja: "概要" },
+  Objective: { en: "Objective", ja: "目的" },
+  Outcome: { en: "Outcome", ja: "成果" },
+  "Engineering Details": { en: "Engineering Details", ja: "技術的な詳細" },
+  Approach: { en: "Approach", ja: "アプローチ" },
+  Screenshots: { en: "Screenshots", ja: "スクリーンショット" },
   "Case study reading panel": {
     en: "Case study reading panel",
+    ja: "ケーススタディの本文",
   },
   "Project image gallery": {
     en: "Project image gallery",
+    ja: "プロジェクトの画像ギャラリー",
   },
-  "Close Gallery": {
-    en: "Close Gallery",
-  },
-  "Previous Image": {
-    en: "Previous Image",
-  },
-  "Next Image": {
-    en: "Next Image",
-  },
-  "View Image": {
-    en: "View Image",
-  },
+  "Close Gallery": { en: "Close Gallery", ja: "ギャラリーを閉じる" },
+  "Previous Image": { en: "Previous Image", ja: "前の画像" },
+  "Next Image": { en: "Next Image", ja: "次の画像" },
+  "View Image": { en: "View Image", ja: "画像を見る" },
   "View Image: {title}": {
     en: "View Image: {title}",
+    ja: "画像を見る：{title}",
   },
-  "Select {title}": {
-    en: "Select {title}",
-  },
-  "{title} preview": {
-    en: "{title} preview",
-  },
-  "Preview {title}": {
-    en: "Preview {title}",
-  },
-  "Open {title}": {
-    en: "Open {title}",
-  },
-  "{title} sections": {
-    en: "{title} sections",
-  },
-  "{title} topics": {
-    en: "{title} topics",
-  },
+  "Select {title}": { en: "Select {title}", ja: "{title}を選択" },
+  "{title} preview": { en: "{title} preview", ja: "{title}のプレビュー" },
+  "Preview {title}": { en: "Preview {title}", ja: "{title}をプレビュー" },
+  "Open {title}": { en: "Open {title}", ja: "{title}を開く" },
+  "{title} sections": { en: "{title} sections", ja: "{title}のセクション" },
+  "{title} topics": { en: "{title} topics", ja: "{title}のトピック" },
   "Dismiss selection hint": {
     en: "Dismiss selection hint",
+    ja: "選択のヒントを閉じる",
   },
-  "tap again to open": {
-    en: "tap again to open",
-  },
+  "tap again to open": { en: "tap again to open", ja: "もう一度タップで開く" },
   "Portfolio overview": {
     en: "Portfolio overview",
+    ja: "ポートフォリオの概要",
   },
   "Portfolio sections": {
     en: "Portfolio sections",
+    ja: "ポートフォリオのセクション",
   },
-  Status: {
-    en: "Status",
-  },
-  Year: {
-    en: "Year",
-  },
-  Type: {
-    en: "Type",
-  },
-  Languages: {
-    en: "Languages",
-  },
+  Status: { en: "Status", ja: "ステータス" },
+  Year: { en: "Year", ja: "年" },
+  Type: { en: "Type", ja: "種類" },
+  Languages: { en: "Languages", ja: "言語" },
   "Frameworks & Libraries": {
     en: "Frameworks & Libraries",
+    ja: "フレームワーク・ライブラリ",
   },
   "Tools & Platforms": {
     en: "Tools & Platforms",
+    ja: "ツール・プラットフォーム",
   },
-  Capabilities: {
-    en: "Capabilities",
-  },
-  "Open Live Project": {
-    en: "Open Live Project",
-  },
-  "View Source": {
-    en: "View Source",
-  },
-  "Read Documentation": {
-    en: "Read Documentation",
-  },
-  Problem: {
-    en: "Problem",
-  },
-  Goals: {
-    en: "Goals",
-  },
-  Constraints: {
-    en: "Constraints",
-  },
-  Architecture: {
-    en: "Architecture",
-  },
-  Context: {
-    en: "Context",
-  },
-  Decision: {
-    en: "Decision",
-  },
-  Rationale: {
-    en: "Rationale",
-  },
-  Tradeoffs: {
-    en: "Tradeoffs",
-  },
-  Alternatives: {
-    en: "Alternatives",
-  },
-  Challenge: {
-    en: "Challenge",
-  },
-  Response: {
-    en: "Response",
-  },
-  "Current Result": {
-    en: "Current Result",
-  },
-  Result: {
-    en: "Result",
-  },
-  "Manually authored": {
-    en: "Manually authored",
-  },
+  Capabilities: { en: "Capabilities", ja: "対応領域" },
+  "Open Live Project": { en: "Open Live Project", ja: "公開中のサイトを開く" },
+  "View Source": { en: "View Source", ja: "ソースコードを見る" },
+  "Read Documentation": { en: "Read Documentation", ja: "ドキュメントを読む" },
+  Problem: { en: "Problem", ja: "課題" },
+  Goals: { en: "Goals", ja: "目標" },
+  Constraints: { en: "Constraints", ja: "制約" },
+  Architecture: { en: "Architecture", ja: "アーキテクチャ" },
+  Context: { en: "Context", ja: "背景" },
+  Decision: { en: "Decision", ja: "判断" },
+  Rationale: { en: "Rationale", ja: "理由" },
+  Tradeoffs: { en: "Tradeoffs", ja: "トレードオフ" },
+  Alternatives: { en: "Alternatives", ja: "代替案" },
+  Challenge: { en: "Challenge", ja: "直面した課題" },
+  Response: { en: "Response", ja: "対応" },
+  "Current Result": { en: "Current Result", ja: "現時点の成果" },
+  Result: { en: "Result", ja: "成果" },
+  "Manually authored": { en: "Manually authored", ja: "手作業で実装" },
   "AI-assisted development": {
     en: "AI-assisted development",
+    ja: "AI支援による開発",
   },
   "Manual and AI-assisted development": {
     en: "Manual and AI-assisted development",
+    ja: "手作業とAI支援による開発",
   },
   "{count} selected project": {
     en: "{count} selected project",
+    ja: "選定プロジェクト {count}件",
   },
   "{count} selected projects": {
     en: "{count} selected projects",
+    ja: "選定プロジェクト {count}件",
   },
-  "Some page and interface text is shown in English where Japanese translations are unavailable.":
-    {
-      en: "Some page and interface text is shown in English where Japanese translations are unavailable.",
-    },
-  Email: {
-    en: "Email",
-  },
+  Email: { en: "Email", ja: "メール" },
   "Copy email address": {
     en: "Copy email address",
+    ja: "メールアドレスをコピー",
   },
   "Email address copied.": {
     en: "Email address copied.",
+    ja: "メールアドレスをコピーしました。",
   },
   "Copy unavailable. Select the email address to copy it.": {
     en: "Copy unavailable. Select the email address to copy it.",
+    ja: "コピーできませんでした。メールアドレスを選択してコピーしてください。",
   },
-  PDF: {
-    en: "PDF",
-  },
-  Word: {
-    en: "Word",
-  },
+  PDF: { en: "PDF" },
+  Word: { en: "Word" },
   "Files will be added soon.": {
     en: "Files will be added soon.",
+    ja: "ファイルは近日公開予定です。",
   },
-  "English résumé": {
-    en: "English résumé",
-  },
-  "Japanese résumé": {
-    en: "Japanese résumé",
-  },
-  "Japanese CV": {
-    en: "Japanese CV",
-  },
+  "English résumé": { en: "English résumé", ja: "英文履歴書" },
+  "Japanese résumé": { en: "Japanese résumé", ja: "履歴書" },
+  "Japanese CV": { en: "Japanese CV", ja: "職務経歴書" },
   "Code sample ({language})": {
     en: "Code sample ({language})",
+    ja: "コードサンプル（{language}）",
   },
   "Image {current} of {count}": {
     en: "Image {current} of {count}",
+    ja: "画像 {current}/{count}",
   },
   "This project's Japanese translation is not available yet. Showing English content.":
     {
       en: "This project's Japanese translation is not available yet. Showing English content.",
+      ja: "このプロジェクトの日本語訳はまだありません。英語の内容を表示しています。",
     },
   "This project's Japanese translation is incomplete. Untranslated sections are shown in English.":
     {
       en: "This project's Japanese translation is incomplete. Untranslated sections are shown in English.",
+      ja: "このプロジェクトの日本語訳は一部のみです。未翻訳のセクションは英語で表示しています。",
     },
-  "Active development": {
-    en: "Active development",
-  },
-  Complete: {
-    en: "Complete",
-  },
-  Prototype: {
-    en: "Prototype",
-  },
-  Planned: {
-    en: "Planned",
-  },
-  Archived: {
-    en: "Archived",
-  },
-  TypeScript: {
-    en: "TypeScript",
-  },
-  JavaScript: {
-    en: "JavaScript",
-  },
-  Java: {
-    en: "Java",
-  },
-  Go: {
-    en: "Go",
-  },
-  "Next.js": {
-    en: "Next.js",
-  },
-  React: {
-    en: "React",
-  },
-  "Spring Boot": {
-    en: "Spring Boot",
-  },
-  "Tailwind CSS": {
-    en: "Tailwind CSS",
-  },
-  Zod: {
-    en: "Zod",
-  },
-  i18next: {
-    en: "i18next",
-  },
-  PostgreSQL: {
-    en: "PostgreSQL",
-  },
-  Supabase: {
-    en: "Supabase",
-  },
-  Flyway: {
-    en: "Flyway",
-  },
-  Docker: {
-    en: "Docker",
-  },
-  Vite: {
-    en: "Vite",
-  },
-  MDX: {
-    en: "MDX",
-  },
-  Playwright: {
-    en: "Playwright",
-  },
-  Vitest: {
-    en: "Vitest",
-  },
+  "Active development": { en: "Active development", ja: "開発中" },
+  Complete: { en: "Complete", ja: "完成" },
+  Prototype: { en: "Prototype", ja: "プロトタイプ" },
+  Planned: { en: "Planned", ja: "計画中" },
+  Archived: { en: "Archived", ja: "アーカイブ済み" },
+  TypeScript: { en: "TypeScript" },
+  JavaScript: { en: "JavaScript" },
+  Java: { en: "Java" },
+  Go: { en: "Go" },
+  "Next.js": { en: "Next.js" },
+  React: { en: "React" },
+  "Spring Boot": { en: "Spring Boot" },
+  "Tailwind CSS": { en: "Tailwind CSS" },
+  Zod: { en: "Zod" },
+  i18next: { en: "i18next" },
+  PostgreSQL: { en: "PostgreSQL" },
+  Supabase: { en: "Supabase" },
+  Flyway: { en: "Flyway" },
+  Docker: { en: "Docker" },
+  Vite: { en: "Vite" },
+  MDX: { en: "MDX" },
+  Playwright: { en: "Playwright" },
+  Vitest: { en: "Vitest" },
   "Product & UI Engineering": {
     en: "Product & UI Engineering",
+    ja: "プロダクト・UIエンジニアリング",
   },
   "Frontend Development": {
     en: "Frontend Development",
+    ja: "フロントエンド開発",
   },
-  "Backend Development": {
-    en: "Backend Development",
-  },
+  "Backend Development": { en: "Backend Development", ja: "バックエンド開発" },
   "Full-Stack Development": {
     en: "Full-Stack Development",
+    ja: "フルスタック開発",
   },
   "System Architecture": {
     en: "System Architecture",
+    ja: "システムアーキテクチャ",
   },
-  "API Design": {
-    en: "API Design",
-  },
-  "Data Modeling": {
-    en: "Data Modeling",
-  },
-  "Design Systems": {
-    en: "Design Systems",
-  },
-  Accessibility: {
-    en: "Accessibility",
-  },
-  Performance: {
-    en: "Performance",
-  },
-  Localization: {
-    en: "Localization",
-  },
-  Security: {
-    en: "Security",
-  },
-  "DevOps / Deployment": {
-    en: "DevOps / Deployment",
-  },
+  "API Design": { en: "API Design", ja: "API設計" },
+  "Data Modeling": { en: "Data Modeling", ja: "データモデリング" },
+  "Design Systems": { en: "Design Systems", ja: "デザインシステム" },
+  Accessibility: { en: "Accessibility", ja: "アクセシビリティ" },
+  Performance: { en: "Performance", ja: "パフォーマンス" },
+  Localization: { en: "Localization", ja: "ローカライズ" },
+  Security: { en: "Security", ja: "セキュリティ" },
+  "DevOps / Deployment": { en: "DevOps / Deployment", ja: "DevOps / デプロイ" },
   "Testing / Quality Engineering": {
     en: "Testing / Quality Engineering",
+    ja: "テスト / 品質保証",
   },
-  "Developer Tooling": {
-    en: "Developer Tooling",
-  },
+  "Developer Tooling": { en: "Developer Tooling", ja: "開発者ツール" },
   "Technical Documentation": {
     en: "Technical Documentation",
+    ja: "技術ドキュメント",
   },
-  "{count} sections": {
-    en: "{count} sections",
+  "{count} sections": { en: "{count} sections", ja: "{count}セクション" },
+  "404 / Not Found": {
+    en: "404 / Not Found",
+    ja: "404 / ページが見つかりません",
   },
-  "404 / Not Found": { en: "404 / Not Found" },
-  "That page is unavailable.": { en: "That page is unavailable." },
+  "That page is unavailable.": {
+    en: "That page is unavailable.",
+    ja: "このページは表示できません。",
+  },
   "The address may be incorrect, or the project is not published yet.": {
     en: "The address may be incorrect, or the project is not published yet.",
+    ja: "URLが間違っているか、プロジェクトがまだ公開されていない可能性があります。",
   },
-  "Return Home": { en: "Return Home" },
-  Open: { en: "Open" },
-  Copy: { en: "Copy" },
-  Copied: { en: "Copied" },
-  "Copy code sample": { en: "Copy code sample" },
-  "Copy Unavailable": { en: "Copy Unavailable" },
-  "Code copied to clipboard.": { en: "Code copied to clipboard." },
+  "Return Home": { en: "Return Home", ja: "ホームに戻る" },
+  Open: { en: "Open", ja: "開く" },
+  Copy: { en: "Copy", ja: "コピー" },
+  Copied: { en: "Copied", ja: "コピーしました" },
+  "Copy code sample": { en: "Copy code sample", ja: "コードサンプルをコピー" },
+  "Copy Unavailable": { en: "Copy Unavailable", ja: "コピーできません" },
+  "Code copied to clipboard.": {
+    en: "Code copied to clipboard.",
+    ja: "コードをクリップボードにコピーしました。",
+  },
   "Clipboard unavailable. Select the code sample to copy it manually.": {
     en: "Clipboard unavailable. Select the code sample to copy it manually.",
+    ja: "クリップボードを使用できません。コードサンプルを選択して手動でコピーしてください。",
   },
-  "Inspect connections for {title}": { en: "Inspect connections for {title}" },
+  "Inspect connections for {title}": {
+    en: "Inspect connections for {title}",
+    ja: "{title}の接続を確認",
+  },
   "{title}: connected components and relationships highlighted.": {
     en: "{title}: connected components and relationships highlighted.",
+    ja: "{title}：接続している構成要素と関係を強調表示しています。",
   },
-  "Connection selection cleared.": { en: "Connection selection cleared." },
-  "Fig.": { en: "Fig." },
+  "Connection selection cleared.": {
+    en: "Connection selection cleared.",
+    ja: "接続の選択を解除しました。",
+  },
+  "Fig.": { en: "Fig.", ja: "図" },
 } satisfies Record<string, LocalizedText>;

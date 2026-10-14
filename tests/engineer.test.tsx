@@ -44,7 +44,7 @@ test("Engineer omits unsupported system overview and evidence while retaining ac
   const content = selectProjectContent(project, "en");
   const html = renderToStaticMarkup(<EngineerCaseStudy content={content} />);
   assert.doesNotMatch(html, /engineer-system-overview|<img|<details/);
-  assert.match(html, /prototype/);
+  assert.match(html, /Prototype/);
   const feature = renderToStaticMarkup(
     <EngineerProjectFeature
       content={content}

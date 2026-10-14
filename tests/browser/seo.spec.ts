@@ -16,7 +16,9 @@ test("page metadata keeps one canonical identity across modes and locale fallbac
     ]);
     for (const locale of ["en", "ja"]) {
       await page.goto(`/${locale}/about?style=${mode}`);
-      await expect(page).toHaveTitle("About | Tyler Tetsuo Tapia");
+      await expect(page).toHaveTitle(
+        `${locale === "ja" ? "プロフィール" : "About"} | Tyler Tetsuo Tapia`,
+      );
       if (siteUrl) {
         await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
           "href",
@@ -38,9 +40,10 @@ test("page metadata keeps one canonical identity across modes and locale fallbac
         "content",
         locale === "en" && indexable ? "index, follow" : "noindex, follow",
       );
+      // og:locale follows the language the page copy is actually served in.
       await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
         "content",
-        "en_US",
+        locale === "ja" ? "ja_JP" : "en_US",
       );
     }
   }

@@ -11,11 +11,12 @@
 Review at `/dev/projects/nihonest`; append `?locale=ja` for intentional English
 fallback. Full-shell review is `/preview/chronicle?project=nihonest` in the selected
 presentation mode. These review routes are development-only. The current record
-is published and featured; its public English route is /en/work/nihonest, with the
-declared English fallback at /ja/work/nihonest.
+is published and featured at /en/work/nihonest, with a complete (AI-drafted,
+review-pending) Japanese translation at /ja/work/nihonest since 2026-10-14.
 
 Nihonest remains in active development. The current record includes the live link
-https://nihonest.vercel.app/ and declares private source. The dated discovery/import
+https://nihonest.vercel.app/ and the public source repository
+https://github.com/TapiaTyler/nihonest (made public 2026-10-14). The dated discovery/import
 reports describe the earlier local import; application release gates remain separate
 from portfolio checks. Updated 2026-10-08; the live homepage was captured for visual
 evidence, without a full live-site audit.

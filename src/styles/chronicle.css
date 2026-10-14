@@ -80,11 +80,6 @@
     padding-block: 0;
     font-size: 0.65rem;
   }
-  .translation-notice {
-    flex: none;
-    padding: 0.25rem 1rem;
-    font-size: 0.75rem;
-  }
   h1,
   h2,
   h3,
@@ -2853,6 +2848,11 @@
     .chronicle-hero__narrative {
       max-width: 60%;
     }
+    /* Japanese glyphs fall back to a wider face, so its copy takes more of the
+       width (scenery still shows at the right) to keep the hero one screen. */
+    .chronicle-hero__narrative:has(h1 [lang="ja"]) {
+      max-width: 78%;
+    }
     /* Same measure as the supporting pages' intros: the 40ch cap made the
        description wrap one line more and pushed Explore Work off the screen
        while the browser toolbar is still showing. */
@@ -4011,6 +4011,86 @@
     /* Portrait case studies are two screens (identity, then reading). */
     .chronicle-dossier {
       height: auto;
+    }
+  }
+  /* Short landscape phones (iPhone SE and smaller): Home's card screen takes the
+     Work treatment. The heading row's height goes to the cards, so the frame
+     ornament no longer sits on the last line of text; the heading stays for
+     assistive technology, and arrows and dots overlay the card screen. */
+  @media (orientation: landscape) and (max-height: 380px) {
+    .chronicle-homepage .selected-work {
+      display: grid;
+      min-height: 0;
+      grid-template-rows: minmax(0, 1fr);
+      overflow: hidden;
+    }
+    .chronicle-homepage .selected-work .home-section-header {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .chronicle-homepage .chronicle-selection {
+      position: relative;
+      height: 100%;
+      min-height: 0;
+      padding-top: 0;
+      grid-template-rows: minmax(0, 1fr);
+    }
+    .chronicle-homepage .chronicle-selection__track {
+      height: 100%;
+      min-height: 0;
+      padding-block: 10px 26px;
+    }
+    .chronicle-homepage .chronicle-selection__controls {
+      inset: 0 0 auto;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button,
+    .chronicle-homepage .chronicle-selection__dots {
+      position: absolute;
+      pointer-events: auto;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button:first-of-type {
+      top: calc(50% - 30px);
+      left: 6px;
+    }
+    .chronicle-homepage .chronicle-selection__controls > button:last-of-type {
+      top: calc(50% - 30px);
+      right: 6px;
+    }
+    .chronicle-homepage .chronicle-selection__dots {
+      bottom: -8px;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%);
+    }
+  }
+  /* Japanese cards on phones: titles and summaries wrap to more lines than English
+     in the same fixed card screen, so the title steps down (its Latin ch cap would
+     wrap full-width glyphs early) and the topic list tightens to keep every topic
+     inside the frame. */
+  @media (max-width: 900px) and (orientation: portrait),
+    (orientation: landscape) and (max-height: 500px) {
+    .chronicle-project:lang(ja) h3 {
+      max-width: none;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+    .chronicle-project:lang(ja) .chronicle-topics {
+      line-height: 1.3;
+    }
+  }
+  /* Full-width glyphs read larger than Latin at the same size; portrait cards'
+     summaries step down to match the visual weight of the English. */
+  @media (max-width: 900px) and (orientation: portrait) {
+    .chronicle-project:lang(ja) .chronicle-project__record p {
+      font-size: 0.94rem;
     }
   }
 }

@@ -13,6 +13,7 @@ import {
 } from "@/registries/technologies";
 import { capabilities } from "@/registries/capabilities";
 import { projectStatusLabels } from "@/lib/content/status";
+import { resolveValue } from "@/lib/i18n/project-content";
 
 export function ProjectMeta({
   project,
@@ -23,11 +24,21 @@ export function ProjectMeta({
   project: Project;
   exclude?: string[];
 }) {
+  // Type and roles are project wording, translated in the project record rather
+  // than the interface catalog; each keeps the language it is actually shown in.
+  const ja = locale === "ja" ? project.locale.ja : undefined;
+  const projectText: Record<
+    string,
+    ReturnType<typeof resolveValue<string[]>>
+  > = {
+    Type: resolveValue(project.type, ja?.type, locale),
+    Role: resolveValue(project.roles, ja?.roles, locale),
+  };
   const entries: [string, string | undefined][] = [
     ["Status", projectStatusLabels[project.status]],
     ["Year", project.year?.toString()],
-    ["Type", project.type.length ? project.type.join(" / ") : undefined],
-    ["Role", project.roles.length ? project.roles.join(" / ") : undefined],
+    ["Type", project.type.length ? "Type" : undefined],
+    ["Role", project.roles.length ? "Role" : undefined],
     // Grouped as job listings group them, so a framework search finds a match.
     ...(Object.keys(technologyKindLabels) as TechnologyKind[]).map(
       (kind): [string, string | undefined] => {
@@ -59,7 +70,11 @@ export function ProjectMeta({
             <Text value={interfaceCopy(label)} locale={locale} />
           </dt>
           <dd>
-            {label === "Capabilities" ? (
+            {projectText[label] ? (
+              <span lang={projectText[label].lang}>
+                {projectText[label].value.join(" / ")}
+              </span>
+            ) : label === "Capabilities" ? (
               project.capabilityIds.map((id, index) => (
                 <span key={id}>
                   {index > 0 && ", "}

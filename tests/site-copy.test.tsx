@@ -27,8 +27,9 @@ test("interface translations can be filled independently without changing Englis
       /lang="ja">ソースを見る/,
     );
     assert.match(
-      renderToStaticMarkup(<UiText locale="ja" id="Source private" />),
-      /lang="en">Source private/,
+      // Technology names stay shared, so this entry has no Japanese value.
+      renderToStaticMarkup(<UiText locale="ja" id="TypeScript" />),
+      /lang="en">TypeScript/,
     );
     assert.equal(message("en", "View Source"), "View Source");
   } finally {
@@ -70,7 +71,7 @@ test("site copy validates independent Japanese slots and interpolation fields", 
   assert.throws(() => validateCopyTree({ en: "Select {title}", ja: "選択" }));
   assert.equal(
     message("ja", "Select {title}", { title: "<project>" }),
-    "Select <project>",
+    "<project>を選択",
   );
   assert.throws(() => message("en", "Select {title}"));
 });
@@ -93,7 +94,8 @@ test("partial page translations mark each field with its actual language", () =>
       <Renderer content={{ ...pageContent.contact, title }} locale="ja" />,
     );
     assert.match(html, /lang="ja">連絡先/);
-    assert.match(html, /lang="en">Email/);
+    // Profile names stay English-only, so the page still mixes languages.
+    assert.match(html, /lang="en">GitHub/);
     assert.match(html, /mailto:tapiatylert@gmail.com/);
   }
   assert.match(

@@ -1,4 +1,5 @@
 import type { ProjectInput } from "@/lib/content/schema";
+import { nihonestJapanese } from "./nihonest.ja";
 
 const prose = (...paragraphs: string[]) =>
   paragraphs.map((text) => ({
@@ -9,8 +10,8 @@ const prose = (...paragraphs: string[]) =>
 const image = (
   id: string,
   file: string,
-  alt: string,
-  caption: string,
+  alt: { en: string; ja: string },
+  caption: { en: string; ja: string },
   width = 1440,
   height = 1000,
 ) => ({
@@ -20,8 +21,8 @@ const image = (
   width,
   height,
   purpose: width < height ? ("mobile" as const) : ("detail" as const),
-  alt: { en: alt },
-  caption: { en: caption },
+  alt,
+  caption,
 });
 
 /** Hosted at nihonest.vercel.app and in active development; claims stay within verified source evidence. */
@@ -62,9 +63,9 @@ export const nihonestProject = {
   publication: { status: "published", featured: true, priority: 0 },
   links: {
     live: "https://nihonest.vercel.app/",
-    repositoryVisibility: "private",
+    repository: "https://github.com/TapiaTyler/nihonest",
   },
-  translationStatus: { ja: "none" },
+  translationStatus: { ja: "complete" },
   contribution: {
     productDirection: "primary",
     uiDirection: "primary",
@@ -79,119 +80,195 @@ export const nihonestProject = {
     image(
       "home-desktop",
       "home-live-desktop-2026-10-08.png",
-      "Nihonest's English homepage with its introduction, Find my starting point action, optional personalization panel, and clarity, sources, and access principles.",
-      "The live homepage introduces public guidance and optional personalization. Captured October 8, 2026.",
+      {
+        en: "Nihonest's English homepage with its introduction, Find my starting point action, optional personalization panel, and clarity, sources, and access principles.",
+        ja: "Nihonestの英語版ホームページ。紹介文、「Find my starting point」（開始地点を選ぶ）ボタン、任意のパーソナライズ設定パネル、分かりやすさ・出典・利用しやすさの方針が表示されている。",
+      },
+      {
+        en: "The live homepage introduces public guidance and optional personalization. Captured October 8, 2026.",
+        ja: "公開中のホームページ。誰でも読めるガイドと、任意のパーソナライズを紹介している。2026年10月8日撮影。",
+      },
     ),
     image(
       "explore-desktop",
       "explore-desktop.png",
-      "Search for juminhyo with result-kind controls and matches across groups, guides, and glossary terms.",
-      "One search joins groups, guides, FAQs and glossary terms under a single query.",
+      {
+        en: "Search for juminhyo with result-kind controls and matches across groups, guides, and glossary terms.",
+        ja: "「juminhyo（住民票）」の検索結果。結果の種類を切り替えるコントロールと、グループ・ガイド・用語集にまたがる一致項目が表示されている。",
+      },
+      {
+        en: "One search joins groups, guides, FAQs and glossary terms under a single query.",
+        ja: "ひとつの検索で、グループ、ガイド、よくある質問、用語集をまとめて探せる。",
+      },
     ),
     image(
       "journey-mobile",
       "journey-mobile.png",
-      "Mobile Student journey showing the selected long-term study route and reading sequence.",
-      "The student-status route selected on mobile. Route selection guides reading; it does not determine eligibility.",
+      {
+        en: "Mobile Student journey showing the selected long-term study route and reading sequence.",
+        ja: "モバイルの学生向けジャーニー。選択した長期留学の経路と、読み進める順序が表示されている。",
+      },
+      {
+        en: "The student-status route selected on mobile. Route selection guides reading; it does not determine eligibility.",
+        ja: "モバイルで在留資格「留学」の経路を選択した画面。経路の選択は読む順序を案内するもので、資格の有無を判定するものではない。",
+      },
       390,
       844,
     ),
     image(
       "journey-conditions-mobile",
       "journey-conditions-mobile.png",
-      "A mobile journey phase marks working part-time as conditional with an applicability label.",
-      "The same route keeps conditional steps and their Editorial Review label.",
+      {
+        en: "A mobile journey phase marks working part-time as conditional with an applicability label.",
+        ja: "モバイルのジャーニーの一段階。アルバイトが、適用条件のラベル付きの条件付き項目として示されている。",
+      },
+      {
+        en: "The same route keeps conditional steps and their Editorial Review label.",
+        ja: "同じ経路でも、条件付きのステップと「Editorial Review」（編集確認が必要）のラベルはそのまま表示される。",
+      },
       390,
       844,
     ),
     image(
       "local-guidance-desktop",
       "local-guidance-desktop.png",
-      "Native prefecture and municipality selectors show a Shinjuku local supplement and its responsible body.",
-      "Tokyo and Shinjuku selected. The local supplement is still marked Editorial Review.",
+      {
+        en: "Native prefecture and municipality selectors show a Shinjuku local supplement and its responsible body.",
+        ja: "都道府県と市区町村の標準セレクトで新宿区を選び、新宿区の補足情報と担当機関が表示されている。",
+      },
+      {
+        en: "Tokyo and Shinjuku selected. The local supplement is still marked Editorial Review.",
+        ja: "東京都と新宿区を選択した画面。この地域の補足情報には、まだ「Editorial Review」（編集確認が必要）のラベルが付いている。",
+      },
     ),
   ],
   diagrams: [
     {
       id: "architecture-content-boundaries",
-      title: { en: "Nihonest content and state boundaries" },
+      title: {
+        en: "Nihonest content and state boundaries",
+        ja: "Nihonestのコンテンツと状態の境界",
+      },
       accessibleSummary: {
         en: "Repository content is validated before public rendering. Browser preferences remain local until an optional account syncs selected state through Supabase. The local CMS edits repository files but is not a public route.",
+        ja: "リポジトリのコンテンツは、公開ページに表示される前に検証されます。ブラウザの設定は、任意のアカウントがSupabase経由で選択された状態を同期するまで、端末内にとどまります。ローカルCMSはリポジトリのファイルを編集しますが、公開ルートではありません。",
       },
       nodes: [
         {
           id: "canonical-content",
-          label: { en: "English MDX and typed repository records" },
+          label: {
+            en: "English MDX and typed repository records",
+            ja: "英語のMDXと型付きリポジトリレコード",
+          },
         },
         {
           id: "catalog-validation",
-          label: { en: "Zod and cross-reference validation" },
+          label: {
+            en: "Zod and cross-reference validation",
+            ja: "Zodと相互参照の検証",
+          },
         },
-        { id: "search-index", label: { en: "In-memory search index" } },
-        { id: "public-routes", label: { en: "Next.js public routes" } },
+        {
+          id: "search-index",
+          label: {
+            en: "In-memory search index",
+            ja: "メモリ上の検索インデックス",
+          },
+        },
+        {
+          id: "public-routes",
+          label: { en: "Next.js public routes", ja: "Next.jsの公開ルート" },
+        },
         {
           id: "translation-overlays",
-          label: { en: "Revision-addressed Japanese overlays" },
+          label: {
+            en: "Revision-addressed Japanese overlays",
+            ja: "リビジョン単位で管理する日本語オーバーレイ",
+          },
         },
         {
           id: "browser-state",
-          label: { en: "Anonymous browser preferences and progress" },
+          label: {
+            en: "Anonymous browser preferences and progress",
+            ja: "匿名のブラウザ設定と進捗",
+          },
         },
         {
           id: "account-sync",
-          label: { en: "Optional validated account sync" },
+          label: {
+            en: "Optional validated account sync",
+            ja: "任意の検証済みアカウント同期",
+          },
         },
         {
           id: "supabase-rls",
-          label: { en: "Supabase owner-scoped tables and functions" },
+          label: {
+            en: "Supabase owner-scoped tables and functions",
+            ja: "Supabaseの所有者単位のテーブルと関数",
+          },
         },
-        { id: "local-cms", label: { en: "Loopback editorial CMS" } },
+        {
+          id: "local-cms",
+          label: {
+            en: "Loopback editorial CMS",
+            ja: "ループバック限定の編集用CMS",
+          },
+        },
       ],
       edges: [
         {
           from: "canonical-content",
           to: "catalog-validation",
-          label: { en: "parsed and checked" },
+          label: { en: "parsed and checked", ja: "解析・検査" },
         },
         {
           from: "catalog-validation",
           to: "public-routes",
-          label: { en: "renders" },
+          label: { en: "renders", ja: "表示" },
         },
         {
           from: "catalog-validation",
           to: "search-index",
-          label: { en: "indexes" },
+          label: { en: "indexes", ja: "インデックス化" },
         },
         {
           from: "search-index",
           to: "public-routes",
-          label: { en: "discovery results" },
+          label: { en: "discovery results", ja: "検索結果" },
         },
         {
           from: "translation-overlays",
           to: "public-routes",
-          label: { en: "Japanese text with fallback" },
+          label: {
+            en: "Japanese text with fallback",
+            ja: "日本語テキスト（英語フォールバックあり）",
+          },
         },
         {
           from: "browser-state",
           to: "public-routes",
-          label: { en: "anonymous personalization" },
+          label: {
+            en: "anonymous personalization",
+            ja: "匿名のパーソナライズ",
+          },
         },
         {
           from: "browser-state",
           to: "account-sync",
-          label: { en: "optional snapshot" },
+          label: { en: "optional snapshot", ja: "任意のスナップショット" },
         },
         {
           from: "account-sync",
           to: "supabase-rls",
-          label: { en: "validated RPC" },
+          label: { en: "validated RPC", ja: "検証済みRPC" },
         },
         {
           from: "local-cms",
           to: "canonical-content",
-          label: { en: "guarded local file edits" },
+          label: {
+            en: "guarded local file edits",
+            ja: "保護されたローカルファイル編集",
+          },
         },
       ],
     },
@@ -200,7 +277,10 @@ export const nihonestProject = {
     {
       id: "journey-step-resolver",
       language: "typescript",
-      title: { en: "Resolve one journey route into a reading sequence" },
+      title: {
+        en: "Resolve one journey route into a reading sequence",
+        ja: "ジャーニーの経路を、ひとつの読む順序に解決する",
+      },
       source: `export function resolveJourneySteps(journey: GuidedJourney, routeId?: string): readonly ResolvedJourneyStep[] {
   const route = getJourneyRouteById(journey, routeId);
   // Route choices replace one placeholder with one canonical guide; alternatives must never become sequential steps.
@@ -344,5 +424,6 @@ export const nihonestProject = {
         },
       ],
     },
+    ja: nihonestJapanese,
   },
 } satisfies ProjectInput;

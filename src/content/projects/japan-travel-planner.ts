@@ -1,4 +1,5 @@
 import type { ProjectInput } from "@/lib/content/schema";
+import { japanTravelPlannerJapanese } from "./japan-travel-planner.ja";
 
 const prose = (...paragraphs: string[]) =>
   paragraphs.map((text) => ({
@@ -12,8 +13,8 @@ const image = (
   width: number,
   height: number,
   purpose: "overview" | "detail" | "mobile",
-  alt: string,
-  caption: string,
+  alt: { en: string; ja: string },
+  caption: { en: string; ja: string },
 ) => ({
   id,
   type: "image" as const,
@@ -21,8 +22,8 @@ const image = (
   width,
   height,
   purpose,
-  alt: { en: alt },
-  caption: { en: caption },
+  alt,
+  caption,
 });
 
 /** Tyler confirmed status, ownership and media use on Oct 3, 2026. */
@@ -57,10 +58,10 @@ export const japanTravelPlannerProject = {
   ],
   publication: { status: "published", featured: true, priority: 2 },
   links: {
-    live: "https://japan-travel-planner-production.up.railway.app/",
+    live: "https://japan-travel-planner-ggev.onrender.com/",
     repository: "https://github.com/TapiaTyler/japan-travel-planner",
   },
-  translationStatus: { ja: "none" },
+  translationStatus: { ja: "complete" },
   contribution: {
     productDirection: "primary",
     architecture: "primary",
@@ -78,8 +79,14 @@ export const japanTravelPlannerProject = {
       1265,
       1179,
       "detail",
-      "Desktop Tokyo and Kyoto itinerary with date groups, search, map links and a yen cost summary.",
-      "A desktop itinerary brings date grouping, filtering, print controls and cost status together. Fictional trip data illustrates the planning workflow.",
+      {
+        en: "Desktop Tokyo and Kyoto itinerary with date groups, search, map links and a yen cost summary.",
+        ja: "東京と京都のデスクトップ版旅程。日付ごとのグループ、検索、地図リンク、円建ての費用の概要が表示されている。",
+      },
+      {
+        en: "A desktop itinerary brings date grouping, filtering, print controls and cost status together. Fictional trip data illustrates the planning workflow.",
+        ja: "デスクトップの旅程画面では、日付ごとのグループ分け、絞り込み、印刷操作、費用状況をまとめて扱える。架空の旅行データで計画の流れを示している。",
+      },
     ),
     image(
       "media-itinerary-mobile-dark",
@@ -87,8 +94,14 @@ export const japanTravelPlannerProject = {
       534,
       1263,
       "mobile",
-      "Narrow dark-theme itinerary with search, print controls, date tabs and the cost summary above the trip items.",
-      "The itinerary in a narrow dark-theme view using demo data. This is a responsive-state screenshot, not a device-performance test or an earlier version.",
+      {
+        en: "Narrow dark-theme itinerary with search, print controls, date tabs and the cost summary above the trip items.",
+        ja: "幅の狭いダークテーマの旅程。検索、印刷操作、日付タブ、旅程項目の上の費用の概要が表示されている。",
+      },
+      {
+        en: "The itinerary in a narrow dark-theme view using demo data. This is a responsive-state screenshot, not a device-performance test or an earlier version.",
+        ja: "デモデータを使った、幅の狭いダークテーマでの旅程表示。レスポンシブ表示の状態を示すスクリーンショットで、端末の性能テストや以前のバージョンではない。",
+      },
     ),
     image(
       "media-library-ja",
@@ -96,15 +109,24 @@ export const japanTravelPlannerProject = {
       1270,
       715,
       "detail",
-      "Trip Library with Japanese interface labels and three curated public-template cards.",
-      "Japanese interface resources and curated templates share the same library workflow. The image demonstrates implemented localization; translation quality was not independently reviewed.",
+      {
+        en: "Trip Library with Japanese interface labels and three curated public-template cards.",
+        ja: "日本語のインターフェースで表示した旅行ライブラリ。厳選された3つの公開テンプレートのカードが並んでいる。",
+      },
+      {
+        en: "Japanese interface resources and curated templates share the same library workflow. The image demonstrates implemented localization; translation quality was not independently reviewed.",
+        ja: "日本語のインターフェースリソースと厳選テンプレートは、同じライブラリの流れで使える。実装したローカライズを示す画像であり、翻訳の品質は第三者によるレビューを受けていない。",
+      },
     ),
   ],
   codeSnippets: [
     {
       id: "snippet-filter-pipeline",
       language: "javascript",
-      title: { en: "Combining text and structured itinerary filters" },
+      title: {
+        en: "Combining text and structured itinerary filters",
+        ja: "テキスト検索と構造化された旅程の絞り込みを組み合わせる",
+      },
       source:
         'export function filterItineraryItems(items, query, filters) {\n    const normalizedQuery = normalize(query.trim());\n\n    return items.filter((item) => {\n        if (!matchesSearch(item, normalizedQuery)) {\n            return false;\n        }\n\n        if (filters.dateFrom && (!item.date || item.date < filters.dateFrom)) {\n            return false;\n        }\n\n        if (filters.dateTo && (!item.date || item.date > filters.dateTo)) {\n            return false;\n        }\n\n        if (\n            filters.locations.length > 0 &&\n            !getItemLocations(item).some(\n                (location) => filters.locations.includes(location)\n            )\n        ) {\n            return false;\n        }\n\n        if (\n            filters.itemTypes.length > 0 &&\n            !filters.itemTypes.includes(item.itemType)\n        ) {\n            return false;\n        }\n\n        const costStatus = item.costStatus || "UNKNOWN";\n\n        if (\n            filters.costStatuses.length > 0 &&\n            item.cost !== null &&\n            !filters.costStatuses.includes(costStatus)\n        ) {\n            return false;\n        }\n\n        if (filters.minCost !== "") {\n            if (item.cost === null || Number(item.cost) < Number(filters.minCost)) {\n                return false;\n            }\n        }\n\n        if (filters.maxCost !== "") {\n            if (item.cost === null || Number(item.cost) > Number(filters.maxCost)) {\n                return false;\n            }\n        }\n\n        if (\n            filters.transportationTypes.length > 0 &&\n            item.itemType === "Transportation" &&\n            !filters.transportationTypes.includes(item.transportationType)\n        ) {\n            return false;\n        }\n\n        return true;\n    });\n}',
     },
@@ -112,40 +134,96 @@ export const japanTravelPlannerProject = {
   diagrams: [
     {
       id: "diagram-system-flow",
-      title: { en: "Request, storage and delivery boundaries" },
+      title: {
+        en: "Request, storage and delivery boundaries",
+        ja: "リクエスト、保存、配信の境界",
+      },
       accessibleSummary: {
         en: "The browser loads the React interface and sends authenticated requests to Spring. Services enforce ownership before reading or writing trips and templates through JPA repositories in PostgreSQL. Flyway manages database changes; a Docker build packages the client into Spring's static resources.",
+        ja: "ブラウザはReactのインターフェースを読み込み、認証済みのリクエストをSpringに送ります。サービスは所有者を確認したうえで、JPAリポジトリを通じてPostgreSQLの旅行とテンプレートを読み書きします。データベースの変更はFlywayで管理し、DockerのビルドでクライアントをSpringの静的リソースにパッケージします。",
       },
       nodes: [
-        { id: "browser", label: { en: "Browser / React interface" } },
-        { id: "api", label: { en: "Spring controllers and security" } },
-        { id: "services", label: { en: "Trip, item and template services" } },
-        { id: "repositories", label: { en: "Spring Data JPA repositories" } },
-        { id: "database", label: { en: "PostgreSQL" } },
-        { id: "flyway", label: { en: "Flyway migrations" } },
-        { id: "docker", label: { en: "Docker build" } },
-        { id: "static", label: { en: "Client files served by Spring" } },
+        {
+          id: "browser",
+          label: {
+            en: "Browser / React interface",
+            ja: "ブラウザ / Reactのインターフェース",
+          },
+        },
+        {
+          id: "api",
+          label: {
+            en: "Spring controllers and security",
+            ja: "Springのコントローラーとセキュリティ",
+          },
+        },
+        {
+          id: "services",
+          label: {
+            en: "Trip, item and template services",
+            ja: "旅行・項目・テンプレートのサービス",
+          },
+        },
+        {
+          id: "repositories",
+          label: {
+            en: "Spring Data JPA repositories",
+            ja: "Spring Data JPAのリポジトリ",
+          },
+        },
+        { id: "database", label: { en: "PostgreSQL", ja: "PostgreSQL" } },
+        {
+          id: "flyway",
+          label: { en: "Flyway migrations", ja: "Flywayのマイグレーション" },
+        },
+        { id: "docker", label: { en: "Docker build", ja: "Dockerのビルド" } },
+        {
+          id: "static",
+          label: {
+            en: "Client files served by Spring",
+            ja: "Springが配信するクライアントファイル",
+          },
+        },
       ],
       edges: [
         {
           from: "browser",
           to: "api",
-          label: { en: "Session and CSRF headers" },
+          label: {
+            en: "Session and CSRF headers",
+            ja: "セッションとCSRFヘッダー",
+          },
         },
-        { from: "api", to: "services", label: { en: "Validated operations" } },
+        {
+          from: "api",
+          to: "services",
+          label: { en: "Validated operations", ja: "検証済みの操作" },
+        },
         {
           from: "services",
           to: "repositories",
-          label: { en: "Ownership checks" },
+          label: { en: "Ownership checks", ja: "所有者の確認" },
         },
         {
           from: "repositories",
           to: "database",
-          label: { en: "Read and write" },
+          label: { en: "Read and write", ja: "読み取りと書き込み" },
         },
-        { from: "flyway", to: "database", label: { en: "Schema migrations" } },
-        { from: "docker", to: "static", label: { en: "Build and package" } },
-        { from: "static", to: "browser", label: { en: "Deliver interface" } },
+        {
+          from: "flyway",
+          to: "database",
+          label: { en: "Schema migrations", ja: "スキーマのマイグレーション" },
+        },
+        {
+          from: "docker",
+          to: "static",
+          label: { en: "Build and package", ja: "ビルドとパッケージ化" },
+        },
+        {
+          from: "static",
+          to: "browser",
+          label: { en: "Deliver interface", ja: "インターフェースの配信" },
+        },
       ],
     },
   ],
@@ -160,7 +238,7 @@ export const japanTravelPlannerProject = {
         distinction:
           "A shared itinerary model connects account-based editing, reusable templates, cost summaries and filtered print output.",
         currentState:
-          "Completed full-stack application deployed on Railway, with account-based trip editing, reusable plans, printable itineraries and English/Japanese interface support.",
+          "Completed full-stack application deployed on Render, with account-based trip editing, reusable plans, printable itineraries and English/Japanese interface support.",
       },
       blocks: [
         {
@@ -266,10 +344,11 @@ export const japanTravelPlannerProject = {
           type: "result",
           body: prose(
             "A complete full-stack application: account-based itineraries with grouping, filtering, yen cost summaries and printing, plus public templates and private reuse, in English and Japanese, light and dark, on desktop and mobile.",
-            "It grew from a manually built capstone into a deployed application, with a React client and a Spring API in one container on Railway, backed by PostgreSQL and Flyway migrations.",
+            "It grew from a manually built capstone into a deployed application, with a React client and a Spring API in one container on Render, backed by PostgreSQL and Flyway migrations.",
           ),
         },
       ],
     },
+    ja: japanTravelPlannerJapanese,
   },
 } satisfies ProjectInput;

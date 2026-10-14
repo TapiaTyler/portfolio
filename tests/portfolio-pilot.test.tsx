@@ -28,10 +28,10 @@ test("the published portfolio record validates its media and appears in the publ
     project.publication.featured,
   );
   assert.equal(project.contribution?.implementation, "ai-assisted");
-  assert.equal(project.translationStatus.ja, "none");
+  assert.equal(project.translationStatus.ja, "complete");
 });
 
-test("the pilot's complete canonical narrative renders in every composition and locale fallback", () => {
+test("the pilot's complete canonical narrative renders in every composition and locale", () => {
   const project = projectSchema.parse(portfolioProject);
   for (const locale of ["en", "ja"] as const) {
     const content = selectProjectContent(project, locale);
@@ -53,11 +53,20 @@ test("the pilot's complete canonical narrative renders in every composition and 
           html.includes(`id="${block.id}"`),
           `${theme}/${locale} missing ${block.id}`,
         );
-      assert.ok(
-        html.includes("Morph the composition without duplicating the content"),
-      );
-      assert.ok(html.includes("Engineering details"));
-      assert.ok(html.includes("Before: the first AI-assisted Chronicle build"));
+      const expected =
+        locale === "en"
+          ? [
+              "Morph the composition without duplicating the content",
+              "Engineering details",
+              "Before: the first AI-assisted Chronicle build",
+            ]
+          : [
+              "コンテンツを重複させずにコンポジションをモーフィングする",
+              "技術的な詳細",
+              "変更前：10月3日に撮影した、AI支援による最初のChronicle",
+            ];
+      for (const text of expected)
+        assert.ok(html.includes(text), `${theme}/${locale} missing ${text}`);
       assert.ok(html.includes("<video"));
     }
   }
@@ -65,16 +74,23 @@ test("the pilot's complete canonical narrative renders in every composition and 
 
 test("supporting media references preserve adjacent narrative meaning", () => {
   const project = projectSchema.parse(portfolioProject);
-  const evidence = project.locale.en.blocks.find(
-    (block) => block.id === "morphing-evidence",
-  )!;
-  assert.equal(evidence.type, "media");
-  if (evidence.type !== "media") return;
+  // The translated block mirrors the English reference, so both change together.
+  const evidence = [project.locale.en, project.locale.ja!].map((locale) =>
+    locale.blocks.find((block) => block.id === "morphing-evidence")!,
+  );
+  for (const block of evidence) assert.equal(block.type, "media");
+  const setSupport = (id?: string) => {
+    for (const block of evidence) {
+      if (block.type !== "media") continue;
+      if (id) block.supportsBlockId = id;
+      else delete block.supportsBlockId;
+    }
+  };
   for (const id of ["missing", "morphing-evidence", "intent", "compositions"]) {
-    evidence.supportsBlockId = id;
+    setSupport(id);
     assert.equal(projectSchema.safeParse(project).success, false, id);
   }
-  delete evidence.supportsBlockId;
+  setSupport();
   assert.equal(projectSchema.safeParse(project).success, true);
   const composition = resolveComposition("digital");
   const html = renderToStaticMarkup(
@@ -85,7 +101,7 @@ test("supporting media references preserve adjacent narrative meaning", () => {
   assert.ok(html.includes('aria-describedby="chronicle-heading"'));
 });
 
-test("section navigation preserves canonical narrative anchors and overview fallback", () => {
+test("section navigation preserves canonical narrative anchors and requires a complete overview", () => {
   const project = projectSchema.parse(portfolioProject);
   const content = selectProjectContent(project, "ja");
   const sections = caseStudySections(content, "pilot-");
@@ -96,7 +112,7 @@ test("section navigation preserves canonical narrative anchors and overview fall
       .filter(({ block }) => !["media", "gallery"].includes(block.type))
       .map(({ block }) => `pilot-${block.id}`),
   );
-  assert.ok(sections.every(({ title }) => title.lang === "en"));
+  assert.ok(sections.every(({ title }) => title.lang === "ja"));
   project.translationStatus.ja = "complete";
   project.locale.ja = structuredClone(project.locale.en);
   delete project.locale.ja.overview;

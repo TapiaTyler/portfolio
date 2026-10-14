@@ -94,12 +94,16 @@ but does not establish approval, ownership, or remote availability.
 ## Translation readiness
 
 English is required. Japanese text is optional, and defaults to translation depth
-`none`. No Japanese copy is currently authored.
+`none`. Project case studies have no Japanese copy yet; the workflow, file layout
+and terminology are in [TRANSLATION-GUIDE.md](TRANSLATION-GUIDE.md), and
+`npm run translation:report` lists what each project still needs.
 
 When Japanese content is added, explicitly declare `translationStatus.ja` as
 `summary`, `partial`, or `complete`. Translated blocks retain their English IDs,
 types, and media/diagram/code references. A complete declaration requires every
-English block, supplied narrative sections, and the applicable asset text.
+English block, supplied narrative sections, the applicable asset text, and Japanese
+`type`, `roles` and `contribution` wording in `locale.ja` (the English stays on the
+project; the translated lists must have the same length).
 Validation checks coverage and references; it cannot establish translation quality
 or factual equivalence.
 
@@ -107,8 +111,8 @@ or factual equivalence.
 sequence and selects translations by stable ID. Shared renderers resolve fields
 independently, so an omitted translated rationale, caption or body retains its
 English source. Text carries its actual language attribute. Incomplete Japanese
-case studies display an English fallback notice. Navigation/interface translations
-remain a separate pending task.
+case studies display an English fallback notice. Navigation and interface
+translations live in `src/content/interface.ts`.
 
 The shared semantic renderers contain no theme selection. Work and case-study
 routes use these renderers as a baseline; future compositions can specialize
@@ -183,7 +187,7 @@ composition renderers. It reuses reviewed identity and existing provisional home
 copy. Replace pending biography/contact copy only with supplied, verified material.
 Public Work receives only published project records. Lab is currently empty; adding
 actual studies should begin with reviewed source material, not synthetic fixtures.
-The Japanese routes explicitly retain English page content and translation notice.
+Japanese routes carry AI-drafted page copy; project records below `complete` show a per-project fallback notice.
 
 ## Capitalization
 

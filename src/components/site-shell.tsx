@@ -1,4 +1,3 @@
-import { messageLanguage, message } from "@/lib/i18n/messages";
 import { UiText } from "@/components/ui-text";
 
 import Link from "next/link";
@@ -88,21 +87,6 @@ export function SiteShell({
           </div>
         </div>
       </header>
-      {locale === "ja" && (
-        <aside
-          className="translation-notice"
-          aria-label={message(locale, "Translation status")}
-          lang={messageLanguage(locale, "Translation status")}
-          data-theme-transition-scope
-        >
-          <span data-motion-id="translation-status">
-            <UiText
-              locale={locale}
-              id="Some page and interface text is shown in English where Japanese translations are unavailable."
-            />
-          </span>
-        </aside>
-      )}
       <main id="main-content" data-theme-transition-scope>
         {children}
       </main>
