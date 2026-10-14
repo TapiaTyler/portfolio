@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import test from "node:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Text } from "../src/components/localized-text";
@@ -100,12 +102,17 @@ test("partial page translations mark each field with its actual language", () =>
   );
 });
 
-test("Contact has verified methods and no download links before documents exist", () => {
+test("Contact has verified methods and reviewed document downloads", () => {
   assert.equal(contactMethods[0].href, "mailto:tapiatylert@gmail.com");
   assert.deepEqual(
     contactDocuments.map((document) => document.id),
     ["resume-en", "resume-ja", "cv-ja"],
   );
+  for (const document of contactDocuments) {
+    for (const file of Object.values(document.files)) {
+      assert.ok(existsSync(join(process.cwd(), "public", file)));
+    }
+  }
   for (const locale of ["en", "ja"] as const)
     for (const theme of themeIds) {
       const Renderer = resolveComposition(theme).SecondaryPage;
@@ -113,8 +120,19 @@ test("Contact has verified methods and no download links before documents exist"
         <Renderer content={pageContent.contact} locale={locale} />,
       );
       assert.equal((html.match(/data-contact-document=/g) ?? []).length, 3);
-      assert.match(html, /Files will be added soon/);
-      assert.doesNotMatch(html, / download=""/);
+      assert.doesNotMatch(html, /Files will be added soon/);
+      assert.equal((html.match(/ download=""/g) ?? []).length, 3);
       assert.doesNotMatch(html, /<form/);
     }
+});
+
+test("missing document files retain a non-interactive pending state", () => {
+  const html = renderToStaticMarkup(
+    <ContactDocuments
+      locale="en"
+      documents={[{ ...contactDocuments[0], files: {} }]}
+    />,
+  );
+  assert.match(html, /Files will be added soon/);
+  assert.doesNotMatch(html, / download=""/);
 });

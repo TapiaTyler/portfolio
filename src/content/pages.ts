@@ -170,7 +170,8 @@ export const pageContent = {
         title: { en: "Résumés & CV" },
         paragraphs: [
           {
-            en: "English and Japanese documents will be available here in PDF and Word formats.",
+            en: "Download English and Japanese documents in PDF format. The Japanese résumé is a public version with personal details reduced.",
+            ja: "英文履歴書・履歴書・職務経歴書をPDF形式でダウンロードできます。履歴書は個人情報を一部省略した公開用です。",
           },
         ],
         documents: contactDocuments,

@@ -4,6 +4,11 @@ Last updated: 2026-10-08.
 
 ## Current integration snapshot
 
+- [x] Add reviewed English résumé, public Japanese 履歴書 and Japanese 職務経歴書
+      PDFs to Contact in all five themes and both locales. Standardize Japanese text
+      to MS 明朝 at 10.5 pt or larger, repair table overflow, embed fonts and omit
+      private address/birth details from the public 履歴書. See APPLICATION-DOCUMENTS.md.
+
 - [x] Simplify Digital/Chronicle homepage contact methods to inline links without
       descriptions or separators; enlarge Digital's action and place it after the
       links. Verify at 320, 390 and 1440px widths with no document overflow.

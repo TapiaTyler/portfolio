@@ -7,7 +7,7 @@ for (const mode of [
   "chronicle",
   "product",
 ]) {
-  test(`${mode} Contact supports email, pending documents and both locale routes`, async ({
+  test(`${mode} Contact supports email, document downloads and both locale routes`, async ({
     page,
     context,
     baseURL,
@@ -63,7 +63,15 @@ for (const mode of [
         await expect(
           page.locator('[data-contact-document="cv-ja"]'),
         ).toBeVisible();
-        await expect(page.locator("[data-contact-document] a")).toHaveCount(0);
+        const downloads = page.locator("[data-contact-document] a");
+        await expect(downloads).toHaveCount(3);
+        for (const link of await downloads.all()) {
+          await expect(link).toHaveAttribute("download", "");
+          await expect(link).toHaveAttribute(
+            "href",
+            /\/documents\/contact\/.+\.(pdf|docx)$/,
+          );
+        }
       }
     }
     expect(errors).toEqual([]);

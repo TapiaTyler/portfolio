@@ -43,13 +43,24 @@ export const contactDocuments: ContactDocument[] = [
     id: "resume-en",
     title: { en: "English Résumé" },
     language: "en",
-    files: {},
+    files: {
+      pdf: "/documents/contact/Tyler_Tetsuo_Tapia_Resume_EN.pdf",
+    },
   },
   {
     id: "resume-ja",
-    title: { en: "Japanese Résumé" },
+    title: { en: "Japanese Résumé (Public Version)", ja: "履歴書（公開用）" },
     language: "ja",
-    files: {},
+    files: {
+      pdf: "/documents/contact/Tyler_Tetsuo_Tapia_Rirekisho_JP_Public.pdf",
+    },
   },
-  { id: "cv-ja", title: { en: "Japanese CV" }, language: "ja", files: {} },
+  {
+    id: "cv-ja",
+    title: { en: "Japanese CV", ja: "職務経歴書" },
+    language: "ja",
+    files: {
+      pdf: "/documents/contact/Tyler_Tetsuo_Tapia_Shokumukeirekisho_JP.pdf",
+    },
+  },
 ];
