@@ -12,6 +12,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* Mobile browsers paint a blue box over tapped links and buttons in every
+     mode; each mode's own pressed and focus states give the feedback instead. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

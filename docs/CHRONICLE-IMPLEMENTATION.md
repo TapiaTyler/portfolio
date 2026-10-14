@@ -10,6 +10,18 @@ fades out on release. Footer links gain an invisible 44px hit area that adds no
 footer height; in Chronicle, `main` paints above it, so it never takes taps from
 the stage.
 
+Real-phone fixes, 2026-10-14: on phones (landscape up to 500px tall, portrait up
+to 900px wide) the page itself scrolls instead of `main`. Mobile browsers only
+retract their address bar and toolbar when the document scrolls, so the fixed
+shell kept that chrome on screen and cut every snapped screen short. The header
+and footer are sticky; one screen is `--chronicle-screen`, the visible viewport
+(`100dvh`) minus the header and footer that `chronicle-viewport.ts` measures, so
+screens grow when the browser chrome slides away. Root scroll snapping uses the
+same header and footer as scroll padding. The closed menu panel, the footer
+links' tap areas and the case-study frame are kept from extending the page.
+Desktop keeps the fixed shell. Site-wide, the mobile tap highlight is off, and the
+phone menu closes as soon as a presentation is chosen.
+
 Portrait phones, 2026-10-12: portrait uses the same one-screen snaps as
 landscape phones. Each page opens on its scenic intro with the scroll-down button;
 Home is hero, Selected Work and tabs; Work is intro, cards and preview; About, Lab

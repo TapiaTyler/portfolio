@@ -92,7 +92,27 @@ export function PrimaryNavigation({
           >
             {links}
           </nav>
-          <div className="site-controls site-controls--mobile">{controls}</div>
+          {/* Choosing a presentation closes the phone menu at once, so the new
+              mode is seen rather than the menu over it. The desktop picker stays
+              open for comparing modes. The click still submits the choice. */}
+          <div
+            className="site-controls site-controls--mobile"
+            onClick={(event) => {
+              const details = menu.current;
+              if (
+                !details ||
+                !(event.target as HTMLElement).closest("[data-theme-option]")
+              )
+                return;
+              details
+                .querySelectorAll<HTMLDetailsElement>("details[open]")
+                .forEach((nested) => (nested.open = false));
+              details.open = false;
+              details.querySelector("summary")?.focus();
+            }}
+          >
+            {controls}
+          </div>
         </div>
       </details>
     </>

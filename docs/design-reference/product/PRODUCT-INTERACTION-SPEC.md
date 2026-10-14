@@ -21,7 +21,7 @@ This document is behavioral guidance, not code or a claim about existing compone
 
 ## Mobile menu [A/R]
 
-**Purpose:** expose all main links and settings without crowding 390/320px header. **Trigger:** one clearly labeled Menu button (`aria-expanded`, `aria-controls` or semantically equivalent); second activation and Escape close. **Initial:** closed, identity `Tyler Tetsuo Tapia` and `テイラー・鉄男・タピア` plus menu button; **do not repeat job title**. **Hover:** subtle only. **Focus:** ring on trigger/items. **Pressed:** normal button response. **Selected/open:** unmistakable close affordance, menu panel visible, active page text marked. **Disabled:** do not disable the menu without a valid alternate nav.
+**Purpose:** expose all main links and settings without crowding 390/320px header. **Trigger:** one clearly labeled Menu button (`aria-expanded`, `aria-controls` or semantically equivalent); second activation and Escape close. **Initial:** closed, identity `Tyler Tetsuo Tapia` and `タイラー・鉄男・タピア` plus menu button; **do not repeat job title**. **Hover:** subtle only. **Focus:** ring on trigger/items. **Pressed:** normal button response. **Selected/open:** unmistakable close affordance, menu panel visible, active page text marked. **Disabled:** do not disable the menu without a valid alternate nav.
 
 **Content order [A]:** Work, About, Lab, Contact → GitHub, LinkedIn → **Language EN/JP** → **Presentation one compact select**. Mobile mockup illustrates a five-tab selector: **reject that incidental portrayal**. Don't display the full desktop link row in the phone header.
 

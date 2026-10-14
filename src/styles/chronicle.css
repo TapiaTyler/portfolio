@@ -2540,15 +2540,6 @@
      stacking bands: identity sits beside discovery or reading, and each homepage
      band is one viewport "screen". Main is the size container for those screens. */
   @media (orientation: landscape) and (max-height: 500px) {
-    main {
-      container-type: size;
-      scroll-snap-type: y proximity;
-    }
-    /* Home screens are exactly one screen tall, so a swipe always lands on a
-       whole screen, as in a game menu. */
-    main:has(.chronicle-homepage) {
-      scroll-snap-type: y mandatory;
-    }
     main > [data-composition]:has(> .chronicle-homepage),
     .chronicle-review-stage:has(> .chronicle-homepage) {
       flex: none;
@@ -2558,7 +2549,7 @@
       height: auto;
       overflow: visible;
       grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
-      grid-template-rows: 100cqb 100cqb;
+      grid-template-rows: var(--chronicle-screen) var(--chronicle-screen);
     }
     .chronicle-hero {
       grid-column: 1;
@@ -2637,7 +2628,7 @@
     .chronicle-home-tabs {
       grid-column: 1 / -1;
       grid-row: 2;
-      height: 100cqb;
+      height: var(--chronicle-screen);
       padding: 14px 28px;
       grid-template-columns: minmax(150px, 22%) minmax(0, 1fr);
       gap: 18px;
@@ -2683,7 +2674,7 @@
       min-height: 0;
       /* Tall enough that eyebrow, title and status always show in full; the
          summary and topics below them scroll within the banner. */
-      max-height: 40cqb;
+      max-height: calc(0.4 * var(--chronicle-screen));
       padding: 10px 14px 10px 22px;
       border-right: 1px solid #d9b679;
     }
@@ -2847,7 +2838,9 @@
   @media (orientation: landscape) and (max-height: 500px) and (max-width: 900px) {
     .chronicle-homepage {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 100cqb 100cqb 100cqb;
+      grid-template-rows: var(--chronicle-screen) var(--chronicle-screen) var(
+          --chronicle-screen
+        );
     }
     .chronicle-hero {
       padding-inline: 32px;
@@ -3541,16 +3534,13 @@
        screen and the stage follows as whole screens. The related-link dock is
        hidden here; beside the identity it read as the page's only actions, and
        the header menu still reaches every page. */
-    main:has(.chronicle-secondary-page) {
-      scroll-snap-type: y mandatory;
-    }
     main > :has(> .chronicle-secondary-page) {
       flex: none;
     }
     .chronicle-secondary-page.chronicle-screen {
       height: auto;
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 100cqb 100cqb;
+      grid-template-rows: var(--chronicle-screen) var(--chronicle-screen);
     }
     .chronicle-screen__dock {
       display: none;
@@ -3606,7 +3596,7 @@
        Arrows and dots overlay the card screen instead of a heading row that
        stayed pinned while the preview scrolled under it. */
     .chronicle-secondary-page.secondary-page--work.chronicle-screen {
-      grid-template-rows: 100cqb auto;
+      grid-template-rows: var(--chronicle-screen) auto;
     }
     .chronicle-secondary-page.secondary-page--work
       > .secondary-page-section--collection {
@@ -3628,7 +3618,7 @@
       height: auto;
       padding-top: 0;
       overflow: visible;
-      grid-template-rows: 100cqb 100cqb;
+      grid-template-rows: var(--chronicle-screen) var(--chronicle-screen);
       row-gap: 0;
       scroll-snap-type: none;
     }
@@ -3645,7 +3635,7 @@
     .chronicle-secondary-page.secondary-page--work
       .chronicle-selection__controls {
       inset: 0 0 auto;
-      height: 100cqb;
+      height: var(--chronicle-screen);
       display: block;
       pointer-events: none;
     }
@@ -3702,18 +3692,12 @@
      scroll inside when they must. Tab rails turn into horizontal strips, so
      reading text keeps the full width instead of a narrow column beside them. */
   @media (max-width: 900px) and (orientation: portrait) {
-    main {
-      container-type: size;
-      scroll-snap-type: y mandatory;
-    }
-    main > :has(.chronicle-homepage, .chronicle-dossier) {
-      flex: none;
-    }
-
     /* Home: hero, Selected Work and the tabs are one screen each. */
     .chronicle-homepage {
       min-height: 0;
-      grid-template-rows: 100cqb 100cqb 100cqb;
+      grid-template-rows: var(--chronicle-screen) var(--chronicle-screen) var(
+          --chronicle-screen
+        );
     }
     .chronicle-hero {
       position: relative;
@@ -3792,7 +3776,7 @@
 
     /* Tabs: the rail becomes a horizontal strip above a full-width panel. */
     .chronicle-home-tabs {
-      height: 100cqb;
+      height: var(--chronicle-screen);
       min-height: 0;
       padding: 12px 20px 16px;
       grid-template-columns: minmax(0, 1fr);
@@ -3899,10 +3883,10 @@
     }
     .chronicle-dossier .case-study {
       display: grid;
-      height: 200cqb;
+      height: calc(2 * var(--chronicle-screen));
       min-height: 0;
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto minmax(0, 1fr) auto 100cqb;
+      grid-template-rows: auto minmax(0, 1fr) auto var(--chronicle-screen);
       scroll-snap-align: start;
     }
     .chronicle-dossier .content-notice {
@@ -3927,7 +3911,7 @@
     }
     .chronicle-dossier .case-study-reading-layout {
       grid-row: 4;
-      height: 100cqb;
+      height: var(--chronicle-screen);
       min-height: 0;
       margin: 0;
       padding: 12px 14px;
@@ -3952,6 +3936,71 @@
       content: "";
       position: absolute;
       inset: -8px -4px;
+    }
+  }
+
+  /* Phones, 2026-10-14: the page itself scrolls instead of main. Mobile browsers
+     only retract their address bar and toolbar when the document scrolls, so a
+     fixed shell kept that chrome on screen and cut every screen short. The
+     header and footer stay put with sticky positioning, and one screen is the
+     visible viewport minus both (heights measured by chronicle-viewport.ts),
+     so screens grow when the browser chrome slides away. */
+  @media (orientation: landscape) and (max-height: 500px),
+    (max-width: 900px) and (orientation: portrait) {
+    :scope {
+      --chronicle-screen: calc(
+        100dvh - var(--chronicle-header, 52px) - var(--chronicle-footer, 25px)
+      );
+      scroll-snap-type: y mandatory;
+      scroll-padding-top: var(--chronicle-header, 52px);
+      scroll-padding-bottom: var(--chronicle-footer, 25px);
+    }
+    body {
+      height: auto;
+      min-height: 100dvh;
+      overflow: visible;
+    }
+    body > div:is([lang="en"], [lang="ja"]) {
+      height: auto;
+      min-height: 100dvh;
+    }
+    :scope .site-header {
+      position: sticky;
+      top: 0;
+    }
+    /* Clipped so the footer links' 44px tap areas (globals.css) cannot hang
+       below the page and add scroll; within the footer they still apply. */
+    :scope .site-footer {
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+      overflow: clip;
+    }
+    /* A closed <details> still lays out its absolute menu panel, which would
+       now extend the scrolling page below the last screen. */
+    :scope .mobile-navigation:not([open]) > .mobile-navigation__panel {
+      display: none;
+    }
+    main {
+      flex: 1 0 auto;
+      height: auto;
+      overflow: visible;
+    }
+    /* The landscape case study is one fixed screen with its own reading panel. */
+    .chronicle-dossier {
+      flex: none;
+      height: var(--chronicle-screen);
+      /* Its ornamental frames bleed a few pixels past the screen edge. The
+         reading layout is display: contents here, so its frame anchors to the
+         nearest positioned ancestor; making this one keeps it inside the clip. */
+      position: relative;
+      overflow: clip;
+    }
+  }
+  @media (max-width: 900px) and (orientation: portrait) {
+    /* Portrait case studies are two screens (identity, then reading). */
+    .chronicle-dossier {
+      height: auto;
     }
   }
 }

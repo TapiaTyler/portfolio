@@ -1,6 +1,7 @@
 import { setupEditorialReading } from "./editorial-reading";
 import { setupChronicleGlitter } from "./chronicle-glitter";
 import { setupChronicleChapterNavigation } from "./chronicle-navigation";
+import { setupChronicleViewport } from "./chronicle-viewport";
 import { setupEngineerInteractions } from "./engineer-interactions";
 import { setupDigitalMedia, setupDigitalPointerLabels } from "./digital-media";
 
@@ -12,6 +13,7 @@ export function setupMicrointeractions() {
   dispose.push(
     setupEditorialReading(),
     setupChronicleGlitter(),
+    setupChronicleViewport(),
     setupChronicleChapterNavigation(),
     setupEngineerInteractions(),
     setupDigitalMedia(),
