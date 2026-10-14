@@ -19,7 +19,10 @@ and footer are sticky; one screen is `--chronicle-screen`, the visible viewport
 screens grow when the browser chrome slides away. Root scroll snapping uses the
 same header and footer as scroll padding. The closed menu panel, the footer
 links' tap areas and the case-study frame are kept from extending the page.
-Desktop keeps the fixed shell. Site-wide, the mobile tap highlight is off, and the
+The header and footer get opaque bases, since content scrolls
+beneath them. The home hero's description drops its 40ch cap to match the
+supporting pages' intros, so Explore Work fits while the browser toolbar is still
+showing. Desktop keeps the fixed shell. Site-wide, the mobile tap highlight is off, and the
 phone menu closes as soon as a presentation is chosen.
 
 Portrait phones, 2026-10-12: portrait uses the same one-screen snaps as
