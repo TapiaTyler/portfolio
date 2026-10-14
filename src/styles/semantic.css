@@ -321,6 +321,15 @@
     border: 0;
     padding: 0;
   }
+  /* Portrait phones: the email takes its own line so the profiles pair below it
+     instead of one profile wrapping alone. */
+  @media (max-width: 900px) and (orientation: portrait) {
+    .homepage [data-motion-id="contact"] .contact-methods > li:first-child {
+      flex-basis: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 .case-study .media-comparison__controls {
   display: none;

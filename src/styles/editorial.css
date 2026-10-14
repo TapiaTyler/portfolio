@@ -449,9 +449,13 @@
     font-size: 1.15rem;
     transition: translate var(--motion-fast);
   }
-  .case-study-navigation a:hover {
-    translate: 3px;
-    text-decoration: none;
+  /* Hover only for real pointers: a tap leaves :hover stuck on touch screens,
+     so a tapped chapter stayed tinted after the reader scrolled on. */
+  @media (hover: hover) and (pointer: fine) {
+    .case-study-navigation a:hover {
+      translate: 3px;
+      text-decoration: none;
+    }
   }
   .case-study-navigation a[aria-current="location"] {
     color: var(--text-primary);

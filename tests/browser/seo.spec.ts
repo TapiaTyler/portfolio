@@ -1,16 +1,29 @@
 import { expect, test } from "@playwright/test";
+import { getPublishedProjects } from "../../src/registries/projects";
+import {
+  projectSeoLocales,
+  pagePaths,
+  siteContentLocales,
+} from "../../src/lib/seo/metadata";
 
 const siteUrl = process.env.SITE_URL?.replace(/\/$/, "");
 const indexable =
   process.env.SITE_INDEXABLE === "true" &&
   !!siteUrl &&
-  !/localhost|127\.0\.0\.1/.test(siteUrl);
+  !/localhost|127\.0\.0\.1/.test(siteUrl) &&
+  (!process.env.VERCEL_ENV || process.env.VERCEL_ENV === "production");
 
-test("page metadata keeps one canonical identity across modes and locale fallback", async ({
+test("page metadata keeps one canonical identity and bilingual alternates across modes", async ({
   page,
   context,
 }) => {
-  for (const mode of ["editorial", "engineer", "digital"]) {
+  for (const mode of [
+    "product",
+    "editorial",
+    "engineer",
+    "digital",
+    "chronicle",
+  ]) {
     await context.addCookies([
       { name: "portfolio-mode", value: mode, url: "http://127.0.0.1:3217" },
     ]);
@@ -32,13 +45,23 @@ test("page metadata keeps one canonical identity across modes and locale fallbac
           "content",
           `${siteUrl}/share-image`,
         );
+        for (const alternate of ["en", "ja", "x-default"]) {
+          await expect(
+            page.locator(`link[hreflang="${alternate}"]`),
+          ).toHaveAttribute(
+            "href",
+            `${siteUrl}/${alternate === "x-default" ? "en" : alternate}/about`,
+          );
+        }
       } else {
         await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
       }
-      await expect(page.locator('link[hreflang="ja"]')).toHaveCount(0);
+      await expect(page.locator('link[hreflang="ja"]')).toHaveCount(
+        siteUrl ? 1 : 0,
+      );
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         "content",
-        locale === "en" && indexable ? "index, follow" : "noindex, follow",
+        indexable ? "index, follow" : "noindex, follow",
       );
       // og:locale follows the language the page copy is actually served in.
       await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute(
@@ -59,8 +82,21 @@ test("robots sitemap and share image match deployment configuration", async ({
   const sitemap = await request.get("/sitemap.xml");
   expect(sitemap.status()).toBe(200);
   const xml = await sitemap.text();
-  expect((xml.match(/<loc>/g) ?? []).length).toBe(indexable ? 5 : 0);
-  expect(xml).not.toMatch(/fixture|\/dev\/|\/ja\/|style=/);
+  const published = getPublishedProjects();
+  const count =
+    pagePaths.length * siteContentLocales.length +
+    published.reduce(
+      (total, project) => total + projectSeoLocales(project).length,
+      0,
+    );
+  expect((xml.match(/<loc>/g) ?? []).length).toBe(indexable ? count : 0);
+  expect(xml).not.toMatch(/fixture|\/dev\/|style=/);
+  if (indexable) {
+    expect(xml).toContain(`${siteUrl}/ja/about`);
+    expect(xml).toContain('hreflang="en"');
+    expect(xml).toContain('hreflang="ja"');
+    expect(rules).toContain(`Sitemap: ${siteUrl}/sitemap.xml`);
+  }
   const image = await request.get("/share-image");
   expect(image.status()).toBe(200);
   expect(image.headers()["content-type"]).toContain("image/png");
@@ -68,6 +104,20 @@ test("robots sitemap and share image match deployment configuration", async ({
   expect(png.readUInt32BE(16)).toBe(1200);
   expect(png.readUInt32BE(20)).toBe(630);
   expect(png.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+});
+
+test("favicon is served and declared in page metadata", async ({
+  request,
+  page,
+}) => {
+  const response = await request.get("/favicon.ico");
+  expect(response.status()).toBe(200);
+  const bytes = await response.body();
+  expect(bytes.subarray(0, 4).toString("hex")).toBe("00000100");
+  await page.goto("/ja");
+  await expect(
+    page.locator('link[rel="icon"][href^="/favicon.ico"]'),
+  ).toHaveCount(1);
 });
 
 test("homepage structured data uses verified identity only when indexing is enabled", async ({

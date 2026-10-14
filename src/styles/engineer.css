@@ -570,9 +570,17 @@
     font-size: 0.75rem;
     border-bottom: 0;
   }
-  .case-study-navigation a:is(:hover, [aria-current="location"]) {
+  .case-study-navigation a[aria-current="location"] {
     color: var(--accent);
     background: var(--surface-secondary);
+  }
+  /* Hover only for real pointers: a tap leaves :hover stuck on touch screens,
+     so a tapped chapter stayed tinted after the reader scrolled on. */
+  @media (hover: hover) and (pointer: fine) {
+    .case-study-navigation a:hover {
+      color: var(--accent);
+      background: var(--surface-secondary);
+    }
   }
   .case-study-navigation__number {
     display: none;

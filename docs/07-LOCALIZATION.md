@@ -288,3 +288,12 @@ notice has been removed. Per-project fallback notices still appear automatically
 for any future project below `complete`. Japanese indexing remains disabled until
 the Japanese copy is reviewed.
 
+## Bilingual SEO release eligibility (2026-10-14)
+
+Following the owner's translation review/refinement and request to begin SEO,
+main-page locale eligibility now includes English and Japanese. Canonicals retain
+their locale; reciprocal hreflang, sitemap and WebSite language declarations include
+both. Production indexing remains gated by explicit deployment configuration, and
+Preview/Development cannot enable it. See `SEO-INTEGRATION.md`. Eligibility for this
+release does not certify that a human native-language review has been completed.
+

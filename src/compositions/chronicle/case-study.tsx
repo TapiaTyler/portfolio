@@ -35,12 +35,17 @@ export function ChronicleCaseStudyIntro(
     <div
       className="chronicle-dossier-banner"
       data-project-slug={content.project.slug}
-      tabIndex={0}
       role="region"
       aria-label={message(locale, "Project identity and topics")}
       lang={messageLanguage(locale, "Project identity and topics")}
     >
-      <header className="case-study-intro" data-motion-id="case-study-intro">
+      {/* The intro is the element that scrolls when the band is short, so it
+          takes the keyboard stop that lets it be scrolled without a pointer. */}
+      <header
+        className="case-study-intro"
+        data-motion-id="case-study-intro"
+        tabIndex={0}
+      >
         <p className="eyebrow" lang="en">
           <UiText locale={locale} id="Chronicle / Project" />
         </p>
@@ -201,6 +206,20 @@ export function ChronicleCaseStudy(props: ComponentProps<typeof CaseStudy>) {
               <UiText locale={locale} id="Project at a Glance" />
             </summary>
             <div className="chronicle-record-summary__content" tabIndex={0}>
+              {/* Landscape phones keep only the title in the identity band; its
+                  summary and topics move here. CSS shows exactly one of the two
+                  copies (display: none hides the other from assistive tech). */}
+              <div className="chronicle-record-summary__identity">
+                {props.content.summary && (
+                  <p lang={props.content.summary.lang}>
+                    {props.content.summary.value}
+                  </p>
+                )}
+                <ChronicleTopics
+                  locale={locale}
+                  project={props.content.project}
+                />
+              </div>
               {props.content.description && (
                 <p lang={props.content.description.lang}>
                   {props.content.description.value}

@@ -307,12 +307,14 @@ report-style narrative guidance and reference rules, and
 
 ## Release status
 
-Vercel configuration, Node 24.x settings, release smoke and the
-[release runbook](docs/RELEASE-RUNBOOK.md) are prepared. No portfolio deployment or
-custom domain has been created in this work; deployment remains deferred.
+The portfolio is deployed on Vercel at `https://tylertapia.com`. Node 24.x settings,
+release smoke and the [release runbook](docs/RELEASE-RUNBOOK.md) are prepared.
+Live bilingual Lighthouse results from 2026-10-14 are recorded in
+[PERFORMANCE-REVIEW.md](docs/PERFORMANCE-REVIEW.md).
 
-`SITE_INDEXABLE` defaults to false. Configure `SITE_URL` explicitly when a canonical
-origin is chosen; do not infer it from request headers. Vercel previews cannot enable
+`SITE_INDEXABLE` defaults to false. Set `SITE_URL=https://tylertapia.com` and
+`SITE_INDEXABLE=true` in Vercel's Production environment for the SEO release; see
+`.env.production.example`. Do not infer identity from request headers. Vercel previews cannot enable
 indexing through an inherited production flag, and Japanese fallback-only project
 pages remain non-indexable. Rebuild/redeploy after changing those settings.
 See [SEO-INTEGRATION.md](docs/SEO-INTEGRATION.md).

@@ -28,6 +28,7 @@ test-results/
 # Local configuration and credentials
 .env*
 !.env.example
+!.env.production.example
 !.env.sample
 *.pem
 *.p12

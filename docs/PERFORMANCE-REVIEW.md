@@ -1247,3 +1247,68 @@ Full HTML/JSON reports remain under ignored `.cache/performance/`, with labels
 The historical [PRODUCT-PERFORMANCE-BASELINE.json](PRODUCT-PERFORMANCE-BASELINE.json)
 is preserved. Next: verify Product on a real phone and, once deployment is
 authorized, measure the hosted build with the same quality and motion settings.
+
+### Live bilingual release audit — 2026-10-14
+
+Measured `https://tylertapia.com` on October 14, 2026 Hawaii time, before the
+subsequent Claude translation and SEO refinements. This is historical live-site
+evidence, not verification of the current working tree or the next deployment.
+The source review used revision `dd9661c`; the deployed Git revision was not
+independently verified.
+
+Lighthouse 13.5.0 ran with local Chrome on Windows, default simulated mobile
+throttling and normal motion. Request cookies selected each presentation mode.
+Fourteen initial audits cover English/Japanese Home in all five modes, plus
+Japanese Work and all three Japanese case studies in Product. Three targeted
+Japanese Home repeats investigate blocking-time variance and Chronicle's
+touch-target finding. No competing browser review ran during these samples.
+
+| Homepage mode | English Performance | Japanese Performance, initial / repeat | Japanese LCP, initial / repeat | Japanese Accessibility |
+| --- | --- | --- | --- | --- |
+| Product | 98 | 94 / 99 | 2.23s / 2.08s | 100 |
+| Editorial | 99 | 99 / — | 2.03s / — | 100 |
+| Engineer | 100 | 94 / 99 | 1.49s / 1.94s | 100 |
+| Digital | 98 | 98 / — | 2.35s / — | 100 |
+| Chronicle | 94 | 92 / 94 | 3.08s / 3.06s | 97 |
+
+| Japanese route, Product | Performance | LCP | TBT | Accessibility |
+| --- | --- | --- | --- | --- |
+| Work | 99 | 1.90s | 41.5ms | 100 |
+| Portfolio | 98 | 2.33s | 7.5ms | 100 |
+| Nihonest | 98 | 2.04s | 67.5ms | 100 |
+| Japan Travel Planner | 99 | 2.02s | 22.5ms | 100 |
+
+All 17 audits measured CLS **0** and exceeded the Performance ≥90 working target.
+Best Practices were **96**, with `/favicon.ico` returning 404. SEO was **66**:
+live pages were blocked from indexing, and inspected pages lacked canonical and
+hreflang links. These were findings at the time of measurement; recheck them
+after the SEO deployment.
+
+Product Japanese TBT fell from 255.5ms to 25ms on repeat; Engineer Japanese fell
+from 288.5ms to 33.5ms. The samples do not establish a stable translation-related
+performance regression. Chronicle's approximately 3.1s LCP appears in both
+languages and remained on repeat.
+
+Chronicle Japanese Accessibility **97** includes a repeatable `target-size`
+finding on `article.project-feature > div.chronicle-project__record > h3 > a`
+(Nihonest): a 22px-high link with insufficient separation from the surrounding
+`.chronicle-selection__card-target`. Review target geometry and card interaction
+semantics while preserving the compact mobile-game composition. This is not a
+translation accuracy finding. Passing automated scores do not establish WCAG
+conformance.
+
+A separate live review inspected eight Japanese routes in each mode: all 40
+responses were 200, with Japanese HTML language declarations, expected theme
+selection, no horizontal document overflow at 390×844 and no JavaScript page
+errors. All three application-document links returned 200 and `application/pdf`.
+This was not a full landscape, interaction or screen-reader audit.
+
+Exact scores, metrics, timestamps, requested themes and method are tracked in
+[LIVE-PERFORMANCE-RESULTS-2026-10-14.json](LIVE-PERFORMANCE-RESULTS-2026-10-14.json).
+Full HTML/JSON reports and live-review evidence remain outside the repository in
+the local artifact directory recorded there. These are lab measurements, not
+field Core Web Vitals, real-user INP, regional browser tests or capacity evidence.
+
+Next: verify production SEO configuration and indexing behavior, then rerun
+focused live acceptance checks after the updated deployment. Human Japanese
+review and field-performance acceptance remain separate from this lab audit.

@@ -2,7 +2,7 @@
 
 - [Discovery report](DISCOVERY.md): repository-backed source material, implemented/pending boundaries and evidence links.
 - [Iteration ledger](ITERATIONS.md): design feedback, rejected approaches and final interaction intent.
-- [Canonical English record](../../../src/content/projects/portfolio.ts): one published record interpreted by all five compositions; no Japanese narrative yet.
+- [Canonical English record](../../../src/content/projects/portfolio.ts): one published record interpreted by all five compositions; its Japanese narrative is in `portfolio.ja.ts` (AI-drafted, awaiting review by a native Japanese speaker).
 - [Capture manifest](../../../public/media/projects/portfolio/capture-manifest.json): live images/video and explicitly labelled reconstruction provenance.
 
 Review locally at `/dev/projects/portfolio`. Use the theme picker to compare actual
@@ -10,6 +10,13 @@ compositions and module morphing; `?locale=ja` reviews intentional English fallb
 The development route returns 404 in production. The record is published and
 featured, with public routes /en/work/portfolio and /ja/work/portfolio (English
 fallback). Updated 2026-10-08.
+
+Live performance evidence was recorded on 2026-10-14 before the subsequent
+translation/SEO refinements: see the
+[bilingual release audit](../../PERFORMANCE-REVIEW.md#live-bilingual-release-audit--2026-10-14)
+and [tracked measurements](../../LIVE-PERFORMANCE-RESULTS-2026-10-14.json).
+This establishes historical deployed mobile lab measurements, not post-change
+acceptance, field Core Web Vitals or native-speaker approval of the Japanese.
 
 To regenerate media while port 3218 is free:
 

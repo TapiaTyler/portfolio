@@ -8,8 +8,9 @@ import type { Project } from "@/lib/content/schema";
 import { readSiteConfig, type SiteConfig } from "./site";
 import { text, textLanguage } from "@/lib/i18n/copy";
 
-// Expand when shared interface/homepage translations have been authored and reviewed.
-export const siteContentLocales: readonly Locale[] = ["en"];
+// Both authored locale routes are eligible for the owner's public SEO release.
+// Production indexing still requires explicit SITE_URL/SITE_INDEXABLE configuration.
+export const siteContentLocales: readonly Locale[] = ["en", "ja"];
 export const pagePaths = ["", "/work", "/about", "/lab", "/contact"] as const;
 type PageKey = "home" | keyof typeof placeholderPages;
 
@@ -98,7 +99,10 @@ export async function mainPageMetadata(
   if (!isLocale(locale)) notFound();
   const content =
     page === "home"
-      ? { title: "Portfolio", description: homepageContent.hero.description }
+      ? {
+          title: { en: "Portfolio", ja: "ポートフォリオ" },
+          description: homepageContent.hero.description,
+        }
       : placeholderPages[page];
   return pageSeo({
     title: text(content.title, locale),

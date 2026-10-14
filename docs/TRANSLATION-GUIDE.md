@@ -82,6 +82,11 @@ Use these so case studies match the interface (`src/content/interface.ts`).
 | residence certificate (juminhyo) | 住民票 |
 | responsible authority | 担当機関 |
 | sources (citations) | 出典 |
+| canonical (source of truth) | 基準となる (not 正規; canonical URLs keep their own term) |
+| progressive (enhancement) | 対応環境に応じて加わる (not 段階的, which reads as "in stages") |
+| eligibility | 対象となるかどうか (not 資格の有無, which suggests a qualification) |
+| native review (of Japanese) | 日本語母語話者による確認 |
+| resolve (a route into steps) | 決める / 決定する (not 解決する) |
 
 Project-specific terms should match the Japanese the project itself uses. Nihonest
 has a Japanese interface (select 日本語（試験版） under "Guide language"); from it:

@@ -506,9 +506,17 @@
     padding: 0.65rem 0.75rem;
     border: 1px solid transparent;
   }
-  .case-study-navigation a:is(:hover, [aria-current="location"]) {
+  .case-study-navigation a[aria-current="location"] {
     background: var(--surface-secondary);
     color: var(--accent);
+  }
+  /* Hover only for real pointers: a tap leaves :hover stuck on touch screens,
+     so a tapped chapter stayed tinted after the reader scrolled on. */
+  @media (hover: hover) and (pointer: fine) {
+    .case-study-navigation a:hover {
+      background: var(--surface-secondary);
+      color: var(--accent);
+    }
   }
   .case-study-navigation a[aria-current="location"] {
     border-color: var(--border-subtle);

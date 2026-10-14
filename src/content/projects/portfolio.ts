@@ -213,7 +213,7 @@ export const portfolioProject = {
       },
       accessibleSummary: {
         en: "Typed content is validated and localized, then shared semantic components supply meaning. A selected composition organizes it, theme tokens supply visual primitives, and progressive motion adds continuity without changing the facts.",
-        ja: "型付きのコンテンツを検証・ローカライズし、共有のセマンティックコンポーネントが意味を与えます。選択したコンポジションがそれを構成し、テーマトークンが視覚の基本要素を与え、段階的なモーションが事実を変えずに連続性を加えます。",
+        ja: "型付きのコンテンツを検証・ローカライズし、共有のセマンティックコンポーネントが意味を与えます。選択したコンポジションがそれを構成し、テーマトークンが視覚の基本要素を与え、対応環境に応じて加わるモーションが、事実を変えずに連続性を加えます。",
       },
       nodes: [
         {
@@ -242,7 +242,7 @@ export const portfolioProject = {
           id: "motion",
           label: {
             en: "Progressive interaction and motion",
-            ja: "段階的なインタラクションとモーション",
+            ja: "対応環境に応じて加わるインタラクションとモーション",
           },
         },
       ],

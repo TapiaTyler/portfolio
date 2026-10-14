@@ -2,10 +2,10 @@
 
 ## Deployment identity and indexing
 
-Configure the deployment using `.env.example` as a guide:
+Configure Vercel's **Production** environment using `.env.production.example`:
 
 ```dotenv
-SITE_URL=https://your-chosen-domain.tld
+SITE_URL=https://tylertapia.com
 SITE_INDEXABLE=true
 ```
 
@@ -36,8 +36,11 @@ Japanese fallback routes stay usable and keep their own canonicals when a URL
 is configured. They remain `noindex` until relevant Japanese content exists.
 English fallback does not advertise Japanese `hreflang` or Open Graph language.
 
-Main-page copy is currently English only. Expand `siteContentLocales` in
-`src/lib/seo/metadata.ts` when reviewed shared translations are implemented.
+The owner requested the bilingual SEO release on 2026-10-14 after translation
+review and refinement. `siteContentLocales` now includes `en` and `ja`; main pages
+advertise reciprocal fully qualified alternates plus English `x-default`. Each
+locale retains its own canonical URL. This release eligibility is separate from
+the remaining human native-language review described in the case studies.
 Project Japanese availability follows typed translation status and actual Japanese
 records. Summary/partial translations can participate without translating every
 deep section. Existing fallback notices and field language attributes remain.
@@ -50,12 +53,20 @@ fixtures, dev routes, query variants and untranslated locale variants are exclud
 No fabricated modification dates are emitted. Disabled indexing produces an empty
 sitemap.
 
+The current inventory produces **16 URLs** when indexing is enabled: five main
+pages in each language and three published projects in each language. The count is
+derived from publication and locale readiness, rather than hardcoded in production.
+
 `/robots.txt` disallows crawling while indexing is disabled. Enabled public
 deployments allow public crawling, exclude `/dev/` and advertise the sitemap.
 Unready locale routes keep page-level `noindex`; they are not globally blocked
 from crawling, allowing readiness to be evaluated per project.
 
 ## Share image and structured data
+
+`src/app/favicon.ico` supplies a shared TT monogram icon in 16, 32, 48 and 64px
+sizes; Next.js declares it in locale-page metadata. Its vector source is
+`public/favicon.svg`. Both locales and every theme share the same identity.
 
 `/share-image` generates a static 1200×630 PNG with Tyler Tetsuo Tapia's name.
 It uses local rendering and bundled font fallback, without external image/font
@@ -84,6 +95,36 @@ one worker after repeated parallel runner asset stalls; Linux CI retains two.
 Concurrent browser requests outside the runner also passed. Hosted CI and
 deployment have not been verified. Real domain configuration, final copy and
 search-result appearance still need launch review.
+
+## Bilingual SEO verification — 2026-10-14
+
+The seven focused SEO unit tests cover bilingual main-page metadata, unavailable
+Japanese fallback, publication filtering, preview guards and JSON-LD. Production
+browser checks use the intended domain configuration and cover all five modes,
+reciprocal locale links, sitemap contents, robots rules, social-image output,
+structured data and the favicon. The default noindex configuration is also checked.
+
+Verification completed: all 63 repository unit tests passed; four focused SEO
+browser tests passed in each of three configurations (indexable Production,
+Vercel Preview inheriting `SITE_INDEXABLE=true`, and the default no-origin/noindex
+build). The preview release smoke passed 45 route/theme checks and eight production
+guards. Production builds/type checking, targeted lint and repository formatting
+checks passed. The ordinary default local build was restored afterward.
+
+Before deploying, set both Production variables above and redeploy the updated
+revision: sitemap/robots are generated at build time. Preview and Development
+scopes retain `SITE_INDEXABLE=false`; do not infer identity from incoming headers.
+
+After deployment, verify `/en`, `/ja`, `/robots.txt`, `/sitemap.xml`, `/share-image`
+and `/favicon.ico`. Public pages should have `index, follow`, self canonicals and
+reciprocal `en`/`ja` alternates. Robots should allow `/`, exclude `/dev/` and point
+to `https://tylertapia.com/sitemap.xml`. The sitemap should contain the current
+16 public routes and no theme queries, drafts or development paths.
+
+Verify the domain property in Google Search Console through Porkbun DNS using the
+exact TXT verification token supplied by Google, then submit `sitemap.xml`. No
+verification token is invented or stored here. Search Console verification and
+submission require the owner's account; they have not been performed by this work.
 
 ## Vercel preview guard — 2026-10-03
 

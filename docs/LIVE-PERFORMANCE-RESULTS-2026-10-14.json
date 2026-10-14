@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-14",
+  "reviewTimezone": "Pacific/Honolulu",
+  "targetOrigin": "https://tylertapia.com",
+  "sourceReviewRevision": "dd9661c",
+  "deployedRevisionVerified": false,
+  "measurementContext": "Live mobile Lighthouse lab audits before subsequent Claude translation/SEO refinements; not post-change verification.",
+  "method": {
+    "lighthouseVersion": "13.5.0",
+    "runner": "Windows with local Chrome",
+    "throttling": "Lighthouse default simulated mobile",
+    "motion": "normal",
+    "themeSelection": "portfolio-mode request cookie",
+    "initialRuns": 14,
+    "targetedRepeatRuns": 3,
+    "fieldCoreWebVitalsMeasured": false,
+    "capacityTestPerformed": false
+  },
+  "runs": [
+    {
+      "label": "product-en",
+      "route": "/en",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:41:53.937Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1045.12,
+        "largest-contentful-paint": 2395.12,
+        "total-blocking-time": 55,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2067.5498581385605,
+        "server-response-time": 76
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "product-ja",
+      "route": "/ja",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:42:03.6Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1035.1785,
+        "largest-contentful-paint": 2233.1785,
+        "total-blocking-time": 255.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1936.5730470828048,
+        "server-response-time": 130
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "editorial-en",
+      "route": "/en",
+      "requestedTheme": "editorial",
+      "fetchTime": "2026-10-14T18:42:12.696Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1061.9355,
+        "largest-contentful-paint": 1936.9355,
+        "total-blocking-time": 86,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1969.8088393812263,
+        "server-response-time": 80
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "editorial-ja",
+      "route": "/ja",
+      "requestedTheme": "editorial",
+      "fetchTime": "2026-10-14T18:42:21.65Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1209.808,
+        "largest-contentful-paint": 2034.808,
+        "total-blocking-time": 67.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2163.7187151439275,
+        "server-response-time": 80
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "engineer-en",
+      "route": "/en",
+      "requestedTheme": "engineer",
+      "fetchTime": "2026-10-14T18:42:30.815Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1041.5895,
+        "largest-contentful-paint": 1041.5895,
+        "total-blocking-time": 12,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1482.6102321359767,
+        "server-response-time": 76
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "engineer-ja",
+      "route": "/ja",
+      "requestedTheme": "engineer",
+      "fetchTime": "2026-10-14T18:42:39.497Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1035.958,
+        "largest-contentful-paint": 1485.958,
+        "total-blocking-time": 288.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1693.8565239166737,
+        "server-response-time": 76
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "digital-en",
+      "route": "/en",
+      "requestedTheme": "digital",
+      "fetchTime": "2026-10-14T18:42:48.6Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1449.741,
+        "largest-contentful-paint": 2349.741,
+        "total-blocking-time": 33,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2070.5430299824798,
+        "server-response-time": 75
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "digital-ja",
+      "route": "/ja",
+      "requestedTheme": "digital",
+      "fetchTime": "2026-10-14T18:42:57.313Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1448.855,
+        "largest-contentful-paint": 2348.855,
+        "total-blocking-time": 42,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2003.1861728687995,
+        "server-response-time": 75
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "chronicle-en",
+      "route": "/en",
+      "requestedTheme": "chronicle",
+      "fetchTime": "2026-10-14T18:43:06.204Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "scores": {
+        "performance": 94,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1207.559,
+        "largest-contentful-paint": 3082.559,
+        "total-blocking-time": 22,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2623.006932031004,
+        "server-response-time": 79
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "chronicle-ja",
+      "route": "/ja",
+      "requestedTheme": "chronicle",
+      "fetchTime": "2026-10-14T18:43:16.888Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 92,
+        "accessibility": 97,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1236.7185,
+        "largest-contentful-paint": 3082.7185,
+        "total-blocking-time": 154.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2462.6469928564347,
+        "server-response-time": 77
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "portfolio-ja",
+      "route": "/ja/work/portfolio",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:43:27.058Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja/work/portfolio",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1385.4245,
+        "largest-contentful-paint": 2334.4245,
+        "total-blocking-time": 7.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2269.2330719980746,
+        "server-response-time": 75
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "work-ja",
+      "route": "/ja/work",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:43:36.554Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja/work",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1029.6425,
+        "largest-contentful-paint": 1898.6425,
+        "total-blocking-time": 41.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2123.7437381422005,
+        "server-response-time": 81
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "nihonest-ja",
+      "route": "/ja/work/nihonest",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:43:45.165Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja/work/nihonest",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1299.0990000000002,
+        "largest-contentful-paint": 2043.0990000000002,
+        "total-blocking-time": 67.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2085.413161605957,
+        "server-response-time": 77
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "planner-ja",
+      "route": "/ja/work/japan-travel-planner",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:43:54.231Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja/work/japan-travel-planner",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1266.414,
+        "largest-contentful-paint": 2017.414,
+        "total-blocking-time": 22.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1782.5163462724045,
+        "server-response-time": 76
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "product-ja-repeat",
+      "route": "/ja",
+      "requestedTheme": "product",
+      "fetchTime": "2026-10-14T18:46:18.979Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1281.739,
+        "largest-contentful-paint": 2082.739,
+        "total-blocking-time": 25,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1692.81675002203,
+        "server-response-time": 76
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "engineer-ja-repeat",
+      "route": "/ja",
+      "requestedTheme": "engineer",
+      "fetchTime": "2026-10-14T18:46:27.749Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1184.091,
+        "largest-contentful-paint": 1944.091,
+        "total-blocking-time": 33.5,
+        "cumulative-layout-shift": 0,
+        "speed-index": 1745.3119634778072,
+        "server-response-time": 77
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    },
+    {
+      "label": "chronicle-ja-repeat",
+      "route": "/ja",
+      "requestedTheme": "chronicle",
+      "fetchTime": "2026-10-14T18:46:36.737Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "scores": {
+        "performance": 94,
+        "accessibility": 97,
+        "best-practices": 96,
+        "seo": 66
+      },
+      "metrics": {
+        "first-contentful-paint": 1210.647,
+        "largest-contentful-paint": 3055.647,
+        "total-blocking-time": 40,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2644.030041745892,
+        "server-response-time": 77
+      },
+      "runWarnings": [],
+      "runtimeError": null
+    }
+  ],
+  "findings": [
+    "All runs measured CLS 0.",
+    "Japanese Product and Engineer scores improved to 99 on repeat; no stable translation regression established.",
+    "Chronicle Japanese target-size finding repeats on Nihonest title link adjacent to card-selection target.",
+    "Chronicle LCP approximately 3.1 seconds in both languages.",
+    "Best Practices 96: favicon.ico returned 404.",
+    "SEO 66: live indexing disabled; canonical/hreflang absent from inspected pages."
+  ],
+  "rawArtifactDirectory": "C:\\Users\\T3\\.codex\\visualizations\\2026\\10\\12\\01a130f7-a0fb-7be1-88c8-b285782d2637\\translation-live-audit-2026-10-14"
+}

@@ -1,9 +1,9 @@
 # Vercel release runbook
 
-Prepared 2026-10-03. Hosting choice: Vercel. Public domain and final launch content
-are still open. Tyler has deferred deployment until the other projects are completed
-and integrated into the portfolio. This runbook prepares the existing Next.js application for a
-non-indexed preview; no Vercel project, deployment or domain has been created here.
+Updated 2026-10-14. The portfolio is deployed on Vercel at `https://tylertapia.com`.
+The domain is registered with Porkbun. This runbook covers non-indexed previews
+and the bilingual public SEO release; changing source code does not update a live
+deployment or its environment settings.
 
 ## Repository configuration
 
@@ -39,6 +39,12 @@ than `production`. This adds a guard if a production indexing flag is mistakenly
 assigned to Preview. It does not replace setting the correct environment scopes.
 See [system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables).
 
+For the current SEO release, set **Production only** to
+`SITE_URL=https://tylertapia.com` and `SITE_INDEXABLE=true`, then redeploy the updated
+revision. Preview/Development explicitly retain `SITE_INDEXABLE=false`.
+`.env.production.example` records these intended values without activating them
+locally. See [SEO-INTEGRATION.md](SEO-INTEGRATION.md) for acceptance checks.
+
 The canonical origin is explicit; neither request headers nor `VERCEL_URL` invent
 it. Build and runtime must use the same settings because robots/sitemap/share image
 are generated at build time. Redeploy after changing the origin or indexing flag.
@@ -58,7 +64,7 @@ npm run test:browser
 ```
 
 Do not run a build concurrently with captures. The release smoke
-command owns port 3220 and checks the production build across three cookie-selected
+command owns port 3220 and checks the production build across cookie-selected
 themes, public routes, production 404 guards, static JavaScript, public PNG media,
 noindex robots and an empty preview sitemap. It stops its own server afterward and
 writes diagnostics to `.cache/release-smoke.log`. It is a preview gate, not a hosted
@@ -78,15 +84,15 @@ and traces. Local success does not establish deployed performance or hosted CI s
 4. Deploy the intended revision and inspect its build log for content validation.
 5. Visit Work, About, Lab and Contact in all themes, at mobile and desktop widths.
    Check language switching, persisted mode, Back/Forward and mobile menu controls.
-6. Confirm `/dev/compositions`, `/dev/design-system`, `/dev/projects/portfolio` and
-   the unpublished `/en/work/portfolio` return 404. Vercel Preview runs production
+6. Confirm `/dev/compositions`, `/dev/design-system` and `/dev/projects/portfolio`
+   return 404. The published `/en/work/portfolio` is public. Vercel Preview runs production
    code, so local development previews are intentionally unavailable there.
 7. Check `/robots.txt` disallows `/`, `/sitemap.xml` contains no URLs, and page
    metadata remains noindex. Check font/image delivery, native videos where present,
    image-viewer focus return and reduced-motion behavior on the hosted application.
 
-The public project inventory remains empty until a project is deliberately published.
-Review the populated pilot locally at `/dev/projects/portfolio`. Static media files
+The current public inventory contains Portfolio, Nihonest and Japan Travel Planner.
+Review development content locally at `/dev/projects/portfolio`. Static media files
 under `public/` remain URL-accessible; draft routes are publication gates, not private
 media storage. Do not add confidential material to public assets.
 

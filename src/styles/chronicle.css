@@ -1213,16 +1213,22 @@
     overflow: auto;
     font-size: 0.8rem;
   }
-  /* Content-sized within its bounds so the topic line is never clipped. */
+  /* Content-sized within its bounds so the topic line is never clipped. The intro
+     scrolls, not the banner: the white veil (::before) is positioned in the
+     banner box, so a scrolling banner would carry the veil away with its text. */
   .chronicle-dossier-banner {
     flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
     min-height: 230px;
     max-height: 305px;
-    overflow: auto;
+    overflow: hidden;
     padding: clamp(1.25rem, 2.4vw, 2.4rem) clamp(2rem, 9vw, 9rem);
-    scrollbar-width: none;
   }
   .chronicle-dossier-banner .case-study-intro {
+    min-height: 0;
+    overflow: auto;
+    scrollbar-width: none;
     display: block;
     margin: 0;
     padding: 0;
@@ -1289,13 +1295,17 @@
     background: #fffdfb8f;
     border-block: 1px solid #d0a05a85;
   }
+  /* Stays a list item (not flex) so the disclosure marker shows. */
   .chronicle-record-summary > summary {
     cursor: pointer;
-    min-height: 36px;
-    padding: 0.3rem clamp(1rem, 3vw, 3rem);
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 0.6rem clamp(1rem, 3vw, 3rem);
+    line-height: 1.3;
     color: #725071;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
+  /* Opaque so the reading panel beneath never ghosts through the facts. */
   .chronicle-record-summary__content {
     position: absolute;
     top: 100%;
@@ -1304,9 +1314,17 @@
     padding: 1.5rem;
     max-height: 55dvh;
     overflow-y: auto;
-    background: #fffdfbf5;
+    background: #fffdfb;
     border: 1px solid #d6a14a;
     box-shadow: 0 10px 24px #73528f30;
+  }
+  /* The panel spans the dossier; its text keeps a reading measure. */
+  .chronicle-record-summary__content > * {
+    max-width: 72ch;
+  }
+  /* Shown only where the identity band drops its summary (landscape phones). */
+  .chronicle-record-summary__identity {
+    display: none;
   }
   .chronicle-record-summary .project-meta {
     font-size: 0.9rem;
@@ -1393,9 +1411,17 @@
     border: 2px solid #76517c;
     background: #fffdfb;
   }
-  .case-study-navigation a:is(:hover, :focus-visible) {
+  /* Hover only for real pointers: a tap leaves :hover stuck on touch screens,
+     so a tapped chapter stayed tinted after the reader scrolled on. */
+  .case-study-navigation a:focus-visible {
     color: #8e2c6a;
     background: #f6ddef75;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .case-study-navigation a:hover {
+      color: #8e2c6a;
+      background: #f6ddef75;
+    }
   }
   .case-study-navigation a[aria-current="location"] {
     color: #962369;
@@ -2698,9 +2724,67 @@
       grid-column: 1;
       grid-row: 3;
     }
+    /* Below the toggle there is too little height left on the screen, so the
+       open panel covers the reading column at full screen height instead. */
+    .chronicle-dossier .chronicle-record-summary {
+      position: static;
+    }
+    /* The panel opens to the right, so the marker follows the label and points
+       toward it: right while closed, left (back) while open. */
+    .chronicle-record-summary > summary {
+      list-style: none;
+    }
+    .chronicle-record-summary > summary::-webkit-details-marker {
+      display: none;
+    }
+    .chronicle-record-summary > summary::after {
+      content: "";
+      display: inline-block;
+      width: 0.5em;
+      height: 0.6em;
+      margin-inline-start: 0.55em;
+      background: currentColor;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transition: scale 180ms ease-out;
+    }
+    .chronicle-record-summary[open] > summary::after {
+      scale: -1 1;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .chronicle-record-summary > summary::after {
+        transition: none;
+      }
+    }
     .chronicle-record-summary__content {
-      right: auto;
-      width: min(560px, calc(100vw - 40px));
+      top: 6px;
+      bottom: 6px;
+      left: calc(max(200px, 31%) + 8px);
+      right: 8px;
+      z-index: 8;
+      max-height: none;
+      padding: 1rem 1.25rem;
+    }
+    /* The identity band keeps eyebrow, title and status in full; the summary
+       and topics would only fit in a scroller nobody finds, so they open first
+       in Project at a Glance instead. */
+    .chronicle-dossier-banner {
+      max-height: none;
+    }
+    .chronicle-dossier-banner
+      .case-study-intro
+      > :is(p:not(.eyebrow, .chronicle-status), .chronicle-topics) {
+      display: none;
+    }
+    .chronicle-record-summary__identity {
+      display: block;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #d6a14a70;
+    }
+    .chronicle-record-summary__identity .chronicle-topics {
+      padding-inline-start: 0;
+      margin: 0.5rem 0 0;
+      font-size: 0.8125rem;
     }
     .chronicle-dossier .case-study-reading-layout {
       display: contents;
@@ -3909,11 +3993,6 @@
     }
     .chronicle-dossier .chronicle-record-summary {
       grid-row: 3;
-    }
-    .chronicle-record-summary > summary {
-      display: flex;
-      align-items: center;
-      min-height: 44px;
     }
     .chronicle-dossier .case-study-reading-layout {
       grid-row: 4;

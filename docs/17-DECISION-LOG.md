@@ -688,3 +688,21 @@ design adjustments required rewriting them; they were frequently flaky in CI; an
 they still missed the visual problems (such as overlapping text) found by review.
 Visual quality is reviewed by eye per docs/12-TESTING-AND-QUALITY.md §17.
 
+## D054 — Bilingual public SEO eligibility
+
+**Decision, 2026-10-14:** After Japanese translation review and refinement, the owner
+requested the SEO release. Both English and Japanese main pages are eligible for
+indexing, reciprocal hreflang, sitemap inclusion and WebSite language declarations.
+Each retains its own canonical identity; presentation cookies/query parameters do
+not create SEO variants. Unavailable project translations remain noindex.
+
+**Reason:** The main-page copy and all three published case studies now have
+Japanese coverage. The old English-only main-page eligibility no longer represents
+the intended bilingual public site. This is release eligibility, not certification
+of completed human native-language review or field-performance acceptance.
+
+**Boundary:** Production still requires explicit `SITE_URL` and `SITE_INDEXABLE`;
+Vercel Preview/Development guards remain. Enabling live indexing requires a new
+production deployment with matching build/runtime settings. Account-level search
+verification and sitemap submission are separate from source changes.
+

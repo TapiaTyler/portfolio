@@ -110,7 +110,7 @@ export const nihonestProject = {
       },
       {
         en: "The student-status route selected on mobile. Route selection guides reading; it does not determine eligibility.",
-        ja: "モバイルで在留資格「留学」の経路を選択した画面。経路の選択は読む順序を案内するもので、資格の有無を判定するものではない。",
+        ja: "モバイルで在留資格「留学」の経路を選択した画面。経路の選択は読む順序を案内するもので、対象となるかどうかを判定するものではない。",
       },
       390,
       844,
@@ -279,7 +279,7 @@ export const nihonestProject = {
       language: "typescript",
       title: {
         en: "Resolve one journey route into a reading sequence",
-        ja: "ジャーニーの経路を、ひとつの読む順序に解決する",
+        ja: "選んだ経路から、ジャーニーの読む順序を決める",
       },
       source: `export function resolveJourneySteps(journey: GuidedJourney, routeId?: string): readonly ResolvedJourneyStep[] {
   const route = getJourneyRouteById(journey, routeId);
