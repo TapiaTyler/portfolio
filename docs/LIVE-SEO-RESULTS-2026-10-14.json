@@ -1,0 +1,44 @@
+{
+  "reviewDate": "2026-10-14",
+  "timezone": "Pacific/Honolulu",
+  "targetOrigin": "https://tylertapia.com",
+  "categories": [
+    "seo",
+    "best-practices"
+  ],
+  "method": "Lighthouse 13.5.0 with local Chrome, default mobile settings, Product theme; post-deployment live audit",
+  "rawArtifactDirectory": "C:\\Users\\T3\\.codex\\visualizations\\2026\\10\\12\\01a130f7-a0fb-7be1-88c8-b285782d2637\\seo-postdeployment-2026-10-14",
+  "limitations": "SEO and Best Practices only. Performance and Accessibility were not remeasured. Scores do not establish indexing or rankings.",
+  "runs": [
+    {
+      "label": "home-en",
+      "route": "/en",
+      "fetchTime": "2026-10-14T20:17:23.623Z",
+      "finalDisplayedUrl": "https://tylertapia.com/en",
+      "runWarnings": [],
+      "scores": {
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {},
+      "issues": [],
+      "insights": [],
+      "verifiedDefaultTheme": "product"
+    },
+    {
+      "label": "home-ja",
+      "route": "/ja",
+      "fetchTime": "2026-10-14T20:17:32.208Z",
+      "finalDisplayedUrl": "https://tylertapia.com/ja",
+      "runWarnings": [],
+      "scores": {
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {},
+      "issues": [],
+      "insights": [],
+      "verifiedDefaultTheme": "product"
+    }
+  ]
+}

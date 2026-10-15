@@ -268,7 +268,7 @@ a few interface slots alone does not make a Japanese page ready for indexing.
 `src/content/interface.ts`, `placeholder.ts`, `pages.ts` and `contact.ts` now carry
 AI-drafted Japanese (natural professional register, です/ます). It is awaiting native
 review, as the workflow above requires; the interface file header records this.
-Technology names, file formats, GitHub/LinkedIn, "Web" and "JLPT N2" stay shared and
+Technology names, file formats, GitHub/LinkedIn and "Web" stay shared and
 render as English. Project records are unchanged (`translationStatus` still `none`),
 so case studies, card summaries and the site-wide notice continue to fall back to
 English with an explanation. Japanese indexing (hreflang alternates, sitemap entries)
@@ -279,6 +279,10 @@ About → プロフィール (the page covers background, education and skills, 
 a self-introduction), Contact → お問い合わせ, Lab → ラボ. Japanese text wraps at
 phrase boundaries (`:lang(ja) { word-break: auto-phrase }` in `globals.css`; browsers
 without support keep normal breaking).
+
+On 2026-10-15, the Japanese About profile and biography expanded the qualification
+to 日本語能力試験（JLPT）N2, explicitly stating that the exam was passed. The English
+website retains the compact "JLPT N2" label.
 
 ## Japanese case studies (2026-10-14)
 

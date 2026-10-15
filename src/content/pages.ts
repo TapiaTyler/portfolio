@@ -117,7 +117,10 @@ export const pageContent = {
               ja: "Adobe Photoshop、Illustrator、XD、InDesign、Lightroom、Premiere Pro",
             },
           },
-          { label: { en: "Japanese", ja: "日本語" }, value: { en: "JLPT N2" } },
+          {
+            label: { en: "Japanese", ja: "日本語" },
+            value: { en: "JLPT N2", ja: "日本語能力試験（JLPT）N2 合格" },
+          },
           {
             label: { en: "English", ja: "英語" },
             value: { en: "Native", ja: "ネイティブ" },
@@ -173,7 +176,7 @@ export const pageContent = {
         paragraphs: [
           {
             en: "I'm based in Hawaii and preparing to continue my software engineering career in Japan. I've studied Japanese both in Japan and independently, including programs at KAI Japanese Language School and Josai International University, and hold the JLPT N2. I'm especially interested in web and software teams where I can contribute across frontend, full-stack development, UI systems, and broader product engineering.",
-            ja: "ハワイを拠点に、日本でソフトウェアエンジニアとしてのキャリアを続けるための準備を進めています。KAI日本語スクールや城西国際大学のプログラムを含め、日本での留学と独学の両方で日本語を学び、JLPT N2を取得しています。特に、フロントエンド、フルスタック開発、UIシステム、そして幅広いプロダクトエンジニアリングに貢献できるWeb・ソフトウェアのチームに関心があります。",
+            ja: "ハワイを拠点に、日本でソフトウェアエンジニアとしてのキャリアを続けるための準備を進めています。KAI日本語スクールや城西国際大学のプログラムを含め、日本での留学と独学の両方で日本語を学び、日本語能力試験（JLPT）N2に合格しています。特に、フロントエンド、フルスタック開発、UIシステム、そして幅広いプロダクトエンジニアリングに貢献できるWeb・ソフトウェアのチームに関心があります。",
           },
         ],
       },

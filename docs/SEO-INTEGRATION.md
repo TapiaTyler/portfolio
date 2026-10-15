@@ -126,6 +126,32 @@ exact TXT verification token supplied by Google, then submit `sitemap.xml`. No
 verification token is invented or stored here. Search Console verification and
 submission require the owner's account; they have not been performed by this work.
 
+## Live production verification — 2026-10-14
+
+After the owner configured the Production environment variables, all 16 URLs in
+the live sitemap returned 200 with `index, follow`, matching self canonicals and
+English/Japanese/English-default language alternates. Both homepages include
+valid Person and WebSite JSON-LD. `/robots.txt` allows public crawling, excludes
+`/dev/` and advertises the canonical sitemap. `/favicon.ico` returns 200 with an
+icon content type.
+
+The response evidence is recorded in
+[SEO-LIVE-VERIFICATION-2026-10-14.json](SEO-LIVE-VERIFICATION-2026-10-14.json).
+This confirms live HTTP metadata and crawl eligibility, not actual Google indexing,
+rankings, Search Console ownership or post-change Lighthouse scores.
+
+## Post-deployment Lighthouse SEO — 2026-10-14
+
+Fresh live mobile Lighthouse 13.5.0 audits of `/en` and `/ja` in Product both
+score **SEO 100** and **Best Practices 100**, with no run warnings or failed audits
+in those categories. The prior bilingual release audit scored SEO 66 and Best
+Practices 96 before indexing configuration and favicon changes.
+
+These runs audit only SEO and Best Practices; they do not update Performance or
+Accessibility scores, establish Google indexing, or predict rankings. Exact
+timestamps, scores and raw-report location are recorded in
+[LIVE-SEO-RESULTS-2026-10-14.json](LIVE-SEO-RESULTS-2026-10-14.json).
+
 ## Vercel preview guard — 2026-10-03
 
 Indexing additionally requires `VERCEL_ENV` to be absent or `production`. Preview,

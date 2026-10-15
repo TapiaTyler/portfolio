@@ -4,7 +4,7 @@ Reviewed and integrated on 2026-10-14 from the owner's application-document ZIP.
 
 The Contact page offers three PDFs through the shared `contactDocuments` registry:
 
-- English résumé: the supplied one-page A4 PDF, unchanged.
+- English résumé: the supplied one-page A4 résumé, with the JLPT credential expanded to "Japanese-Language Proficiency Test (JLPT) N2 - Passed" on 2026-10-15.
 - Japanese 履歴書: a two-page A4 public version, explicitly labeled 公開用. The photo placeholder, birth date, age and sex field are omitted. The address contains only city, state and country. Contact phone and email remain as supplied.
 - Japanese 職務経歴書: a two-page A4 PDF with programming languages and spoken languages labeled separately.
 

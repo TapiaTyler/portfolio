@@ -1,0 +1,452 @@
+{
+  "verifiedAt": "2026-10-14T20:06:45.911Z",
+  "timezone": "Pacific/Honolulu",
+  "origin": "https://tylertapia.com",
+  "sitemapUrl": "https://tylertapia.com/sitemap.xml",
+  "sitemapCount": 16,
+  "allPagesPassed": true,
+  "robots": "User-Agent: *\nAllow: /\nDisallow: /dev/\n\nSitemap: https://tylertapia.com/sitemap.xml\n",
+  "favicon": {
+    "status": 200,
+    "contentType": "image/vnd.microsoft.icon"
+  },
+  "pages": [
+    {
+      "url": "https://tylertapia.com/en",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en"
+        }
+      ],
+      "structuredData": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://tylertapia.com/#person",
+              "name": "Tyler Tetsuo Tapia",
+              "alternateName": "タイラー・鉄男・タピア",
+              "url": "https://tylertapia.com/"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://tylertapia.com/#website",
+              "name": "Tyler Tetsuo Tapia — Portfolio",
+              "url": "https://tylertapia.com/",
+              "inLanguage": [
+                "en",
+                "ja"
+              ],
+              "publisher": {
+                "@id": "https://tylertapia.com/#person"
+              }
+            }
+          ]
+        }
+      ],
+      "title": "Portfolio | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en"
+        }
+      ],
+      "structuredData": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://tylertapia.com/#person",
+              "name": "Tyler Tetsuo Tapia",
+              "alternateName": "タイラー・鉄男・タピア",
+              "url": "https://tylertapia.com/"
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://tylertapia.com/#website",
+              "name": "Tyler Tetsuo Tapia — Portfolio",
+              "url": "https://tylertapia.com/",
+              "inLanguage": [
+                "en",
+                "ja"
+              ],
+              "publisher": {
+                "@id": "https://tylertapia.com/#person"
+              }
+            }
+          ]
+        }
+      ],
+      "title": "ポートフォリオ | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/work",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/work",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work"
+        }
+      ],
+      "structuredData": [],
+      "title": "Work | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/work",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/work",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work"
+        }
+      ],
+      "structuredData": [],
+      "title": "制作実績 | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/about",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/about",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/about"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/about"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/about"
+        }
+      ],
+      "structuredData": [],
+      "title": "About | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/about",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/about",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/about"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/about"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/about"
+        }
+      ],
+      "structuredData": [],
+      "title": "プロフィール | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/lab",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/lab",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/lab"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/lab"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/lab"
+        }
+      ],
+      "structuredData": [],
+      "title": "Lab | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/lab",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/lab",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/lab"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/lab"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/lab"
+        }
+      ],
+      "structuredData": [],
+      "title": "ラボ | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/contact",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/contact",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/contact"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/contact"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/contact"
+        }
+      ],
+      "structuredData": [],
+      "title": "Contact | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/contact",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/contact",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/contact"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/contact"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/contact"
+        }
+      ],
+      "structuredData": [],
+      "title": "お問い合わせ | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/work/nihonest",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/work/nihonest",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/nihonest"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/nihonest"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/nihonest"
+        }
+      ],
+      "structuredData": [],
+      "title": "Nihonest | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/work/nihonest",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/work/nihonest",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/nihonest"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/nihonest"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/nihonest"
+        }
+      ],
+      "structuredData": [],
+      "title": "Nihonest | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/work/portfolio",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/work/portfolio",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/portfolio"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/portfolio"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/portfolio"
+        }
+      ],
+      "structuredData": [],
+      "title": "One Portfolio, Five Perspectives | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/work/portfolio",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/work/portfolio",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/portfolio"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/portfolio"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/portfolio"
+        }
+      ],
+      "structuredData": [],
+      "title": "ひとつのポートフォリオ、5つの視点 | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/en/work/japan-travel-planner",
+      "status": 200,
+      "canonical": "https://tylertapia.com/en/work/japan-travel-planner",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/japan-travel-planner"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/japan-travel-planner"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/japan-travel-planner"
+        }
+      ],
+      "structuredData": [],
+      "title": "Japan Travel Planner | Tyler Tetsuo Tapia",
+      "htmlLanguage": "en",
+      "passed": true
+    },
+    {
+      "url": "https://tylertapia.com/ja/work/japan-travel-planner",
+      "status": 200,
+      "canonical": "https://tylertapia.com/ja/work/japan-travel-planner",
+      "robots": "index, follow",
+      "alternates": [
+        {
+          "language": "en",
+          "url": "https://tylertapia.com/en/work/japan-travel-planner"
+        },
+        {
+          "language": "ja",
+          "url": "https://tylertapia.com/ja/work/japan-travel-planner"
+        },
+        {
+          "language": "x-default",
+          "url": "https://tylertapia.com/en/work/japan-travel-planner"
+        }
+      ],
+      "structuredData": [],
+      "title": "Japan Travel Planner | Tyler Tetsuo Tapia",
+      "htmlLanguage": "ja",
+      "passed": true
+    }
+  ],
+  "limitations": "HTTP metadata verification, not confirmation of Google indexing, rankings or post-change Lighthouse scores."
+}
